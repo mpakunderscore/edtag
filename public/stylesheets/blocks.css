@@ -1,0 +1,55 @@
+.block {
+	
+	width: 800px;
+	
+	margin: 50px;
+	margin-top: 0px;
+		
+	
+/*	overflow-y: scroll;*/
+}
+
+.wiki {
+	
+	padding: 30px;
+	padding-top: 10px;	
+/*	padding-left: 20px;*/
+/*	padding-right: 20px;	*/
+	
+	border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.img {
+	float: right;
+	margin: 20px;
+	margin-right: 10px;	
+}
+
+.video {
+	border: 1px solid rgba(255, 0, 0, 0.2);
+/*	padding: 20px;	*/
+}
+
+.search {
+	border: 1px solid rgba(0, 0, 255, 0.2);
+	padding: 20px;	
+}
+
+.info {
+
+	float: right;
+	background-color: #fff;
+	
+	margin: 10px;
+	margin-top: 1px;
+	margin-right: -30px;
+	
+	padding-top: 30px;
+	padding-bottom: 30px;	
+/*	border: 1px solid #ddd;*/
+}
+
+.info a:link {text-decoration: none;}
+
+/*.info a:link {text-decoration: none; color: #acd8f8;}*/
+/*.info a:visited {color: #7fa0b8;}*/

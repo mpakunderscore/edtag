@@ -1,15 +1,26 @@
 @(title: String)(content: Html)
 
 <!DOCTYPE html>
-
 <html>
+
     <head>
         <title>@title</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/nope.ico")">
-        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/blocks.css")">
+
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.ico")">
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
+
     <body>
+        <!-- What are you doing here? -_-' -->
+
         @content
     </body>
+
+    <script type="text/javascript" src="@routes.Assets.at("javascripts/blocks.js")"></script>
+    <script type="text/javascript" src="@routes.Assets.at("javascripts/main.js")"></script>
+
 </html>
+
