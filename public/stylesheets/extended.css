@@ -1,0 +1,68 @@
+html {
+    overflow-y: scroll;
+}
+
+body, input {
+
+    font: 13px helvetica, arial, freesans, clean, sans-serif;
+    line-height: 1.5;
+}
+
+.center {
+
+    position: absolute;
+    top: 3%;
+    left: 50%;
+}
+
+#user {
+
+    color: #666666;
+    text-align: left;
+    margin: auto;
+    /*width: 500px;*/
+    /*height: 30px;*/
+    word-spacing: 15px;
+    padding-bottom: 15px;
+    padding-left: 0.3em;
+
+    /*-webkit-animation: fadein 2s;	*/
+    /*animation: fadein 2s;	*/
+}
+
+#user a:link { text-decoration: none; color: #666666;}
+
+
+#search {
+
+    text-align: left;
+    width: 500px;
+    padding-left: 0.3em;
+}
+
+#answer {
+
+    color: #666666;
+
+    text-align: left;
+    margin: auto;
+    width: 500px;
+    /*	padding: 1em;*/
+    padding-left: 0.2em;
+
+    /*-webkit-animation: fadein 2s;	*/
+    /*animation: fadein 2s;*/
+}
+
+/*@keyframes fadein {*/
+/*from { opacity: 0; }*/
+/*to   { opacity: 1; }*/
+/*}*/
+
+/*@-webkit-keyframes fadein {*/
+/*from { opacity: 0; }*/
+/*to   { opacity: 1; }*/
+/*}*/
+
+#answer a:link { text-decoration: none;}
+/*#menu a:visited {color: #7fa0b8;}*/
