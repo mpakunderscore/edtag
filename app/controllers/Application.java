@@ -6,6 +6,7 @@ import models.Data;
 import models.Query;
 import models.User;
 import play.mvc.*;
+import static play.libs.Json.toJson;
 
 import views.html.*;
 
@@ -80,7 +81,7 @@ public class Application extends Controller {
     public static Result users() {
 
         List<User> users = Ebean.find(User.class).findList();
-        return ok(users.toString());
+        return ok(toJson(users));
     }
 
     public static void query(String email, String query) {
