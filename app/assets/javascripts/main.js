@@ -10,6 +10,8 @@ function howto2() {
 function process() {	
 
 	var entered = $("#search").val();
+
+
 	
 	if (entered === '') alert("Not bad.");
 	
