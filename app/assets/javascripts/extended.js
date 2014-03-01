@@ -11,7 +11,14 @@ function process2() {
 
     if (entered === '') return;
 
+    query(entered);
+
     $('#search').val('');
 
     $('#answer').html("<p>" + entered + "</p>");
+}
+
+function query(text) {
+
+    $.get("/query", {text: text}, function( data ) {});
 }

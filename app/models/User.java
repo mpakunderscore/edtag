@@ -16,18 +16,18 @@ public class User extends Model {
 
     @Id
     String email;
-    public String password;
+    String password;
 
     public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "\nUser{" +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

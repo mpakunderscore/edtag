@@ -1,12 +1,17 @@
 @(email: String)
-@extended("Nothing") {
+@shell.extended("Nothing") {
 
-    <div id="interlocution" class="center">
+    <div id="interaction" class="center">
 
         <div style="position: relative; left: -50%;">
-            <div id="user">tags <a href="/logout" onclick="">logout</a></div>
+            <div id="user">
+                <a href="">welcome</a>
+                <a href="">tags</a>
+                <a href="">get</a>
+                <a href="/logout" onclick="">logout</a>
+            </div>
             <div id="search_wrapper"><input id="search" type="text" /></div>
-            <div id="answer"><p>Physics is one of the oldest academic disciplines, perhaps the oldest through its inclusion of astronomy. Over the last two millennia, physics was a part of natural philosophy along with chemistry, certain branches of mathematics, and biology, but during the Scientific Revolution in the 17th century, the natural sciences emerged as unique research programs in their own right.</p></div>
+            <div id="answer"><p>Over the course of the 19th century, the word "science" became increasingly associated with the <a href="">scientific method</a> itself, as a disciplined way to study the natural world, including <a href="">physics</a>, <a href="">chemistry</a>, <a href="">geology</a> and <a href="">biology</a>.</p></div>
         </div>
 
     </div>

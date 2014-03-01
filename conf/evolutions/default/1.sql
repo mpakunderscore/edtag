@@ -9,6 +9,11 @@ create table data (
   constraint pk_data primary key (url))
 ;
 
+create table query (
+  email                     varchar(255),
+  query                     varchar(255))
+;
+
 create table users (
   email                     varchar(255) not null,
   password                  varchar(255),
@@ -25,6 +30,8 @@ create sequence users_seq;
 # --- !Downs
 
 drop table if exists data cascade;
+
+drop table if exists query cascade;
 
 drop table if exists users cascade;
 

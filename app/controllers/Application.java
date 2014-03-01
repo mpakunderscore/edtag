@@ -34,7 +34,7 @@ public class Application extends Controller {
         User user = Ebean.find(User.class, email);
 
         //if user exist and password correct, redirect to index with session
-        if (user != null && password.equals(user.password)) {
+        if (user != null && password.equals(user.getPassword())) {
 
             session("connected", email);
             return ok();
@@ -63,29 +63,41 @@ public class Application extends Controller {
 
     public static Result add(String url, String tags) {
 
-        Data data = new Data(url, tags);
-        data.save();
+        Data data = Ebean.find(Data.class, url);
+        if (data == null) new Data(url, tags).save();
+        else {
+            data.setTags(tags);
+            data.update();
+        }
+
         return ok();
     }
 
     public static Result analysis(String url) {
+
 
         return ok("analysis: " + url);
     }
 
     public static Result get() {
 
-        return ok();
+        List<Data> dataList = Ebean.find(Data.class).findList();
+        return ok(toJson(dataList));
     }
 
     public static Result users() {
+
+        if (session("connected") == null) return ok();
 
         List<User> users = Ebean.find(User.class).findList();
         return ok(toJson(users));
     }
 
-    public static void query(String email, String query) {
+    public static Result query(String text) {
 
-//        new Query(email, query);
+        if (session("connected") != null)
+            new Query(session("connected"), text).save();
+
+        return ok();
     }
 }

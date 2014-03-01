@@ -21,4 +21,16 @@ public class Data extends Model {
         this.url = url;
         this.tags = tags;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
 }

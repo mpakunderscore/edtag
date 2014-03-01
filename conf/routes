@@ -12,6 +12,7 @@ GET        /analysis            controllers.Application.analysis(url:String)
 
 GET        /get                 controllers.Application.get()
 GET        /users               controllers.Application.users()
+GET        /query               controllers.Application.query(text:String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET        /assets/*file        controllers.Assets.at(path="/public", file)

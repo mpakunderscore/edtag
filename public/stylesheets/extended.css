@@ -30,8 +30,9 @@ body, input {
     /*animation: fadein 2s;	*/
 }
 
-#user a:link { text-decoration: none; color: #666666;}
-
+#user a:link    {text-decoration: none;}
+#user a:visited {color: blue;}
+/*#user a:hover   {color: red;}*/
 
 #search {
 
@@ -65,4 +66,4 @@ body, input {
 /*}*/
 
 #answer a:link { text-decoration: none;}
-/*#menu a:visited {color: #7fa0b8;}*/
+#answer a:visited {color: blue;}
