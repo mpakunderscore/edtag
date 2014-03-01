@@ -1,9 +1,15 @@
 package controllers;
 
-import play.*;
+import com.avaje.ebean.Ebean;
+import models.Data;
+//import models.User;
+import models.Query;
+import models.User;
 import play.mvc.*;
 
 import views.html.*;
+
+import java.util.List;
 
 public class Application extends Controller {
 
@@ -24,26 +30,28 @@ public class Application extends Controller {
 
     public static Result login(String email, String password) {
 
+        User user = Ebean.find(User.class, email);
+
         //if user exist and password correct, redirect to index with session
-        if (email.equals("m@m.m") && password.equals("m")) {
+        if (user != null && password.equals(user.password)) {
 
             session("connected", email);
             return ok();
 
         //wrong password
-        } else if (email.equals("m@m.m"))  {
+        } else if (user != null)  {
 
             return ok("<p>Wrong password. Are you sure you're doing the right thing?</p>");
 
         //if user created
-        } else if (!email.equals("m")) {
+        } else {
 
+            user = new User(email, password);
+            Ebean.save(user);
             session("connected", email);
             session("welcome", "true");
             return ok();
         }
-
-        return noContent();
     }
 
     public static Result logout() {
@@ -52,4 +60,31 @@ public class Application extends Controller {
         return redirect(routes.Application.index());
     }
 
+    public static Result add(String url, String tags) {
+
+        Data data = new Data(url, tags);
+        data.save();
+        return ok();
+    }
+
+    public static Result analysis(String url) {
+
+        return ok("analysis: " + url);
+    }
+
+    public static Result get() {
+
+        return ok();
+    }
+
+    public static Result users() {
+
+        List<User> users = Ebean.find(User.class).findList();
+        return ok(users.toString());
+    }
+
+    public static void query(String email, String query) {
+
+//        new Query(email, query);
+    }
 }
