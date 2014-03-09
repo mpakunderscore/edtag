@@ -1,21 +1,45 @@
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+function notification() {
+	
+    var time = /(..)(:..)/.exec(new Date());     // The prettyprinted time.
+    var hour = time[1] % 12 || 12;               // The prettyprinted hour.
+    var period = time[1] < 12 ? 'a.m.' : 'p.m.'; // The period of the day.
+	
+	chrome.tabs.getSelected(null, function(tab) {
 
-// This event is fired each time the user updates the text in the omnibox,
-// as long as the extension's keyword mode is still active.
-chrome.omnibox.onInputChanged.addListener(
-  function(text, suggest) {
-    console.log('inputChanged: ' + text);
-    suggest([
-      {content: text + " one", description: "the first one"},
-      {content: text + " number two", description: "the second entry"}
-    ]);
-  });
+	    var notification = window.webkitNotifications.createNotification(
+	    	tab.favIconUrl,                      // The image.
+	      	tab.title.split(" - ")[0], // The title.
+	      	'webrequest, chrome, extension, stack, api, user, enthusiast, privacygs, notifications, apps, tool, snippet, launches'      // The body.
+	    );
+		
+	    notification.show();		
+	});
+}
 
-// This event is fired with the user accepts the input in the omnibox.
-chrome.omnibox.onInputEntered.addListener(
-  function(text) {
-    console.log('inputEntered: ' + text);
-    alert('You just typed "' + text + '"');
-  });
+// Conditionally initialize the options.
+if (!localStorage.isInitialized) {
+	localStorage.isActivated = true;   // The display activation.
+    localStorage.frequency = 1;        // The display frequency, in minutes.
+    localStorage.isInitialized = true; // The option initialization.
+}
+
+// Test for notification support.
+if (window.webkitNotifications) {
+	
+    // While activated, show notifications at the display frequency.
+    if (JSON.parse(localStorage.isActivated)) { notification(); }
+
+    var interval = 0; // The display interval, in minutes.
+
+    setInterval(function() {
+      	interval++;
+
+      	if (
+        	JSON.parse(localStorage.isActivated) &&
+          	localStorage.frequency <= interval
+      	) {
+        	notification();
+        	interval = 0;
+      	}
+    }, 60000);
+}

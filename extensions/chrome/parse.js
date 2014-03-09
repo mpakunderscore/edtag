@@ -59,3 +59,5 @@ chrome.extension.sendMessage({
     action: "getSource",
     source: parse(document)
 });
+
+alert("parse.js");
