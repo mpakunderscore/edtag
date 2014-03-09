@@ -1,0 +1,36 @@
+/*body, input {
+	
+	font: 15px helvetica, arial, freesans, clean, sans-serif;
+	line-height: 1.5;
+	font-size: 0.8em;
+}*/
+
+a:link {text-decoration: none;}
+
+#tags a.pick {
+    color: red;
+}
+
+body {
+	
+	font: 13px helvetica, arial, freesans, clean, sans-serif;
+	line-height: 1.5;
+	
+/*	font-size: 14px;	
+	font-family: arial,sans-serif;
+*/	
+/*	font-size: small;*/
+
+/*	background-color: rgba(245, 247, 247, 0.5);*/
+/*	font: sans-serif; /*15px helvetica, arial, freesans, clean, */
+/*	font-size: 0.9em;*/
+}
+
+hr {	
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}

@@ -11,8 +11,6 @@ function process() {
 
 	var entered = $("#search").val();
 
-
-	
 	if (entered === '') alert("Not bad.");
 	
 	else if ($('#search').attr('type') != 'password' && (/\S+@\S+\.\S+/).test(entered)) { //
