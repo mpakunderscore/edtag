@@ -1,14 +1,14 @@
 {
 	"manifest_version": 2,
 
-	"name": "Parser",
+	"name": "PKM Parser",
 	"description": "Clever trees.",
 	"version": "0.2",
 
 	"options_page": "options.html",
 	
     "background": {
-      	"scripts": ["background.js"]
+      	"scripts": ["background.js", "bolting.js"]
     },
 		
 	"browser_action": {
@@ -16,5 +16,5 @@
 		"default_popup": "popup.html"
 	},
 	  
-	"permissions": ["tabs", "<all_urls>", "notifications"]
+	"permissions": ["activeTab", "tabs", "http://*/", "https://*/", "notifications"]
 }

@@ -4,9 +4,9 @@
 # --- !Ups
 
 create table data (
-  url                       varchar(255) not null,
+  url                       varchar(255),
   tags                      varchar(255),
-  constraint pk_data primary key (url))
+  title                     varchar(255))
 ;
 
 create table query (
@@ -20,8 +20,6 @@ create table users (
   constraint pk_users primary key (email))
 ;
 
-create sequence data_seq;
-
 create sequence users_seq;
 
 
@@ -34,8 +32,6 @@ drop table if exists data cascade;
 drop table if exists query cascade;
 
 drop table if exists users cascade;
-
-drop sequence if exists data_seq;
 
 drop sequence if exists users_seq;
 

@@ -13,13 +13,14 @@ import javax.persistence.Table;
 @Entity
 public class Data extends Model {
 
-    @Id
     String url;
     String tags;
+    String title;
 
-    public Data(String url, String tags) {
+    public Data(String url, String tags, String title) {
         this.url = url;
         this.tags = tags;
+        this.title = title;
     }
 
     public String getUrl() {
@@ -33,4 +34,6 @@ public class Data extends Model {
     public void setTags(String tags) {
         this.tags = tags;
     }
+
+    public String getTitle() { return title; }
 }

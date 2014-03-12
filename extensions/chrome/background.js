@@ -1,18 +1,44 @@
-function notification() {
-	
-    var time = /(..)(:..)/.exec(new Date());     // The prettyprinted time.
-    var hour = time[1] % 12 || 12;               // The prettyprinted hour.
-    var period = time[1] < 12 ? 'a.m.' : 'p.m.'; // The period of the day.
+function notification(tags_map) {
 	
 	chrome.tabs.getSelected(null, function(tab) {
-
-	    var notification = window.webkitNotifications.createNotification(
-	    	tab.favIconUrl,                      // The image.
-	      	tab.title.split(" - ")[0], // The title.
-	      	'webrequest, chrome, extension, stack, api, user, enthusiast, privacygs, notifications, apps, tool, snippet, launches'      // The body.
-	    );
 		
-	    notification.show();		
+		if (tags_map == null) return;
+		
+		var tags = [];
+		for (var tag in tags_map) {
+			tags.push(tags_map[tag][0]);
+			if (tag > 10) break;
+		}
+					
+		var title = tab.title; //.split(" - ")[0] // + ' [' + tags_map.length + ']'
+			
+		var heroku = "quiet-anchorage-6418.herokuapp.com";
+		var localhost = "localhost:9000";
+		
+		var url = "http://" + heroku + "/add?url=" + tab.url + "&tags=" + JSON.stringify(tags) + "&title=" + tab.title;
+	
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("GET", url, false);
+		xmlHttp.send(null);
+		
+		//chrome (autohide)
+		chrome.notifications.create(
+			
+		    tab.url, {   
+				type: 'basic', 
+				iconUrl: tab.favIconUrl, 
+				title: title, 
+				message: tags.join(", ") 
+		    }, function() {} );
+						
+		//webkit
+		// var notification = window.webkitNotifications.createNotification(
+		// 	tab.favIconUrl,                      // The image.
+		// 	title, // The title.
+		// 	tags.join(", ")      // The body.
+		// );
+		// 		
+		// notification.show();				
 	});
 }
 
@@ -26,20 +52,63 @@ if (!localStorage.isInitialized) {
 // Test for notification support.
 if (window.webkitNotifications) {
 	
-    // While activated, show notifications at the display frequency.
-    if (JSON.parse(localStorage.isActivated)) { notification(); }
-
-    var interval = 0; // The display interval, in minutes.
-
     setInterval(function() {
-      	interval++;
-
-      	if (
-        	JSON.parse(localStorage.isActivated) &&
-          	localStorage.frequency <= interval
-      	) {
-        	notification();
-        	interval = 0;
-      	}
-    }, 60000);
+		
+		chrome.tabs.executeScript(null, {
+			file: "parse.js"
+		
+		}, function() {
+    
+			// If you try and inject into an extensions page or the webstore/NTP you'll get an error
+	    	if (chrome.extension.lastError) {
+				// message.innerText = 'There was an error injecting script : \n' + chrome.extension.lastError.message;
+	    	}
+	  	});      	
+		
+    }, 10000); //every 10 sec
 }
+
+chrome.extension.onMessage.addListener(function(request, sender) {
+	
+	if (request.action == "getSource") {
+		
+		chrome.tabs.getSelected(null, function(tab) { // null defaults to current window
+			
+			var tags = words_process(request.source['words']);
+			
+			if (tags.length == 0) return;
+			
+			var url = tab.url.split('://')[1].split('#')[0];
+
+			var page = {};			
+			page = JSON.parse(localStorage.getItem(url));
+			
+			if (page != null) {
+				
+				if (page['count'] == 0) {
+					notification(tags);
+					page['count']++;
+					localStorage.setItem(url, JSON.stringify(page));
+					console.log('notification: ' + url);
+					return;	
+				}
+				
+				if (page['scroll'] != request.source['scroll']) {
+					page['scroll'] = request.source['scroll'];
+					page['count']++;
+					localStorage.setItem(url, JSON.stringify(page));					
+					console.log('count: ' + page['count'] + ' scroll: ' + request.source['scroll'] + ' ' + url + '');
+				}				
+				
+			} else {
+				
+				page = {};
+				page['tags'] = tags;
+				page['count'] = 0;
+				page['scroll'] = request.source['scroll'];
+				localStorage.setItem(url, JSON.stringify(page));
+				console.log('created: ' + url);
+			}
+		});
+	}
+});

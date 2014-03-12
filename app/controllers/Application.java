@@ -61,14 +61,16 @@ public class Application extends Controller {
         return redirect(routes.Application.index());
     }
 
-    public static Result add(String url, String tags) {
+    public static Result add(String url, String tags, String title) {
 
-        Data data = Ebean.find(Data.class, url);
-        if (data == null) new Data(url, tags).save();
-        else {
-            data.setTags(tags);
-            data.update();
-        }
+        new Data(url, tags, title).save();
+
+//        Data data = Ebean.find(Data.class, url);
+//        if (data == null) new Data(url, tags, title).save();
+//        else {
+//            data.setTags(tags);
+//            data.update();
+//        }
 
         return ok();
     }
@@ -82,6 +84,7 @@ public class Application extends Controller {
     public static Result get() {
 
         List<Data> dataList = Ebean.find(Data.class).findList();
+        System.out.println(toJson(dataList));
         return ok(toJson(dataList));
     }
 

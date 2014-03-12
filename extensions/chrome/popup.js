@@ -56,8 +56,12 @@ chrome.extension.onMessage.addListener(function(request, sender) {
 	if (request.action == "getSource") {
 		
 		chrome.tabs.getSelected(null, function(tab) { // null defaults to current window
+						
+			if (message.innerHTML.length > 10) return; //TODO dont reload popup from background message
 			
-			message.innerHTML = build(tab.title, request.source);
+			var words = request.source['words'];
+			
+			message.innerHTML = build(tab.title, words_process(words));
 			
 			markTags(message.getElementsByClassName('tag'));
 			markTags(message.getElementsByClassName('pick'));			
@@ -79,12 +83,12 @@ function onWindowLoad() {
     
 		// If you try and inject into an extensions page or the webstore/NTP you'll get an error
     	if (chrome.extension.lastError) {
-			message.innerText = 'There was an error injecting script : \n' + chrome.extension.lastError.message;
+			// message.innerText = 'There was an error injecting script : \n' + chrome.extension.lastError.message;
     	}
   	});
 }
 
-window.onload = onWindowLoad;
+window.onload = onWindowLoad();
 
 function markTags(tags) {
 	for (var i = 0; i < tags.length; i++) {	
@@ -129,8 +133,6 @@ function add() {
 	
 		window.close();	
 	});
-			
-
 }
 
 function click() {
@@ -138,3 +140,12 @@ function click() {
 	if (this.getAttribute('class') === 'pick') this.setAttribute('class', 'tag');
 	else this.setAttribute('class', 'pick');
 }
+
+chrome.notifications.create(
+
+    'test6', {   
+		type: 'basic', 
+		iconUrl: 'http://i.stack.imgur.com/Mmww2.png', 
+		title: 'Achievements: javascript beginner', 
+		message: 'JavaScript is almost entirely object-based. JavaScript objects are associative arrays, augmented with prototypes.' 
+    }, function() {} );
