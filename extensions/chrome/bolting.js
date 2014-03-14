@@ -1,3 +1,38 @@
+function add_url(tab_url, tags, title, favIconUrl, usertags) {
+	
+	var heroku = "quiet-anchorage-6418.herokuapp.com";
+	var localhost = "localhost:9000";
+	
+	var url = "http://" + heroku + "/add?url=" + tab_url + "&tags=" + JSON.stringify(tags) + "&title=" + title + "&faviconurl=" + favIconUrl + "&usertags=" + JSON.stringify(usertags);
+
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("POST", url, false);
+	xmlHttp.send(null);
+	
+	var domen = tab_url.replace("http://", "").split("/")[0];
+	
+	//chrome (autohide)
+	// chrome.notifications.create(
+	// 	
+	//     tab_url, {   
+	// 		type: 'basic', 
+	// 		iconUrl: favIconUrl, 
+	// 		title: title, 
+	// 		message: '[' + domen + ']' + '[' + Object.keys(usertags).join(", ") + ']' +  Object.keys(tags).join(", ") 
+	//     }, function() {} );
+					
+	//webkit
+	var notification = window.webkitNotifications.createNotification(
+		favIconUrl,                      // The image.
+		title, // The title.
+		'[' + domen + '] [' + Object.keys(usertags).join(", ") + '] ' +  Object.keys(tags).join(", ")      // The body.
+	);
+			
+	notification.show();		
+}
+
+
+
 function words_process(words_map) {
 	
 	return sort_remove(sugar(merger(words_map)));

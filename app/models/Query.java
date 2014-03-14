@@ -11,11 +11,11 @@ import javax.persistence.Entity;
 @Entity
 public class Query extends Model {
 
-    String email;
+    String connected;
     String query;
 
-    public Query(String email, String query) {
-        this.email = email;
+    public Query(String connected, String query) {
+        this.connected = connected;
         this.query = query;
     }
 }

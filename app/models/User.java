@@ -16,7 +16,7 @@ public class User extends Model {
 
     @Id
     String email;
-    String password;
+    String password; //hash
 
     public User(String email, String password) {
         this.email = email;

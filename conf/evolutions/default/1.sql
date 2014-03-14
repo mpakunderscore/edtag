@@ -6,11 +6,13 @@
 create table data (
   url                       varchar(255),
   tags                      varchar(255),
-  title                     varchar(255))
+  title                     varchar(255),
+  faviconurl                varchar(255),
+  usertags                  varchar(255))
 ;
 
 create table query (
-  email                     varchar(255),
+  connected                 varchar(255),
   query                     varchar(255))
 ;
 

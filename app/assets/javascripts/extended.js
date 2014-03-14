@@ -29,13 +29,23 @@ function list() {
         {},
         function(data) {
 
-            console.log(data);
+            $('#main').html('')
+            $('#main').append('<table id="data" border="0"></table>');
 
             for (var id in data) {
-                $('#main').append("<p><a href=" + data[id]['url'] + "\">" + data[id]['title'] + "</a> " + data[id]['tags'] + "</p>");
+                $('#data').append("<tr><td>" + data[id]['url'].replace("http://", "").replace("https://", "").split("/")[0] + "</td>" +
+                                  "<td><img src="+ data[id]['faviconurl'] +" height='19' width='19'></td>" +
+                                  "<td><a href=" + data[id]['url'] + ">" + data[id]['title'] + "</a></td>" +
+                                  "<td>" + Object.keys(JSON.parse(data[id]['usertags'])).join(", ") + "</td>" +
+                                  "<td>" + Object.keys(JSON.parse(data[id]['tags'])).join(", ") + "</td></tr>");
             }
         }
     );
+}
+
+function tags() {
+
+    $('#main').html('');
 }
 
 list();

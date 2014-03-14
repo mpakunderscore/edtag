@@ -1,19 +1,22 @@
-@(email: String)
-@shell.extended("PKM Server") {
+@(user: String)(answer: String)
+@shell.extended("PKM") {
 
-    <div id="interaction" class="center">
-
+    <div class="center">
         <div style="position: relative; left: -50%;">
+
             <div id="user">
-                <a href="" onclick="list()">list</a>
-                <a href="">tags</a>
+
+                <a href="javascript:void(0)" onclick="list()">table</a>
+                <a href="javascript:void(0)" onclick="tags()">tags</a>
                 <a href="@routes.Assets.at("chrome.zip")">plugin</a>
                 <a href="/logout">logout</a>
-            </div>
-            <div id="search_wrapper"><input id="search" type="text" /></div>
-            <div id="answer"><p>Over the course of the 19th century, the word "science" became increasingly associated with the <a href="">scientific method</a> itself, as a disciplined way to study the natural world, including <a href="">physics</a>, <a href="">chemistry</a>, <a href="">geology</a> and <a href="">biology</a>.</p></div>
-        </div>
 
+            </div>
+
+            <div id="search_wrapper"><input id="search" type="text" /></div>
+            <div id="answer">@answer</div>
+
+        </div>
     </div>
 
     <div id="main"></div>
