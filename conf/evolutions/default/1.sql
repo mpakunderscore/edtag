@@ -4,11 +4,13 @@
 # --- !Ups
 
 create table data (
+  id                        bigint not null,
   url                       varchar(255),
-  tags                      varchar(255),
+  tags                      TEXT,
   title                     varchar(255),
   faviconurl                varchar(255),
-  usertags                  varchar(255))
+  usertags                  TEXT,
+  constraint pk_data primary key (id))
 ;
 
 create table query (
@@ -22,6 +24,8 @@ create table users (
   constraint pk_users primary key (email))
 ;
 
+create sequence data_seq;
+
 create sequence users_seq;
 
 
@@ -34,6 +38,8 @@ drop table if exists data cascade;
 drop table if exists query cascade;
 
 drop table if exists users cascade;
+
+drop sequence if exists data_seq;
 
 drop sequence if exists users_seq;
 

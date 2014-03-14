@@ -16,13 +16,7 @@ body, input {
 }
 
 .center div {
-    background-color: rgba(205, 185, 87, 0.16);
-}
-
-#main {
-
-    position:fixed;
-    top: 135px;
+    /*background-color: rgba(180, 180, 180, 0.16);*/
 }
 
 #user {

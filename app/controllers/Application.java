@@ -64,9 +64,12 @@ public class Application extends Controller {
         return redirect(routes.Application.index());
     }
 
-    public static Result add(String url, String tags, String title, String faviconurl, String usertags) {
+    public static Result add() { //String url, String tags, String title, String faviconurl, String usertags
 
-        new Data(url, tags, title, faviconurl, usertags).save();
+        Http.RequestBody body = request().body();
+
+        Data data = new Data(body.asJson().get("url").asText(), body.asJson().get("tags").asText(), body.asJson().get("title").asText(), body.asJson().get("faviconurl").asText(), body.asJson().get("usertags").asText());
+        data.save();
 
 //        Data data = Ebean.find(Data.class, url);
 //        if (data == null) new Data(url, tags, title).save();
@@ -80,13 +83,12 @@ public class Application extends Controller {
 
     public static Result analysis(String url) {
 
-
-        return ok("analysis: " + url);
+        return ok();
     }
 
     public static Result get() {
 
-        List<Data> dataList = Ebean.find(Data.class).findList();
+        List<Data> dataList = Ebean.find(Data.class).order("id DESC").setMaxRows(20).findList();
         return ok(toJson(dataList));
     }
 
@@ -116,7 +118,7 @@ public class Application extends Controller {
 
     private static String getAnswer() { //TODO move to database - key:welcome value json_array
 
-        String answer = "Now it seems that you're not stupid. It is experimental system for self-education that will help you to find a new information through implicit search, save pages in tag tree and to select the best knowledge from different perspectives.";
+        String answer = "More recently, development of social computing tools (such as bookmarks, blogs, and wikis) have allowed more unstructured, self-governing or ecosystem approaches to the transfer, capture and creation of knowledge, including the development of new forms of communities, networks, or matrixed organisations.";
 
 //        "<p>Now it seems that you're not stupid. It is experimental system for self-education that will help you to find a new information through implicit search, save pages in tag tree and to select the best knowledge from different perspectives.</p>" +
 //        "<p>You can try to enter any query and see what will happen. There's sort of understandable. Interface is constantly changing and you will likely find something new from time to time. Just ask if you need something.</p>" +

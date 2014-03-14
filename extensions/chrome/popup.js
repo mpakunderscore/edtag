@@ -1,4 +1,4 @@
-function build(title, words) {
+function build(title, words, url) {
 	
 	var words_count = Object.keys(words).length;
 	
@@ -6,7 +6,7 @@ function build(title, words) {
 	
 	var tags_count = sortable.length;
 	
-	var title_array = title.match(/[^\s"\d(){},'\-=_:;#%!<>&\|\*\?\[\]\.\/\+\\]{3,}/g);
+	var title_array = (title + " " + url.replace("http://", "").replace("https://", "").replace("www://", "")).match(/[^\s"\d(){},'\-=_:;#%!<>&\|\*\?\[\]\.\/\+\\]{3,}/g);
 	for (var i = 0; i < title_array.length; i++)
 		title_array[i] = title_array[i].trim().toLowerCase();
 	
@@ -17,7 +17,7 @@ function build(title, words) {
 	var set = 0;
 	for (var i = 0; i < sortable.length - 1; i++) {
 		
-		if (set > 0.2) sortable.splice(i, i + 1);
+		if (set > 0.5) sortable.splice(i, 1);
 		else set += sortable[i][1]/mass;
 	}
 
@@ -61,11 +61,13 @@ chrome.extension.onMessage.addListener(function(request, sender) {
 		
 		chrome.tabs.getSelected(null, function(tab) { // null defaults to current window
 						
-			if (message.innerHTML.length > 10) return; //TODO dont reload popup from background message
+			// if (message.innerHTML.length > 10) return; //TODO dont reload popup from background message
 			
 			var words = request.source['words'];
 			
-			message.innerHTML = build(tab.title, words);
+			console.log(words);			
+			
+			message.innerHTML = build(tab.title, words, tab.url);
 			
 			markTags(message.getElementsByClassName('tag'));
 			markTags(message.getElementsByClassName('pick'));			

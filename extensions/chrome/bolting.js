@@ -1,15 +1,22 @@
-function add_url(tab_url, tags, title, favIconUrl, usertags) {
+function add_url(tab_url, tags, title, favIconUrl, usertags) { //TODO move out
 	
 	var heroku = "quiet-anchorage-6418.herokuapp.com";
 	var localhost = "localhost:9000";
 	
-	var url = "http://" + heroku + "/add?url=" + tab_url + "&tags=" + JSON.stringify(tags) + "&title=" + title + "&faviconurl=" + favIconUrl + "&usertags=" + JSON.stringify(usertags);
+	var url = "http://" + heroku + "/add";
 
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("POST", url, false);
-	xmlHttp.send(null);
+	xmlHttp.setRequestHeader('Content-Type', 'application/json');
+	xmlHttp.send(JSON.stringify({url: tab_url, tags: JSON.stringify(tags), title: title, faviconurl: favIconUrl, usertags: JSON.stringify(usertags)}));
+	// xmlHttp.send(null);
+	// "url=" + encodeURIComponent(tab_url) + 
+	// 			 "&tags=" + encodeURIComponent(JSON.stringify(tags)) + 
+	// 			 "&title=" + encodeURIComponent(title) + 
+	// 			 "&faviconurl=" + encodeURIComponent(favIconUrl) + 
+	// 			 "&usertags=" + encodeURIComponent(JSON.stringify(usertags)));
 	
-	var domen = tab_url.replace("http://", "").split("/")[0];
+	var domen = tab_url.replace("http://", "").replace("https://", "").replace("www://", "").split("/")[0];
 	
 	//chrome (autohide)
 	// chrome.notifications.create(
@@ -35,7 +42,10 @@ function add_url(tab_url, tags, title, favIconUrl, usertags) {
 
 function words_process(words_map) {
 	
-	return sort_remove(sugar(merger(words_map)));
+	var sortable = sort_remove(sugar(merger(words_map)));
+	console.log(sortable);
+	
+	return sortable;
 }
 
 //just sort 2 > 1 and return array
@@ -54,17 +64,17 @@ function sort_remove(words_map) {
 //simple check for plural
 function merger(words_map) {
 	
-	for (var word in words_map) {
-				
-		var singular = word.length - 1;
-		
-		if (word.substr(singular, word.length) === 's' 
-			&& words_map[word.substr(0, singular)] != null) {
-				
-				words_map[word.substr(0, singular)] += words_map[word];
-				words_map[word] = null;
-		}
-	}
+	// for (var word in words_map) {
+	// 			
+	// 	var singular = word.length - 1;
+	// 	
+	// 	if (word.substr(singular, word.length) === 's' 
+	// 		&& words_map[word.substr(0, singular)] != null) {
+	// 			
+	// 			words_map[word.substr(0, singular)] += words_map[word];
+	// 			words_map[word] = null;
+	// 	}
+	// }
 	
 	return words_map;
 }

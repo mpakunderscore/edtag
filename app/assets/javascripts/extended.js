@@ -33,11 +33,14 @@ function list() {
             $('#main').append('<table id="data" border="0"></table>');
 
             for (var id in data) {
-                $('#data').append("<tr><td>" + data[id]['url'].replace("http://", "").replace("https://", "").split("/")[0] + "</td>" +
-                                  "<td><img src="+ data[id]['faviconurl'] +" height='19' width='19'></td>" +
-                                  "<td><a href=" + data[id]['url'] + ">" + data[id]['title'] + "</a></td>" +
-                                  "<td>" + Object.keys(JSON.parse(data[id]['usertags'])).join(", ") + "</td>" +
-                                  "<td>" + Object.keys(JSON.parse(data[id]['tags'])).join(", ") + "</td></tr>");
+
+                var row = "<tr><td>" + data[id]['url'].replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0] + "</td>" +
+                    "<td><img src='"+ data[id]['faviconurl'] + "' height='15' width='15'></td>" +
+                    "<td><a href='" + data[id]['url'] + "'>" + data[id]['title'].replace("\<", "\<\\") + "</a></td>" +
+                    "<td>" + Object.keys(JSON.parse(data[id]['usertags'])).join(", ") + "</td>" +
+                    "<td>" + Object.keys(JSON.parse(data[id]['tags'])).slice(0, 15).join(", ") + ", ...</td></tr>";
+
+                $('#data').append(row);
             }
         }
     );

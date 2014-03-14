@@ -7,6 +7,7 @@ div {
 }
 
 #main table {
+    width:100%;
     border-collapse: separate;
     border-spacing: 10px 5px;
 }
@@ -24,14 +25,21 @@ body, input {
 }
 
 .center div {
-    background-color: rgba(205, 185, 87, 0.16);
+    /*background-color: rgba(180, 180, 180, 0.09);*/
 }
 
 #main {
 
-    position:fixed;
-    top: 135px;
+    width:100%;
+    position: absolute;
+    top: 200px;
+    left: 0;
+    background-color: rgba(99, 109, 180, 0.07);
 }
+
+#main a:link    {text-decoration: none; color: blue;}
+#main a:visited {color: blue;}
+
 
 #user {
 
@@ -41,8 +49,8 @@ body, input {
     width: 500px;
 }
 
-#user a:link    {text-decoration: none; color: rgba(128, 157, 255, 0.73);}
-#user a:visited {color: rgba(128, 157, 255, 0.31);}
+#user a:link    {text-decoration: none; color: blue;}
+#user a:visited {color: blue;}
 /*#user a:hover   {color: red;}*/
 
 #search {

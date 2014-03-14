@@ -2,9 +2,7 @@ package models;
 
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by pavelkuzmin on 01/03/14.
@@ -13,10 +11,19 @@ import javax.persistence.Table;
 @Entity
 public class Data extends Model {
 
+    @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+
     String url;
+
+    @Column(columnDefinition = "TEXT")
     String tags;
+
     String title;
+
     String faviconurl;
+
+    @Column(columnDefinition = "TEXT")
     String usertags;
 
     public Data(String url, String tags, String title, String faviconurl, String usertags) {

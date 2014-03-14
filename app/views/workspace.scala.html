@@ -1,15 +1,15 @@
 @(user: String)(answer: String)
 @shell.extended("PKM") {
-
+    alpha v0.2
     <div class="center">
         <div style="position: relative; left: -50%;">
 
             <div id="user">
 
-                <a href="javascript:void(0)" onclick="list()">table</a>
-                <a href="javascript:void(0)" onclick="tags()">tags</a>
-                <a href="@routes.Assets.at("chrome.zip")">plugin</a>
-                <a href="/logout">logout</a>
+                <a href="javascript:void(0)" onclick="list()">[table]</a>
+                <a href="javascript:void(0)" onclick="tags()">[tags]</a>
+                <a href="@routes.Assets.at("chrome.zip")">[extension]</a>
+                <a href="/logout">[logout]</a>
 
             </div>
 
