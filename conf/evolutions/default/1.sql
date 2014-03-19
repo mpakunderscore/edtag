@@ -13,6 +13,13 @@ create table data (
   constraint pk_data primary key (id))
 ;
 
+create table domains (
+  id                        integer not null,
+  domain                    varchar(255),
+  is_approved               boolean,
+  constraint pk_domains primary key (id))
+;
+
 create table query (
   connected                 varchar(255),
   query                     varchar(255))
@@ -26,6 +33,8 @@ create table users (
 
 create sequence data_seq;
 
+create sequence domains_seq;
+
 create sequence users_seq;
 
 
@@ -35,11 +44,15 @@ create sequence users_seq;
 
 drop table if exists data cascade;
 
+drop table if exists domains cascade;
+
 drop table if exists query cascade;
 
 drop table if exists users cascade;
 
 drop sequence if exists data_seq;
+
+drop sequence if exists domains_seq;
 
 drop sequence if exists users_seq;
 
