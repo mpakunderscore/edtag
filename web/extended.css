@@ -6,6 +6,11 @@ body, input {
 
 body {background-color: rgb(250, 250, 250);}
 
+#menu input {
+	
+	border: solid 1px rgb(204, 204, 204);
+}
+
 .center {
 
     position: absolute;
@@ -24,14 +29,14 @@ body {background-color: rgb(250, 250, 250);}
 /*	background-color: gray;*/
 }
 
-#signout {
+#logout {
 	
 	float: right;
-	margin: 5px;	
+	margin: 8px;	
 }
 
-#menu a:link    {text-decoration: none; color: rgb(17, 85, 204); margin-left: 10px;}
-#menu a:visited {color: rgb(17, 85, 204);}
+#menu a:link    {text-decoration: none; color: black; margin-left: 10px;}
+#menu a:visited {color: black;}
 #menu a:hover   {color: red;}
 
 #out {
@@ -40,11 +45,10 @@ body {background-color: rgb(250, 250, 250);}
   	left: 220px;
 	right: 0px;
 
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);	
+	/*box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);	*/
 	background-color: rgb(255, 255, 255);
 	
-	border: solid 1px;
-	border-color: rgb(204, 204, 204);
+	border: solid 1px rgb(204, 204, 204);
 }
 
 .study a {padding-right: 10px;}
@@ -55,28 +59,28 @@ body {background-color: rgb(250, 250, 250);}
     border-spacing: 15px 10px;		
 }
 
-#datasort {
+#domains {
 
 	position: absolute;
 	left: 20px;
 	
     border-collapse: separate;
     border-spacing: 15px 10px;	
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	/*box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);*/
 	
 	background-color: rgb(255, 255, 255);	
 	
 	border: solid 1px rgb(204, 204, 204);
 }
 
-#tagsdatasort {
+#tags {
 
 	position: absolute;
 	left: 90px;	
 	border-spacing: 15px 10px;
 }
 
-#tagsdatasort tr {height: 22px;}
+#tags tr {height: 22px;}
 
 #main a:link    {text-decoration: none; color: rgb(17, 85, 204);}
 #main a:visited {color: rgb(17, 85, 204);}

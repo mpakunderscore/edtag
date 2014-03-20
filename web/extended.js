@@ -65,7 +65,7 @@ function list() {
 			
 			//data sort
 			
-            $('#main').append('<table id="datasort" border="0"></table>');
+            $('#main').append('<table id="domains" border="0"></table>');
 
             for (var domain in domains) {
 
@@ -77,7 +77,7 @@ function list() {
                     // "<td>" + Object.keys(JSON.parse(data[id]['tags'])).slice(0, 15).join(", ") + ", ...</td>" + 
 					"</tr>";
 
-                $('#datasort').append(row);
+                $('#domains').append(row);
             }			        
     });
 	
@@ -98,7 +98,7 @@ function list() {
     //     {},	
         function(data) {
 	
-            $('#main').append('<table id="tagsdatasort" border="0"></table>');
+            $('#main').append('<table id="tags" border="0"></table>');
 
             for (var id in data) {
 
@@ -106,7 +106,7 @@ function list() {
                     "<td><a href='#'>"+ data[id]['tag'] + "</a></td>" +
 					"</tr>";
 
-                $('#tagsdatasort').append(row);
+                $('#tags').append(row);
             }			        
     });
 }
