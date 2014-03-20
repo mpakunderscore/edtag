@@ -49,13 +49,13 @@ function list() {
 					favicons[domain] = data[id]['faviconurl'];
 				}
 
-                var url_tags = Object.keys(JSON.parse(data[id]['tags']));
+                var url_tags = JSON.parse(data[id]['usertags']);
 
                 for (var tag in url_tags) {
 
-                    if (tags[tag] != null) tags[tag]++;
+                    if (tags[tag] != null) tags[tag] += url_tags[tag];
                     else {
-                        tags[tag] = 1;
+                        tags[tag] = url_tags[tag];
                     }
                 }
 
@@ -93,7 +93,7 @@ function list() {
             $('#main').append('<table id="tags" border="0"></table>');
 
 
-            var tags_sort = sort(tags);
+            var tags_sort = sort(url_tags);
             for (var id in tags_sort) {
 
                 var row = "<tr>" +
