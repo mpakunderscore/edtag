@@ -53,9 +53,9 @@ function list() {
 
                 for (var tag in url_tags) {
 
-                    if (tags[tag] != null) tags[tag] += url_tags[tag];
+                    if (tags[tag] != null) tags[tag] += parseInt(url_tags[tag]);
                     else {
-                        tags[tag] = url_tags[tag];
+                        tags[tag] = parseInt(url_tags[tag]);
                     }
                 }
 
