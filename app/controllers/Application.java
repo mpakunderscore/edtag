@@ -64,58 +64,6 @@ public class Application extends Controller {
         return redirect(routes.Application.index());
     }
 
-    public static Result add() { //String url, String tags, String title, String faviconurl, String usertags
-
-        Http.RequestBody body = request().body();
-
-        Data data = new Data(body.asJson().get("url").asText(), body.asJson().get("tags").asText(), body.asJson().get("title").asText(), body.asJson().get("faviconurl").asText(), body.asJson().get("usertags").asText());
-        data.save();
-
-//        Data data = Ebean.find(Data.class, url);
-//        if (data == null) new Data(url, tags, title).save();
-//        else {
-//            data.setTags(tags);
-//            data.update();
-//        }
-
-        return ok();
-    }
-
-    public static Result analysis(String url) {
-
-        return ok();
-    }
-
-    public static Result get() {
-
-        List<Data> dataList = Ebean.find(Data.class).order("id DESC").setMaxRows(20).findList();
-        return ok(toJson(dataList));
-    }
-
-    public static Result users() {
-
-        if (session("connected") == null) return ok();
-
-        List<User> users = Ebean.find(User.class).findList();
-        return ok(toJson(users));
-    }
-
-    public static Result query(String text) {
-
-        if (session("connected") != null)
-            new Query(session("connected"), text).save();
-
-        return ok();
-    }
-
-    public static Result delete() {
-
-        List<User> users = Ebean.find(User.class).findList();
-        for (User user : users) user.delete();
-
-        return ok();
-    }
-
     private static String getAnswer() { //TODO move to database - key:welcome value json_array
 
         String answer = "More recently, development of social computing tools (such as bookmarks, blogs, and wikis) have allowed more unstructured, self-governing or ecosystem approaches to the transfer, capture and creation of knowledge, including the development of new forms of communities, networks, or matrixed organisations.";

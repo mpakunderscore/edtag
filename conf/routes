@@ -7,15 +7,15 @@ GET         /                    controllers.Application.index()
 GET         /login               controllers.Application.login(email:String, password:String)
 GET         /logout              controllers.Application.logout()
 
-POST        /add                 controllers.Application.add()
+POST        /add                 controllers.Web.add()
 # url:String, tags:String, title:String, faviconurl:String, usertags:String
-GET         /analysis            controllers.Application.analysis(url:String)
+GET         /analysis            controllers.Web.analyze(url:String)
 
-GET         /get                 controllers.Application.get()
-GET         /users               controllers.Application.users()
-GET         /query               controllers.Application.query(text:String)
+GET         /get                 controllers.Web.get()
+GET         /users               controllers.System.users()
+GET         /query               controllers.System.query(text:String)
 
-GET         /delete              controllers.Application.delete()
+GET         /delete              controllers.System.delete()
 
 GET         /domains              controllers.DomainController.getApproved()
 

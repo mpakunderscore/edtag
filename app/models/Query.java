@@ -15,6 +15,7 @@ public class Query extends Model {
     String query;
 
     public Query(String connected, String query) {
+
         this.connected = connected;
         this.query = query;
     }

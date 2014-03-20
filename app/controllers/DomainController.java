@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class DomainController extends Controller {
 
     public static Result getApproved() {
+
         if (session("connected") == null) return ok();
 
         List<Domain> domains = Ebean.find(Domain.class).where().eq("isApproved", true).findList();
