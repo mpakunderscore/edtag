@@ -15,7 +15,7 @@ function process2() {
 
     $('#search').val('');
 
-    $('#answer').html("<p>" + entered + "</p>");
+    $('#answer').html(entered);
 }
 
 function query(text) {
@@ -24,31 +24,107 @@ function query(text) {
 }
 
 function list() {
-    $.get(
-        "/get",
-        {},
-        function(data) {
 
-            $('#main').html('')
-            $('#main').append('<table id="data" border="0"></table>');
+    $.get(
+         "/get",
+         {},
+        function(data) {
+			
+			//data
+
+            $('#main').html('');
+            $('#main').append('<div id="out"><table id="data"></table></div>');
+			
+			var domains = {};
+			var favicons = {}; //TODO
+
+            var tags = {};
 
             for (var id in data) {
+				
+				var domain = data[id]['url'].replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
+				if (domains[domain] != null) domains[domain]++;
+				else {
+					domains[domain] = 1;
+					favicons[domain] = data[id]['faviconurl'];
+				}
 
-                var row = "<tr><td>" + data[id]['url'].replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0] + "</td>" +
+                var url_tags = Object.keys(JSON.parse(data[id]['tags']));
+
+                for (var tag in url_tags) {
+
+                    if (tags[tag] != null) tags[tag]++;
+                    else {
+                        tags[tag] = 1;
+                    }
+                }
+
+                var row = "<tr>" +
+
                     "<td><img src='"+ data[id]['faviconurl'] + "' height='15' width='15'></td>" +
-                    "<td><a href='" + data[id]['url'] + "'>" + data[id]['title'].replace("\<", "\<\\") + "</a></td>" +
+                    "<td class='study'><a href='" + data[id]['url'] + "'>" + data[id]['title'].replace("\<", "\<\\") + "</a><a><font color='green'>" + Object.keys(JSON.parse(data[id]['usertags'])).length + "</font></a><a><font color='gray'>" + Object.keys(JSON.parse(data[id]['tags'])).length + "</font></a> </td>" +
                     "<td>" + Object.keys(JSON.parse(data[id]['usertags'])).join(", ") + "</td>" +
-                    "<td>" + Object.keys(JSON.parse(data[id]['tags'])).slice(0, 15).join(", ") + ", ...</td></tr>";
+                    // "<td>" + Object.keys(JSON.parse(data[id]['tags'])).slice(0, 15).join(", ") + ", ...</td>" + 
+					
+					"</tr>";
 
                 $('#data').append(row);
+            }	        
+			
+			$('#data').append("<tr></tr><tr></tr><tr><td></td><td><a href='#'>Load more</a></td></tr><tr></tr><tr></tr>");
+			
+			//domains
+			
+            $('#main').append('<table id="domains" border="0"></table>');
+
+            var domains_sort = sort(domains);
+
+            for (var id in domains_sort) {
+
+                var row = "<tr>" +
+                    "<td><a href='#'><img src='"+ favicons[domains_sort[id][0]] + "' height='15' width='15' title='" + domains_sort[id][0] + "'></a></td>" +
+					"</tr>";
+
+                $('#domains').append(row);
             }
-        }
-    );
+
+
+
+            $('#main').append('<table id="tags" border="0"></table>');
+
+
+            var tags_sort = sort(tags);
+            for (var id in tags_sort) {
+
+                var row = "<tr>" +
+                    "<td><a href='#' title='" + tags_sort[id][1] + "'>"+ tags_sort[id][0] + "</a></td>" +
+                    "</tr>";
+
+                $('#tags').append(row);
+            }
+    });
 }
 
 function tags() {
 
     $('#main').html('');
+}
+
+function statistics() {
+
+    $('#main').html('');
+}
+
+function sort(map) {
+
+    var sortable = [];
+    for (var key in map)
+        if (map[key] != null)
+            sortable.push([key, map[key]]);
+
+    sortable.sort(function(b, a) {return a[1] - b[1]});
+
+    return sortable;
 }
 
 list();

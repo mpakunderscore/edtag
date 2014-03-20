@@ -19,10 +19,7 @@ public class Web extends Controller {
 
         Http.RequestBody body = request().body();
 
-        Data data = new Data(body.asJson().get("url").asText(), body.asJson().get("tags").asText(), body.asJson().get("title").asText());
-
-        //, body.asJson().get("faviconurl").asText(), body.asJson().get("usertags").asText()
-
+        Data data = new Data(body.asJson().get("url").asText(), body.asJson().get("tags").asText(), body.asJson().get("title").asText(), body.asJson().get("faviconurl").asText(), body.asJson().get("usertags").asText());
         data.save();
 
 //        Data data = Ebean.find(Data.class, url);
@@ -42,7 +39,12 @@ public class Web extends Controller {
 
     public static Result get() {
 
-        List<Data> dataList = Ebean.find(Data.class).order("id DESC").setMaxRows(20).findList();
+        List<Data> dataList = Ebean.find(Data.class).order("id desc").setMaxRows(50).findList();
         return ok(toJson(dataList));
+    }
+
+    public static Result add(String url) {
+
+        return ok();
     }
 }

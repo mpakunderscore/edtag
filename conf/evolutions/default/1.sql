@@ -16,6 +16,7 @@ create table data (
 create table domains (
   id                        integer not null,
   domain                    varchar(255),
+  faviconurl                varchar(255),
   is_approved               boolean,
   constraint pk_domains primary key (id))
 ;

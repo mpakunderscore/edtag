@@ -21,10 +21,17 @@ public class Data extends Model {
 
     String title;
 
-    public Data(String url, String tags, String title) {
+    String faviconurl;
+
+    @Column(columnDefinition = "TEXT")
+    String usertags;
+
+    public Data(String url, String tags, String title, String faviconurl, String usertags) {
         this.url = url;
         this.tags = tags;
         this.title = title;
+        this.faviconurl = faviconurl;
+        this.usertags = usertags;
     }
 
     public String getUrl() {
@@ -40,4 +47,10 @@ public class Data extends Model {
     }
 
     public String getTitle() { return title; }
+
+    public String getFaviconurl() { return faviconurl; }
+
+    public String getUsertags() { return usertags; }
+
+    public Long getId() { return id; }
 }

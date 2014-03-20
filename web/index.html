@@ -13,26 +13,17 @@
     <body>
 		
 		<div id="menu">		
-    	<!-- <div class="center"> -->
-        	<!-- <div style="position: relative; left: -50%;"> -->
 
-            	<!-- <div id="user"> -->
-            	<!-- <div id="search_wrapper"> -->
-					<input id="search" type="text" />
-				<!-- </div> -->
-                	<a href="javascript:void(0)" onclick="list()" style="color: red;">Pages</a>
-                	<a href="javascript:void(0)" onclick="list()">Tags</a>					
-                	<a href="javascript:void(0)" onclick="list()">Statistics</a>					
-                	<a href="/logout">Sign out</a>
+			<input id="search" type="text" />
 
-            	<!-- </div> -->
-
-
-            	<!-- <div id="answer">Some text</div> -->
-
-        	<!-- </div> -->
-    	<!-- </div> -->
+            <a href="javascript:void(0)" onclick="list()" style="color: red;">Pages</a>
+			<a href="javascript:void(0)" onclick="tags()">Tags</a>					
+			<a href="javascript:void(0)" onclick="statistics()">Statistics</a>
+							
+			<a href="/logout" id="signout">Sign out</a>					
+			
 		</div>
+		
     	<div id="main"></div>
 		
         <!-- What are you doing here? -_-' -->

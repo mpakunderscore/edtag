@@ -1,22 +1,10 @@
-html {
-    /*overflow-y: scroll;*/
-}
-
-div {
-    /*background-color: rgba(55, 205, 85, 0.16);*/
-}
-
-#main table {
-    width:100%;
-    border-collapse: separate;
-    border-spacing: 10px 5px;
-}
-
 body, input {
 
     font: 13px helvetica, arial, freesans, clean, sans-serif;
     line-height: 1.5;
 }
+
+body {background-color: rgb(250, 250, 250);}
 
 .center {
 
@@ -24,59 +12,79 @@ body, input {
     left: 50%;
 }
 
-.center div {
-    /*background-color: rgba(180, 180, 180, 0.09);*/
+#menu {
+
+	position: relative;
+/*	top: 0px;*/
+	left: 2px;
+	
+	padding: 10px;
+	margin-bottom: 10px;
+	
+/*	background-color: gray;*/
 }
 
-#main {
-
-    width:100%;
-    position: absolute;
-    top: 200px;
-    left: 0;
-    background-color: rgba(99, 109, 180, 0.07);
+#signout {
+	
+	float: right;
+	margin: 5px;	
 }
 
-#main a:link    {text-decoration: none; color: blue;}
-#main a:visited {color: blue;}
+#menu a:link    {text-decoration: none; color: rgb(17, 85, 204); margin-left: 10px;}
+#menu a:visited {color: rgb(17, 85, 204);}
+#menu a:hover   {color: red;}
 
+#out {
 
-#user {
+	position: absolute;	
+  	left: 220px;
+	right: 0px;
 
-    text-align: left;
-    margin-left: 0.3em;
-    margin-bottom: 0.5em;
-    width: 500px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);	
+	background-color: rgb(255, 255, 255);
+	
+	border: solid 1px;
+	border-color: rgb(204, 204, 204);
 }
 
-#user a:link    {text-decoration: none; color: blue;}
-#user a:visited {color: blue;}
-/*#user a:hover   {color: red;}*/
+.study a {padding-right: 10px;}
+
+#data {
+
+    border-collapse: separate;
+    border-spacing: 15px 10px;		
+}
+
+#domains {
+
+	position: absolute;
+	left: 20px;
+	
+    border-collapse: separate;
+    border-spacing: 15px 10px;	
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	
+	background-color: rgb(255, 255, 255);	
+	
+	border: solid 1px rgb(204, 204, 204);
+}
+
+#tags {
+
+	position: absolute;
+	left: 90px;	
+	border-spacing: 15px 10px;
+}
+
+#tagsdatasort tr {height: 22px;}
+
+#main a:link    {text-decoration: none; color: rgb(17, 85, 204);}
+#main a:visited {color: rgb(17, 85, 204);}
+#main a:hover   {color: red;}
 
 #search {
 
-    text-align: left;
+/*    text-align: left;*/
     padding-left: 0.3em;
     width: 500px;
 }
-
-#answer {
-
-    text-align: left;
-    margin-left: 0.3em;
-    margin-top: 0.5em;
-    width: 500px;
-}
-
-/*@keyframes fadein {*/
-/*from { opacity: 0; }*/
-/*to   { opacity: 1; }*/
-/*}*/
-
-/*@-webkit-keyframes fadein {*/
-/*from { opacity: 0; }*/
-/*to   { opacity: 1; }*/
-/*}*/
-
-#answer a:link { text-decoration: none; color: blue;}
-#answer a:visited {color: blue;}
