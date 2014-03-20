@@ -93,7 +93,7 @@ function list() {
             $('#main').append('<table id="tags" border="0"></table>');
 
 
-            var tags_sort = sort(url_tags);
+            var tags_sort = sort(tags);
             for (var id in tags_sort) {
 
                 var row = "<tr>" +
