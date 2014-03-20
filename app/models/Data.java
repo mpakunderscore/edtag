@@ -27,6 +27,7 @@ public class Data extends Model {
     String usertags;
 
     public Data(String url, String tags, String title, String faviconurl, String usertags) {
+
         this.url = url;
         this.tags = tags;
         this.title = title;

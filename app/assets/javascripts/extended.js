@@ -61,6 +61,8 @@ function list() {
 
                 var row = "<tr>" +
 
+                    "<td>" + data[id]['id'] + "</td>" + //TODO
+
                     "<td><img src='"+ data[id]['faviconurl'] + "' height='15' width='15'></td>" +
                     "<td class='study'><a href='" + data[id]['url'] + "'>" + data[id]['title'].replace("\<", "\<\\") + "</a><a><font color='green'>" + Object.keys(JSON.parse(data[id]['usertags'])).length + "</font></a><a><font color='gray'>" + Object.keys(JSON.parse(data[id]['tags'])).length + "</font></a> </td>" +
                     "<td>" + Object.keys(JSON.parse(data[id]['usertags'])).join(", ") + "</td>" +
@@ -88,7 +90,7 @@ function list() {
                 $('#domains').append(row);
             }
 
-
+            //tags
 
             $('#main').append('<table id="tags" border="0"></table>');
 
@@ -101,6 +103,8 @@ function list() {
                     "</tr>";
 
                 $('#tags').append(row);
+
+                if (id == 15) break;
             }
     });
 }

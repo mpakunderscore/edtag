@@ -6,6 +6,8 @@ body, input {
 
 body {background-color: rgb(250, 250, 250);}
 
+#menu input {border: solid 1px rgb(204, 204, 204);}
+
 .center {
 
     position: absolute;
@@ -27,7 +29,7 @@ body {background-color: rgb(250, 250, 250);}
 #logout {
 	
 	float: right;
-	margin: 5px;	
+	margin: 8px;
 }
 
 #menu a:link    {text-decoration: none; color: black; margin-left: 10px;}
