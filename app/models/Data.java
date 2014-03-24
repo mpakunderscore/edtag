@@ -11,7 +11,8 @@ import javax.persistence.*;
 @Entity
 public class Data extends Model {
 
-    @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     private Long id;
 
     String url;

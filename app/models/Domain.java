@@ -13,7 +13,8 @@ import java.security.Timestamp;
 @Table(name="domains")
 public class Domain extends Model {
 
-    @Id  @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     Integer id;
 
     String domain;

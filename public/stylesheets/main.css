@@ -19,20 +19,9 @@ body, input {
     /*background-color: rgba(180, 180, 180, 0.16);*/
 }
 
-#user {
-
-    text-align: left;
-    margin-left: 0.3em;
-    margin-bottom: 0.5em;
-    width: 500px;
-}
-
-#user a:link { text-decoration: none; color: #666666;}
-
 #search {
 
-	text-align: left;
-	width: 500px;	
+	width: 500px;
 	padding-left: 0.3em;
 }
 
@@ -54,5 +43,6 @@ body, input {
     /*to   { opacity: 1; }*/
 /*}*/
 
-#answer a:link { text-decoration: none;}
-/*#menu a:visited {color: #7fa0b8;}*/
+.center a:link    {text-decoration: none; color: rgb(17, 85, 204);}
+.center a:visited {color: rgb(17, 85, 204);}
+.center a:hover   {color: red;}
