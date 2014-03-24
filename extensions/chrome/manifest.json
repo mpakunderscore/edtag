@@ -1,20 +1,20 @@
 {
 	"manifest_version": 2,
 
-	"name": "PKM Parser",
-	"description": "Clever trees.",
-	"version": "0.2",
+	"name": "PKM Scrobbler",
+	"description": "Some description",
+	"version": "0.2.1",
 
 	"options_page": "options.html",
 	
     "background": {
-      	"scripts": ["background.js", "bolting.js"]
+      	"scripts": ["background.js", "bolting.js", "api.js"]
     },
 		
 	"browser_action": {
-		"default_icon": "icons/icon3.png",
+		"default_icon": "icon3.png",
 		"default_popup": "popup.html"
 	},
 	  
-	"permissions": ["activeTab", "tabs", "http://*/", "https://*/", "notifications"]
+	"permissions": ["identity", "activeTab", "notifications", "http://quiet-anchorage-6418.herokuapp.com/*"]
 }

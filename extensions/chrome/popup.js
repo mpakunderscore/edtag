@@ -6,20 +6,17 @@ function build(title, words, url) {
 	
 	var tags_count = sortable.length;
 	
-	var title_array = (title + " " + url.replace("http://", "").replace("https://", "").replace("www://", "")).match(/[^\s"\d(){},'\-=_:;#%!<>&\|\*\?\[\]\.\/\+\\]{3,}/g);
+	var domain = url.replace("http://", "").replace("https://", "").replace("www.", "");
+	
+	var title_array = (title + " " + domain).match(/[^\s"\d(){},'\-=_:;#%!<>&\|\*\?\[\]\.\/\+\\]{3,}/g);
 	for (var i = 0; i < title_array.length; i++)
 		title_array[i] = title_array[i].trim().toLowerCase();
 	
 	var mass = 0;
-	for (var id in sortable) 
+	for (var id in sortable)
 		mass += sortable[id][1];
-	
-	var set = 0;
-	for (var i = 0; i < sortable.length - 1; i++) {
 		
-		if (set > 0.5) sortable.splice(i, 1);
-		else set += sortable[i][1]/mass;
-	}
+	domain = domain.split("/")[0];
 
 	var head = "<p>" + title + "</p><hr><p>Tags</p>";
 	var tags = "<div id='tags'><p>" + buildTags(sortable, title_array) + "</p></div>";
@@ -27,12 +24,10 @@ function build(title, words, url) {
 	var info = "<div id='info'><p>tags: " + tags_count + " words: " + words_count + " [" + (tags_count/words_count).toString().substring(0, 4) + "]</p></div>";
 	var menu = "<div id='menu'>" +
 					
-				"<p><a href='#' class='add'>Add</a></p>" +
-				"<p><a href='#' class='analysis'>Analysis</a></p>" +			
-				"<p><a href='#' class='search'>Search like this one</a></p></div>";
-	
-	//<a href='#' id='add'>retain</a>
-	// var menu = "<div id='menu'><button id='add'>add</button></div>";	
+				"<p><a href='#' class='add'>Add page</a></p>" +
+				"<p><a href='#' class='domain'>Add domain</a> | " + domain + "</p>" + 
+				"<p><a href='#' class='login'>Login</a></p></div>";
+
 	
 	return head + tags + "<hr>" + info + "<hr>" + menu;
 }
@@ -43,7 +38,7 @@ function buildTags(sortable, title_array) {
 	
 	for (var i = 0; i < sortable.length - 1; i++) {
 				
-		if (sortable[i][1] < 2) break;
+		if (sortable[i][1] < 5) break;
 
 		var type = 'tag';
 		if (title_array.indexOf(sortable[i][0]) > -1) type = 'pick';
@@ -61,7 +56,7 @@ chrome.extension.onMessage.addListener(function(request, sender) {
 		
 		chrome.tabs.getSelected(null, function(tab) { // null defaults to current window
 						
-			// if (message.innerHTML.length > 10) return; //TODO dont reload popup from background message
+			if (message.innerHTML.length > 10) return; //TODO dont reload popup from background message
 			
 			var words = request.source['words'];
 			
@@ -72,8 +67,7 @@ chrome.extension.onMessage.addListener(function(request, sender) {
 			markTags(message.getElementsByClassName('tag'));
 			markTags(message.getElementsByClassName('pick'));			
 			
-			markSearch(message);
-			markAdd(message);			
+			markMenu(message);			
 		});
 	}
 });
@@ -89,7 +83,7 @@ function onWindowLoad() {
     
 		// If you try and inject into an extensions page or the webstore/NTP you'll get an error
     	if (chrome.extension.lastError) {
-			// message.innerText = 'There was an error injecting script : \n' + chrome.extension.lastError.message;
+			message.innerText = 'There was an error injecting script : \n' + chrome.extension.lastError.message;
     	}
   	});
 }
@@ -102,24 +96,21 @@ function markTags(tags) {
 	}
 }
 
-function markSearch(message) {
-	var search = message.getElementsByClassName('search')[0];
-	search.addEventListener('click', google);
+function markMenu(message) {
+	
+	message.getElementsByClassName('add')[0].addEventListener('click', add);
+	message.getElementsByClassName('login')[0].addEventListener('click', login);
+	message.getElementsByClassName('domain')[0].addEventListener('click', domain);	
 }
 
-function markAdd(message) {
-	var search = message.getElementsByClassName('add')[0];
-	search.addEventListener('click', add);
-}
-
-function google() {
-
-	var tags = [];
-	var nodes = chrome.extension.getViews({type: "popup"})[0].document.getElementsByClassName('pick');
-	for (var i = 0; i < nodes.length; i++) 
-		tags.push(nodes[i].text);
-
-	chrome.tabs.create({url: "http://www.google.com/search?q=" + tags.join('+')});
+function domain() {
+	
+	console.log('domain');
+	
+    chrome.cookies.get({"url": 'http://quiet-anchorage-6418.herokuapp.com/', "name": 'session'}, function(cookie) {
+		
+		console.log(cookie);
+    });
 }
 
 function add() {
@@ -134,13 +125,10 @@ function add() {
 	for (var i = 0; i < nodes.length; i++) 
 		usertags[nodes[i].text] = nodes[i].title;
 		
-	chrome.tabs.query({currentWindow: true, active: true}, function(tabs) {
-		
-		var tab = tabs[0];
-		
-		add_url(tab.url.split('#')[0], tags, tab.title, tab.favIconUrl, usertags);	
-		
-		window.close();	
+	chrome.tabs.getSelected(null, function(tab) {
+
+		window.close();		
+		add_url(tab.url.split('#')[0], tags, tab.title, tab.favIconUrl, usertags);			
 	});
 }
 
@@ -150,20 +138,16 @@ function click() {
 	else this.setAttribute('class', 'pick');
 }
 
-
-// var notification = window.webkitNotifications.createNotification(
-// 	'http://i.stack.imgur.com/Mmww2.png',                      // The image.
-// 	'Achievements: javascript beginner', // The title.
-// 	'JavaScript is almost entirely object-based. JavaScript objects are associative arrays, augmented with prototypes.'      // The body.
-// );
-// 		
-// notification.show();
-
-// chrome.notifications.create(
-// 
-//     null, {   
-// 		type: 'basic', 
-// 		iconUrl: 'http://i.stack.imgur.com/Mmww2.png', 
-// 		title: 'Achievements: javascript beginner', 
-// 		message: 'JavaScript is almost entirely object-based. JavaScript objects are associative arrays, augmented with prototypes.' 
-//     }, function() {} );
+function login() {
+	
+    var redirectUrl = "https://" + chrome.runtime.id + ".chromiumapp.org/";
+    var clientId = "kiecajbpclgoigecdbpaodejolmbhhal";
+    var authUrl = "http://quiet-anchorage-6418.herokuapp.com/?" +
+        "client_id=" + clientId + "&" +
+        "response_type=token&" +
+        "redirect_uri=" + encodeURIComponent(redirectUrl);
+ 
+    chrome.identity.launchWebAuthFlow({url: authUrl, interactive: true}, function(responseUrl) {
+						   
+    });
+}
