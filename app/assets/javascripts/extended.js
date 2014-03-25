@@ -25,9 +25,10 @@ function query(text) {
 
 function list() {
 
-    $.get(
-         "/get",
-         {},
+	// $.getJSON("get.json", {},
+
+    $.get("/get", {},
+	
         function(data) {
 			
 			//data
@@ -44,7 +45,9 @@ function list() {
 				
 				var domain = data[id]['url'].replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
 				if (domains[domain] != null) domains[domain]++;
+				
 				else {
+					
 					domains[domain] = 1;
 					favicons[domain] = data[id]['faviconurl'];
 				}
@@ -54,18 +57,42 @@ function list() {
                 for (var tag in url_tags) {
 
                     if (tags[tag] != null) tags[tag] += parseInt(url_tags[tag]);
-                    else {
-                        tags[tag] = parseInt(url_tags[tag]);
-                    }
+					
+                    else tags[tag] = parseInt(url_tags[tag]);                    
                 }
+				
+				var title = data[id]['title'].replace("\<", "\<\\");
+				
+				if (title.length > 100) title = title.substring(0, 110) + "...";
+				
+				var progress_block = "&#8211;";
+				// var progress_block = "&#183;"; //midl dot ··················
 
                 var row = "<tr>" +
 
-//                    "<td>" + data[id]['id'] + "</td>" + //TODO
+                   	// "<td><font color='gray'>9:24 pm</font></td>" +
 
-                    "<td><img src='"+ data[id]['faviconurl'] + "' height='15' width='15'></td>" +
-                    "<td class='study'><a href='" + data[id]['url'] + "'>" + data[id]['title'].replace("\<", "\<\\") + "</a><a><font color='green'>" + Object.keys(JSON.parse(data[id]['usertags'])).length + "</font></a><a><font color='gray'>" + Object.keys(JSON.parse(data[id]['tags'])).length + "</font></a> </td>" +
-                    "<td>" + Object.keys(JSON.parse(data[id]['usertags'])).join(", ") + "</td>" +
+                    "<td><a href='#'><img src='"+ data[id]['faviconurl'] + "' height='15' width='15'></a></td>" +
+                    
+					"<td class='study'>" +
+					"<a href='" + data[id]['url'] + "' target='_blank'>" + title + "</a>" +
+					
+					// "<a><font color='green'>" + Object.keys(JSON.parse(data[id]['usertags'])).length + "</font></a>" + 
+					// "<a><font color='gray'>" + Object.keys(JSON.parse(data[id]['tags'])).length + "</font></a>" +
+					
+					"<span title='" + Object.keys(JSON.parse(data[id]['tags'])).length + "'><font color='#00ffff'>" +
+					 
+					Array(Math.floor(Object.keys(JSON.parse(data[id]['usertags'])).length/5 + 4)).join(progress_block) + "</font>" + 
+					
+					// Math.floor(
+					"<font color='gray'>" + Array(Math.floor(Object.keys(JSON.parse(data[id]['tags'])).length/20)).join(progress_block) + "</font></span>" +
+					
+					
+					
+					// Object.keys(JSON.parse(data[id]['usertags'])).join(", ") +
+					"</td>" +
+					
+                    // "<td>" +  "</td>" +
                     // "<td>" + Object.keys(JSON.parse(data[id]['tags'])).slice(0, 15).join(", ") + ", ...</td>" + 
 					
 					"</tr>";
@@ -93,7 +120,11 @@ function list() {
             //tags
 
             $('#main').append('<table id="tags" border="0"></table>');
-
+			
+			$('#tags').append("<tr><td><a href='#'>.base</a></td></tr>");
+			$('#tags').append("<tr><td><a href='#'>.target</a></td></tr>");
+			$('#tags').append("<tr><td><a href='#'>.video</a></td></tr>");
+			$('#tags').append("<tr><td>-</td></tr>");	
 
             var tags_sort = sort(tags);
             for (var id in tags_sort) {

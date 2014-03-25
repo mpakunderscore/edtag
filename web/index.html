@@ -6,7 +6,7 @@
         <link rel="stylesheet" media="screen" href="../public/stylesheets/extended.css">
         <link rel="icon" type="image/png" href="../public/stylesheets/favicon.ico">
 
-        <script type="text/javascript" src="jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="jquery-2.1.0.js"></script>
 		
     </head>
 
@@ -17,19 +17,20 @@
 			<input id="search" type="text" />
 
             <a href="javascript:void(0)" onclick="list()" style="color: red;">Pages</a>
-			<a href="javascript:void(0)" onclick="tags()">Tags</a>					
-			<a href="javascript:void(0)" onclick="statistics()">Statistics</a>
+			<a href="#" onclick="tags()">Achievements</a>					
+			<a href="#" onclick="statistics()">Statistics</a>
+			<a href="#">Extension</a>			
 							
 			<a href="/logout" id="logout"><img src="../public/images/signout.png" height='15' width='15'></a>
 			
 		</div>
 		
-    	<div id="main"></div>
+    	<div id="main" class="main"></div>
 		
         <!-- What are you doing here? -_-' -->
 
     </body>
 
-    <script type="text/javascript" src="extended.js"></script>
+    <script type="text/javascript" src="../app/assets/javascripts/extended.js"></script>
 
 </html>

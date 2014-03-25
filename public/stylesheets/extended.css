@@ -14,6 +14,10 @@ body, input {
     left: 50%;
 }
 
+.main a:link    {text-decoration: none; color: black;}
+.main a:visited {color: black;}
+.main a:hover   {color: red;}
+
 #menu {
 
 	position: relative;
@@ -50,11 +54,18 @@ body, input {
 
 .study a {padding-right: 10px;}
 
-#data {
+.study a:link    	{text-decoration: none; color: rgb(17, 85, 204);}
+.study a:visited 	{color: rgb(17, 85, 204);}
+.study a:hover 		{text-decoration: underline;}
 
+#data {
+		
     border-collapse: separate;
     border-spacing: 15px 10px;		
 }
+
+#data img {vertical-align: middle;}
+#domains img {vertical-align: middle;}
 
 #domains {
 
@@ -77,15 +88,10 @@ body, input {
 	border-spacing: 15px 10px;
 }
 
-#tags tr {height: 22px;}
-
-#main a:link    {text-decoration: none; color: rgb(17, 85, 204);}
-#main a:visited {color: rgb(17, 85, 204);}
-#main a:hover   {color: red;}
+/*#tags tr {height: 22px;}*/
 
 #search {
 
-/*    text-align: left;*/
     padding-left: 0.3em;
     width: 500px;
 }
