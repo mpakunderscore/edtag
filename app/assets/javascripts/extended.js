@@ -121,10 +121,10 @@ function list() {
 
             $('#main').append('<table id="tags" border="0"></table>');
 			
-			$('#tags').append("<tr><td><a href='#'>.base</a></td></tr>");
-			$('#tags').append("<tr><td><a href='#'>.target</a></td></tr>");
-			$('#tags').append("<tr><td><a href='#'>.video</a></td></tr>");
-			$('#tags').append("<tr><td>-</td></tr>");	
+			$('#tags').append("<tr><td><a href='#'>global</a></td></tr>");
+			$('#tags').append("<tr><td><a href='#'>with task</a></td></tr>");
+			$('#tags').append("<tr><td><a href='#'>video</a></td></tr>");
+			$('#tags').append("<tr><td>&#8211;</td></tr>");	
 
             var tags_sort = sort(tags);
             for (var id in tags_sort) {
