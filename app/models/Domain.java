@@ -14,7 +14,7 @@ import java.security.Timestamp;
 public class Domain extends Model {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     Integer id;
 
     String domain;

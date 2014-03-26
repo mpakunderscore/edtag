@@ -1,5 +1,6 @@
 package models;
 
+import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
@@ -12,9 +13,10 @@ import javax.persistence.*;
 public class Data extends Model {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long id;
 
+    @Constraints.Required
     String url;
 
     @Column(columnDefinition = "TEXT")
@@ -22,18 +24,15 @@ public class Data extends Model {
 
     String title;
 
-    String faviconurl;
+    int words;
 
-    @Column(columnDefinition = "TEXT")
-    String usertags;
+    int uniqueWords;
 
-    public Data(String url, String tags, String title, String faviconurl, String usertags) {
+    public Data(String url, String tags, String title) {
 
         this.url = url;
         this.tags = tags;
         this.title = title;
-        this.faviconurl = faviconurl;
-        this.usertags = usertags;
     }
 
     public String getUrl() {
@@ -49,10 +48,6 @@ public class Data extends Model {
     }
 
     public String getTitle() { return title; }
-
-    public String getFaviconurl() { return faviconurl; }
-
-    public String getUsertags() { return usertags; }
 
     public Long getId() { return id; }
 }

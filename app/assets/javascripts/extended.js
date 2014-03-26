@@ -25,9 +25,9 @@ function query(text) {
 
 function list() {
 
-	// $.getJSON("get.json", {},
+	$.getJSON("get.json", {},
 
-    $.get("/get", {},
+    // $.get("/get", {},
 	
         function(data) {
 			
