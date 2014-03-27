@@ -1,7 +1,7 @@
 Google2SRT 0.6 - 11/08/2013
 * Added ASR support (automatic speech recognition). Thanks JAYZMRT!
 * Added targets support (translated tracks).
-* Changed data retrieval method. Introduced "signature method" to retrieve ASR, normal tracks and targets. If retrieval fails, "legacy method" is used instead (no ASR support).
+* Changed webData retrieval method. Introduced "signature method" to retrieve ASR, normal tracks and targets. If retrieval fails, "legacy method" is used instead (no ASR support).
 * Switched to HTTPS by default ("signature method" only).
 * Adapted GUI to the new features and slightly improved user experience.
 * Added Chinese (traditional and simplified) language support (GUI). Thanks JAYZMRT!

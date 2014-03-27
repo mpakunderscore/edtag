@@ -25,9 +25,9 @@ function query(text) {
 
 function list() {
 
-	$.getJSON("get.json", {},
+//	$.getJSON("pages.json", {},
 
-    // $.get("/get", {},
+    $.get("/pages", {},
 	
         function(data) {
 			
@@ -37,7 +37,7 @@ function list() {
             $('#main').append('<div id="out"><table id="data"></table></div>');
 			
 			var domains = {};
-			var favicons = {}; //TODO
+			var favIcons = {}; //TODO
 
             var tags = {};
 
@@ -49,7 +49,7 @@ function list() {
 				else {
 					
 					domains[domain] = 1;
-					favicons[domain] = data[id]['faviconurl'];
+                    favIcons[domain] = data[id]['faviconurl'];
 				}
 
                 var url_tags = JSON.parse(data[id]['usertags']);
@@ -111,7 +111,7 @@ function list() {
             for (var id in domains_sort) {
 
                 var row = "<tr>" +
-                    "<td><a href='#'><img src='"+ favicons[domains_sort[id][0]] + "' height='15' width='15' title='" + domains_sort[id][0] + "'></a></td>" +
+                    "<td><a href='#'><img src='"+ favIcons[domains_sort[id][0]] + "' height='15' width='15' title='" + domains_sort[id][0] + "'></a></td>" +
 					"</tr>";
 
                 $('#domains').append(row);

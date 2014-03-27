@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 
 @Entity
-public class Data extends Model {
+public class WebData extends Model {
 
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
@@ -19,20 +19,20 @@ public class Data extends Model {
     @Constraints.Required
     String url;
 
+    String title;
+
     @Column(columnDefinition = "TEXT")
     String tags;
-
-    String title;
 
     int words;
 
     int uniqueWords;
 
-    public Data(String url, String tags, String title) {
+    public WebData(String url, String title, String tags) {
 
         this.url = url;
-        this.tags = tags;
         this.title = title;
+        this.tags = tags;
     }
 
     public String getUrl() {

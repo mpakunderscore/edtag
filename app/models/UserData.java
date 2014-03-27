@@ -15,7 +15,7 @@ public class UserData extends Model {
     @Id
     int userId;
     @Id
-    Long dataId;
+    Long webDataId;
 
     int count;
 
@@ -24,10 +24,22 @@ public class UserData extends Model {
 
     @Version
     Timestamp lastUpdate;
+
+    public UserData(int userId, Long webDataId) {
+
+        this.userId = userId;
+        this.webDataId = webDataId;
+
+        count = 0;
+    }
+
+    public void increaseCount() {
+        count++;
+    }
 }
 
 class UserDataId {
 
     int userId;
-    Long dataId;
+    Long webDataId;
 }

@@ -7777,7 +7777,7 @@ jQuery.extend({
 			json: "responseJSON"
 		},
 
-		// Data converters
+		// WebData converters
 		// Keys separate source (or catchall "*") and destination types with a single space
 		converters: {
 

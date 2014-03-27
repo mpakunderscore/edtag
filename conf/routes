@@ -8,17 +8,16 @@ GET         /login               controllers.Application.login(email:String, pas
 GET         /logout              controllers.Application.logout()
 
 # GET        /add                  controllers.Web.add(url:String)
-POST        /add                 controllers.Web.add()
-# url:String, tags:String, title:String, faviconurl:String, usertags:String
-GET         /analysis            controllers.Web.analyze(url:String)
-GET         /get                 controllers.Web.get()
+POST        /add                 controllers.API.add()
+
+GET         /domains             controllers.API.getApproved()
+
+GET         /pages               controllers.Web.pages()
 
 GET         /users               controllers.System.users()
 GET         /query               controllers.System.query(text:String)
-
 GET         /delete              controllers.System.delete()
 
-GET         /domains             controllers.DomainController.getApproved()
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file        controllers.Assets.at(path="/public", file)
