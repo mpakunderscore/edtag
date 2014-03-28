@@ -1,20 +1,23 @@
 package models;
 
 import play.db.ebean.Model;
+import play.libs.F;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.security.Timestamp;
 
 /**
  * Created by pavelkuzmin on 19/03/14.
  */
 
-@Entity @IdClass(UserDataId.class)
+@Entity
 public class UserData extends Model {
 
-    @Id
+//    @EmbeddedId
+//    UserDataId key;
+
     int userId;
-    @Id
     Long webDataId;
 
     int count;
@@ -38,8 +41,5 @@ public class UserData extends Model {
     }
 }
 
-class UserDataId {
 
-    int userId;
-    Long webDataId;
-}
+

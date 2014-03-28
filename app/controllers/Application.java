@@ -4,9 +4,12 @@ import com.avaje.ebean.Ebean;
 //import models.User;
 import models.User;
 import org.mindrot.jbcrypt.BCrypt;
+import play.libs.Crypto;
 import play.mvc.*;
 
 import views.html.*;
+
+import java.lang.*;
 
 public class Application extends Controller {
 
@@ -27,7 +30,11 @@ public class Application extends Controller {
         //if user exist and password correct, redirect to index with session
         if (user != null && BCrypt.checkpw(password, user.getPassword())) {
 
-            session("connected", BCrypt.hashpw(email + password, BCrypt.gensalt()));
+//            session("userId", BCrypt.hashpw(email + password, BCrypt.gensalt()));
+            java.lang.System.out.println(Crypto.encryptAES(email + password));
+
+
+            session("userId", "0");
             return ok();
 
         //wrong password
@@ -42,8 +49,8 @@ public class Application extends Controller {
 
             user = new User(email, passwordHash);
             Ebean.save(user);
-            session("connected", BCrypt.hashpw(email + password, BCrypt.gensalt()));
-            session("welcome", "true");
+
+            session("userId", "0"); //TODO
             return ok();
         }
     }
