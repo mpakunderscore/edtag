@@ -3,16 +3,6 @@
 
 # --- !Ups
 
-create table webData (
-  id                        bigint not null,
-  url                       varchar(255),
-  tags                      TEXT,
-  title                     varchar(255),
-  words                     integer,
-  unique_words              integer,
-  constraint pk_data primary key (id))
-;
-
 create table domains (
   id                        integer not null,
   domain                    varchar(255),
@@ -34,12 +24,20 @@ create table users (
 
 create table user_data (
   user_id                   integer not null,
-  data_id                   bigint not null,
+  web_data_id               bigint not null,
   count                     integer,
   user_tags                 TEXT)
 ;
 
-create sequence data_seq;
+create table web_data (
+  id                        bigint not null,
+  url                       varchar(255),
+  title                     varchar(255),
+  tags                      TEXT,
+  words_count               integer,
+  unique_words_count        integer,
+  constraint pk_web_data primary key (id))
+;
 
 create sequence domains_seq;
 
@@ -47,12 +45,12 @@ create sequence users_seq;
 
 create sequence user_data_seq;
 
+create sequence web_data_seq;
+
 
 
 
 # --- !Downs
-
-drop table if exists webData cascade;
 
 drop table if exists domains cascade;
 
@@ -62,11 +60,13 @@ drop table if exists users cascade;
 
 drop table if exists user_data cascade;
 
-drop sequence if exists data_seq;
+drop table if exists web_data cascade;
 
 drop sequence if exists domains_seq;
 
 drop sequence if exists users_seq;
 
 drop sequence if exists user_data_seq;
+
+drop sequence if exists web_data_seq;
 

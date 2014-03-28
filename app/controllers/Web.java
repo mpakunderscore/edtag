@@ -20,6 +20,7 @@ public class Web extends Controller {
     public static Result pages() {
 
         List<WebData> dataList = Ebean.find(WebData.class).order("id desc").setMaxRows(50).findList();
+
         return ok(toJson(dataList));
     }
 }
