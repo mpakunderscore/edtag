@@ -9,8 +9,17 @@ import play.cache.Cache;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static play.libs.Json.toJson;
 
@@ -19,7 +28,9 @@ import static play.libs.Json.toJson;
  */
 public class API extends Controller {
 
-    public static Result add() { //String url
+    private static final String USER_AGENT = "Mozilla/5.0";
+
+    public static Result add() throws IOException { //String url
 
         //TODO GET
         String url = request().body().asJson().get("url").asText();
@@ -55,14 +66,40 @@ public class API extends Controller {
         return ok();
     }
 
-    private static WebData requestWebData(String url) {
+    private static WebData requestWebData(String url) throws IOException {
 
         //TODO get data from url request, not from extension
         JsonNode body = request().body().asJson();
         String title = body.get("title").asText();
         String tags = body.get("tags").asText(); //as json
 
-        return new WebData(url, title, tags);
+        Map<String, Integer> words = new HashMap<>();
+
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+        // optional default is GET
+        con.setRequestMethod("GET");
+
+        //add request header
+        con.setRequestProperty("User-Agent", USER_AGENT);
+
+        int responseCode = con.getResponseCode();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        //TODO org.jsoup or Regex ?
+        //titleRegex = <title>(.+)<\/title>
+        //wordsStrings <.+>this<.+> without
+
+        return new WebData(url, title, tags, 0, 0);
     }
 
     public static Result getApproved() {

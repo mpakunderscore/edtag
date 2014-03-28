@@ -24,30 +24,34 @@ public class WebData extends Model {
     @Column(columnDefinition = "TEXT")
     String tags;
 
-    int words;
+    int wordsCount;
 
-    int uniqueWords;
+    int uniqueWordsCount;
 
-    public WebData(String url, String title, String tags) {
+    public WebData(String url, String title, String tags, int wordsCount, int uniqueWordsCount) {
 
         this.url = url;
         this.title = title;
         this.tags = tags;
+        this.wordsCount = wordsCount;
+        this.uniqueWordsCount = uniqueWordsCount;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getUrl() {
         return url;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public String getTags() {
         return tags;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
 
-    public String getTitle() { return title; }
-
-    public Long getId() { return id; }
 }
