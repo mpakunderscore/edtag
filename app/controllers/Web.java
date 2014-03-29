@@ -5,10 +5,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import models.WebData;
 import models.UserData;
 import play.cache.Cache;
+import play.db.ebean.Model;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static play.libs.Json.toJson;
 
@@ -19,8 +23,20 @@ public class Web extends Controller {
 
     public static Result pages() {
 
-        List<WebData> dataList = Ebean.find(WebData.class).order("id desc").setMaxRows(50).findList();
+        List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", 0).setMaxRows(80).findList();
 
-        return ok(toJson(dataList));
+        //TODO move and cache
+        List<Long> ids = new ArrayList<>();
+        for (UserData userData : userDataList)
+            ids.add(userData.getWebDataId());
+
+        List<WebData> webDataList = Ebean.find(WebData.class).where().idIn(ids).findList();
+        //
+
+        Map<String, JsonNode> out = new HashMap<>();
+        out.put("userDataList", toJson(userDataList));
+        out.put("webDataList", toJson(webDataList));
+
+        return ok(toJson(out));
     }
 }

@@ -127,7 +127,7 @@ function add() {
 		
 	chrome.tabs.getSelected(null, function(tab) {
 
-		window.close();		
+//		window.close();
 		add_url(tab.url.split('#')[0], tags, tab.title, tab.favIconUrl, usertags);			
 	});
 }

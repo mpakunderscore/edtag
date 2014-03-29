@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 # --- Created by Ebean DDL
 # To stop Ebean DDL generation, remove this comment and start using Evolutions
 
 # --- !Ups
 
-=======
-# --- Created by Ebean DDL
-# To stop Ebean DDL generation, remove this comment and start using Evolutions
-
-# --- !Ups
-
->>>>>>> 5d3f30babc78407b102218fcd798a8fc0c04d7ec
 create table domains (
   id                        integer not null,
   domain                    varchar(255),
@@ -31,15 +23,16 @@ create table users (
 ;
 
 create table user_data (
-<<<<<<< HEAD
-  user_id                   integer,
-  web_data_id               bigint,
-=======
   user_id                   integer not null,
   web_data_id               bigint not null,
->>>>>>> 5d3f30babc78407b102218fcd798a8fc0c04d7ec
   count                     integer,
   user_tags                 TEXT)
+;
+
+create table user_hash (
+  hash                      varchar(255) not null,
+  id                        bigint,
+  constraint pk_user_hash primary key (hash))
 ;
 
 create table web_data (
@@ -47,13 +40,8 @@ create table web_data (
   url                       varchar(255),
   title                     varchar(255),
   tags                      TEXT,
-<<<<<<< HEAD
-  words                     integer,
-  unique_words              integer,
-=======
   words_count               integer,
   unique_words_count        integer,
->>>>>>> 5d3f30babc78407b102218fcd798a8fc0c04d7ec
   constraint pk_web_data primary key (id))
 ;
 
@@ -61,20 +49,13 @@ create sequence domains_seq;
 
 create sequence users_seq;
 
-<<<<<<< HEAD
-create sequence web_data_seq;
-
-
-=======
 create sequence user_data_seq;
 
+create sequence user_hash_seq;
+
 create sequence web_data_seq;
 
 
-
-
-# --- !Downs
->>>>>>> 5d3f30babc78407b102218fcd798a8fc0c04d7ec
 
 
 # --- !Downs
@@ -87,13 +68,17 @@ drop table if exists users cascade;
 
 drop table if exists user_data cascade;
 
+drop table if exists user_hash cascade;
+
 drop table if exists web_data cascade;
 
 drop sequence if exists domains_seq;
 
 drop sequence if exists users_seq;
 
-drop sequence if exists web_data_seq;
+drop sequence if exists user_data_seq;
+
+drop sequence if exists user_hash_seq;
 
 drop sequence if exists web_data_seq;
 

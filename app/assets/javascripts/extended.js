@@ -23,7 +23,7 @@ function query(text) {
     $.get("/query", {text: text}, function( data ) {});
 }
 
-function list() {
+function pages() {
 
 //	$.getJSON("pages.json", {},
 
@@ -162,4 +162,4 @@ function sort(map) {
     return sortable;
 }
 
-list();
+pages();

@@ -1,6 +1,7 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
+import models.Domain;
 import models.Query;
 import models.User;
 import play.mvc.Controller;
@@ -35,6 +36,15 @@ public class System extends Controller {
 
         List<User> users = Ebean.find(User.class).findList();
         for (User user : users) user.delete();
+
+        return ok();
+    }
+
+    public static Result addDomain(String url) { //TODO
+
+        String domain = url.replace("www.", "").replace("http://", "").replace("https://", "").split("/")[0];
+
+        new Domain(domain, null).save();
 
         return ok();
     }

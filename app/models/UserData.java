@@ -1,10 +1,8 @@
 package models;
 
 import play.db.ebean.Model;
-import play.libs.F;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.security.Timestamp;
 
 /**
@@ -14,10 +12,9 @@ import java.security.Timestamp;
 @Entity
 public class UserData extends Model {
 
-//    @EmbeddedId
-//    UserDataId key;
-
+    @Id
     int userId;
+    @Id
     Long webDataId;
 
     int count;
@@ -39,7 +36,24 @@ public class UserData extends Model {
     public void increaseCount() {
         count++;
     }
+
+    public Long getWebDataId() {
+        return webDataId;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public String getUserTags() {
+        return userTags;
+    }
+
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
 }
-
-
-

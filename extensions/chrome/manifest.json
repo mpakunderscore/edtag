@@ -16,5 +16,5 @@
 		"default_popup": "popup.html"
 	},
 	  
-	"permissions": ["identity", "activeTab", "notifications", "http://quiet-anchorage-6418.herokuapp.com/*"]
+	"permissions": ["identity", "activeTab", "notifications", "http://localhost:9000/*", "http://quiet-anchorage-6418.herokuapp.com/*"]
 }
