@@ -1,0 +1,36 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/shell.css")">
+
+        <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicon.ico")">
+
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-2.1.0.js")"></script>
+
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/main.js")"></script>
+    </head>
+
+    <script type="text/javascript">
+        (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/client:plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+
+    <body>
+
+            <!-- What are you doing here? -_-' -->
+
+        @content
+
+    </body>
+
+
+    <script type="text/javascript" src="@routes.Assets.at("javascripts/extended.js")"></script>
+
+</html>

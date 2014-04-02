@@ -7559,7 +7559,7 @@ function inspectPrefiltersOrTransports( structure, options, originalOptions, jqX
 }
 
 // A special extend for ajax options
-// that takes "flat" options (not to be deep extended)
+// that takes "flat" options (not to be deep shell)
 // Fixes #9887
 function ajaxExtend( target, src ) {
 	var key, deep,
@@ -7794,10 +7794,10 @@ jQuery.extend({
 			"text xml": jQuery.parseXML
 		},
 
-		// For options that shouldn't be deep extended:
+		// For options that shouldn't be deep shell:
 		// you can add your own custom options here if
 		// and when you create one that shouldn't be
-		// deep extended (see ajaxExtend)
+		// deep shell (see ajaxExtend)
 		flatOptions: {
 			url: true,
 			context: true

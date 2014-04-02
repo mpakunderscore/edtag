@@ -4,11 +4,10 @@
 # --- !Ups
 
 create table domains (
-  id                        integer not null,
-  domain                    varchar(255),
-  faviconurl                varchar(255),
+  domain                    varchar(255) not null,
+  fav_icon_url              varchar(255),
   is_approved               boolean,
-  constraint pk_domains primary key (id))
+  constraint pk_domains primary key (domain))
 ;
 
 create table query (
@@ -31,7 +30,7 @@ create table user_data (
 
 create table user_hash (
   hash                      varchar(255) not null,
-  id                        bigint,
+  user_id                   bigint,
   constraint pk_user_hash primary key (hash))
 ;
 

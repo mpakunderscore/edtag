@@ -29,6 +29,8 @@ public class Domain extends Model {
         this.domain = domain;
     }
 
+
+
     public String getDomain() {
         return domain;
     }

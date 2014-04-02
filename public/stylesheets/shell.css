@@ -22,19 +22,27 @@ body, input {
 
 	position: relative;
 /*	top: 0px;*/
-	left: 2px;
+	/*left: 2px;*/
 	
 	padding: 10px;
 	margin-bottom: 10px;
 	
-/*	background-color: gray;*/
+	/*background-color: lightgray;*/
 }
 
-#logout {
-	
+#signinButton {
+
+    display: none;
 	float: right;
-	margin: 8px;
 }
+
+#signoutButton {
+
+    padding: 4px;
+    display: none;
+    float: right;
+}
+
 
 #menu a:link    {text-decoration: none; color: black; margin-left: 10px;}
 #menu a:visited {color: black;}
