@@ -26,14 +26,14 @@ public class Web extends Controller {
         List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", 0).setMaxRows(80).findList();
 
         //TODO move and cache
-        List<Long> ids = new ArrayList<>();
+        List<Long> ids = new ArrayList<Long>();
         for (UserData userData : userDataList)
             ids.add(userData.getWebDataId());
 
         List<WebData> webDataList = Ebean.find(WebData.class).where().idIn(ids).findList();
         //
 
-        Map<String, JsonNode> out = new HashMap<>();
+        Map<String, JsonNode> out = new HashMap<String, JsonNode>();
         out.put("userDataList", toJson(userDataList));
         out.put("webDataList", toJson(webDataList));
 

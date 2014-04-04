@@ -73,7 +73,7 @@ public class API extends Controller {
         String title = body.get("title").asText();
         String tags = body.get("tags").asText(); //as json
 
-        Map<String, Integer> words = new HashMap<>();
+        Map<String, Integer> words = new HashMap<String, Integer>();
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
