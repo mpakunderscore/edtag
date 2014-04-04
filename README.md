@@ -6,10 +6,10 @@
 4. Поставить постгрес и создать какую нибудь базу {DATABASE_NAME}
 5. Прописать
 
-sudo nano ~/.bash_profile
-    export DATABASE_URL="jdbc:postgresql://localhost:5432/{DATABASE_NAME}?user={USER}&password={PASSWORD}"
+    sudo nano ~/.bash_profile
+        export DATABASE_URL="jdbc:postgresql://localhost:5432/{DATABASE_NAME}?user={USER}&password={PASSWORD}"
 
-source ~/.bash_profile
+    source ~/.bash_profile
 
 6. Запустить из IDEA или через SBT
 
