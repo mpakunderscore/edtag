@@ -5,15 +5,14 @@
 
         <a href="javascript:void(0)" onclick="pages()">Pages</a>
         <a href="javascript:void(0)" onclick="achievements()">Achievements</a>
-        <a href="javascript:void(0)" onclick="statistics()">Statistics</a>
         <a href="https://chrome.google.com/webstore/detail/pkm-scrobbler/kiecajbpclgoigecdbpaodejolmbhhal">Extension</a>
 
-        <a id="signoutButton" href="https://accounts.google.com/logout">Sign out</a>
+        <a id="signoutButton" href="#" onclick="gapi.auth.signOut()">Sign out</a>
 
         <span id="signinButton">
             <span
             class="g-signin"
-            data-callback="signinCallback"
+            data-callback="signInCallback"
             data-clientid="518336059345-3j9cgo8mld6f8e4ak74k63pjbhmmsn43.apps.googleusercontent.com"
             data-cookiepolicy="single_host_origin"
             data-requestvisibleactions="http://schemas.google.com/AddActivity"

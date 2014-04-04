@@ -17,15 +17,18 @@ public class Application extends Controller {
 
 //    @SecureSocial.SecuredAction
     public static Result index() {
+
+        Http.Request request = request();
+        Http.Session session = session();
 //        Identity user = (Identity) ctx().args.get(SecureSocial.USER_KEY);
         return ok(index.render());
     }
 
-    public static Result login() {
-        return Results.TODO;
-    }
+    public static Result plus(String storeToken) {
 
-    public static Result logout() {
-        return Results.TODO;
+        Http.Request request = request();
+        Http.Session session = session();
+
+        return ok();
     }
 }
