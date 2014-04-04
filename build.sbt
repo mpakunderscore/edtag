@@ -2,7 +2,9 @@ import play.Project._
 
 name := "server"
 
-version := "1.0"
+version := "0.3"
+
+javacOptions ++= Seq("-source", "1.6")
 
 playJavaSettings
 
