@@ -1,31 +1,9 @@
-$('#search').keypress(function(event) {
-    if (event.which == 13) {
-        process2();
-    }
-});
-
-
-function process2() {
-
-    var entered = $("#search").val();
-
-    if (entered === '') return;
-
-    query(entered);
-
-    $('#search').val('');
-
-    $('#answer').html(entered);
-}
-
 function query(text) {
 
     $.get("/query", {text: text}, function( data ) {});
 }
 
 function pages() {
-
-//	$.getJSON("pages.json", {},
 
     $.get("/pages", {},
 	
@@ -140,16 +118,6 @@ function pages() {
     });
 }
 
-function tags() {
-
-    $('#main').html('');
-}
-
-function statistics() {
-
-    $('#main').html('');
-}
-
 function sort(map) {
 
     var sortable = [];
@@ -161,5 +129,3 @@ function sort(map) {
 
     return sortable;
 }
-
-//pages();

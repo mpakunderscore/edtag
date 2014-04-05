@@ -4,7 +4,7 @@
 
 # Home page
 GET         /                      controllers.Application.index
-POST        /plus                  controllers.Application.plus(storeToken:String)
+POST        /login                 controllers.Application.login
 
 #GET         /login               controllers.Application.login(email:String, password:String)
 #GET         /logout              controllers.Application.logout()

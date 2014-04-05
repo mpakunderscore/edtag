@@ -27,16 +27,16 @@ body, input {
 	padding: 10px;
 	margin-bottom: 10px;
 	
-	background-color: lightgrey;
+	/*background-color: lightgrey;*/
 }
 
-#signinButton {
+#signInButton {
 
     display: none;
 	float: right;
 }
 
-#signoutButton {
+#signOutButton {
 
     padding: 4px;
     display: none;

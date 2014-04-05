@@ -24,7 +24,7 @@ public class Application extends Controller {
         return ok(index.render());
     }
 
-    public static Result plus(String storeToken) {
+    public static Result login() {
 
         Http.Request request = request();
         Http.Session session = session();

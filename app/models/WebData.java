@@ -53,5 +53,8 @@ public class WebData extends Model {
         return tags;
     }
 
+    public String getDomain() {
 
+        return url.split("://")[1].split("/")[0].replace("www.", "");
+    }
 }
