@@ -10,7 +10,7 @@ function add_url(tab_url) { //TODO move out
     request.open( "GET", url, false );
     request.send( null );
 
-    return request.responseText;
+//    return request.responseText;
 }
 
 function notification(title, favIconUrl, domain, usertags) {

@@ -4,19 +4,7 @@ body, input {
     line-height: 1.5;
 }
 
-/*body {background-color: rgb(250, 250, 250);}*/
-
-/*#menu input {border: solid 1px rgb(204, 204, 204);}*/
-
-.center {
-
-    position: absolute;
-    left: 50%;
-}
-
-.main a:link    {text-decoration: none; color: black;}
-.main a:visited {color: black;}
-.main a:hover   {color: rgb(255, 54, 47);}
+/*menu*/
 
 #menu {
 
@@ -29,6 +17,10 @@ body, input {
 	
 	/*background-color: lightgrey;*/
 }
+
+#menu a:link    {text-decoration: none; color: black; margin-left: 15px;}
+#menu a:visited {color: black;}
+#menu a:hover   {color: rgb(255, 54, 47);}
 
 #signInButton {
 
@@ -43,21 +35,26 @@ body, input {
     float: right;
 }
 
+#search {
 
-#menu a:link    {text-decoration: none; color: black; margin-left: 10px;}
-#menu a:visited {color: black;}
-#menu a:hover   {color: rgb(255, 54, 47);}
+    padding-left: 0.3em;
+    width: 500px;
+}
+
+/*main*/
+
+.main a:link    {text-decoration: none; color: black;}
+.main a:visited {color: black;}
+.main a:hover   {color: rgb(255, 54, 47);}
 
 #out {
 
 	position: absolute;	
   	left: 220px;
-	right: 0px;
+	right: 0;
 
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);	
 	background-color: rgb(255, 255, 255);
-	
-/*	border: solid 1px rgb(204, 204, 204);*/
 }
 
 .study a {padding-right: 10px;}
@@ -84,9 +81,7 @@ body, input {
     border-spacing: 15px 10px;	
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 	
-	background-color: rgb(255, 255, 255);	
-	
-/*	border: solid 1px rgb(204, 204, 204);*/
+	background-color: rgb(255, 255, 255);
 }
 
 #tags {
@@ -94,12 +89,4 @@ body, input {
 	position: absolute;
 	left: 90px;	
 	border-spacing: 15px 10px;
-}
-
-/*#tags tr {height: 22px;}*/
-
-#search {
-
-    padding-left: 0.3em;
-    width: 500px;
 }

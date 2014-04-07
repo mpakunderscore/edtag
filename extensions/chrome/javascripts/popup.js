@@ -77,7 +77,7 @@ function onWindowLoad() {
 	var message = document.querySelector('#message');
 
 	chrome.tabs.executeScript(null, {
-		file: "parse.js"
+		file: "javascripts/parse.js"
 		
 	}, function() {
     

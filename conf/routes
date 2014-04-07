@@ -4,17 +4,15 @@
 
 # Home page
 GET         /                    controllers.Application.index
-POST        /login               controllers.Application.login
+# POST        /login               controllers.Application.login
 
 #GET         /login               controllers.Application.login(email:String, password:String)
 #GET         /logout              controllers.Application.logout()
 
 
-GET        /add                  controllers.API.add(url:String)
-# POST        /add                 controllers.API.add
+GET         /add                 controllers.API.add(url:String)
 
 GET         /domains             controllers.API.getApprovedDomains
-# GET         /adddomain           controllers.API.addDomain(domain:String)
 
 GET         /pages               controllers.Web.pages
 

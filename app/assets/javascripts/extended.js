@@ -112,6 +112,10 @@ function pages() {
     });
 }
 
+function achievements() {
+    
+}
+
 function sort(map) {
 
     var sortable = [];
