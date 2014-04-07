@@ -72,7 +72,7 @@ function pages() {
                 $('#data').append(row);
             }	        
 			
-			$('#data').append("<tr></tr><tr></tr><tr><td></td><td><a href='#'>Load more</a></td></tr><tr></tr><tr></tr>");
+//			$('#data').append("<tr></tr><tr></tr><tr><td></td><td><a href='#'>Load more</a></td></tr><tr></tr><tr></tr>");
 			
 			//domains
 			
@@ -113,7 +113,7 @@ function pages() {
 }
 
 function achievements() {
-    
+
 }
 
 function sort(map) {

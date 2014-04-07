@@ -18,18 +18,19 @@ function build(title, words, url) {
 		
 	domain = domain.split("/")[0];
 
-	var head = "<p>" + title + "</p><hr><p>Tags</p>";
+	var head = "<p>" + title + "</p>";
 	var tags = "<div id='tags'><p>" + buildTags(sortable, title_array) + "</p></div>";
 	var system_tags = "<div id='system_tags'><p>" + buildTags(sortable, title_array) + "</p></div>";
 	var info = "<div id='info'><p>tags: " + tags_count + " words: " + words_count + " [" + (tags_count/words_count).toString().substring(0, 4) + "]</p></div>";
 	var menu = "<div id='menu'>" +
 					
 				"<p><a href='#' class='add'>Add page</a></p>" +
-//				"<p><a href='#' class='domain'>Add domain</a> | " + domain + "</p>" +
 				"<p><a href='#' class='login'>Login</a></p></div>";
 
 	
-	return head + tags + "<hr>" + info + "<hr>" + menu;
+//	return head + tags + "<hr>" + info + "<hr>" + menu;
+
+    return head + "<hr>" + menu;
 }
 
 function buildTags(sortable, title_array) {

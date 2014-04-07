@@ -14,29 +14,21 @@ import java.security.Timestamp;
 public class Domain extends Model {
 
     @Id
-    String domain;
+    String url;
 
     Boolean isApproved;
 
-    @Version
-    Timestamp lastUpdate;
+    public Domain(String url, Boolean isApproved) {
 
-    public Domain(String domain, Boolean isApproved) {
-
-        this.domain = domain;
+        this.url = url;
         this.isApproved = isApproved;
     }
 
-
-    public String getDomain() {
-        return domain;
+    public String getUrl() {
+        return url;
     }
 
-    public Timestamp getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Timestamp lastUpdate) {
-        this.lastUpdate = lastUpdate;
+    public Boolean getIsApproved() {
+        return isApproved;
     }
 }

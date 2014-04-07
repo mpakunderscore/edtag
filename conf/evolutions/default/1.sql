@@ -4,9 +4,9 @@
 # --- !Ups
 
 create table domains (
-  domain                    varchar(255) not null,
+  url                       varchar(255) not null,
   is_approved               boolean,
-  constraint pk_domains primary key (domain))
+  constraint pk_domains primary key (url))
 ;
 
 create table query (
@@ -24,7 +24,8 @@ create table user_data (
   user_id                   integer not null,
   web_data_id               bigint not null,
   count                     integer,
-  user_tags                 TEXT)
+  user_tags                 TEXT,
+  last_update               timestamp)
 ;
 
 create table user_hash (

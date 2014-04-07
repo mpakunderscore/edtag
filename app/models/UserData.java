@@ -4,6 +4,7 @@ import play.db.ebean.Model;
 
 import javax.persistence.*;
 import java.security.Timestamp;
+import java.util.Date;
 
 /**
  * Created by pavelkuzmin on 19/03/14.
@@ -22,8 +23,7 @@ public class UserData extends Model {
     @Column(columnDefinition = "TEXT")
     String userTags;
 
-    @Version
-    Timestamp lastUpdate;
+    Date lastUpdate;
 
     public UserData(int userId, Long webDataId) {
 
@@ -31,6 +31,13 @@ public class UserData extends Model {
         this.webDataId = webDataId;
 
         count = 0;
+        lastUpdate = new Date();
+    }
+
+    @Override
+    public void update() {
+        this.lastUpdate = new Date();
+        super.update();
     }
 
     public void increaseCount() {
@@ -49,11 +56,11 @@ public class UserData extends Model {
         return userTags;
     }
 
-    public Timestamp getLastUpdate() {
+    public Date getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(Timestamp lastUpdate) {
+    public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 }

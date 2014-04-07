@@ -1,26 +1,15 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
-import com.fasterxml.jackson.databind.JsonNode;
 import models.Domain;
 import models.UserData;
 import models.WebData;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import play.cache.Cache;
 import play.mvc.Controller;
 import play.mvc.Result;
-import scala.Int;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.*;
 
 import static play.libs.Json.toJson;
@@ -127,7 +116,7 @@ public class API extends Controller {
 
         List<String> result = new ArrayList<String>();
         for (Domain domain: domains) {
-            result.add(domain.getDomain());
+            result.add(domain.getUrl());
         }
 
         return ok(toJson(result));
