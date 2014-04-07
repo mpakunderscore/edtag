@@ -39,13 +39,4 @@ public class System extends Controller {
 
         return ok();
     }
-
-    public static Result addDomain(String url) { //TODO
-
-        String domain = url.replace("www.", "").replace("http://", "").replace("https://", "").split("/")[0];
-
-        new Domain(domain, null).save();
-
-        return ok();
-    }
 }

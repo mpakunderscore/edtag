@@ -5,7 +5,6 @@
 
 create table domains (
   domain                    varchar(255) not null,
-  fav_icon_url              varchar(255),
   is_approved               boolean,
   constraint pk_domains primary key (domain))
 ;

@@ -1,19 +1,3 @@
-function notification(tags_map) {
-	
-	chrome.tabs.getSelected(null, function(tab) {
-		
-		if (tags_map == null) return;
-		
-		var tags = {};
-		for (var id in tags_map) {
-			tags[tags_map[id][0]] = tags_map[id][1];
-			if (id > 10) break;
-		}
-								
-		add_url(tab.url, tags, tab.title, tab.favIconUrl);	//TODO > transport.js	
-	});
-}
-
 // Conditionally initialize the options.
 if (!localStorage.isInitialized) {
 	localStorage.isActivated = true;   // The display activation.
@@ -44,11 +28,7 @@ chrome.extension.onMessage.addListener(function(request, sender) {
 		
 		chrome.tabs.getSelected(null, function(tab) { // null defaults to current window
 			
-			var tags = words_process(request.source['words']);
-			
-			if (tags.length == 0) return;
-			
-			var url = tab.url.split('#')[0]; //.split('://')[1];
+			var url = tab.url;
 
 			var page = {};			
 			page = JSON.parse(localStorage.getItem(url));

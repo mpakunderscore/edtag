@@ -27,6 +27,8 @@ public class Web extends Controller {
         //get userData (lastUpdate and count)
         List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", 0).setMaxRows(pageSetSize).findList();
 
+        if (userDataList.size() == 0) return ok();
+
         List<Long> webDataIds = new ArrayList<Long>();
         for (UserData userData : userDataList)
             webDataIds.add(userData.getWebDataId());
@@ -34,24 +36,12 @@ public class Web extends Controller {
         //get webData (title and tags)
         List<WebData> webDataList = Ebean.find(WebData.class).where().idIn(webDataIds).findList();
 
-        //get domains and sort (favIcons and )
-        Map<String, Integer> domains = new HashMap<String, Integer>();
+        return ok(toJson(webDataList));
+    }
 
-        //TODO look at getDomain(), it can be moved inside client for optimization. depend on pageSetSize, client should work fast and server results can be cached
-        for (WebData webData : webDataList) {
+    //TODO Cache and sort
+    public static Result domains() {
 
-            String domain = webData.getDomain();
-            int count = domains.containsKey(domain) ? domains.get(domain) : 0;
-            domains.put(domain, count + 1);
-        }
-
-        List<Domain> domainList = Ebean.find(Domain.class).where().idIn(Arrays.asList(domains.keySet())).findList();
-
-        Map<String, JsonNode> out = new HashMap<String, JsonNode>();
-        out.put("webDataList", toJson(webDataList));
-        out.put("userDataList", toJson(userDataList));
-        out.put("domains", toJson(domainList));
-
-        return ok(toJson(out));
+        return ok(toJson(Ebean.find(Domain.class).findList()));
     }
 }

@@ -16,7 +16,7 @@ body, input {
 
 .main a:link    {text-decoration: none; color: black;}
 .main a:visited {color: black;}
-.main a:hover   {color: red;}
+.main a:hover   {color: rgb(255, 54, 47);}
 
 #menu {
 
@@ -46,7 +46,7 @@ body, input {
 
 #menu a:link    {text-decoration: none; color: black; margin-left: 10px;}
 #menu a:visited {color: black;}
-#menu a:hover   {color: red;}
+#menu a:hover   {color: rgb(255, 54, 47);}
 
 #out {
 

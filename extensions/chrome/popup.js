@@ -25,7 +25,7 @@ function build(title, words, url) {
 	var menu = "<div id='menu'>" +
 					
 				"<p><a href='#' class='add'>Add page</a></p>" +
-				"<p><a href='#' class='domain'>Add domain</a> | " + domain + "</p>" + 
+//				"<p><a href='#' class='domain'>Add domain</a> | " + domain + "</p>" +
 				"<p><a href='#' class='login'>Login</a></p></div>";
 
 	
@@ -127,8 +127,8 @@ function add() {
 		
 	chrome.tabs.getSelected(null, function(tab) {
 
-//		window.close();
-		add_url(tab.url.split('#')[0], tags, tab.title, tab.favIconUrl, usertags);			
+		window.close();
+		add_url(tab.url);
 	});
 }
 

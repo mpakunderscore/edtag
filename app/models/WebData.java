@@ -21,7 +21,7 @@ public class WebData extends Model {
 
     String title;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT") //as json object
     String tags;
 
     int wordsCount;
@@ -53,8 +53,14 @@ public class WebData extends Model {
         return tags;
     }
 
-    public String getDomain() {
+    public String getDomainString() {
+
+        return getDomainString(url);
+    }
+
+    public static String getDomainString(String url) {
 
         return url.split("://")[1].split("/")[0].replace("www.", "");
     }
+
 }

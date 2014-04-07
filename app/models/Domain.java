@@ -16,8 +16,6 @@ public class Domain extends Model {
     @Id
     String domain;
 
-    String favIconUrl;
-
     Boolean isApproved;
 
     @Version
@@ -25,15 +23,20 @@ public class Domain extends Model {
 
     public Domain(String domain, Boolean isApproved) {
 
-        this.isApproved = isApproved;
         this.domain = domain;
+        this.isApproved = isApproved;
     }
-
 
 
     public String getDomain() {
         return domain;
     }
 
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
+    }
 
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
 }
