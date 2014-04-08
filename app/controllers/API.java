@@ -1,6 +1,8 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
+import controllers.parsers.PDF;
+import controllers.parsers.Page;
 import models.Domain;
 import models.UserData;
 import models.WebData;
@@ -69,64 +71,15 @@ public class API extends Controller {
 
     private static WebData requestWebData(String url) throws IOException {
 
-//        URL obj = new URL(url);
-//        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-//
-//        con.setRequestMethod("GET");
-//
-//        con.setRequestProperty("User-Agent", USER_AGENT);
-//
-//        int responseCode = con.getResponseCode();
-//
-//        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-//        String inputLine;
-//
-//        StringBuffer response = new StringBuffer();
-//
-//        while ((inputLine = in.readLine()) != null) {
-//            response.append(inputLine);
-//        }
-//        in.close();
-
-        String title = "";
-
-        Map<String, Integer> tagsMap = new HashMap<String, Integer>();
-
         //TODO types of webData (html, pdf, fb2, txt)
         if (url.endsWith(".pdf")) {
 
-            title = url;
-            tagsMap.put("pdf", 0); //TODO system tags
+            return PDF.requestWebData(url);
 
         } else { // if html
 
-            Document doc = null;
-
-            try {
-
-                doc = Jsoup.connect(url).get();
-
-            } catch (HttpStatusException exception) {
-
-                return null;
-            }
-
-            String text = doc.body().text();
-            title = doc.title();
+            return Page.requestWebData(url);
         }
-
-        Map<String, Integer> words = new HashMap<String, Integer>();
-
-        String tags = String.valueOf(toJson(tagsMap));
-
-        int uniqueWordsCount = words.size();
-
-        int wordsCount = 0;
-        for (int value : words.values()) {
-            wordsCount += value;
-        }
-
-        return new WebData(url, title, tags, wordsCount, uniqueWordsCount);
     }
 
     public static Result getApprovedDomains() {
