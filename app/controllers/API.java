@@ -69,14 +69,14 @@ public class API extends Controller {
         return ok(toJson(webData)); //TODO return Events (each notification should be generated on server) and WebData (for notification)
     }
 
-    private static WebData requestWebData(String url) throws IOException {
+    private static WebData requestWebData(String url) {
 
-        //TODO types of webData (html, pdf, fb2, txt)
+        //TODO types of webData (html, pdf, fb2, txt) move type checker into Interface
         if (url.endsWith(".pdf")) {
 
             return PDF.requestWebData(url);
 
-        } else { // if html
+        } else { // if html page
 
             return Page.requestWebData(url);
         }

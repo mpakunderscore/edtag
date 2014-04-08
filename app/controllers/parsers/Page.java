@@ -1,6 +1,7 @@
 package controllers.parsers;
 
 import models.WebData;
+import org.jsoup.Connection;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,7 +17,7 @@ import static play.libs.Json.toJson;
  */
 public class Page {
 
-    public static WebData requestWebData(String url) throws IOException {
+    public static WebData requestWebData(String url) {
 
 //        URL obj = new URL(url);
 //        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -41,28 +42,22 @@ public class Page {
 
         Map<String, Integer> tagsMap = new HashMap<String, Integer>();
 
-        //TODO types of webData (html, pdf, fb2, txt)
-        if (url.endsWith(".pdf")) {
+        Document doc = null;
+        Connection connection = Jsoup.connect(url);
 
-            title = url;
-            tagsMap.put("pdf", 0); //TODO system tags
+        try {
 
-        } else { // if html
+            doc = connection.get();
 
-            Document doc = null;
+        } catch (IOException exception) { //TODO
 
-            try {
-
-                doc = Jsoup.connect(url).get();
-
-            } catch (HttpStatusException exception) {
-
-                return null;
-            }
-
-            String text = doc.body().text();
-            title = doc.title();
+            return null;
         }
+
+        String text = doc.body().text();
+        title = doc.title();
+
+        //TODO select tags
 
         Map<String, Integer> words = new HashMap<String, Integer>();
 
