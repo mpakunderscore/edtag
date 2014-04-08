@@ -4,6 +4,8 @@ import com.avaje.ebean.Ebean;
 import models.Domain;
 import models.UserData;
 import models.WebData;
+import org.jsoup.Connection;
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import play.mvc.Controller;
@@ -32,6 +34,9 @@ public class API extends Controller {
         if (webData == null) {
 
             webData = requestWebData(url);
+
+            if (webData == null) return ok();
+
             webData.save();
 
             String domainString = webData.getDomainString();
@@ -95,7 +100,17 @@ public class API extends Controller {
 
         } else { // if html
 
-            Document doc = Jsoup.connect(url).get();
+            Document doc = null;
+
+            try {
+
+                doc = Jsoup.connect(url).get();
+
+            } catch (HttpStatusException exception) {
+
+                return null;
+            }
+
             String text = doc.body().text();
             title = doc.title();
         }
