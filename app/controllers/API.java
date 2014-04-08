@@ -55,9 +55,11 @@ public class API extends Controller {
 
             userData.increaseCount();
             userData.update();
+
+            return ok();
         }
 
-        return ok(toJson(webData)); //TODO return Events (each notification should be generated on server) and WebData (for popup.html)
+        return ok(toJson(webData)); //TODO return Events (each notification should be generated on server) and WebData (for notification)
     }
 
     private static WebData requestWebData(String url) throws IOException {
@@ -81,18 +83,26 @@ public class API extends Controller {
 //        }
 //        in.close();
 
-        Document doc = Jsoup.connect(url).get();
-
-        Map<String, Integer> words = new HashMap<String, Integer>();
-
-        String text = doc.body().text();
+        String title = "";
 
         Map<String, Integer> tagsMap = new HashMap<String, Integer>();
 
+        //TODO types of webData (html, pdf, fb2, txt)
+        if (url.endsWith(".pdf")) {
+
+            title = url;
+            tagsMap.put("pdf", 0); //TODO system tags
+
+        } else { // if html
+
+            Document doc = Jsoup.connect(url).get();
+            String text = doc.body().text();
+            title = doc.title();
+        }
+
+        Map<String, Integer> words = new HashMap<String, Integer>();
+
         String tags = String.valueOf(toJson(tagsMap));
-
-
-
 
         int uniqueWordsCount = words.size();
 
@@ -100,12 +110,6 @@ public class API extends Controller {
         for (int value : words.values()) {
             wordsCount += value;
         }
-
-        String title = doc.title();
-
-//        String favIconUrl = doc.select("link[href~=.*\\.ico]").first().attr("href");
-
-//        String favIconUrl = WebData.getDomainString(url) + "/favicon.ico";
 
         return new WebData(url, title, tags, wordsCount, uniqueWordsCount);
     }

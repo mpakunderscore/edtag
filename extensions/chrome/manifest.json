@@ -3,18 +3,25 @@
 
 	"name": "PKM Scrobbler",
 	"description": "Scrobble white web pages.",
-	"version": "0.2.1",
+	"version": "0.3.0",
 
 	"options_page": "options.html",
 	
     "background": {
-      	"scripts": ["background.js", "bolting.js", "api.js"]
+      	"scripts": ["js/api.js", "js/background.js"]
     },
 		
 	"browser_action": {
 		"default_icon": "icon.png",
 		"default_popup": "popup.html"
 	},
+
+    "oauth2": {
+        "client_id": "518336059345-bq6f9a1bsf3t8lr6dcefgpjn8jr8arg9.apps.googleusercontent.com",
+        "scopes": [
+            "https://www.googleapis.com/auth/drive"
+        ]
+    },
 	  
-	"permissions": ["identity", "activeTab", "notifications", "http://localhost:9000/*", "http://quiet-anchorage-6418.herokuapp.com/*"]
+	"permissions": ["tabs", "activeTab", "identity", "notifications", "http://localhost:9000/*", "http://quiet-anchorage-6418.herokuapp.com/*"]
 }
