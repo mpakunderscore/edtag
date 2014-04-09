@@ -1,3 +1,8 @@
+//	var host = "quiet-anchorage-6418.herokuapp.com";
+var host = "localhost:9000";
+
+var notificationTime = 5000;
+
 function setDomains() {
 
     var url = "http://" + host + "/domains";
@@ -9,10 +14,6 @@ function setDomains() {
     var domains = request.responseText;
     localStorage.setItem("domains", domains);
 }
-
-
-//	var host = "quiet-anchorage-6418.herokuapp.com";
-var host = "localhost:9000";
 
 function add_url(tab) { //TODO move out
 
@@ -32,10 +33,8 @@ function add_url(tab) { //TODO move out
 
     console.log(tab.url.split("://")[1].replace("www.", ""));
 
-    notification(tab["favIconUrl"], webData.title, "");
+    notification(tab["favIconUrl"], webData.title.replace(" - Wikipedia, the free encyclopedia", ""), "");
 }
-
-var time = 2000;
 
 function notification(favIcon, title, text) {
 
@@ -47,5 +46,5 @@ function notification(favIcon, title, text) {
 
     notification.show();
 
-    setTimeout( function() { notification.cancel() }, time );
+    setTimeout( function() { notification.cancel() }, notificationTime );
 }

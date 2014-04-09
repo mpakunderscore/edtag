@@ -55,6 +55,7 @@ public class Page {
         }
 
         String text = doc.body().text();
+
         title = doc.title();
 
         //TODO select tags

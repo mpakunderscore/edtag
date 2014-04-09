@@ -27,6 +27,8 @@ public class API extends Controller {
 
     public static Result add(String url) throws IOException { //TODO actually Cache is not needed here.
 
+//        url = url.split("/?")[0]; //TODO ?
+
         int userId = 0;
         if (session("userId") != null)
             userId = Integer.parseInt(session("userId"));

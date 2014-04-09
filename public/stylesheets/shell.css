@@ -62,6 +62,8 @@ body, input {
 .study a:visited 	{color: rgb(17, 85, 204);}
 .study a:hover 		{text-decoration: underline;}
 
+/* 0 180 239 */
+
 #data {
 		
     border-collapse: separate;
@@ -86,6 +88,11 @@ body, input {
 #tags {
 
 	position: absolute;
-	left: 90px;	
+	left: 90px;
+    width: 105px;
 	border-spacing: 15px 10px;
+
+    text-align: right;
+
+    /*background-color: lightgray;*/
 }
