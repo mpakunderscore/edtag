@@ -1,5 +1,7 @@
 setDomains();
 
+var delay = 10000;
+
 setInterval(function() {
 
     var domains = JSON.parse(localStorage.getItem("domains"));
@@ -12,4 +14,8 @@ setInterval(function() {
         }
     });
 
-}, 10000); //every 10 sec
+}, delay); //every 10 sec
+
+chrome.browserAction.onClicked.addListener(function(tab) {
+    add_url(tab);
+});

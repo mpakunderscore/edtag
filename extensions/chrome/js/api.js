@@ -1,7 +1,7 @@
 //	var host = "quiet-anchorage-6418.herokuapp.com";
 var host = "localhost:9000";
 
-var notificationTime = 5000;
+var notificationTime = 2000;
 
 function setDomains() {
 
