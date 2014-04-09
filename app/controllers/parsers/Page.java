@@ -5,8 +5,13 @@ import org.jsoup.Connection;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +21,8 @@ import static play.libs.Json.toJson;
  * Created by pavelkuzmin on 08/04/14.
  */
 public class Page {
+
+    private static final String USER_AGENT = "Mozilla/5.0";
 
     public static WebData requestWebData(String url) {
 
@@ -40,6 +47,8 @@ public class Page {
 
         String title = "";
 
+        String favIcon = null;
+
         Map<String, Integer> tagsMap = new HashMap<String, Integer>();
 
         Document doc = null;
@@ -58,6 +67,22 @@ public class Page {
 
         title = doc.title();
 
+        if (title.length() == 0) return null; //TODO
+
+        if (!checkBaseFavIcon(url)) {
+
+            try {
+
+                Elements links = doc.head().select("link[href~=.*\\.ico]");
+
+                if (links.size() == 0) favIcon = "/blank.ico";
+                else links.first().attr("href");
+
+            } catch (Exception e) {
+                // -_-
+            }
+        }
+
         //TODO select tags
 
         Map<String, Integer> words = new HashMap<String, Integer>();
@@ -71,6 +96,27 @@ public class Page {
             wordsCount += value;
         }
 
-        return new WebData(url, title, tags, wordsCount, uniqueWordsCount);
+        return new WebData(url, title, tags, wordsCount, uniqueWordsCount, favIcon);
+    }
+
+    private static boolean checkBaseFavIcon(String url) {
+
+        String favIconUrl = "http://" + WebData.getDomainString(url) + "/favicon.ico";
+        int responseCode = 0;
+
+        try {
+
+            URL obj = new URL(favIconUrl);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("User-Agent", USER_AGENT);
+
+            responseCode = con.getResponseCode();
+
+        } catch (Exception e) {
+            // -_-
+        }
+
+        return responseCode == 200;
     }
 }

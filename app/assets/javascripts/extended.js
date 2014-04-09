@@ -3,6 +3,10 @@ function query(text) {
     $.get("/query", {text: text}, function( data ) {});
 }
 
+function global() {
+
+}
+
 function pages() {
 
     $.get("/pages", {},

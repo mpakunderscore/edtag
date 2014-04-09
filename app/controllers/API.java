@@ -23,8 +23,6 @@ import static play.libs.Json.toJson;
  */
 public class API extends Controller {
 
-    private static final String USER_AGENT = "Mozilla/5.0";
-
     public static Result add(String url) throws IOException { //TODO actually Cache is not needed here.
 
 //        url = url.split("/?")[0]; //TODO ?

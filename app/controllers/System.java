@@ -9,6 +9,7 @@ import play.mvc.Http;
 import play.mvc.Result;
 
 import java.util.List;
+import java.util.Map;
 
 import static play.libs.Json.toJson;
 
@@ -43,8 +44,7 @@ public class System extends Controller {
 
     public static Result signInCallback() {
 
-        Http.Request request = request();
-        Http.Session session = session();
+        final String code = request().body().asFormUrlEncoded().get("code")[0];
 
         return ok();
     }

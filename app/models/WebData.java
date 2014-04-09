@@ -28,13 +28,16 @@ public class WebData extends Model {
 
     int uniqueWordsCount;
 
-    public WebData(String url, String title, String tags, int wordsCount, int uniqueWordsCount) {
+    String favIcon;
+
+    public WebData(String url, String title, String tags, int wordsCount, int uniqueWordsCount, String favIcon) {
 
         this.url = url;
         this.title = title;
         this.tags = tags;
         this.wordsCount = wordsCount;
         this.uniqueWordsCount = uniqueWordsCount;
+        this.favIcon = favIcon;
     }
 
     public Long getId() {
@@ -63,4 +66,11 @@ public class WebData extends Model {
         return url.split("://")[1].split("/")[0].replace("www.", "");
     }
 
+    public String getFavIcon() {
+        return favIcon;
+    }
+
+    public void setFavIcon(String favIcon) {
+        this.favIcon = favIcon;
+    }
 }

@@ -15,7 +15,7 @@ function setDomains() {
     localStorage.setItem("domains", domains);
 }
 
-function add_url(tab) { //TODO move out
+function add_url(tab) {
 
     if (tab.status != "complete") return;
 
@@ -33,7 +33,7 @@ function add_url(tab) { //TODO move out
 
     console.log(tab.url.split("://")[1].replace("www.", ""));
 
-    notification(tab["favIconUrl"], webData.title.replace(" - Wikipedia, the free encyclopedia", ""), "");
+    notification(tab["favIconUrl"], webData.title.replace(" - Wikipedia, the free encyclopedia", ""), ""); //TODO
 }
 
 function notification(favIcon, title, text) {
