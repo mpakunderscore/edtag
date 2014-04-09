@@ -5,6 +5,7 @@ import models.Domain;
 import models.Query;
 import models.User;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 
 import java.util.List;
@@ -41,6 +42,10 @@ public class System extends Controller {
     }
 
     public static Result signInCallback() {
+
+        Http.Request request = request();
+        Http.Session session = session();
+
         return ok();
     }
 }

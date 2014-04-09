@@ -127,5 +127,3 @@ function sort(map) {
 
     return sortable
 }
-
-pages()
