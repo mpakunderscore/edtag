@@ -39,4 +39,8 @@ public class System extends Controller {
 
         return ok();
     }
+
+    public static Result signInCallback() {
+        return ok();
+    }
 }
