@@ -76,7 +76,7 @@ public class Page {
                 Elements links = doc.head().select("link[href~=.*\\.ico]");
 
                 if (links.size() == 0) favIcon = "/blank.ico";
-                else links.first().attr("href");
+                else favIcon = links.first().attr("href");
 
             } catch (Exception e) {
                 // -_-

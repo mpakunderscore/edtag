@@ -49,8 +49,8 @@ function signInCallback(authResult) {
         console.log('Sign-in state: ' + authResult['error']);
     }
 
-    pages();
-//    domains();
+//    pages();
+    domains();
 }
 
 var fixmeTop = 48;                              // Get initial position
