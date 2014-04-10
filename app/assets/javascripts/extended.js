@@ -4,7 +4,33 @@ function query(text) {
 }
 
 function domains() {
+    
+    $.get("/alldomains", {},
 
+        function(domains) {
+
+            $('#main').html('');
+            $('#main').append('<div id="out"><table id="data"></table></div>');
+
+            for (var id in domains) {
+
+                var row = "<tr>" +
+
+                    // "<td><font color='gray'>9:24 pm</font></td>" +
+
+                    "<td><a href='#'><img src='"+ "http://" + domains[id]['url'] + "/favicon.ico" + "' height='16' width='16'></a></td>" +
+
+                    "<td class='study'><a href='" + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a>" +
+
+                    "</td>" +
+
+                    "</tr>";
+
+                $('#data').append(row);
+            }
+
+        }
+    );
 }
 
 function pages() {
