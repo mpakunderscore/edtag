@@ -10,7 +10,7 @@ public class Text {
 
     public static Set<String> getNouns(Set<String> words) {
 
-        Set<String> nouns = new HashSet<>();
+        Set<String> nouns = new HashSet<String>();
 
         return nouns;
     }
