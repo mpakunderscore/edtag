@@ -49,7 +49,7 @@ function signInCallback(authResult) {
         console.log('Sign-in state: ' + authResult['error']);
     }
 
-    global();
+    domains();
 }
 
 var fixmeTop = 50;                              // Get initial position
@@ -75,13 +75,13 @@ $(window).scroll(function() {                   // Assign scroll event listener
 
         $('#domains').css({
             position: 'absolute',
-            top: '70px',
+            top: '67px',
             left: '20px'
         });
 
         $('#tags').css({
             position: 'absolute',
-            top: '70px',
+            top: '67px',
             left: '90px'
         });
     }

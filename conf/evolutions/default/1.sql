@@ -41,6 +41,7 @@ create table web_data (
   tags                      TEXT,
   words_count               integer,
   unique_words_count        integer,
+  fav_icon                  varchar(255),
   constraint pk_web_data primary key (id))
 ;
 

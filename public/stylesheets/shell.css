@@ -4,6 +4,10 @@ body, input {
     line-height: 1.5;
 }
 
+body {
+
+}
+
 /*menu*/
 
 #menu {
@@ -48,9 +52,12 @@ body, input {
 
 #out {
 
-	position: absolute;	
+	position: absolute;
+    top: 67px;
   	left: 220px;
 	right: 0;
+
+    margin-bottom: 50px;
 
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);	
 	background-color: rgb(255, 255, 255);
@@ -67,7 +74,7 @@ body, input {
 #data {
 		
     border-collapse: separate;
-    border-spacing: 15px 10px;		
+    border-spacing: 15px 10px;
 }
 
 #data img {vertical-align: middle;}
@@ -76,6 +83,7 @@ body, input {
 #domains {
 
 	position: absolute;
+    top: 67px;
 	left: 20px;
 	
     border-collapse: separate;
@@ -93,6 +101,7 @@ body, input {
 #tags {
 
 	position: absolute;
+    top: 67px;
 	left: 90px;
     width: 105px;
 	border-spacing: 15px 10px;
@@ -100,4 +109,11 @@ body, input {
     text-align: right;
 
     /*background-color: lightgray;*/
+}
+
+#footer {
+
+    position:absolute;
+    margin: 20px;
+    bottom:0;
 }
