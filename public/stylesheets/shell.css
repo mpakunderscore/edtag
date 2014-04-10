@@ -25,6 +25,7 @@ body, input {
 
 #signInButton {
 
+    padding-right: 15px;
     display: none;
 	float: right;
 }
@@ -101,7 +102,7 @@ body, input {
 	position: fixed;
     top: 67px;
 	left: 90px;
-    width: 105px;
+    width: 120px;
 	border-spacing: 16px 10px;
 
     text-align: right;
@@ -126,7 +127,7 @@ body, input {
     position: fixed;
     top: 20px;
     left: 90px;
-    width: 95px;
+    width: 105px;
 
     padding-top: 3px;
     padding-bottom: 3px;
