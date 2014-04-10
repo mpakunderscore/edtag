@@ -52,8 +52,10 @@ function signInCallback(authResult) {
     domains();
 }
 
-var fixmeTop = 50;                              // Get initial position
+var fixmeTop = 48;                              // Get initial position
 $(window).scroll(function() {                   // Assign scroll event listener
+
+    return;
 
     var currentScroll = $(window).scrollTop();  // Get current position
     if (currentScroll >= fixmeTop) {            // Make it fixed if you've scrolled to it

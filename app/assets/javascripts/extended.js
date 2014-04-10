@@ -187,7 +187,7 @@ function pages() {
             for (var id in domains_sort) {
 
                 var row = "<tr>" +
-                    "<td><a href='#'><img src='"+ "http://" + domains_sort[id][0] + "/favicon.ico" + "' height='15' width='15' title='" + domains_sort[id][0] + "'></a></td>" +
+                    "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+ "http://" + domains_sort[id][0] + "/favicon.ico" + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a></td>" +
 					"</tr>";
 
                 $('#domains').append(row);
@@ -199,6 +199,13 @@ function pages() {
 			
 			$('#tags').append("<tr><td><a href='#'>global</a></td></tr>");
 			$('#tags').append("<tr><td><a href='#'>similar</a></td></tr>");
+            $('#tags').append("<tr><td><a href='#'>science</a></td></tr>");
+            $('#tags').append("<tr><td><a href='#'>programming</a></td></tr>");
+            $('#tags').append("<tr><td><a href='#'>book</a></td></tr>");
+            $('#tags').append("<tr><td><a href='#'>javascript</a></td></tr>");
+            $('#tags').append("<tr><td><a href='#'>random</a></td></tr>");
+            $('#tags').append("<tr><td><a href='#'>web</a></td></tr>");
+            $('#tags').append("<tr><td><a href='#'>scala</a></td></tr>");
 //			$('#tags').append("<tr><td><a href='#'>video</a></td></tr>");
 //			$('#tags').append("<tr><td>&#8211;</td></tr>");
 

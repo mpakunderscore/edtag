@@ -4,21 +4,18 @@ body, input {
     line-height: 1.5;
 }
 
-body {
-
-}
-
-/*menu*/
-
 #menu {
 
-	position: relative;
-/*	top: 0px;*/
-	/*left: 2px;*/
-	
+	position: absolute;
+
+    left: 210px;
+    right: 0;
+    min-width: 900px;
+
+
 	padding: 10px;
 	margin-bottom: 10px;
-	
+
 	/*background-color: lightgrey;*/
 }
 
@@ -35,6 +32,7 @@ body {
 #signOutButton {
 
     padding: 4px;
+    padding-right: 15px;
     display: none;
     float: right;
 }
@@ -57,9 +55,11 @@ body {
   	left: 220px;
 	right: 0;
 
+    min-width: 900px;
+
     margin-bottom: 50px;
 
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);	
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 	background-color: rgb(255, 255, 255);
 }
 
@@ -73,8 +73,7 @@ body {
 
 #data {
 		
-    border-collapse: separate;
-    border-spacing: 15px 10px;
+    border-spacing: 16px 10px;
 }
 
 #data img {vertical-align: middle;}
@@ -82,12 +81,11 @@ body {
 
 #domains {
 
-	position: absolute;
+	position: fixed;
     top: 67px;
 	left: 20px;
 	
-    border-collapse: separate;
-    border-spacing: 15px 10px;
+    border-spacing: 16px 10px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 	
 	background-color: rgb(255, 255, 255);
@@ -100,11 +98,38 @@ body {
 
 #tags {
 
-	position: absolute;
+	position: fixed;
     top: 67px;
 	left: 90px;
     width: 105px;
-	border-spacing: 15px 10px;
+	border-spacing: 16px 10px;
+
+    text-align: right;
+
+    /*background-color: lightgray;*/
+}
+
+#logo {
+
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    width: 50px;
+    height: 25px;
+
+    /*box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);*/
+    /*background-color: lightgray;*/
+}
+
+#new {
+
+    position: fixed;
+    top: 20px;
+    left: 90px;
+    width: 95px;
+
+    padding-top: 3px;
+    padding-bottom: 3px;
 
     text-align: right;
 
@@ -113,7 +138,7 @@ body {
 
 #footer {
 
-    position:absolute;
+    position: absolute;
     margin: 20px;
-    bottom:0;
+    bottom: 0;
 }

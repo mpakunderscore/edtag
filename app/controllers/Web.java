@@ -24,7 +24,7 @@ public class Web extends Controller {
     //TODO cache
     public static Result pages() {
 
-        int pageSetSize = 80;
+        int pageSetSize = 200;
 
         //get userData (lastUpdate and count)
         List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", 0).order().desc("last_update").setMaxRows(pageSetSize).findList();
