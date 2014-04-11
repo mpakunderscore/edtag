@@ -52,7 +52,7 @@ body, input {
 #out {
 
 	position: absolute;
-    top: 67px;
+    top: 66px;
   	left: 220px;
 	right: 0;
 
@@ -83,7 +83,7 @@ body, input {
 #domains {
 
 	position: fixed;
-    top: 67px;
+    top: 66px;
 	left: 20px;
 	
     border-spacing: 16px 10px;
@@ -100,7 +100,7 @@ body, input {
 #tags {
 
 	position: fixed;
-    top: 67px;
+    top: 66px;
 	left: 90px;
     width: 105px;
 	border-spacing: 16px 10px;

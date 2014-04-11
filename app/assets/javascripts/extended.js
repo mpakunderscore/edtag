@@ -4,7 +4,7 @@ function query(text) {
 }
 
 function domains() {
-    
+
     $.get("/alldomains", {},
 
         function(domains) {
