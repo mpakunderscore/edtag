@@ -66,8 +66,8 @@ body, input {
 
 .study a {padding-right: 10px;}
 
-.study a:link    	{text-decoration: none; color: rgb(17, 85, 204);}
-.study a:visited 	{color: rgb(17, 85, 204);}
+.study a:link    	{text-decoration: none; color: #4183C4;}
+.study a:visited 	{color: #4183C4;}
 .study a:hover 		{text-decoration: underline;}
 
 /* 0 180 239 */
