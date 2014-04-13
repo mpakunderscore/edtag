@@ -55,7 +55,6 @@ public class Page {
 
         Document doc = null;
         Connection connection = Jsoup.connect(url);
-        System.out.println(url);
 
         try {
 

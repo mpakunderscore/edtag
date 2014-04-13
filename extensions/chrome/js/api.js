@@ -19,7 +19,7 @@ function add_url(tab) {
 
     if (tab.status != "complete") return;
 
-    var url = host + "/add?url=" + tab.url;
+    var url = host + "/add?url=" + encodeURIComponent(tab.url);
 
     var request = new XMLHttpRequest();
     request.open( "GET", url, false );
