@@ -3,7 +3,7 @@
 
 	"name": "edtag.io",
 	"description": "Curious to educational trails.",
-	"version": "0.3.2",
+	"version": "0.3.3.1",
 
 	"options_page": "options.html",
 	
@@ -23,5 +23,5 @@
         ]
     },
 	  
-	"permissions": ["tabs", "activeTab", "identity", "notifications", "http://localhost:9000/*", "http://quiet-anchorage-6418.herokuapp.com/*"]
+	"permissions": ["tabs", "activeTab", "identity", "notifications", "http://localhost:9000/*", "https://edtag.herokuapp.com/*"]
 }

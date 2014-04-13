@@ -20,7 +20,7 @@ function domains() {
 
                     "<td><a href='#'><img src='"+ "http://" + domains[id]['url'] + "/favicon.ico" + "' height='16' width='16'></a></td>" +
 
-                    "<td class='study'><a href='" + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a>" +
+                    "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a>" +
 
                     "</td>" +
 

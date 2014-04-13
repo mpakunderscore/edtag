@@ -1,11 +1,11 @@
-var host = "quiet-anchorage-6418.herokuapp.com";
-//var host = "localhost:9000";
+var host = "https://edtag.herokuapp.com";
+//var host = "http://localhost:9000";
 
 var notificationTime = 2000;
 
 function setDomains() {
 
-    var url = "http://" + host + "/domains";
+    var url = host + "/domains";
 
     var request = new XMLHttpRequest();
     request.open( "GET", url, false );
@@ -19,7 +19,7 @@ function add_url(tab) {
 
     if (tab.status != "complete") return;
 
-    var url = "http://" + host + "/add?url=" + tab.url;
+    var url = host + "/add?url=" + tab.url;
 
     var request = new XMLHttpRequest();
     request.open( "GET", url, false );
