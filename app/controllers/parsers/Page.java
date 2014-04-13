@@ -1,5 +1,6 @@
 package controllers.parsers;
 
+import controllers.*;
 import models.WebData;
 import org.jsoup.Connection;
 import org.jsoup.HttpStatusException;
@@ -9,6 +10,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.lang.System;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
@@ -53,6 +55,7 @@ public class Page {
 
         Document doc = null;
         Connection connection = Jsoup.connect(url);
+        System.out.println(url);
 
         try {
 
