@@ -1,5 +1,5 @@
-var host = "https://edtag.herokuapp.com";
-//var host = "http://localhost:9000";
+//var host = "https://edtag.herokuapp.com";
+var host = "http://localhost:9000";
 
 var notificationTime = 2000;
 

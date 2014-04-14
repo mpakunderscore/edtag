@@ -24,7 +24,7 @@ import static play.libs.Json.toJson;
  */
 public class Page {
 
-    private static final String USER_AGENT = "Mozilla/5.0";
+    private static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36"; //TODO
 
     public static WebData requestWebData(String url) {
 
@@ -58,7 +58,7 @@ public class Page {
 
         try {
 
-            doc = connection.get();
+            doc = connection.userAgent(USER_AGENT).followRedirects(true).get();
 
         } catch (IOException exception) { //TODO
 

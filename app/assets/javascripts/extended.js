@@ -9,20 +9,21 @@ function domains() {
 
         function(domains) {
 
-            $('#main').html('');
-            $('#main').append('<div id="out"><table id="data"></table></div>');
+            var main = $('#main');
+
+            main.html('');
+
+            main.append('<div id="out"><table id="data"></table></div>');
 
             for (var id in domains) {
 
-                var row = "<tr>" +
+                var row =
 
-                    // "<td><font color='gray'>9:24 pm</font></td>" +
+                    "<tr>" +
 
                     "<td><a href='#'><img src='"+ "http://" + domains[id]['url'] + "/favicon.ico" + "' height='16' width='16'></a></td>" +
 
-                    "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a>" +
-
-                    "</td>" +
+                    "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a></td>" +
 
                     "</tr>";
 
@@ -74,7 +75,7 @@ function pages() {
 
                    	// "<td><font color='gray'>9:24 pm</font></td>" +
 
-                    "<td><a href='#'><img src='"+ "http://" + data[id]['domainString'] + "/favicon.ico" + "' height='15' width='15'></a></td>" +
+                    "<td><a href='#'><img src='"+ "http://" + data[id]['domainString'] + "/favicon.ico" + "' height='16' width='16'></a></td>" +
                     
 					"<td class='study'>" +
 					"<a href='" + data[id]['url'] + "' target='_blank'>" + title + "</a>" +

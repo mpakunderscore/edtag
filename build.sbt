@@ -23,3 +23,9 @@ libraryDependencies += "org.mindrot" % "jbcrypt" % "0.3m"
 libraryDependencies += "org.jsoup" % "jsoup" % "1.7.3"
 
 libraryDependencies += "com.google.api-client" % "google-api-client" % "1.17.0-rc"
+
+libraryDependencies += "com.google.apis" % "google-api-services-plus" % "v1-rev122-1.17.0-rc"
+
+libraryDependencies += "com.google.api.client" % "google-api-client-json" % "1.2.3-alpha"
+
+libraryDependencies += "com.google.http-client" % "google-http-client-jackson" % "1.18.0-rc"
