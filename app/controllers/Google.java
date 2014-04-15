@@ -15,22 +15,22 @@ public class Google {
 
     public static void getAuth(String code) {
 
-        HttpTransport TRANSPORT = new NetHttpTransport();
-
-        JacksonFactory JSON_FACTORY = new JacksonFactory();
-
-        String APPLICATION_NAME = "edtag.io";
-        //
-        String CLIENT_ID = "518336059345-3j9cgo8mld6f8e4ak74k63pjbhmmsn43.apps.googleusercontent.com";
-        String CLIENT_SECRET = "aAXfLquwz-uaBAJDDkxjQvLQ";
-
-        try {
-
-            GoogleTokenResponse tokenResponse = new GoogleAuthorizationCodeTokenRequest(TRANSPORT, JSON_FACTORY, CLIENT_ID, CLIENT_SECRET, code, "postmessage").execute();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        HttpTransport TRANSPORT = new NetHttpTransport();
+//
+//        JacksonFactory JSON_FACTORY = new JacksonFactory();
+//
+//        String APPLICATION_NAME = "edtag.io";
+//        //
+//        String CLIENT_ID = "518336059345-3j9cgo8mld6f8e4ak74k63pjbhmmsn43.apps.googleusercontent.com";
+//        String CLIENT_SECRET = "aAXfLquwz-uaBAJDDkxjQvLQ";
+//
+//        try {
+//
+//            GoogleTokenResponse tokenResponse = new GoogleAuthorizationCodeTokenRequest(TRANSPORT, JSON_FACTORY, CLIENT_ID, CLIENT_SECRET, code, "postmessage").execute();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 //        TokenResponse tr = null;
 //
