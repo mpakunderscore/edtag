@@ -150,7 +150,7 @@ function pages() {
                 if (id == 15) break;
             }
 
-            $('#main').append('<div id="save"><td><a href="javascript:save()">save</a></td></div>');
+//            $('#main').append('<div id="save"><td><a href="javascript:save()">save</a></td></div>');
     });
 
 

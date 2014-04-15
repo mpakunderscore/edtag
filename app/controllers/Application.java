@@ -70,42 +70,15 @@ public class Application extends Controller {
 
     public static Result auth() {
 
-        HttpTransport TRANSPORT = new NetHttpTransport();
-
-        JacksonFactory JSON_FACTORY = new JacksonFactory();
-
-        String APPLICATION_NAME = "edtag.io";
-        //
-        String CLIENT_ID = "518336059345-3j9cgo8mld6f8e4ak74k63pjbhmmsn43.apps.googleusercontent.com";
-        String CLIENT_SECRET = "aAXfLquwz-uaBAJDDkxjQvLQ";
-
-//        String gPlusId = request().queryParams("gplus_id");
+        //        String gPlusId = request().queryParams("gplus_id");
 
         String code = request().body().asFormUrlEncoded().get("code")[0];
 
 //        String token = request().body().asFormUrlEncoded().get("token")[0];
 
-        try {
+//        Google.getAuth(code);
 
-            GoogleTokenResponse tokenResponse = new GoogleAuthorizationCodeTokenRequest(TRANSPORT, JSON_FACTORY, CLIENT_ID, CLIENT_SECRET, code, "postmessage").execute();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-//        TokenResponse tr = null;
-//
-//        GoogleCredential credential = new GoogleCredential.Builder()
-//
-//                .setJsonFactory(JSON_FACTORY)
-//                .setTransport(TRANSPORT)
-//                .setClientSecrets(CLIENT_ID, CLIENT_SECRET).build()
-//                .setFromTokenResponse(tr);
-//
-//        // Create a new authorized API client.
-//        Plus service = new Plus.Builder(TRANSPORT, JSON_FACTORY, credential)
-//                .setApplicationName(APPLICATION_NAME)
-//                .build();
 
         return ok();
     }
