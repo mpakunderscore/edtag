@@ -1,3 +1,5 @@
+var states = {0:"Denied", 1:"Unchecked", 2:"Manual", 3:"Allowed"};
+
 function query(text) {
 
     $.get("/query", {text: text}, function( data ) {});
@@ -21,14 +23,32 @@ function domains() {
 
                     "<tr>" +
 
-                    "<td><a href='#'><img src='"+ "http://" + domains[id]['url'] + "/favicon.ico" + "' height='16' width='16'></a></td>" +
+                    "<td><a href='#'><img src='"+ "http://www." + domains[id]['url'] + "/favicon.ico" + "' height='16' width='16'></a></td>" +
 
-                    "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a></td>" +
+                    "<td class='study'><a href='" + "http://www." + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a></td>" +
+
+                    "<td>" + domains[id]['title'] + "</td>" +
+
+                    "<td>" + states[domains[id]['state']] + "</td>" +
 
                     "</tr>";
 
                 $('#data').append(row);
             }
+
+            main.append('<table id="tags" border="0"></table>');
+
+            var tags = $('#tags');
+
+            tags.append("<tr><td><a href='#'>global</a></td></tr>");
+            tags.append("<tr><td><a href='#'>similar</a></td></tr>");
+            tags.append("<tr><td><a href='#'>science</a></td></tr>");
+            tags.append("<tr><td><a href='#'>programming</a></td></tr>");
+            tags.append("<tr><td><a href='#'>book</a></td></tr>");
+            tags.append("<tr><td><a href='#'>javascript</a></td></tr>");
+            tags.append("<tr><td><a href='#'>random</a></td></tr>");
+            tags.append("<tr><td><a href='#'>web</a></td></tr>");
+            tags.append("<tr><td><a href='#'>scala</a></td></tr>");
 
         }
     );
@@ -75,7 +95,7 @@ function pages() {
 
                    	// "<td><font color='gray'>9:24 pm</font></td>" +
 
-                    "<td><a href='#'><img src='"+ "http://" + data[id]['domainString'] + "/favicon.ico" + "' height='16' width='16'></a></td>" +
+                    "<td><a href='#'><img src='"+ "http://www." + domain + "/favicon.ico" + "' height='16' width='16'></a></td>" +
                     
 					"<td class='study'>" +
 					"<a href='" + data[id]['url'] + "' target='_blank'>" + title + "</a>" +
@@ -114,7 +134,7 @@ function pages() {
             for (var id in domains_sort) {
 
                 var row = "<tr>" +
-                    "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+ "http://" + domains_sort[id][0] + "/favicon.ico" + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a></td>" +
+                    "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+ "http://www." + domains_sort[id][0] + "/favicon.ico" + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a></td>" +
 					"</tr>";
 
                 $('#domains').append(row);

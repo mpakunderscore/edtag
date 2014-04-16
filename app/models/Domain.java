@@ -13,22 +13,60 @@ import java.security.Timestamp;
 @Table(name="domains")
 public class Domain extends Model {
 
+    public static final int DENIED = 0;
+    public static final int UNCHECKED = 1;
+    public static final int MANUAL = 2;
+    public static final int ALLOWED = 3;
+
     @Id
     String url;
 
-    Boolean isApproved;
+    String title;
 
-    public Domain(String url, Boolean isApproved) {
+    @Column(columnDefinition = "TEXT") //as json object
+    String tags;
 
+    int state;
+
+    boolean favIcon;
+
+    public Domain(String url, String title, String tags, int state, boolean favIcon) {
         this.url = url;
-        this.isApproved = isApproved;
+        this.title = title;
+        this.tags = tags;
+        this.state = state;
+        this.favIcon = favIcon;
     }
 
     public String getUrl() {
         return url;
     }
 
-    public Boolean getIsApproved() {
-        return isApproved;
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public boolean isFavIcon() {
+        return favIcon;
+    }
+
+    public void setFavIcon(boolean favIcon) {
+        this.favIcon = favIcon;
     }
 }

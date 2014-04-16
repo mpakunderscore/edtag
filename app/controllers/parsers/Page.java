@@ -24,8 +24,6 @@ import static play.libs.Json.toJson;
  */
 public class Page {
 
-    private static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36"; //TODO
-
     public static WebData requestWebData(String url) {
 
 //        URL obj = new URL(url);
@@ -49,8 +47,6 @@ public class Page {
 
         String title = "";
 
-        String favIcon = null;
-
         Map<String, Integer> tagsMap = new HashMap<String, Integer>();
 
         Document doc = null;
@@ -58,7 +54,7 @@ public class Page {
 
         try {
 
-            doc = connection.userAgent(USER_AGENT).followRedirects(true).get();
+            doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).get();
 
         } catch (IOException exception) { //TODO
 
@@ -71,25 +67,13 @@ public class Page {
 
         if (title.length() == 0) return null; //TODO
 
-        if (!checkBaseFavIcon(url)) {
-
-            try {
-
-                Elements links = doc.head().select("link[href~=.*\\.ico]");
-
-                if (links.size() == 0) favIcon = "/blank.ico";
-                else favIcon = links.first().attr("href");
-
-            } catch (Exception e) {
-                // -_-
-            }
-        }
-
         //TODO select tags
 
-        Map<String, Integer> words = new HashMap<String, Integer>();
+        Map<String, Integer> words = Text.getWords(text);
 
-        String tags = String.valueOf(toJson(tagsMap));
+        Map<String, Integer> textTags = Text.getTags(words);
+
+        String tags = String.valueOf(toJson(textTags)); //TODO tagsMap = text + title + url + ...
 
         int uniqueWordsCount = words.size();
 
@@ -98,27 +82,6 @@ public class Page {
             wordsCount += value;
         }
 
-        return new WebData(url, title, tags, wordsCount, uniqueWordsCount, favIcon);
-    }
-
-    private static boolean checkBaseFavIcon(String url) {
-
-        String favIconUrl = "http://" + WebData.getDomainString(url) + "/favicon.ico";
-        int responseCode = 0;
-
-        try {
-
-            URL obj = new URL(favIconUrl);
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-            con.setRequestMethod("GET");
-            con.setRequestProperty("User-Agent", USER_AGENT);
-
-            responseCode = con.getResponseCode();
-
-        } catch (Exception e) {
-            // -_-
-        }
-
-        return responseCode == 200;
+        return new WebData(url, title, tags, wordsCount, uniqueWordsCount);
     }
 }

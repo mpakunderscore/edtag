@@ -28,16 +28,15 @@ public class WebData extends Model {
 
     int uniqueWordsCount;
 
-    String favIcon;
+    boolean favIcon = true;
 
-    public WebData(String url, String title, String tags, int wordsCount, int uniqueWordsCount, String favIcon) {
+    public WebData(String url, String title, String tags, int wordsCount, int uniqueWordsCount) {
 
         this.url = url;
         this.title = title;
         this.tags = tags;
         this.wordsCount = wordsCount;
         this.uniqueWordsCount = uniqueWordsCount;
-        this.favIcon = favIcon;
     }
 
     public Long getId() {
@@ -56,21 +55,16 @@ public class WebData extends Model {
         return tags;
     }
 
-    public String getDomainString() {
-
-        return getDomainString(url);
-    }
-
     public static String getDomainString(String url) {
 
         return url.split("://")[1].split("/")[0].replace("www.", "");
     }
 
-    public String getFavIcon() {
+    public boolean isFavIcon() {
         return favIcon;
     }
 
-    public void setFavIcon(String favIcon) {
+    public void setFavIcon(boolean favIcon) {
         this.favIcon = favIcon;
     }
 }

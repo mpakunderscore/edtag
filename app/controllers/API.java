@@ -1,20 +1,16 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
-import controllers.parsers.PDF;
-import controllers.parsers.Page;
+import controllers.parsers.Watcher;
 import models.Domain;
 import models.UserData;
 import models.WebData;
-import org.jsoup.Connection;
-import org.jsoup.HttpStatusException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import play.mvc.Controller;
 import play.mvc.Result;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Pattern;
 
 import static play.libs.Json.toJson;
 
@@ -25,7 +21,7 @@ public class API extends Controller {
 
     public static Result add(String url) throws IOException { //TODO actually Cache is not needed here.
 
-//        url = url.split("/?")[0]; //TODO ?
+        url = url.split(Pattern.quote("?"))[0]; //TODO ?
 
         int userId = 0;
         if (session("userId") != null)
@@ -35,20 +31,25 @@ public class API extends Controller {
 
         if (webData == null) {
 
-            webData = requestWebData(url);
+            webData = Watcher.requestWebData(url);
 
-            if (webData == null) return ok();
+            if (webData == null) return ok("url error");
 
-            webData.save();
-
-            String domainString = webData.getDomainString();
+            String domainString = WebData.getDomainString(webData.getUrl());
 
             Domain domain = Ebean.find(Domain.class).where().idEq(domainString).findUnique();
             if (domain == null) {
 
-                domain = new Domain(webData.getDomainString(), false);
+                domain = Watcher.requestDomain(url);
+
+                if (domain == null) return ok("domain error");
+
                 domain.save();
             }
+
+            webData.setFavIcon(domain.isFavIcon());
+
+            webData.save();
         }
 
         UserData userData = Ebean.find(UserData.class).where().eq("userId", userId).eq("webDataId", webData.getId()).findUnique();
@@ -69,22 +70,9 @@ public class API extends Controller {
         return ok(toJson(webData)); //TODO return Events (each notification should be generated on server) and WebData (for notification)
     }
 
-    private static WebData requestWebData(String url) {
-
-        //TODO types of webData (html, pdf, fb2, txt) move type checker into Interface
-        if (url.endsWith(".pdf")) {
-
-            return PDF.requestWebData(url);
-
-        } else { // if html page
-
-            return Page.requestWebData(url);
-        }
-    }
-
     public static Result getApprovedDomains() {
 
-        List<Domain> domains = Ebean.find(Domain.class).where().eq("isApproved", Boolean.TRUE).findList();
+        List<Domain> domains = Ebean.find(Domain.class).where().eq("state", Domain.ALLOWED).findList();
 
         List<String> result = new ArrayList<String>();
         for (Domain domain: domains) {

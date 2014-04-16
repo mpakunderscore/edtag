@@ -5,7 +5,10 @@
 
 create table domains (
   url                       varchar(255) not null,
-  is_approved               boolean,
+  title                     varchar(255),
+  tags                      TEXT,
+  state                     integer,
+  fav_icon                  boolean,
   constraint pk_domains primary key (url))
 ;
 
@@ -41,7 +44,7 @@ create table web_data (
   tags                      TEXT,
   words_count               integer,
   unique_words_count        integer,
-  fav_icon                  varchar(255),
+  fav_icon                  boolean,
   constraint pk_web_data primary key (id))
 ;
 
