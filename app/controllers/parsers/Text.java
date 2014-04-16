@@ -1,5 +1,10 @@
 package controllers.parsers;
 
+import models.Tag;
+import scala.util.parsing.json.JSONObject;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,14 +45,28 @@ public class Text {
 
     public static Map<String, Integer> getTags(Map<String, Integer> words) {
 
+        Map<String, Integer> tags = new HashMap<String, Integer>();
+
+        int i = 0;
         for (Map.Entry<String,Integer> word : words.entrySet()) {
 
+            Tag tag = Wiki.getTag(word.getKey());
 
+            if (tag == null) {
 
-            System.out.println(word.getKey() + ": " + word.getValue());
+                System.out.println(word.getKey() + ": error");
+                continue;
+
+            } else System.out.println(word.getKey() + ": " + word.getValue() + " " + tag.getCategories());
+
+            if (tag.isMark()) {
+
+                tags.put(word.getKey(), word.getValue());
+                i++;
+            }
+
+            if (i == 10) break;
         }
-
-        Map<String, Integer> tags = new HashMap<String, Integer>();
 
         return tags;
     }

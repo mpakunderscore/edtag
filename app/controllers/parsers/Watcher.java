@@ -75,6 +75,7 @@ public final class Watcher {
                 if (links.size() != 0) {
 
                     favIcon = links.first().attr("href");
+
                     //TODO check new favIcon and save
 
                 }
@@ -91,14 +92,16 @@ public final class Watcher {
 
         Map<String, Integer> words = Text.getWords(text);
 
-        String tags = String.valueOf(toJson(Text.getTags(words)));
+        Map<String, Integer> textTags = Text.getTags(words);
+
+        String tags = String.valueOf(toJson(textTags));
 
         return new Domain(domainString, title, tags, Domain.UNCHECKED, favIcon == null);
     }
 
     private static boolean checkBaseFavIcon(String domainString) {
 
-        String favIconUrl = "http://www." + domainString + "/favicon.ico";
+        String favIconUrl = "http://" + domainString + "/favicon.ico"; //TODO add check www if this does not exist
         int responseCode = 0;
 
         try {

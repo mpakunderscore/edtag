@@ -23,9 +23,9 @@ function domains() {
 
                     "<tr>" +
 
-                    "<td><a href='#'><img src='"+ "http://www." + domains[id]['url'] + "/favicon.ico" + "' height='16' width='16'></a></td>" +
+                    "<td><a href='#'><img src='"+ "http://" + domains[id]['url'] + "/favicon.ico" + "' height='16' width='16'></a></td>" +
 
-                    "<td class='study'><a href='" + "http://www." + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a></td>" +
+                    "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a></td>" +
 
                     "<td>" + domains[id]['title'] + "</td>" +
 
@@ -95,7 +95,7 @@ function pages() {
 
                    	// "<td><font color='gray'>9:24 pm</font></td>" +
 
-                    "<td><a href='#'><img src='"+ "http://www." + domain + "/favicon.ico" + "' height='16' width='16'></a></td>" +
+                    "<td><a href='#'><img src='"+ "http://" + domain + "/favicon.ico" + "' height='16' width='16'></a></td>" +
                     
 					"<td class='study'>" +
 					"<a href='" + data[id]['url'] + "' target='_blank'>" + title + "</a>" +
@@ -134,7 +134,7 @@ function pages() {
             for (var id in domains_sort) {
 
                 var row = "<tr>" +
-                    "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+ "http://www." + domains_sort[id][0] + "/favicon.ico" + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a></td>" +
+                    "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+ "http://" + domains_sort[id][0] + "/favicon.ico" + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a></td>" +
 					"</tr>";
 
                 $('#domains').append(row);
