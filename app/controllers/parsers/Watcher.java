@@ -6,7 +6,13 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import play.libs.F;
+import play.libs.WS;
+import play.mvc.Http;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -39,8 +45,6 @@ public final class Watcher {
 
         String domainString = WebData.getDomainString(url);
 
-        String favIcon = null;
-
         String title = "";
 
         Map<String, Integer> tagsMap = new HashMap<String, Integer>();
@@ -65,29 +69,6 @@ public final class Watcher {
 
         if (title.length() == 0) return null; //TODO
 
-        //get favIcon
-        if (!checkBaseFavIcon(domainString)) {
-
-            try {
-
-                Elements links = doc.head().select("link[href~=.*\\.ico]");
-
-                if (links.size() != 0) {
-
-                    favIcon = links.first().attr("href");
-
-                    //TODO check new favIcon and save
-
-                }
-
-            } catch (Exception e) {
-                // -_-
-            }
-
-        } else {
-
-        }
-
         //TODO select tags
 
         Map<String, Integer> words = Text.getWords(text);
@@ -96,27 +77,71 @@ public final class Watcher {
 
         String tags = String.valueOf(toJson(textTags));
 
-        return new Domain(domainString, title, tags, Domain.UNCHECKED, favIcon == null);
+        boolean isFavIconUrl = saveFavIcon(domainString, doc);
+
+        return new Domain(domainString, title, tags, Domain.UNCHECKED, isFavIconUrl);
     }
 
-    private static boolean checkBaseFavIcon(String domainString) {
+    private static boolean saveFavIcon(String domainString, Document doc) {
+
+        String format = null;
+
+        Image favIcon = null;
+
+        favIcon = checkBaseFavIcon(domainString);
+
+        if (favIcon == null) favIcon = checkBaseFavIcon("www." + domainString);
+
+        if (favIcon == null) {
+
+            try {
+
+                Elements links = doc.head().select("link[href~=.*\\.ico]");
+
+                if (links.size() != 0) {
+
+//                    favIconUrl = links.first().attr("href");
+                }
+
+            } catch (Exception e) {
+                return false;
+            }
+        }
+
+        if (favIcon == null) return false;
+
+//        F.Promise<WS.Response> res = WS.url(favIconUrl).get();
+
+//        favIcon.renameTo(new File("public/favicons", domainString + format));
+
+        return false;
+    }
+
+    public static Image checkBaseFavIcon(String domainString) {
 
         String favIconUrl = "http://" + domainString + "/favicon.ico"; //TODO add check www if this does not exist
         int responseCode = 0;
+        Image image;
 
         try {
 
-            URL obj = new URL(favIconUrl);
-            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-            con.setRequestMethod("GET");
-            con.setRequestProperty("User-Agent", USER_AGENT);
+//            URL obj = new URL(favIconUrl);
+//            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+//            con.setRequestMethod("GET");
+//            con.setRequestProperty("User-Agent", USER_AGENT);
+//
+//            responseCode = con.getResponseCode();
 
-            responseCode = con.getResponseCode();
+            URL url = new URL(favIconUrl);
+            image = ImageIO.read(url);
 
         } catch (Exception e) {
-            // -_-
+
+            return null;
         }
 
-        return responseCode == 200;
+        if (responseCode == 200) return image;
+
+        return null;
     }
 }

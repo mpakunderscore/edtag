@@ -16,7 +16,7 @@ public class Domain extends Model {
     public static final int DENIED = 0;
     public static final int UNCHECKED = 1;
     public static final int MANUAL = 2;
-    public static final int ALLOWED = 3;
+    public static final int TRUSTED = 3;
 
     @Id
     String url;

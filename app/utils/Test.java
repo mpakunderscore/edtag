@@ -1,6 +1,7 @@
 package utils;
 
 import controllers.parsers.Page;
+import controllers.parsers.Watcher;
 import controllers.parsers.Wiki;
 
 /**
@@ -12,7 +13,9 @@ public class Test {
 
 //        Page.requestWebData("https://www.coursera.org/course/ccss-math1");
 
-        Wiki.getTag("databases");
+//        Wiki.getTag("databases");
+
+        Watcher.checkBaseFavIcon("www.google.com");
 
     }
 
