@@ -28,7 +28,7 @@ public class WebData extends Model {
 
     int uniqueWordsCount;
 
-    boolean favIcon = true;
+    String favIconFormat;
 
     public WebData(String url, String title, String tags, int wordsCount, int uniqueWordsCount) {
 
@@ -60,11 +60,11 @@ public class WebData extends Model {
         return url.split("://")[1].split("/")[0].replace("www.", "");
     }
 
-    public boolean isFavIcon() {
-        return favIcon;
+    public String getFavIconFormat() {
+        return favIconFormat;
     }
 
-    public void setFavIcon(boolean favIcon) {
-        this.favIcon = favIcon;
+    public void setFavIconFormat(String favIconFormat) {
+        this.favIconFormat = favIconFormat;
     }
 }

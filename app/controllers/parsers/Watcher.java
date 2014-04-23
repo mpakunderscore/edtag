@@ -83,45 +83,10 @@ public final class Watcher {
 
         String tags = String.valueOf(toJson(textTags));
 
-        String favIconFormat = saveFavIcon(domainString, doc);
+        String favIconFormat = FavIcon.save(domainString, doc);
 
         return new Domain(domainString, title, tags, Domain.UNCHECKED, favIconFormat);
     }
 
-    private static String saveFavIcon(String domainString, Document doc) {
 
-        String favIconFormat = checkFavIcon("http://" + domainString + "/favicon.ico", domainString);
-
-        if (favIconFormat == null) favIconFormat = checkFavIcon("http://www." + domainString + "/favicon.ico", domainString);
-
-        if (favIconFormat == null) {
-
-            Elements links = doc.head().select("link[rel~=.*icon]");
-
-            if (links.size() != 0) favIconFormat = checkFavIcon(links.first().attr("href"), domainString); //TODO check relative path
-        }
-
-        return favIconFormat;
-    }
-
-    public static String checkFavIcon(String favIconUrl, String domainString) { //TODO
-
-        String format = ".ico";
-
-        try {
-
-            URL url = new URL(favIconUrl);
-
-            File file = new File("public/favicons/" + domainString + format);
-
-            FileUtils.copyURLToFile(url, file, 60000, 60000);
-
-            if (!file.exists()) return null;
-
-        } catch (Exception e) {
-            return null;
-        }
-
-        return format;
-    }
 }

@@ -11,6 +11,7 @@ import play.mvc.Result;
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static play.libs.Json.toJson;
 
@@ -28,7 +29,6 @@ public class API extends Controller {
             userId = Integer.parseInt(session("userId"));
 
         WebData webData = Ebean.find(WebData.class).where().eq("url", url).findUnique();
-
         if (webData == null) {
 
             webData = Watcher.requestWebData(url);
@@ -47,7 +47,7 @@ public class API extends Controller {
                 domain.save();
             }
 
-            webData.setFavIcon(domain.isFavIcon());
+            webData.setFavIconFormat(domain.getFavIconFormat());
 
             webData.save();
         }
@@ -74,10 +74,7 @@ public class API extends Controller {
 
         List<Domain> domains = Ebean.find(Domain.class).where().eq("state", Domain.TRUSTED).findList();
 
-        List<String> result = new ArrayList<String>();
-        for (Domain domain: domains) {
-            result.add(domain.getUrl());
-        }
+        List<String> result = domains.stream().map(Domain::getUrl).collect(Collectors.toList());
 
         return ok(toJson(result));
     }

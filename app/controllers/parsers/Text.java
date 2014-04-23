@@ -16,13 +16,6 @@ public class Text {
 
     private final static Pattern word = Pattern.compile("[^\\s+\"\\d+(){},'\\-=_@:;#%!<>&\\|\\*\\?\\[\\]\\.\\/\\+\\\\]{2,}");
 
-    public static Set<String> getNouns(Set<String> words) {
-
-        Set<String> nouns = new HashSet<String>();
-
-        return nouns;
-    }
-
     public static Map<String, Integer> getWords(String text) {
 
         HashMap<String, Integer> words = new HashMap<String, Integer>();
