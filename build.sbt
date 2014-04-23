@@ -29,3 +29,5 @@ libraryDependencies += "com.google.apis" % "google-api-services-plus" % "v1-rev1
 libraryDependencies += "com.google.api.client" % "google-api-client-json" % "1.2.3-alpha"
 
 libraryDependencies += "com.google.http-client" % "google-http-client-jackson" % "1.18.0-rc"
+
+libraryDependencies += "commons-io" % "commons-io" % "2.4"

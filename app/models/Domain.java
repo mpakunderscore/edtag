@@ -28,14 +28,14 @@ public class Domain extends Model {
 
     int state;
 
-    boolean favIcon;
+    String favIconFormat;
 
-    public Domain(String url, String title, String tags, int state, boolean favIcon) {
+    public Domain(String url, String title, String tags, int state, String favIconFormat) {
         this.url = url;
         this.title = title;
         this.tags = tags;
         this.state = state;
-        this.favIcon = favIcon;
+        this.favIconFormat = favIconFormat;
     }
 
     public String getUrl() {
@@ -62,11 +62,11 @@ public class Domain extends Model {
         return tags;
     }
 
-    public boolean isFavIcon() {
-        return favIcon;
+    public String getFavIconFormat() {
+        return favIconFormat;
     }
 
-    public void setFavIcon(boolean favIcon) {
-        this.favIcon = favIcon;
+    public void setFavIconFormat(String favIconFormat) {
+        this.favIconFormat = favIconFormat;
     }
 }

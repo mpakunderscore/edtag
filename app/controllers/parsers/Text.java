@@ -54,12 +54,14 @@ public class Text {
 
             if (tag == null) {
 
-                System.out.println(word.getKey() + ": error");
+//                System.out.println(word.getKey() + ": error");
                 continue;
 
-            } else System.out.println(word.getKey() + ": " + word.getValue() + " " + tag.getCategories());
+            } else if (tag.isMark()) System.out.println("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories());
 
             if (tag.isMark()) {
+
+//                if (tag.)
 
                 tags.put(word.getKey(), word.getValue());
                 i++;

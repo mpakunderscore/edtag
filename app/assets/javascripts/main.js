@@ -8,7 +8,7 @@ function signInCallback(authResult) {
 
         $.post("/auth", { code: authResult['code'] });
 
-        console.log(authResult);
+//        console.log(authResult);
 
         pages();
 

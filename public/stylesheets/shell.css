@@ -21,7 +21,7 @@ body, input {
 
 #menu a:link    {text-decoration: none; color: black; margin-left: 15px;}
 #menu a:visited {color: black;}
-#menu a:hover   {color: rgb(255, 54, 47);}
+#menu a:hover   {color: rgb(254, 65, 50);}
 
 #signInButton {
 
@@ -47,7 +47,7 @@ body, input {
 
 .main a:link    {text-decoration: none; color: black;}
 .main a:visited {color: black;}
-.main a:hover   {color: rgb(255, 54, 47);}
+.main a:hover   {color: rgb(254, 65, 50);}
 
 #out {
 
