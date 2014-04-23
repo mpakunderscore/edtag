@@ -14,5 +14,5 @@ dist
 /RUNNING_PID
 /.settings
 .DS_Store
-
+public/favicons
     
