@@ -19,11 +19,15 @@ function domains() {
 
             for (var id in domains) {
 
+                var favIcon = "";
+
+                if (domains[id]['favIconFormat']) favIcon = "<a><img src='"+  "/assets/favicons/" + domains[id]['url'] + "." + domains[id]['favIconFormat'] +  "' height='16' width='16'></a>";
+
                 var row =
 
                     "<tr>" +
 
-                    "<td><a href='#'><img src='"+  "/assets/favicons/" + domains[id]['url'] + ".ico" + "' height='16' width='16'></a></td>" +
+                    "<td>" + favIcon + "</td>" +
 
                     "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a></td>" +
 
@@ -60,6 +64,8 @@ function pages() {
 			
 			var domains = {};
 
+            var favIconsFormat = {};
+
             var tags = {};
 
             for (var id in data) {
@@ -67,7 +73,11 @@ function pages() {
 				var domain = data[id]['url'].replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
 
 				if (domains[domain] != null) domains[domain]++; //TODO
-				else { domains[domain] = 1; }
+				else {
+
+                    if (data[id]['favIconFormat']) favIconsFormat[domain] = data[id]['favIconFormat'];
+                    domains[domain] = 1;
+                }
 
                 var url_tags = JSON.parse(data[id]['tags']);
 
@@ -84,11 +94,15 @@ function pages() {
 				var progress_block = "&#8211;";
 				// var progress_block = "&#183;"; //midl dot ··················
 
+                var favIcon = "";
+
+                if (data[id]['favIconFormat']) favIcon = "<a><img src='" + "/assets/favicons/" + domain + "." + data[id]['favIconFormat'] + "' height='16' width='16'></a>";
+
                 var row = "<tr>" +
 
                    	// "<td><font color='gray'>9:24 pm</font></td>" +
 
-                    "<td><a href='#'><img src='" + "/assets/favicons/" + domain + ".ico" + "' height='16' width='16'></a></td>" +
+                    "<td>" + favIcon + "</td>" +
                     
 					"<td class='study'>" +
 					"<a href='" + data[id]['url'] + "' target='_blank'>" + title + "</a>" +
@@ -126,11 +140,16 @@ function pages() {
 
             for (var id in domains_sort) {
 
-                var row = "<tr>" +
-                    "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+  "/assets/favicons/" + domains_sort[id][0] + ".ico" + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a></td>" +
-					"</tr>";
+                var favIcon = "";
 
-                $('#domains').append(row);
+                if (favIconsFormat[domains_sort[id][0]]) {
+
+                    var row = "<tr>" +
+                        "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+  "/assets/favicons/" + domains_sort[id][0] + "." + favIconsFormat[domains_sort[id][0]] + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a></td>" +
+                        "</tr>";
+
+                    $('#domains').append(row);
+                }
 
                 if (id == 15) break;
             }
@@ -139,25 +158,11 @@ function pages() {
 
             main.append('<table id="tags" border="0"></table>');
 
-//            var tags = $('#tags');
-			
-//			$('#tags').append("<tr><td><a href='#'>global</a></td></tr>");
-//			$('#tags').append("<tr><td><a href='#'>similar</a></td></tr>");
-//            $('#tags').append("<tr><td><a href='#'>science</a></td></tr>");
-//            $('#tags').append("<tr><td><a href='#'>programming</a></td></tr>");
-//            $('#tags').append("<tr><td><a href='#'>book</a></td></tr>");
-//            $('#tags').append("<tr><td><a href='#'>javascript</a></td></tr>");
-//            $('#tags').append("<tr><td><a href='#'>random</a></td></tr>");
-//            $('#tags').append("<tr><td><a href='#'>web</a></td></tr>");
-//            $('#tags').append("<tr><td><a href='#'>scala</a></td></tr>");
-//			$('#tags').append("<tr><td><a href='#'>video</a></td></tr>");
-//			$('#tags').append("<tr><td>&#8211;</td></tr>");
-
             var tags_sort = sort(tags);
             for (var id in tags_sort) {
 
                 var row = "<tr>" +
-                    "<td><a href='#' title='" + tags_sort[id][1] + "'>"+ tags_sort[id][0] + "</a></td>" +
+                    "<td><a href='javascript:sort()' title='" + tags_sort[id][1] + "'>"+ tags_sort[id][0] + "</a></td>" +
                     "</tr>";
 
                 $('#tags').append(row);

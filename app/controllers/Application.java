@@ -76,7 +76,7 @@ public class Application extends Controller {
 
 //        String token = request().body().asFormUrlEncoded().get("token")[0];
 
-//        Google.getAuth(code);
+//        GoogleAuth.getAuth(code);
 
 
 

@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by pavelkuzmin on 15/04/14.
  */
-public class Google {
+public class GoogleAuth {
 
     public static void getAuth(String code) {
 

@@ -13,6 +13,7 @@ import play.mvc.Result;
 import java.lang.*;
 import java.lang.System;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static play.libs.Json.toJson;
 
@@ -31,23 +32,17 @@ public class Web extends Controller {
 
         if (userDataList.size() == 0) return ok();
 
-        List<Long> webDataIds = new ArrayList<Long>();
-        for (UserData userData : userDataList) {
-            webDataIds.add(userData.getWebDataId());
-        }
+        List<Long> webDataIds = userDataList.stream().map(UserData::getWebDataId).collect(Collectors.toList());
 
         //get webData (title and tags)
-        Map<Long, WebData> webDataMap = (Map<Long, WebData>) Ebean.find(WebData.class).where().idIn(webDataIds).findMap();
+        Map<Long, WebData> webDataMap = (Map<Long, WebData>) Ebean.find(WebData.class).where().idIn(webDataIds).findMap(); //TODO bad solution
 
-        List<WebData> webDataSortedList = new ArrayList<WebData>(); //TODO combine userData and webData
-        for (UserData userData : userDataList) {
-            webDataSortedList.add(webDataMap.get(userData.getWebDataId()));
-        }
+        List<WebData> webDataSortedList = userDataList.stream().map(userData -> webDataMap.get(userData.getWebDataId())).collect(Collectors.toList()); //TODO combine userData and webData
 
         return ok(toJson(webDataSortedList));
     }
 
-    //TODO cache. sort
+    //TODO cache & sort
     public static Result domains() {
 
         return ok(toJson(Ebean.find(Domain.class).findList()));

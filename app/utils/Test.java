@@ -1,5 +1,6 @@
 package utils;
 
+import controllers.parsers.FavIcon;
 import controllers.parsers.Page;
 import controllers.parsers.Watcher;
 import controllers.parsers.Wiki;
@@ -21,15 +22,7 @@ public class Test {
 
     public static void main(String [] args) throws IOException {
 
-//        Watcher.requestDomain("http://www.google.com");
-
-        String domainString = "google.com";
-
-        String favIconUrl = "http://www." + domainString + "/favicon.ico";
-
-
-
-        System.out.append("");
+        FavIcon.check("http://playframework.com/assets/images/favicon.png", "playframework.com");
     }
 
 
