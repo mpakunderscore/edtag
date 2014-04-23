@@ -11,6 +11,8 @@ function domains() {
 
         function(domains) {
 
+            var tags = {};
+
             var main = $('#main');
 
             main.html('');
@@ -18,6 +20,14 @@ function domains() {
             main.append('<div id="out"><table id="data"></table></div>');
 
             for (var id in domains) {
+
+                var domains_tags = JSON.parse(domains[id]['tags']);
+
+                for (var tag in domains_tags) {
+
+                    if (tags[tag] != null) tags[tag] += parseInt(domains_tags[tag]);
+                    else tags[tag] = parseInt(domains_tags[tag]);
+                }
 
                 var favIcon = "";
 
@@ -42,7 +52,18 @@ function domains() {
 
             main.append('<table id="tags" border="0"></table>');
 
-            var tags = $('#tags');
+            var tags_sort = sort(tags);
+
+            for (var id in tags_sort) {
+
+                var row = "<tr>" +
+                    "<td><a href='javascript:sort()' title='" + tags_sort[id][1] + "'>"+ tags_sort[id][0] + "</a></td>" +
+                    "</tr>";
+
+                $('#tags').append(row);
+
+                if (id == 15) break;
+            }
 
 
         }
