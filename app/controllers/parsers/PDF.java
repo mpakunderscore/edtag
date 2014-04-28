@@ -31,6 +31,6 @@ public class PDF {
             wordsCount += value;
         }
 
-        return new WebData(url, title, tags, wordsCount, uniqueWordsCount, null);
+        return new WebData(url, title, tags, wordsCount, uniqueWordsCount);
     }
 }

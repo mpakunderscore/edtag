@@ -1,0 +1,63 @@
+body, input {
+
+    font: 13px helvetica, arial, freesans, clean, sans-serif;
+    line-height: 1.5;
+}
+
+#menu {
+
+    position: absolute;
+
+    left: 210px;
+    right: 0;
+    min-width: 900px;
+
+
+    padding: 10px;
+    /*margin-bottom: 10px;*/
+
+    /*background-color: lightgrey;*/
+}
+
+#menu a:link    {text-decoration: none; color: black; margin-left: 15px;}
+#menu a:visited {color: black;}
+#menu a:hover   {color: rgb(254, 65, 50);}
+
+#registration {
+
+    padding-top: 7px;
+    display: none;
+    float: right;
+}
+
+#signInButton {
+
+    padding-right: 10px;
+    display: none;
+    float: right;
+}
+
+#signOutButton {
+
+    padding: 5px;
+    padding-right: 15px;
+    display: none;
+    float: right;
+}
+
+#search {
+    padding-left: 0.3em;
+    width: 500px;
+}
+
+#logo {
+
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    width: 50px;
+    height: 25px;
+
+    /*box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);*/
+    /*background-color: lightgray;*/
+}

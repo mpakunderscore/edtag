@@ -1,5 +1,7 @@
 var states = {0:"denied", 1:"unchecked", 2:"manual", 3:"trusted"};
 
+var colors = {0:"red", 1:"gray", 2:"blue", 3:"green"};
+
 function query(text) {
 
     $.get("/query", {text: text}, function( data ) {});
@@ -35,7 +37,7 @@ function domains() {
 
                 var row =
 
-                    "<tr>" +
+                    "<tr style='width: 100%;'>" +
 
                     "<td>" + favIcon + "</td>" +
 
@@ -43,7 +45,7 @@ function domains() {
 
                     "<td>" + domains[id]['title'] + "</td>" +
 
-                    "<td>" + states[domains[id]['state']] + "</td>" +
+                    "<td style='text-align: right;'><font color='" + colors[domains[id]['state']] + "'>" + states[domains[id]['state']] + "<font></td>" +
 
                     "</tr>";
 

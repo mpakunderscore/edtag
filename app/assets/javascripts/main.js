@@ -10,7 +10,8 @@ function signInCallback(authResult) {
 
 //        console.log(authResult);
 
-        pages();
+//        pages();
+        domains();
 
         return;
 

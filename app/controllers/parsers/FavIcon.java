@@ -20,6 +20,10 @@ public class FavIcon {
 
         if (favIconFormat == null) favIconFormat = check("http://www." + domainString + "/favicon.ico", domainString);
 
+        if (favIconFormat == null) favIconFormat = check("https://" + domainString + "/favicon.ico", domainString);
+
+        if (favIconFormat == null) favIconFormat = check("https://www." + domainString + "/favicon.ico", domainString); // -_-
+
         if (favIconFormat == null) {
 
             Elements links = doc.head().select("link[rel~=.*icon]");

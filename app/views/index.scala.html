@@ -1,4 +1,4 @@
-@shell("edtag.io") {
+@shell("Education Tags") {
 
     <div id="logo"></div>
 
@@ -12,6 +12,8 @@
         <a href="https://chrome.google.com/webstore/detail/edtagio/kiecajbpclgoigecdbpaodejolmbhhal" target='_blank'>Extension</a>
 
         <a href="javascript:gapi.auth.signOut()" id="signOutButton">Sign out</a>
+
+        @*<span id="registration"><a href="javascript:registration()">Registration</a></span>*@
 
         <span id="signInButton">
             <span class="g-signin"
@@ -27,6 +29,4 @@
     </div>
 
     <div id="main" class="main"></div>
-
-    @*<div id="footer">About</div>*@
 }
