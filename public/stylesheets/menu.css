@@ -19,31 +19,9 @@ body, input {
     /*background-color: lightgrey;*/
 }
 
-#menu a:link    {text-decoration: none; color: black; margin-left: 15px;}
-#menu a:visited {color: black;}
-#menu a:hover   {color: rgb(254, 65, 50);}
-
-#registration {
-
-    padding-top: 7px;
-    display: none;
-    float: right;
-}
-
-#signInButton {
-
-    padding-right: 10px;
-    display: none;
-    float: right;
-}
-
-#signOutButton {
-
-    padding: 5px;
-    padding-right: 15px;
-    display: none;
-    float: right;
-}
+.menu a:link    {text-decoration: none; color: black;}
+.menu a:visited {color: black;}
+.menu a:hover   {color: rgb(254, 65, 50);}
 
 #search {
     padding-left: 0.3em;
@@ -54,10 +32,26 @@ body, input {
 
     position: fixed;
     left: 20px;
-    top: 20px;
+    top: 24px;
     width: 50px;
-    height: 25px;
+
+    text-align: center;
+
+    font: 16px andale mono;
+
+
 
     /*box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);*/
     /*background-color: lightgray;*/
+}
+
+.selected {
+    /*background-color: #f4f4f4;*/
+    margin-left: 15px;
+    display: inline-block;
+    height: 42px;
+
+    /*box-shadow: 0px 0px 8px 2px #000000;*/
+    /*border-bottom: 1px solid #c7c7c7;*/
+    /*box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);*/
 }

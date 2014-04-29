@@ -1,4 +1,4 @@
-var states = {0:"denied", 1:"unchecked", 2:"manual", 3:"trusted"};
+var states = {0:"-", 1:"?", 2:"~", 3:"+"};
 
 var colors = {0:"red", 1:"gray", 2:"blue", 3:"green"};
 
@@ -8,6 +8,9 @@ function query(text) {
 }
 
 function domains() {
+
+    $("#menu_domains").css("border-bottom", "1px solid #c7c7c7"); //TODO
+    $("#menu_pages").css("border-bottom", "0");
 
     $.get("/alldomains", {},
 
@@ -43,9 +46,9 @@ function domains() {
 
                     "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a></td>" +
 
-                    "<td>" + domains[id]['title'] + "</td>" +
+                    "<td style='width: 100%;'>" + domains[id]['title'] + "</td>" +
 
-                    "<td style='text-align: right;'><font color='" + colors[domains[id]['state']] + "'>" + states[domains[id]['state']] + "<font></td>" +
+//                    "<td><font color='" + colors[domains[id]['state']] + "'>" + states[domains[id]['state']] + "<font></td>" +
 
                     "</tr>";
 
@@ -73,6 +76,9 @@ function domains() {
 }
 
 function pages() {
+
+    $("#menu_pages").css("border-bottom", "1px solid #c7c7c7");
+    $("#menu_domains").css("border-bottom", "0");
 
     $.get("/pages", {},
 	
@@ -215,3 +221,6 @@ function sort(map) {
 
     return sortable
 }
+
+
+domains();

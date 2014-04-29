@@ -1,30 +1,17 @@
 @shell("Education Tags") {
 
-    <div id="logo"></div>
+    <div id="logo" class="menu"><a href="javascript:logo_left()">&#60;</a> <a href="javascript:logo_right()">&#62;</a></div>
 
-    <div id="menu">
+    <div id="menu" class="menu">
 
         <input id="search" type="text" />
 
-        <a href="javascript:pages()">Pages</a>
-        <a href="javascript:domains()">Domains</a>
+        <span class="selected" id="menu_pages"><a href="javascript:pages()">Pages</a></span>
+        <span class="selected" id="menu_domains"><a href="javascript:domains()">Domains</a></span>
         @*<a href="javascript:achievements()">Achievements</a>*@
-        <a href="https://chrome.google.com/webstore/detail/edtagio/kiecajbpclgoigecdbpaodejolmbhhal" target='_blank'>Extension</a>
-
-        <a href="javascript:gapi.auth.signOut()" id="signOutButton">Sign out</a>
+        <span class="selected" id="menu_extension"><a href="https://chrome.google.com/webstore/detail/edtagio/kiecajbpclgoigecdbpaodejolmbhhal" target='_blank'>Extension</a></span>
 
         @*<span id="registration"><a href="javascript:registration()">Registration</a></span>*@
-
-        <span id="signInButton">
-            <span class="g-signin"
-                data-callback="signInCallback"
-                data-clientid="518336059345-3j9cgo8mld6f8e4ak74k63pjbhmmsn43.apps.googleusercontent.com"
-                data-cookiepolicy="single_host_origin"
-                data-requestvisibleactions="http://schemas.google.com/AddActivity"
-                data-scope="https://www.googleapis.com/auth/plus.login"
-                data-redirecturi="postmessage">
-            </span>
-        </span>
 
     </div>
 

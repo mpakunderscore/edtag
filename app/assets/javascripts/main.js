@@ -1,3 +1,11 @@
+function logo_left() {
+
+}
+
+function logo_right() {
+
+}
+
 function signInCallback(authResult) {
 
     if (authResult['status']['signed_in']) {

@@ -18,9 +18,9 @@ public class Text {
 
     public static Map<String, Integer> getWords(String text) {
 
-        HashMap<String, Integer> words = new HashMap<String, Integer>();
+        HashMap<String, Integer> words = new HashMap<>();
         ValueComparator bvc =  new ValueComparator(words);
-        TreeMap<String, Integer> sorted_words  = new TreeMap<String, Integer>(bvc);
+        TreeMap<String, Integer> sorted_words  = new TreeMap<>(bvc);
 
         Matcher matcher = word.matcher(text);
         while (matcher.find()) {
