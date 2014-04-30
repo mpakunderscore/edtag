@@ -16,13 +16,15 @@ public class FavIcon {
 
     public static String save(String domainString, Document doc) {
 
-        String favIconFormat = check("http://" + domainString + "/favicon.ico", domainString);
+        String favIconFormat = null;
 
-        if (favIconFormat == null) favIconFormat = check("http://www." + domainString + "/favicon.ico", domainString);
-
-        if (favIconFormat == null) favIconFormat = check("https://" + domainString + "/favicon.ico", domainString);
-
-        if (favIconFormat == null) favIconFormat = check("https://www." + domainString + "/favicon.ico", domainString); // -_-
+//        if (favIconFormat == null) favIconFormat = check("http://" + domainString + "/favicon.ico", domainString);
+//
+//        if (favIconFormat == null) favIconFormat = check("http://www." + domainString + "/favicon.ico", domainString);
+//
+//        if (favIconFormat == null) favIconFormat = check("https://" + domainString + "/favicon.ico", domainString);
+//
+//        if (favIconFormat == null) favIconFormat = check("https://www." + domainString + "/favicon.ico", domainString); // -_-
 
         if (favIconFormat == null) {
 
@@ -32,7 +34,7 @@ public class FavIcon {
 
                 String link = links.first().attr("href");
 
-                if (!link.contains(domainString)) link = "http://" + domainString + link; //TODO if only with www? my god, i hate web developers. oh, wait
+                if (!link.contains("http")) link = "http://" + domainString + link; //TODO if only with www? my god, i hate web developers. oh, wait
 
                 favIconFormat = check(link, domainString);
             }
