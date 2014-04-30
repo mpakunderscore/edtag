@@ -16,6 +16,12 @@ function domains() {
 
         function(domains) {
 
+            if (domains.length == 0) {
+
+                $('#main').html('<div id="out"><p style="padding-left: 20px">Domains table is empty.</p></div>');
+                return;
+            }
+
             var tags = {};
 
             var main = $('#main');
@@ -83,6 +89,12 @@ function pages() {
     $.get("/pages", {},
 	
         function(data) {
+
+            if (data.length == 0) {
+
+                $('#main').html('<div id="out"><p style="padding-left: 20px">Pages table is empty.</p></div>');
+                return;
+            }
 			
 			//data
 

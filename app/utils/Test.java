@@ -22,7 +22,6 @@ public class Test {
 
     public static void main(String [] args) throws IOException {
 
-        FavIcon.check("http://playframework.com/assets/images/favicon.png", "playframework.com");
     }
 
 

@@ -45,6 +45,6 @@ public class Web extends Controller {
     //TODO cache & sort
     public static Result domains() {
 
-        return ok(toJson(Ebean.find(Domain.class).findList()));
+        return ok(toJson(Ebean.find(Domain.class).order().desc("state").findList()));
     }
 }

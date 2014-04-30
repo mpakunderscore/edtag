@@ -9,7 +9,7 @@ import java.io.IOException;
  */
 public class Fill {
 
-    public static void addUrls() throws IOException {
+    public static void addUrls() throws Exception {
 
 
         API.add("");

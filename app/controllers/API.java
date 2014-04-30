@@ -20,7 +20,7 @@ import static play.libs.Json.toJson;
  */
 public class API extends Controller {
 
-    public static Result add(String url) throws IOException { //TODO actually Cache is not needed here.
+    public static Result add(String url) throws Exception { //TODO actually Cache is not needed here.
 
         url = url.split(Pattern.quote("?"))[0]; //TODO ?
 

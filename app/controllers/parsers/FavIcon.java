@@ -14,31 +14,32 @@ import java.util.regex.Pattern;
  */
 public class FavIcon {
 
-    public static String save(String domainString, Document doc) {
+    public static String save(String domainString, Document doc) throws Exception {
 
         String favIconFormat = null;
 
-//        if (favIconFormat == null) favIconFormat = check("http://" + domainString + "/favicon.ico", domainString);
-//
-//        if (favIconFormat == null) favIconFormat = check("http://www." + domainString + "/favicon.ico", domainString);
-//
-//        if (favIconFormat == null) favIconFormat = check("https://" + domainString + "/favicon.ico", domainString);
-//
-//        if (favIconFormat == null) favIconFormat = check("https://www." + domainString + "/favicon.ico", domainString); // -_-
+        Elements links = doc.head().select("link[rel$=icon]");
 
-        if (favIconFormat == null) {
+//        if (links.size() == 0) throw new Exception();
 
-            Elements links = doc.head().select("link[rel~=.*icon]");
+        if (links.size() > 0) {
 
-            if (links.size() > 0) {
+            String link = links.first().attr("href").split(Pattern.quote("?"))[0].replaceAll("^\\/\\/", "");
 
-                String link = links.first().attr("href");
+            if (link.startsWith(Pattern.quote("/"))) link = "http://" + domainString + link; //TODO if only with www? my god, i hate web developers. oh, wait
 
-                if (!link.contains("http")) link = "http://" + domainString + link; //TODO if only with www? my god, i hate web developers. oh, wait
+            else if (!link.startsWith("http")) link = "http://" + link;
 
-                favIconFormat = check(link, domainString);
-            }
+            favIconFormat = check(link, domainString);
         }
+
+        if (favIconFormat == null) favIconFormat = check("http://" + domainString + "/favicon.ico", domainString);
+
+        if (favIconFormat == null) favIconFormat = check("http://www." + domainString + "/favicon.ico", domainString);
+
+        if (favIconFormat == null) favIconFormat = check("https://" + domainString + "/favicon.ico", domainString);
+
+        if (favIconFormat == null) favIconFormat = check("https://www." + domainString + "/favicon.ico", domainString); // -_-
 
         return favIconFormat;
     }

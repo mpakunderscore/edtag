@@ -1,24 +1,17 @@
 package controllers.parsers;
 
 import com.avaje.ebean.Ebean;
-import com.fasterxml.jackson.databind.JsonNode;
-import models.Domain;
 import models.Tag;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import play.libs.Json;
-import scala.util.parsing.json.JSONObject;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import static play.libs.Json.fromJson;
 import static play.libs.Json.toJson;
 
 /**
@@ -35,11 +28,11 @@ public class Wiki { //TODO wiki api == old crap
 
     private static final String url = "http://en.wikipedia.org/wiki/";
 
-    public static Tag getTag(String word) {
+    public static Tag getPage(String word) { //TODO lang check
 
-//        Tag tag = Ebean.find(Tag.class).where().idEq(word).findUnique();
-//
-//        if (tag != null) return tag;
+        Tag tag = Ebean.find(Tag.class).where().idEq(word).findUnique();
+
+        if (tag != null) return tag;
 
         Document doc = null;
         Connection connection = Jsoup.connect(url + word    );
@@ -53,11 +46,14 @@ public class Wiki { //TODO wiki api == old crap
             return null;
         }
 
-        String redirect = null;
+        String redirect_name = null;
 
         String name = doc.body().getElementById("firstHeading").text().toLowerCase();
 
-        if (!name.equals(word)) redirect = name;
+        if (!name.equals(word)) {
+
+            redirect_name = name;
+        }
 
         Elements links = doc.body().select("#mw-normal-catlinks ul a");
 
@@ -74,7 +70,9 @@ public class Wiki { //TODO wiki api == old crap
             categories.add(category);
         }
 
-        Tag tag = new Tag(word, redirect, String.valueOf(toJson(categories)), mark);
+        tag = new Tag(word, redirect_name, String.valueOf(toJson(categories)), mark);
+
+        tag.save();
 
         return tag;
     }

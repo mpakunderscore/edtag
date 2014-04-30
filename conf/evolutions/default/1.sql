@@ -17,6 +17,14 @@ create table query (
   query                     varchar(255))
 ;
 
+create table tag (
+  name                      varchar(255) not null,
+  redirect                  varchar(255),
+  categories                TEXT,
+  mark                      boolean,
+  constraint pk_tag primary key (name))
+;
+
 create table users (
   email                     varchar(255) not null,
   password                  varchar(255),
@@ -50,6 +58,8 @@ create table web_data (
 
 create sequence domains_seq;
 
+create sequence tag_seq;
+
 create sequence users_seq;
 
 create sequence user_data_seq;
@@ -67,6 +77,8 @@ drop table if exists domains cascade;
 
 drop table if exists query cascade;
 
+drop table if exists tag cascade;
+
 drop table if exists users cascade;
 
 drop table if exists user_data cascade;
@@ -76,6 +88,8 @@ drop table if exists user_hash cascade;
 drop table if exists web_data cascade;
 
 drop sequence if exists domains_seq;
+
+drop sequence if exists tag_seq;
 
 drop sequence if exists users_seq;
 

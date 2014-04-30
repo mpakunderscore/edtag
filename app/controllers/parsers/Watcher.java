@@ -45,7 +45,7 @@ public final class Watcher {
         }
     }
 
-    public static Domain requestDomain(String url) {
+    public static Domain requestDomain(String url) throws Exception {
 
         String domainString = WebData.getDomainString(url);
 

@@ -1,27 +1,31 @@
 {
 	"manifest_version": 2,
 
-	"name": "edtag.io",
-	"description": "Curious to educational trails.",
-	"version": "0.3.3.2",
+	"name": "edtag",
+	"description": "Education Tags",
+	"version": "0.3.3.3",
 
 	"options_page": "options.html",
 	
     "background": {
       	"scripts": ["js/api.js", "js/background.js"]
     },
-		
+
+    "icons": { "16": "icon2.png",
+        "48": "icon2.png",
+        "128": "icon2.png" },
+
 	"browser_action": {
-		"default_icon": "icon.png",
-        "default_title": "edtag.io"
+		"default_icon": "icon2.png",
+        "default_title": "Education Tags"
 	},
 
-    "oauth2": {
-        "client_id": "518336059345-bq6f9a1bsf3t8lr6dcefgpjn8jr8arg9.apps.googleusercontent.com",
-        "scopes": [
-            "https://www.googleapis.com/auth/drive"
-        ]
-    },
+//    "oauth2": {
+//        "client_id": "518336059345-bq6f9a1bsf3t8lr6dcefgpjn8jr8arg9.apps.googleusercontent.com",
+//        "scopes": [
+//            "https://www.googleapis.com/auth/drive"
+//        ]
+//    },
 	  
-	"permissions": ["tabs", "activeTab", "identity", "notifications", "http://localhost:9000/*", "https://edtag.herokuapp.com/*"]
+	"permissions": ["tabs", "activeTab", "identity", "notifications", "http://localhost:9000/*", "https://edtag.io/*"]
 }

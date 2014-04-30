@@ -2,11 +2,15 @@ package models;
 
 import play.db.ebean.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
  * Created by pavelkuzmin on 19/03/14.
  */
+
+@Entity
 public class Tag extends Model {
 
     @Id
@@ -14,6 +18,7 @@ public class Tag extends Model {
 
     String redirect;
 
+    @Column(columnDefinition = "TEXT")
     String categories;
 
     boolean mark = false;
@@ -31,5 +36,9 @@ public class Tag extends Model {
 
     public String getCategories() {
         return categories;
+    }
+
+    public String getRedirect() {
+        return redirect;
     }
 }

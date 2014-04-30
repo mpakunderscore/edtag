@@ -1,10 +1,7 @@
 package controllers.parsers;
 
 import models.Tag;
-import scala.util.parsing.json.JSONObject;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,7 +11,7 @@ import java.util.regex.Pattern;
  */
 public class Text {
 
-    private final static Pattern word = Pattern.compile("[^\\s+\"\\d+(){},'\\-=_@:;#%!<>&\\|\\*\\?\\[\\]\\.\\/\\+\\\\]{2,}");
+    private final static Pattern word = Pattern.compile("[^\\s+\"\\d+(){}, –'\\-=_@:;#%!<>&\\|\\*\\?\\[\\]\\.\\/\\+\\\\]{2,}");
 
     public static Map<String, Integer> getWords(String text) {
 
@@ -43,18 +40,20 @@ public class Text {
         int i = 0;
         for (Map.Entry<String,Integer> word : words.entrySet()) {
 
-            Tag tag = Wiki.getTag(word.getKey());
+            Tag tag = Wiki.getPage(word.getKey());
 
             if (tag == null) {
 
-//                System.out.println(word.getKey() + ": error");
+                System.out.println(word.getKey() + ": error");
                 continue;
 
             } else if (tag.isMark()) System.out.println("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories());
 
             if (tag.isMark()) {
 
-//                if (tag.)
+                if (tag.getRedirect() != null) {
+
+                }
 
                 tags.put(word.getKey(), word.getValue());
                 i++;
