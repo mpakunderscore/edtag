@@ -52,7 +52,7 @@ function domains() {
 
                     "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a></td>" +
 
-                    "<td style='width: 100%;'>" + domains[id]['title'] + "</td>" +
+                    "<td>" + domains[id]['title'] + "</td>" +
 
 //                    "<td><font color='" + colors[domains[id]['state']] + "'>" + states[domains[id]['state']] + "<font></td>" +
 

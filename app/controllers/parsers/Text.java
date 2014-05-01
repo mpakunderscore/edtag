@@ -44,18 +44,26 @@ public class Text {
 
             if (tag == null) {
 
-                System.out.println(word.getKey() + ": error");
+//                System.out.println(word.getKey() + ": error");
                 continue;
 
-            } else if (tag.isMark()) System.out.println("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories());
+            } else if (tag.isMark()) System.out.println("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories() + (tag.getRedirect() == null ? "" : " " + tag.getRedirect()));
 
-            if (tag.isMark()) {
+            if (tag.isMark()) { //need more scala and brains
 
                 if (tag.getRedirect() != null) {
 
-                }
+                    Wiki.getPage(word.getKey());
 
-                tags.put(word.getKey(), word.getValue());
+                    if (tags.containsKey(tag.getRedirect())) {
+
+                        int old = tags.get(tag.getRedirect());
+                        tags.put(tag.getRedirect(), old + word.getValue());
+
+                    } else tags.put(tag.getRedirect(), word.getValue());
+
+                } else tags.put(word.getKey(), word.getValue());
+
                 i++;
             }
 

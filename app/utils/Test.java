@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.util.regex.Pattern;
 
 /**
  * Created by pavelkuzmin on 12/03/14.
@@ -21,7 +22,7 @@ import java.nio.channels.ReadableByteChannel;
 public class Test {
 
     public static void main(String [] args) throws IOException {
-
+        if ("/test".startsWith("/")) System.out.println(Pattern.quote("/"));
     }
 
 

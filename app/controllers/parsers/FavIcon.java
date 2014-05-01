@@ -20,13 +20,11 @@ public class FavIcon {
 
         Elements links = doc.head().select("link[rel$=icon]");
 
-//        if (links.size() == 0) throw new Exception();
-
         if (links.size() > 0) {
 
             String link = links.first().attr("href").split(Pattern.quote("?"))[0].replaceAll("^\\/\\/", "");
 
-            if (link.startsWith(Pattern.quote("/"))) link = "http://" + domainString + link; //TODO if only with www? my god, i hate web developers. oh, wait
+            if (link.startsWith("/")) link = "http://" + domainString + link; //TODO if only with www? my god, i hate web developers. oh, wait
 
             else if (!link.startsWith("http")) link = "http://" + link;
 
