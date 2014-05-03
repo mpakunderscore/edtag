@@ -42,7 +42,7 @@ function domains() {
 
                 var favIcon = "";
 
-                if (domains[id]['favIconFormat']) favIcon = "<a><img src='"+  "/assets/favicons/" + domains[id]['url'] + "." + domains[id]['favIconFormat'] +  "' height='16' width='16'></a>";
+                if (domains[id]['favIconFormat']) favIcon = "<a><img src='"+  "https://s3.amazonaws.com/edtag/" + domains[id]['url'] + "." + domains[id]['favIconFormat'] +  "' height='16' width='16'></a>";
 
                 var row =
 
@@ -141,7 +141,7 @@ function pages() {
 
                 var favIcon = "";
 
-                if (data[id]['favIconFormat']) favIcon = "<a><img src='" + "/assets/favicons/" + domain + "." + data[id]['favIconFormat'] + "' height='16' width='16'></a>";
+                if (data[id]['favIconFormat']) favIcon = "<a><img src='" + "https://s3.amazonaws.com/edtag/" + domain + "." + data[id]['favIconFormat'] + "' height='16' width='16'></a>";
 
                 var row = "<tr>" +
 
@@ -190,7 +190,7 @@ function pages() {
                 if (favIconsFormat[domains_sort[id][0]]) {
 
                     var row = "<tr class='domain_control'>" +
-                        "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+  "/assets/favicons/" + domains_sort[id][0] + "." + favIconsFormat[domains_sort[id][0]] + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a><span></td>" +
+                        "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+  "https://s3.amazonaws.com/edtag/" + domains_sort[id][0] + "." + favIconsFormat[domains_sort[id][0]] + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a><span></td>" +
                         "</tr>";
 
                     $('#domains').append(row);
