@@ -16,6 +16,7 @@ import plugins.S3Plugin;
 import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 /**
@@ -75,7 +76,9 @@ public class FavIcon {
             String[] bits = favIconUrl.split(Pattern.quote("."));
             format = bits[bits.length-1];
 
-            File file = FileUtils.toFile(url);
+            File file = new File(domainString + "." + format);
+
+            FileUtils.copyURLToFile(url, file);
 
             if (S3Plugin.amazonS3 == null) {
 
