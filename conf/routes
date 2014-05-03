@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET         /                      controllers.Application.index
+GET         /                      controllers.Application.index()
 POST        /auth                  controllers.Application.auth
 
 #GET         /login               controllers.Application.login(email:String, password:String)
@@ -11,10 +11,9 @@ POST        /auth                  controllers.Application.auth
 
 
 GET         /add                   controllers.API.add(url:String)
-
 GET         /domains               controllers.API.getApprovedDomains
-GET         /alldomains            controllers.Web.domains
 
+GET         /alldomains            controllers.Web.domains
 GET         /pages                 controllers.Web.pages
 
 GET         /query                 controllers.System.query(text:String)

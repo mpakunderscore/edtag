@@ -15,6 +15,7 @@ import com.google.api.services.plus.model.PeopleFeed;
 import models.User;
 import models.UserHash;
 import org.mindrot.jbcrypt.BCrypt;
+import play.Play;
 import play.libs.Crypto;
 import play.mvc.*;
 
@@ -24,21 +25,31 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.*;
+import java.lang.System;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class Application extends Controller {
 
+    private static final String SSL_HEADER = "x-forwarded-proto";
+
 //    @SecureSocial.SecuredAction
     public static Result index() {
 
-        Http.Request request = request();
-        Http.Session session = session();
+        if (Play.isProd() && !isHttpsRequest(request()))
+            return redirect("https://" + request().host()
+                    + request().uri());
 
-
-//        Identity user = (Identity) ctx().args.get(SecureSocial.USER_KEY);
         return ok(index.render());
+    }
+
+    private static boolean isHttpsRequest(Http.Request request) {
+
+        // heroku passes header on
+        return request.getHeader(SSL_HEADER) != null
+                && request.getHeader(SSL_HEADER)
+                .contains("https");
     }
 
     public static Result login() {

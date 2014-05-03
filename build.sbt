@@ -31,3 +31,5 @@ libraryDependencies += "com.google.api.client" % "google-api-client-json" % "1.2
 libraryDependencies += "com.google.http-client" % "google-http-client-jackson" % "1.18.0-rc"
 
 libraryDependencies += "commons-io" % "commons-io" % "2.4"
+
+libraryDependencies += "com.amazonaws" % "aws-java-sdk" % "1.3.11"

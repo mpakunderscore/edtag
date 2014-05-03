@@ -1,5 +1,10 @@
 package controllers.parsers;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.PropertiesCredentials;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -13,6 +18,8 @@ import java.util.regex.Pattern;
  * Created by pavelkuzmin on 24/04/14.
  */
 public class FavIcon {
+
+    public static AmazonS3 amazonS3;
 
     public static String save(String domainString, Document doc) throws Exception {
 
@@ -68,7 +75,11 @@ public class FavIcon {
 
             File file = new File("public/favicons/" + domainString + "." + format);
 
-            FileUtils.copyURLToFile(url, file, timeout, timeout);
+//            AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
+//            amazonS3 = new AmazonS3Client(awsCredentials);
+//            amazonS3.createBucket(s3Bucket);
+
+//            FileUtils.copyURLToFile(url, file, timeout, timeout);
 
 //            if (!file.) return null;
 
