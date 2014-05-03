@@ -5,9 +5,12 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.PropertiesCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import plugins.S3Plugin;
 
 import java.io.File;
 import java.net.HttpURLConnection;
@@ -18,8 +21,6 @@ import java.util.regex.Pattern;
  * Created by pavelkuzmin on 24/04/14.
  */
 public class FavIcon {
-
-    public static AmazonS3 amazonS3;
 
     public static String save(String domainString, Document doc) throws Exception {
 
@@ -73,20 +74,40 @@ public class FavIcon {
             String[] bits = favIconUrl.split(Pattern.quote("."));
             format = bits[bits.length-1];
 
-            File file = new File("public/favicons/" + domainString + "." + format);
+//            File file = new File("public/favicons/" + domainString + "." + format);
 
 //            AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
 //            amazonS3 = new AmazonS3Client(awsCredentials);
 //            amazonS3.createBucket(s3Bucket);
 
-//            FileUtils.copyURLToFile(url, file, timeout, timeout);
+
 
 //            if (!file.) return null;
+
+            save(domainString + "." + format, FileUtils.toFile(url));
 
         } catch (Exception e) {
             return null;
         }
 
         return format;
+    }
+
+    public static void save(String name, File file) {
+
+        String bucket;
+
+        if (S3Plugin.amazonS3 == null) {
+
+            throw new RuntimeException("Could not save");
+        }
+        else {
+
+            bucket = S3Plugin.s3Bucket;
+
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, name, file);
+            putObjectRequest.withCannedAcl(CannedAccessControlList.PublicRead); // public for all
+            S3Plugin.amazonS3.putObject(putObjectRequest); // upload file
+        }
     }
 }
