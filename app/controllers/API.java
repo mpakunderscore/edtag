@@ -11,7 +11,6 @@ import play.mvc.Result;
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import static play.libs.Json.toJson;
 
@@ -74,7 +73,10 @@ public class API extends Controller {
 
         List<Domain> domains = Ebean.find(Domain.class).where().eq("state", Domain.TRUSTED).findList();
 
-        List<String> result = domains.stream().map(Domain::getUrl).collect(Collectors.toList());
+        List<String> result = new ArrayList<String>();
+        for (Domain domain: domains) {
+            result.add(domain.getUrl());
+        }
 
         return ok(toJson(result));
     }
