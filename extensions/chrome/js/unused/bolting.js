@@ -14,7 +14,7 @@ function sort_remove(words_map) {
 		if (words_map[word] != null)
 			sortable.push([word, words_map[word]]);
 	
-	sortable.sort(function(b, a) {return a[1] - b[1]})		  
+	sortable.sort(function(b, a) {return a[1] - b[1]});
 		
 	return sortable;
 }

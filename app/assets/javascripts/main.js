@@ -1,8 +1,4 @@
-function logo_left() {
-
-}
-
-function logo_right() {
+function logo() {
 
 }
 

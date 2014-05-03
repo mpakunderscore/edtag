@@ -53,7 +53,7 @@ public class Text {
 
                 if (tag.getRedirect() != null) {
 
-                    Wiki.getPage(word.getKey());
+                    Wiki.getPage(tag.getRedirect());
 
                     if (tags.containsKey(tag.getRedirect())) {
 

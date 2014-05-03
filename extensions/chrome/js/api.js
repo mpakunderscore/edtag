@@ -33,7 +33,7 @@ function add_url(tab) {
 
     console.log(tab.url.split("://")[1].replace("www.", ""));
 
-    notification(tab["favIconUrl"], webData.title.replace(" - Wikipedia, the free encyclopedia", ""), ""); //TODO
+    notification(tab["favIconUrl"], webData.title.replace(" - Wikipedia, the free encyclopedia", ""), sort(JSON.parse(webData.tags)).join(", ")); //TODO
 }
 
 function notification(favIcon, title, text) {
@@ -47,4 +47,22 @@ function notification(favIcon, title, text) {
     notification.show();
 
     setTimeout( function() { notification.cancel() }, notificationTime );
+}
+
+function sort(tags) {
+
+    var sortable = [];
+    var sorted_tags = [];
+
+    for (var tag in tags)
+        if (tags[tag] != null)
+            sortable.push([tag, tags[tag]]);
+
+    sortable.sort(function(b, a) {return a[1] - b[1]});
+
+    for(var key in sortable) {
+        sorted_tags.push(sortable[key][0]);
+    }
+
+    return sorted_tags;
 }

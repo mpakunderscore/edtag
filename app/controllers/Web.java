@@ -28,18 +28,18 @@ public class Web extends Controller {
         int pageSetSize = 200;
 
         //get userData (lastUpdate and count)
-        List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", 0).order().desc("last_update").setMaxRows(pageSetSize).findList();
+//        List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", 0).order().desc("last_update").setMaxRows(pageSetSize).findList();
 
-        if (userDataList.size() == 0) return ok();
+//        if (userDataList.size() == 0) return ok();
 
-        List<Long> webDataIds = userDataList.stream().map(UserData::getWebDataId).collect(Collectors.toList());
+//        List<Long> webDataIds = userDataList.stream().map(UserData::getWebDataId).collect(Collectors.toList());
 
         //get webData (title and tags)
-        Map<Long, WebData> webDataMap = (Map<Long, WebData>) Ebean.find(WebData.class).where().idIn(webDataIds).findMap(); //TODO bad solution
+        List<WebData> webDataList = Ebean.find(WebData.class).order().desc("id").findList(); //TODO bad solution
 
-        List<WebData> webDataSortedList = userDataList.stream().map(userData -> webDataMap.get(userData.getWebDataId())).collect(Collectors.toList()); //TODO combine userData and webData
+//        List<WebData> webDataSortedList = userDataList.stream().map(userData -> webDataMap.get(userData.getWebDataId())).collect(Collectors.toList()); //TODO combine userData and webData
 
-        return ok(toJson(webDataSortedList));
+        return ok(toJson(webDataList));
     }
 
     //TODO cache & sort

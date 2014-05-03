@@ -40,10 +40,34 @@
 	left: 20px;
     right: 0;
 	
-    border-spacing: 16px 10px;
+    border-spacing: 0 5px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 	
 	background-color: rgb(255, 255, 255);
+}
+
+.domain_control {
+
+    padding: 0 16px;
+
+    /*margin: 4px 0;*/
+
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+
+    display: block;
+
+    /*border-left: 1px solid #C75655;*/
+    /*border-right: 1px solid #88c788;*/
+    /*width: 48px;*/
+    /*background-color: #ececec;*/
+}
+
+.domain_control:hover {
+    border-left: 1px solid rgba(177, 0, 1, 0.33);
+    border-right: 1px solid rgba(83, 177, 42, 0.33);
+
+    left-outline: 1px solid blue;
 }
 
 tr:hover {

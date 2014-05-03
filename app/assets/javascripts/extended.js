@@ -67,8 +67,12 @@ function domains() {
 
             for (var id in tags_sort) {
 
+                var name = tags_sort[id][0];
+
+                if (name.length > 13) name = name.substring(0, 13) + "..";
+
                 var row = "<tr>" +
-                    "<td><a href='javascript:sort()' title='" + tags_sort[id][1] + "'>"+ tags_sort[id][0] + "</a></td>" +
+                    "<td><a href='javascript:sort()' title='" + tags_sort[id][1] + "'>"+ name + "</a></td>" +
                     "</tr>";
 
                 $('#tags').append(row);
@@ -185,8 +189,8 @@ function pages() {
 
                 if (favIconsFormat[domains_sort[id][0]]) {
 
-                    var row = "<tr>" +
-                        "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+  "/assets/favicons/" + domains_sort[id][0] + "." + favIconsFormat[domains_sort[id][0]] + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a></td>" +
+                    var row = "<tr class='domain_control'>" +
+                        "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+  "/assets/favicons/" + domains_sort[id][0] + "." + favIconsFormat[domains_sort[id][0]] + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a><span></td>" +
                         "</tr>";
 
                     $('#domains').append(row);
@@ -202,8 +206,12 @@ function pages() {
             var tags_sort = sort(tags);
             for (var id in tags_sort) {
 
+                var name = tags_sort[id][0];
+
+                if (name.length > 13) name = name.substring(0, 13) + "..";
+
                 var row = "<tr>" +
-                    "<td><a href='javascript:sort()' title='" + tags_sort[id][1] + "'>"+ tags_sort[id][0] + "</a></td>" +
+                    "<td><a href='javascript:sort()' title='" + tags_sort[id][1] + "'>"+ name + "</a></td>" +
                     "</tr>";
 
                 $('#tags').append(row);
@@ -235,4 +243,4 @@ function sort(map) {
 }
 
 
-domains();
+pages();

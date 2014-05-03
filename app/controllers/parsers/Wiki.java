@@ -25,6 +25,8 @@ public class Wiki { //TODO wiki api == old crap
         add("grammar");
         add("parts of speech");
         add("months");
+        add("integers");
+        add("english modal and auxiliary verbs");
     }};
 
     private static final String url = "http://en.wikipedia.org/wiki/";
