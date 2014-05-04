@@ -89,9 +89,9 @@ public class FavIcon {
 
             File file = new File(domainString + "." + format);
 
-//            if (!file.exists()) {
-//                file.createNewFile();
-//            }
+            if (!file.exists()) {
+                file.createNewFile();
+            }
 
             //use FileWriter to write file
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
