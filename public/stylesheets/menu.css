@@ -5,10 +5,12 @@ body, input {
 }
 
 body {
-    background-color: rgba(240, 240, 240, 0.11);
+    background-color: rgba(240, 240, 240, 0.07);
 }
 
 #menu {
+
+    font: 14px helvetica, arial, freesans, clean, sans-serif;
 
     position: absolute;
 
@@ -41,7 +43,7 @@ body {
 
     text-align: center;
 
-    font: 16px andale mono;
+    font: 18px andale mono;
 
 
 

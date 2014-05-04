@@ -22,7 +22,12 @@ import java.util.regex.Pattern;
 public class Test {
 
     public static void main(String [] args) throws IOException {
-        if ("/test".startsWith("/")) System.out.println(Pattern.quote("/"));
+
+        System.out.println(FavIcon.check("http://www.gv.com/wp-content/themes/google_ventures/images/favicon.ico", "gv.com"));
+        System.out.println(FavIcon.check("http://edtag.io/assets/images/favicon.png", "edtag.io"));
+        System.out.println(FavIcon.check("http://swombat.com/favicon.ico", "swombat.com"));
+        System.out.println(FavIcon.check("http://blog.kissmetrics.com/wp-content/themes/kissblog/images/favicon.ico", "blog.kissmetrics.com"));
+
     }
 
 

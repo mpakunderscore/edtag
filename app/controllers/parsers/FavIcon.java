@@ -28,11 +28,13 @@ public class FavIcon {
 
         String favIconFormat = null;
 
+        String link = null;
+
         Elements links = doc.head().select("link[rel~=(^(shortcut )?icon$)]");
 
         if (links.size() > 0) {
 
-            String link = links.first().attr("href").split(Pattern.quote("?"))[0].replaceAll("^\\/\\/", "");
+            link = links.first().attr("href").split(Pattern.quote("?"))[0].replaceAll("^\\/\\/", "");
 
             if (link.startsWith("/")) link = "http://" + domainString + link; //TODO if only with www? my god, i hate web developers. oh, wait
 
@@ -40,6 +42,8 @@ public class FavIcon {
 
             favIconFormat = check(link, domainString);
         }
+
+        if (link != null && favIconFormat == null) favIconFormat = check(link.replace("http://", "http://www."), domainString);
 
         if (favIconFormat == null) favIconFormat = check("http://" + domainString + "/favicon.ico", domainString);
 
@@ -54,7 +58,6 @@ public class FavIcon {
 
     public static String check(String favIconUrl, String domainString) {
 
-        int timeout = 60000;
         String format;
 
         try {
@@ -63,13 +66,16 @@ public class FavIcon {
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-            connection.setConnectTimeout(timeout);
-            connection.setReadTimeout(timeout);
+            connection.setReadTimeout(5000);
+            connection.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
+            connection.addRequestProperty("User-Agent", "Mozilla");
+            connection.addRequestProperty("Referer", "edtag.io");
+
             connection.setRequestMethod("GET");
 
             int responseCode = connection.getResponseCode();
 
-            if (responseCode != 200) {
+            if (responseCode != HttpURLConnection.HTTP_OK) {
                 return null;
             }
 
@@ -79,6 +85,8 @@ public class FavIcon {
             File file = new File(domainString + "." + format);
 
             FileUtils.copyURLToFile(url, file);
+
+            if (file.length() == 0) return null;
 
             if (S3Plugin.amazonS3 == null) {
 
