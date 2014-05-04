@@ -28,7 +28,7 @@ public class FavIcon {
 
         String favIconFormat = null;
 
-        Elements links = doc.head().select("link[rel~=(^(test )?icon$)]");
+        Elements links = doc.head().select("link[rel~=(^(shortcut )?icon$)]");
 
         if (links.size() > 0) {
 
