@@ -39,7 +39,7 @@ function domains() {
 //                    if (tags[tag] != null) tags[tag] += parseInt(domains_tags[tag]);
 //                    else tags[tag] = parseInt(domains_tags[tag]);
 
-                    if (tags[tag] != null) tags[tag] += 1;
+                    if (tags[tag] != null) tags[tag] += tags[tag];
                     else tags[tag] = 1;
                 }
 
@@ -134,7 +134,7 @@ function pages() {
 //                    if (tags[tag] != null) tags[tag] += parseInt(url_tags[tag]);
 //                    else tags[tag] = parseInt(url_tags[tag]);
 
-                    if (tags[tag] != null) tags[tag] += 1;
+                    if (tags[tag] != null) tags[tag] += tags[tag];
                     else tags[tag] = 1;
 
                 }
