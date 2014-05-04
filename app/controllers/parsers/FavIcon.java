@@ -13,7 +13,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import plugins.S3Plugin;
 
-import java.io.File;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -75,16 +75,53 @@ public class FavIcon {
 
             int responseCode = connection.getResponseCode();
 
+// --
             if (responseCode != HttpURLConnection.HTTP_OK) {
                 return null;
             }
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+            String inputLine;
 
             String[] bits = favIconUrl.split(Pattern.quote("."));
             format = bits[bits.length-1];
 
             File file = new File(domainString + "." + format);
 
-            FileUtils.copyURLToFile(url, file);
+//            if (!file.exists()) {
+//                file.createNewFile();
+//            }
+
+            //use FileWriter to write file
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            while ((inputLine = br.readLine()) != null) {
+                bw.write(inputLine);
+            }
+
+            bw.close();
+            br.close();
+
+// --
+
+
+
+
+
+
+
+//            if (responseCode != HttpURLConnection.HTTP_OK) {
+//                return null;
+//            }
+//
+//            String[] bits = favIconUrl.split(Pattern.quote("."));
+//            format = bits[bits.length-1];
+//
+//            File file = new File(domainString + "." + format);
+//
+//            FileUtils.copyURLToFile(url, file);
 
             if (file.length() == 0) return null;
 

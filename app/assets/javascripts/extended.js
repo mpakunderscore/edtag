@@ -9,7 +9,7 @@ function query(text) {
 
 function domains() {
 
-    $("#menu_domains").css("border-bottom", "1px solid #c7c7c7"); //TODO
+    $("#menu_domains").css("border-bottom", "1px solid #aeaeae"); //TODO
     $("#menu_pages").css("border-bottom", "0");
 
     $.get("/alldomains", {},
@@ -36,8 +36,11 @@ function domains() {
 
                 for (var tag in domains_tags) {
 
-                    if (tags[tag] != null) tags[tag] += parseInt(domains_tags[tag]);
-                    else tags[tag] = parseInt(domains_tags[tag]);
+//                    if (tags[tag] != null) tags[tag] += parseInt(domains_tags[tag]);
+//                    else tags[tag] = parseInt(domains_tags[tag]);
+
+                    if (tags[tag] != null) tags[tag] += 1;
+                    else tags[tag] = 1;
                 }
 
                 var favIcon = "";
@@ -87,7 +90,7 @@ function domains() {
 
 function pages() {
 
-    $("#menu_pages").css("border-bottom", "1px solid #c7c7c7");
+    $("#menu_pages").css("border-bottom", "1px solid #aeaeae");
     $("#menu_domains").css("border-bottom", "0");
 
     $.get("/pages", {},
@@ -128,8 +131,12 @@ function pages() {
 
                 for (var tag in url_tags) {
 
-                    if (tags[tag] != null) tags[tag] += parseInt(url_tags[tag]);
-                    else tags[tag] = parseInt(url_tags[tag]);                    
+//                    if (tags[tag] != null) tags[tag] += parseInt(url_tags[tag]);
+//                    else tags[tag] = parseInt(url_tags[tag]);
+
+                    if (tags[tag] != null) tags[tag] += 1;
+                    else tags[tag] = 1;
+
                 }
 				
 				var title = data[id]['title'].replace("\<", "\<\\");

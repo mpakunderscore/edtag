@@ -10,7 +10,7 @@ body {
 
 #menu {
 
-    font: 14px helvetica, arial, freesans, clean, sans-serif;
+    font: 13px helvetica, arial, freesans, clean, sans-serif;
 
     position: absolute;
 
@@ -55,7 +55,7 @@ body {
     /*background-color: #f4f4f4;*/
     margin-left: 15px;
     display: inline-block;
-    height: 42px;
+    height: 40px;
 
     /*box-shadow: 0px 0px 8px 2px #000000;*/
     /*border-bottom: 1px solid #c7c7c7;*/
