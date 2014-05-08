@@ -33,9 +33,9 @@ public class Wiki { //TODO wiki api == old crap
 
     public static Tag getPage(String word) { //TODO lang check
 
-        Tag tag = null;
+//        Tag tag = null;
 
-//        Tag tag = Ebean.find(Tag.class).where().idEq(word).findUnique();
+        Tag tag = Ebean.find(Tag.class).where().idEq(word).findUnique();
 
         if (tag != null) return tag;
 
@@ -77,7 +77,7 @@ public class Wiki { //TODO wiki api == old crap
 
         tag = new Tag(word, redirect_name, String.valueOf(toJson(categories)), mark);
 
-//        tag.save();
+        tag.save();
 
         return tag;
     }
