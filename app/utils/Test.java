@@ -23,8 +23,12 @@ public class Test {
 
     public static void main(String [] args) throws IOException {
 
-        System.out.println(FavIcon.check("http://www.gv.com/wp-content/themes/google_ventures/images/favicon.ico", "gv.com"));
-        System.out.println(FavIcon.check("http://blog.kissmetrics.com/wp-content/themes/kissblog/images/favicon.ico", "blog.kissmetrics.com"));
+        Page.requestWebData("http://www.gv.com/lib/questions-to-ask-before-starting-user-research");
+//        Page.requestWebData("http://en.wikipedia.org/wiki/Stemming");
+
+//        Page.requestWebData("http://stackoverflow.com/questions/1575246/how-do-i-extract-keywords-used-in-text");
+
+
 
     }
 
