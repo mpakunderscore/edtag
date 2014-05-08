@@ -29,6 +29,10 @@ body {
 .menu a:visited {color: black;}
 .menu a:hover   {color: rgb(254, 65, 50);}
 
+.selected_tags a:link    {text-decoration: none; color: rgb(254, 65, 50);}
+.selected_tags a:visited {color: black;}
+.selected_tags a:hover   {color: black; }
+
 #search {
     padding-left: 0.3em;
     width: 500px;

@@ -66,8 +66,6 @@
 .domain_control:hover {
     border-left: 1px solid rgba(177, 0, 1, 0.33);
     border-right: 1px solid rgba(83, 177, 42, 0.33);
-
-    left-outline: 1px solid blue;
 }
 
 tr:hover {

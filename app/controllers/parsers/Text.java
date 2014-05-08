@@ -67,7 +67,7 @@ public class Text {
                 i++;
             }
 
-            if (i == 10) break;
+            if (i == 20) break;
         }
 
         return tags;

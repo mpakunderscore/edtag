@@ -122,17 +122,18 @@ function pages() {
 
     var tags = {};
 
-    pages:
     for (var id in pages_list) {
 
         var url_tags = JSON.parse(pages_list[id]['tags']);
 
+        var remove = false;
         for (var tid in selected_tags) {
-            if (selected_tags[tid] in url_tags) {
-//                console.log('not ' + pages_list[id]['url']);
-                continue pages;
+            if (!(selected_tags[tid] in url_tags)) {
+                remove = true;
             }
         }
+
+        if (remove) continue;
 
         var domain = pages_list[id]['url'].replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
 
@@ -189,10 +190,18 @@ function pages() {
 
     main.append('<table id="tags" border="0"></table>');
 
+    for (var tid in selected_tags) {
+
+        var row = "<tr>" + "<td><a href='javascript:void(0)' onclick='tag_sort(this)' title='remove' style='color: rgb(254, 65, 50);'>"+ selected_tags[tid] + "</a></td>" + "</tr>";
+        $('#tags').append(row);
+    }
+
     var tags_sort = sort(tags);
     for (var id in tags_sort) {
 
         var name = tags_sort[id][0];
+
+        if (selected_tags.indexOf(name) >= 0) continue;
 
         if (name.length > 13) name = name.substring(0, 13) + "..";
 
@@ -200,7 +209,7 @@ function pages() {
 
         $('#tags').append(row);
 
-        if (id == 15) break;
+        if (id >= 15 - selected_tags.length) break;
     }
 
 //            $('#main').append('<div id="save"><td><a href="javascript:save()">save</a></td></div>');
