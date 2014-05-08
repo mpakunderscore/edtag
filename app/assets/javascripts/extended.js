@@ -232,7 +232,7 @@ function tag_sort(clicked) {
     if (selected_tags.indexOf(clicked.text) < 0)
         selected_tags.push(clicked.text);
 
-    else selected_tags.pop(clicked.text);
+    else selected_tags.splice(selected_tags.indexOf(clicked.text), 1);
 
     pages();
 }
