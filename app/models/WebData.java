@@ -67,4 +67,12 @@ public class WebData extends Model {
     public void setFavIconFormat(String favIconFormat) {
         this.favIconFormat = favIconFormat;
     }
+
+    public int getWordsCount() {
+        return wordsCount;
+    }
+
+    public int getUniqueWordsCount() {
+        return uniqueWordsCount;
+    }
 }

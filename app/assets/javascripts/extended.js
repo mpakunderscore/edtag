@@ -1,7 +1,3 @@
-var states = {0:"-", 1:"?", 2:"~", 3:"+"};
-
-var colors = {0:"red", 1:"gray", 2:"blue", 3:"green"};
-
 var pages_list = [];
 
 var selected_tags = [];
@@ -55,7 +51,7 @@ function domains() {
 
                     "<td>" + favIcon + "</td>" +
 
-                    "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank' title='" + sort(domains_tags).join("  ") + "'>" + domains[id]['url'] + "</a></td>" +
+                    "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank' title='" + sort(domains_tags).join(" . ").replace(/,/g, ": ") + "'>" + domains[id]['url'] + "</a></td>" +
 
                     "<td>" + (domains[id]['state'] == 3 ? "<font color='green'>&#8226;</font>" : "") +  "</td>" +
 
@@ -162,7 +158,7 @@ function pages() {
 
         "<td>" + favIcon + "</td>" +
 
-        "<td class='study'>" + "<a href='" + pages_list[id]['url'] + "' target='_blank' title='" + sort(url_tags).join("  ") + "'>" + title + "</a>" + "</td>" + "</tr>";
+        "<td class='study'>" + "<a href='" + pages_list[id]['url'] + "' target='_blank' title='" + sort(url_tags).join(" . ").replace(/,/g, ": ") + "\n\nWords count: " + pages_list[id]['wordsCount'] + "\nUnique words count: " + pages_list[id]['uniqueWordsCount'] + "'>" + title + "</a>" + "</td>" + "</tr>";
 
         $('#data').append(row);
 
