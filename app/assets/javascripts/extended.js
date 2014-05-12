@@ -168,23 +168,23 @@ function pages() {
 
     }
 
-    main.append('<table id="domains" border="0"></table>');
-
-    var domains_sort = sort(domains);
-
-    for (var id in domains_sort) {
-
-        if (favIconsFormat[domains_sort[id][0]]) {
-
-            var row = "<tr class='domain_control'>" +
-                "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+  "https://s3.amazonaws.com/edtag/" + domains_sort[id][0] + "." + favIconsFormat[domains_sort[id][0]] + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a><span></td>" +
-                "</tr>";
-
-            $('#domains').append(row);
-        }
-
-        if (id == 15) break;
-    }
+//    main.append('<table id="domains" border="0"></table>');
+//
+//    var domains_sort = sort(domains);
+//
+//    for (var id in domains_sort) {
+//
+//        if (favIconsFormat[domains_sort[id][0]]) {
+//
+//            var row = "<tr class='domain_control'>" +
+//                "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+  "https://s3.amazonaws.com/edtag/" + domains_sort[id][0] + "." + favIconsFormat[domains_sort[id][0]] + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a><span></td>" +
+//                "</tr>";
+//
+//            $('#domains').append(row);
+//        }
+//
+//        if (id == 15) break;
+//    }
 
     //tags
 
