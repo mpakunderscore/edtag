@@ -162,7 +162,7 @@ function pages() {
 
         "<td>" + favIcon + "</td>" +
 
-        "<td class='study'>" + "<a href='" + pages_list[id]['url'] + "' target='_blank'>" + title + "</a>" + "</td>" + "</tr>";
+        "<td class='study'>" + "<a href='" + pages_list[id]['url'] + "' target='_blank' title='" + sort(url_tags).join("  ") + "'>" + title + "</a>" + "</td>" + "</tr>";
 
         $('#data').append(row);
 
