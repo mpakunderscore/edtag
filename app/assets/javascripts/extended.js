@@ -203,7 +203,7 @@ function pages() {
 
         if (selected_tags.indexOf(name) >= 0) continue;
 
-        if (name.length > 13) name = name.substring(0, 13) + "..";
+        if (name.length > 25) name = name.substring(0, 25) + "..";
 
         var row = "<tr>" + "<td><a href='javascript:void(0)' onclick='tag_sort(this)' title='" + tags_sort[id][1] + "'>"+ name + "</a></td>" + "</tr>";
 

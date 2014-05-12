@@ -79,9 +79,10 @@ tr:hover {
 
 	position: fixed;
     top: 66px;
-	left: 90px;
+	left: 20px;
+    /*left: 0;*/
     /*right: 195px;*/
-    width: 125px;
+    width: 200px;
 	border-spacing: 16px 10px;
 
     text-align: right;
