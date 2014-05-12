@@ -55,11 +55,11 @@ function domains() {
 
                     "<td>" + favIcon + "</td>" +
 
-                    "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank'>" + domains[id]['url'] + "</a></td>" +
+                    "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank' title='" + sort(domains_tags).join("  ") + "'>" + domains[id]['url'] + "</a></td>" +
+
+                    "<td>" + (domains[id]['state'] == 3 ? "<font color='green'>&#8226;</font>" : "") +  "</td>" +
 
                     "<td>" + domains[id]['title'] + "</td>" +
-
-//                    "<td><font color='" + colors[domains[id]['state']] + "'>" + states[domains[id]['state']] + "<font></td>" +
 
                     "</tr>";
 
