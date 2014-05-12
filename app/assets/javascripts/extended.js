@@ -9,7 +9,7 @@ function query(text) {
 
 function domains() {
 
-    $("#menu_domains").css("border-bottom", "1px solid #aeaeae"); //TODO
+    $("#menu_domains").css("border-bottom", "30px solid rgba(187, 187, 187, 0.12)"); //TODO
     $("#menu_pages").css("border-bottom", "0");
 
     $.get("/alldomains", {},
@@ -88,7 +88,7 @@ function domains() {
 
 function pages() {
 
-    $("#menu_pages").css("border-bottom", "1px solid #aeaeae");
+    $("#menu_pages").css("border-bottom", "30px solid rgba(187, 187, 187, 0.12)");
     $("#menu_domains").css("border-bottom", "0");
 
     if (pages_list.length == 0)
