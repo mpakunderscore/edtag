@@ -16,15 +16,15 @@ function domains() {
 
         function(domains) {
 
+            var main = $('#main');
+
             if (domains.length == 0) {
 
-                $('#main').html('<div id="out"><p style="padding-left: 20px">Domains table is empty.</p></div>');
+                main.html('<div id="out"><p style="padding-left: 20px">Domains table is empty.</p></div>');
                 return;
             }
 
             var tags = {};
-
-            var main = $('#main');
 
             main.html('');
 
@@ -152,13 +152,23 @@ function pages() {
 
         var favIcon = "";
 
+        var volume_block = "&#8211;";
+
         if (pages_list[id]['favIconFormat']) favIcon = "<a><img src='" + "https://s3.amazonaws.com/edtag/" + domain + "." + pages_list[id]['favIconFormat'] + "' height='16' width='16'></a>";
 
         var row = "<tr>" +
 
-        "<td>" + favIcon + "</td>" +
+            "<td>" + favIcon + "</td>" +
 
-        "<td class='study'>" + "<a href='" + pages_list[id]['url'] + "' target='_blank' title='" + sort(url_tags).join(" . ").replace(/,/g, ": ") + "\n\nWords count: " + pages_list[id]['wordsCount'] + "\nUnique words count: " + pages_list[id]['uniqueWordsCount'] + "'>" + title + "</a>" + "</td>" + "</tr>";
+            "<td class='study'>" +
+
+                "<a href='" + pages_list[id]['url'] + "' target='_blank' title='" + sort(url_tags).join(" . ").replace(/,/g, ": ") + "\n\nWords count: " + pages_list[id]['wordsCount'] + "\nUnique words count: " + pages_list[id]['uniqueWordsCount'] + "'>" + title + "</a>" +
+
+                "<span class='volume'>" + Array(Math.floor(pages_list[id]['uniqueWordsCount']/100)).join(volume_block) + "<span>" +
+
+            "</td>" +
+
+        "</tr>";
 
         $('#data').append(row);
 

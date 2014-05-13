@@ -21,7 +21,7 @@ public class Wiki { //TODO wiki api == old crap
 
     private static final List<String> unmarkedCategories = new ArrayList<String>() {{
         add("english grammar");
-        add("disambiguation pages");
+//        add("disambiguation pages");
         add("grammar");
         add("parts of speech");
         add("months");
@@ -40,7 +40,7 @@ public class Wiki { //TODO wiki api == old crap
         if (tag != null) return tag;
 
         Document doc = null;
-        Connection connection = Jsoup.connect(url + word    );
+        Connection connection = Jsoup.connect(url + word);
 
         try {
 

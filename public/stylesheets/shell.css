@@ -23,6 +23,10 @@
 .study a:visited 	{color: #4183C4;}
 .study a:hover 		{text-decoration: underline;}
 
+.volume {
+
+    color: rgba(187, 187, 187, 0.2);
+}
 /* 0 180 239 */
 
 #data {
