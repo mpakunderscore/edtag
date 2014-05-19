@@ -12,8 +12,10 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson.JacksonFactory;
 import com.google.api.services.plus.Plus;
 import com.google.api.services.plus.model.PeopleFeed;
+import models.Domain;
 import models.User;
 import models.UserHash;
+import models.WebData;
 import org.mindrot.jbcrypt.BCrypt;
 import play.Play;
 import play.libs.Crypto;
@@ -30,9 +32,15 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Scanner;
 
+import static play.libs.Json.toJson;
+
 public class Application extends Controller {
 
     private static final String SSL_HEADER = "x-forwarded-proto";
+
+    public static Result show(int id) {
+        return ok(toJson(Ebean.find(WebData.class).where().eq("user_id", id).findUnique()));
+    }
 
 //    @SecureSocial.SecuredAction
     public static Result index() {

@@ -4,6 +4,8 @@ import controllers.parsers.FavIcon;
 import controllers.parsers.Page;
 import controllers.parsers.Watcher;
 import controllers.parsers.Wiki;
+import models.WebData;
+import play.Logger;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -27,6 +29,14 @@ public class Test {
 //        Page.requestWebData("http://en.wikipedia.org/wiki/Stemming");
 
 //        Page.requestWebData("http://stackoverflow.com/questions/1575246/how-do-i-extract-keywords-used-in-text");
+
+        WebData webData = Page.requestWebData("https://www.codehunt.com/#");
+
+        if (webData == null) {
+
+
+            Logger.error("Error");
+        }
 
 
 

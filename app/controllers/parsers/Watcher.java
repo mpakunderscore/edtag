@@ -7,6 +7,7 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import play.Logger;
 import play.libs.F;
 import play.libs.WS;
 import play.mvc.Http;
@@ -32,7 +33,7 @@ public final class Watcher {
 
     public static WebData requestWebData(String url) {
 
-        System.out.println("[web data] " + url);
+        Logger.debug("[web data] " + url);
 
         //TODO types of webData (html, pdf, fb2, txt) move type checker into Interface
         if (url.endsWith(".pdf")) {
@@ -49,7 +50,7 @@ public final class Watcher {
 
         String domainString = WebData.getDomainString(url);
 
-        System.out.println("[domain] " + domainString);
+        Logger.debug("[domain] " + domainString);
 
         String title = "";
 
@@ -64,7 +65,8 @@ public final class Watcher {
 
         } catch (IOException exception) { //TODO
 
-            System.out.println("domain error: " + domainString);
+            Logger.error("domain: " + domainString);
+            exception.printStackTrace();
 
             return null;
         }

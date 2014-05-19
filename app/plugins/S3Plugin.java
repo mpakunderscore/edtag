@@ -25,20 +25,24 @@ public class S3Plugin extends Plugin {
 
     @Override
     public void onStart() {
+
         String accessKey = application.configuration().getString(AWS_ACCESS_KEY);
         String secretKey = application.configuration().getString(AWS_SECRET_KEY);
         s3Bucket = application.configuration().getString(AWS_S3_BUCKET);
 
         if ((accessKey != null) && (secretKey != null)) {
+
             AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
             amazonS3 = new AmazonS3Client(awsCredentials);
             amazonS3.createBucket(s3Bucket);
-            System.out.println("Using S3 Bucket: " + s3Bucket);
+
+            Logger.info("Using S3 Bucket: " + s3Bucket);
         }
     }
 
     @Override
     public boolean enabled() {
+
         return (application.configuration().keys().contains(AWS_ACCESS_KEY) &&
                 application.configuration().keys().contains(AWS_SECRET_KEY) &&
                 application.configuration().keys().contains(AWS_S3_BUCKET));

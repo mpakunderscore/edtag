@@ -1,6 +1,8 @@
 package controllers.parsers;
 
 import models.Tag;
+import models.WebData;
+import play.Logger;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -38,22 +40,24 @@ public class Text {
         Map<String, Integer> tags = new HashMap<String, Integer>();
 
         int i = 0;
-        for (Map.Entry<String,Integer> word : words.entrySet()) {
+        for (Map.Entry<String, Integer> word : words.entrySet()) {
 
             Tag tag = Wiki.getPage(word.getKey());
 
             if (tag == null) {
 
-//                System.out.println(word.getKey() + ": error");
+//                Logger.debug(word.getKey() + ": error");
                 continue;
 
-            } else if (tag.isMark()) System.out.println("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories() + (tag.getRedirect() == null ? "" : " " + tag.getRedirect()));
+            } else if (tag.isMark()) {
 
-            if (tag.isMark()) { //need more scala and brains
+                Logger.debug("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories() + (tag.getRedirect() == null ? "" : " " + tag.getRedirect()));
 
                 if (tag.getRedirect() != null) {
 
-                    Wiki.getPage(tag.getRedirect());
+                    Tag redirect = Wiki.getPage(tag.getRedirect());
+
+                    if (redirect != null && !redirect.isMark()) continue;
 
                     if (tags.containsKey(tag.getRedirect())) {
 

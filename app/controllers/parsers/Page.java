@@ -14,8 +14,10 @@ import java.lang.System;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import static play.libs.Json.toJson;
 
@@ -73,7 +75,14 @@ public class Page {
 
         Map<String, Integer> textTags = Text.getTags(words);
 
-        String tags = String.valueOf(toJson(textTags)); //TODO tagsMap = text + title + url + ...
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        ValueComparator bvc =  new ValueComparator(map);
+        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+
+        map.putAll(textTags);
+        sorted_map.putAll(map);
+
+        String tags = String.valueOf(toJson(sorted_map)); //TODO tagsMap = text + title + url + ...
 
         int uniqueWordsCount = words.size();
 

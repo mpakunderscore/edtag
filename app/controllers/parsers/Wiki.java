@@ -21,7 +21,7 @@ public class Wiki { //TODO wiki api == old crap
 
     private static final List<String> unmarkedCategories = new ArrayList<String>() {{
         add("english grammar");
-//        add("disambiguation pages");
+        add("disambiguation pages");
         add("grammar");
         add("parts of speech");
         add("months");
@@ -30,10 +30,9 @@ public class Wiki { //TODO wiki api == old crap
     }};
 
     private static final String url = "http://en.wikipedia.org/wiki/";
+    private static final String simpleWordsPageUrl = "http://simple.wikipedia.org/wiki/Wikipedia:List_of_1000_basic_words";
 
     public static Tag getPage(String word) { //TODO lang check
-
-//        Tag tag = null;
 
         Tag tag = Ebean.find(Tag.class).where().idEq(word).findUnique();
 
@@ -80,5 +79,29 @@ public class Wiki { //TODO wiki api == old crap
         tag.save();
 
         return tag;
+    }
+
+    public static void loadSimpleWords() {
+
+        Document doc = null;
+        Connection connection = Jsoup.connect(simpleWordsPageUrl);
+
+        try {
+
+            doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).get();
+
+        } catch (IOException exception) {
+
+            exception.printStackTrace();
+            return;
+        }
+
+        Elements words = doc.body().select("dd a");
+
+        for (Element word : words) {
+
+            String wordText = word.text().toLowerCase();
+            new Tag(wordText, null, "[\"simple words\"]", false).save();
+        }
     }
 }

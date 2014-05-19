@@ -75,4 +75,8 @@ public class WebData extends Model {
     public int getUniqueWordsCount() {
         return uniqueWordsCount;
     }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
 }
