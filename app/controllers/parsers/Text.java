@@ -13,26 +13,54 @@ import java.util.regex.Pattern;
  */
 public class Text {
 
-    private final static Pattern word = Pattern.compile("[^\\s+\"\\d+(){}, –'\\-=_@:;#%!<>&\\|\\*\\?\\[\\]\\.\\/\\+\\\\]{2,}");
+    private final static Pattern wordPattern = Pattern.compile("[^\\s+\"\\d+(){}, –'\\-=_@:;#%!<>&\\|\\*\\?\\[\\]\\.\\/\\+\\\\]{2,}");
 
     public static Map<String, Integer> getWords(String text) {
 
-        HashMap<String, Integer> words = new HashMap<>();
-        ValueComparator bvc =  new ValueComparator(words);
-        TreeMap<String, Integer> sorted_words  = new TreeMap<>(bvc);
+        Map<String, Integer> words = new HashMap<>();
+        List<String> wordsList = new ArrayList<>();
 
-        Matcher matcher = word.matcher(text);
+        ValueComparator bvc =  new ValueComparator(words);
+        TreeMap<String, Integer> sortedWords  = new TreeMap<>(bvc);
+
+        Matcher matcher = wordPattern.matcher(text);
         while (matcher.find()) {
 
             String word = matcher.group().toLowerCase();
 
             if (words.containsKey(word)) words.put(word, words.get(word) + 1);
             else words.put(word, 1);
+
+            wordsList.add(word);
         }
 
-        sorted_words.putAll(words);
+        Map<String, Integer> bigrams = getBigrams(wordsList);
 
-        return sorted_words;
+        words.putAll(bigrams);
+
+        sortedWords.putAll(words);
+
+        return sortedWords;
+    }
+
+    private static Map<String, Integer> getBigrams(List<String> wordsList) {
+
+        Map<String, Integer> bigrams = new HashMap<>();
+
+        ValueComparator bvc =  new ValueComparator(bigrams);
+        TreeMap<String, Integer> sortedBigrams  = new TreeMap<>(bvc);
+
+        for (int i = 0; i < wordsList.size() - 1; i++) {
+
+            String bigram = wordsList.get(i) + " " + wordsList.get(i + 1);
+
+            if (bigrams.containsKey(bigram)) bigrams.put(bigram, bigrams.get(bigram) + 1);
+            else bigrams.put(bigram, 1);
+        }
+
+        sortedBigrams.putAll(bigrams);
+
+        return sortedBigrams;
     }
 
     public static Map<String, Integer> getTags(Map<String, Integer> words) {
@@ -51,7 +79,7 @@ public class Text {
 
             } else if (tag.isMark()) {
 
-//                Logger.debug("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories() + (tag.getRedirect() == null ? "" : " " + tag.getRedirect()));
+                Logger.debug("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories() + (tag.getRedirect() == null ? "" : " " + tag.getRedirect()));
 
                 if (tag.getRedirect() != null) {
 
