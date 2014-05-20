@@ -51,7 +51,7 @@ public class Text {
 
             } else if (tag.isMark()) {
 
-                Logger.debug("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories() + (tag.getRedirect() == null ? "" : " " + tag.getRedirect()));
+//                Logger.debug("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories() + (tag.getRedirect() == null ? "" : " " + tag.getRedirect()));
 
                 if (tag.getRedirect() != null) {
 

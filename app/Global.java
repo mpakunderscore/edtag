@@ -31,6 +31,12 @@ public class Global extends GlobalSettings {
         for (WebData webData : list) {
 
             WebData withTags = Page.requestWebData(webData.getUrl());
+
+            if (withTags == null) {
+                Logger.error("[page tags updated error] " + webData.getId() + " " + webData.getUrl() + " " + webData.getTags());
+                continue;
+            }
+
             webData.setTags(withTags.getTags());
             webData.update();
 
