@@ -21,7 +21,7 @@ public class API extends Controller {
 
     public static Result add(String url) throws Exception { //TODO actually Cache is not needed here.
 
-        url = url.split(Pattern.quote("?"))[0]; //TODO ?
+//        url = url.split(Pattern.quote("?"))[0]; //TODO
 
         int userId = 0;
         if (session("userId") != null)
