@@ -18,7 +18,23 @@ public class Global extends GlobalSettings {
         if (Ebean.find(Tag.class).findList().size() == 0) {
 
             Wiki.loadSimpleWords();
-            updateTags();
+
+            Thread thread = new Thread(new Runnable() {
+
+                @Override
+                public void run() {
+
+                    try {
+
+                        updateTags();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            thread.start();
         }
 
         Logger.info("Application has started");
@@ -42,6 +58,8 @@ public class Global extends GlobalSettings {
 
             Logger.debug("[page tags updated] " + webData.getId() + " " + webData.getUrl() + " " + webData.getTags());
         }
+
+        Logger.info("Tags updated for " + list.size() + " pages.");
     }
 
     public void onStop(Application app) {
