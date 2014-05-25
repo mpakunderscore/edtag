@@ -6,9 +6,9 @@
 GET         /                    controllers.Web.courses
 POST        /auth                controllers.Application.auth
 
+
 GET         /courses             controllers.Web.courses
 GET         /sources              controllers.Web.sources
-
 
 GET         /personalization     controllers.Web.personalization
 GET         /contact             controllers.Web.contact
@@ -19,6 +19,7 @@ GET         /domains             controllers.API.getApprovedDomains
 
 GET         /alldomains          controllers.Web.domains
 GET         /pages               controllers.Web.pages
+
 
 GET         /query               controllers.System.query(text: String)
 GET         /delete              controllers.System.delete

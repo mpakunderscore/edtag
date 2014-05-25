@@ -10,8 +10,9 @@ import play.db.ebean.Model;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.contact;
-import views.html.index;
+import views.html.courses;
 import views.html.personalization;
+import views.html.sources;
 
 import java.lang.*;
 import java.lang.System;
@@ -52,12 +53,12 @@ public class Web extends Controller {
 
     public static Result courses() {
 
-        return ok(index.render());
+        return ok(courses.render());
     }
 
     public static Result sources() {
 
-        return ok(index.render());
+        return ok(sources.render());
     }
 
     public static Result personalization() {

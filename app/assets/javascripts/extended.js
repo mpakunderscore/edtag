@@ -7,7 +7,7 @@ function query(text) {
     $.get("/query", {text: text}, function( data ) {});
 }
 
-function domains() {
+function sources() {
 
     $.get("/alldomains", {},
 
@@ -74,7 +74,8 @@ function domains() {
     );
 }
 
-function pages() {
+function courses() {
+
     if (pages_list.length == 0)
 
         jQuery.ajax({
@@ -190,7 +191,5 @@ function tag_sort(clicked) {
 
     else selected_tags.splice(selected_tags.indexOf(clicked.text), 1);
 
-    pages();
+    courses();
 }
-
-pages();
