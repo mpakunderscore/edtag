@@ -47,16 +47,16 @@ function sources() {
 
                 if (domains[id]['favIconFormat']) favIcon = "<a><img src='"+  "https://s3.amazonaws.com/edtag/" + domains[id]['url'] + "." + domains[id]['favIconFormat'] +  "' height='16' width='16'></a>";
 
-                var item = "<li class='domain'>" +favIcon + link + title + trusted + "</li>";
+                var item = "<li class='domain'>" +favIcon + link + title + "</li>";
 
                 $('#out').append(item);
             }
 
             main.append('<nav id="tags" class="menu"></nav>');
 
-            for (var tid in selected_tags) {
+            for (var tid in domains_selected_tags) {
 
-                var row = "<a href='javascript:void(0)' onclick='domains_tag_sort(this)' title='remove' class='selected'>"+ selected_tags[tid] + "</a>";
+                var row = "<a href='javascript:void(0)' onclick='domains_tag_sort(this)' title='remove' class='selected'>"+ domains_selected_tags[tid] + "</a>";
                 $('#tags').append(row);
             }
 
@@ -69,7 +69,7 @@ function sources() {
 
                 if (name.length > 25) name = name.substring(0, 21) + "..";
 
-                var row = "<a href='javascript:void(0)' onclick='domains_tag_sort(this)' title='" + tags_sort[id][1] + "'>"+ name + "</a>";
+                row = "<a href='javascript:void(0)' onclick='domains_tag_sort(this)' title='" + tags_sort[id][1] + "'>"+ name + "</a>";
 
                 $('#tags').append(row);
 
@@ -139,13 +139,13 @@ function courses() {
 
         var title = pages_list[id]['title'].replace("\<", "\<\\");
 
-        title = (title.length > 80) ? title.substring(0, 110) + "..." : title;
+        title = (title.length > 100) ? title.substring(0, 100) + "..." : title;
 
         var volume_block = "&#8211;",
             favIconURL = (pages_list[id]['favIconFormat']) ? "https://s3.amazonaws.com/edtag/" + domain + "." + pages_list[id]['favIconFormat'] : '',
             favIcon = "<img src=" + favIconURL + ">",
-            linkTags = sort(url_tags).join(" . ").replace(/,/g, ": ") + "Words count: " + pages_list[id]['wordsCount'] + "Unique words count: " + pages_list[id]['uniqueWordsCount'],
-            link = "<a href='" + pages_list[id]['url'] + "' target='_blank' title='"+linkTags+"'>" + title + "</a>",
+            linkTags = "id: " + pages_list[id]['id'] + "\n\n" + sort(url_tags).join("  ").replace(/,/g, ":") + "\n\nWords count: " + pages_list[id]['wordsCount'] + "\nTags count: " + pages_list[id]['uniqueWordsCount'],
+            link = "<a href='" + pages_list[id]['url'] + "' target='_blank' title='" + linkTags + "'>" + title + "</a>",
             wordsCount = "<span class='volume'>" + Array(Math.floor(pages_list[id]['uniqueWordsCount']/100)).join(volume_block) + "<span>",
             item = "<li class='page'>" + favIcon + link + wordsCount + "</li>";
 

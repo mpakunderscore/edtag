@@ -15,6 +15,10 @@ input[type="search"] {
 	border-radius: 0;
 }
 
+.menu a {
+	padding-left: 15px;
+}
+
 .menu a:link {
 	text-decoration: none;
 	color: black;
@@ -48,13 +52,6 @@ input[type="search"] {
 	font: 18px andale mono;
 }
 
-.selected {
-
-	margin-left: 15px;
-	display: inline-block;
-	height: 33px;
-}
-
 nav {
 
 	&#menu {
@@ -78,16 +75,10 @@ nav {
 		a {
 			margin: 12px;
 			display: block;
-//			&.selected {
-//				color: rgb(254, 65, 50);
-//				display: inline-block;
-//				margin-left: 0;
-//				&:after {
-//					content: ">";
-//					padding: 0px 3px;
-//					color: gray;
-//				}
-//			}
+
+			&.selected {
+				color: rgb(254, 65, 50);
+			}
 		}
 	}
 }
