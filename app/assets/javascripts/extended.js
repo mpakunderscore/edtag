@@ -9,9 +9,6 @@ function query(text) {
 
 function domains() {
 
-    $("#menu_domains").css("border-bottom", "30px solid rgba(187, 187, 187, 0.12)"); //TODO
-    $("#menu_pages").css("border-bottom", "0");
-
     $.get("/alldomains", {},
 
         function(domains) {
@@ -20,7 +17,7 @@ function domains() {
 
             if (domains.length == 0) {
 
-                main.html('<div id="out"><p style="padding-left: 20px">Domains table is empty.</p></div>');
+                main.html('<ul id="out"><li>Domains list is empty.</li></ul>');
                 return;
             }
 
@@ -28,7 +25,7 @@ function domains() {
 
             main.html('');
 
-            main.append('<div id="out"><table id="data"></table></div>');
+            main.append('<ul id="out"></ul>');
 
             for (var id in domains) {
 
@@ -41,25 +38,16 @@ function domains() {
 
                 }
 
-                var favIcon = "";
+                var favIcon = "",
+                    link = "<a href='" + "http://" + domains[id]['url'] + "' target='_blank' title='" + sort(domains_tags).join(" . ").replace(/,/g, ": ") + "'>" + domains[id]['url'] + "</a>",
+                    title = "<span class='title'>"+domains[id]['title']+"</span>",
+                    trusted = (domains[id]['state'] == 3) ? "<sup title='Trusted domain'>&#9679;</sup>" : " ";
 
                 if (domains[id]['favIconFormat']) favIcon = "<a><img src='"+  "https://s3.amazonaws.com/edtag/" + domains[id]['url'] + "." + domains[id]['favIconFormat'] +  "' height='16' width='16'></a>";
 
-                var row =
+                var item = "<li class='domain'>" +favIcon + link + title + trusted + "</li>";
 
-                    "<tr style='width: 100%;'>" +
-
-                    "<td>" + favIcon + "</td>" +
-
-                    "<td class='study'><a href='" + "http://" + domains[id]['url'] + "' target='_blank' title='" + sort(domains_tags).join(" . ").replace(/,/g, ": ") + "'>" + domains[id]['url'] + "</a></td>" +
-
-                    "<td>" + (domains[id]['state'] == 3 ? "<font color='green'>&#8226;</font>" : "") +  "</td>" +
-
-                    "<td>" + domains[id]['title'] + "</td>" +
-
-                    "</tr>";
-
-                $('#data').append(row);
+                $('#out').append(item);
             }
 
             main.append('<table id="tags" border="0"></table>');
@@ -87,10 +75,6 @@ function domains() {
 }
 
 function pages() {
-
-    $("#menu_pages").css("border-bottom", "30px solid rgba(187, 187, 187, 0.12)");
-    $("#menu_domains").css("border-bottom", "0");
-
     if (pages_list.length == 0)
 
         jQuery.ajax({
@@ -105,18 +89,17 @@ function pages() {
 
     if (pages_list.length == 0) {
 
-        main.html('<div id="out"><p style="padding-left: 20px">Pages table is empty.</p></div>');
+        main.html('<ul id="out"><li>Pages list is empty.</li></ul>');
         return;
     }
 
     main.html('');
-    main.append('<div id="out"><table id="data"></table></div>');
+    main.append('<ul id="out"></ul>');
 
-	var domains = {};
-
-    var favIconsFormat = {};
-
-    var tags = {};
+	var domains = {},
+      favIconsFormat = {},
+      tags = {},
+      favIcon = "";
 
     for (var id in pages_list) {
 
@@ -148,57 +131,25 @@ function pages() {
 
         var title = pages_list[id]['title'].replace("\<", "\<\\");
 
-        if (title.length > 100) title = title.substring(0, 110) + "...";
+        title = (title.length > 100) ? title.substring(0, 110) + "..." : title;
 
-        var favIcon = "";
+        var volume_block = "&#8211;",
+            favIconURL = (pages_list[id]['favIconFormat']) ? "https://s3.amazonaws.com/edtag/" + domain + "." + pages_list[id]['favIconFormat'] : '',
+            favIcon = "<img src=" + favIconURL + ">",
+            linkTags = sort(url_tags).join(" . ").replace(/,/g, ": ") + "Words count: " + pages_list[id]['wordsCount'] + "Unique words count: " + pages_list[id]['uniqueWordsCount'],
+            link = "<a href='" + pages_list[id]['url'] + "' target='_blank' title='"+linkTags+"'>" + title + "</a>",
+            wordsCount = "<span class='volume'>" + Array(Math.floor(pages_list[id]['uniqueWordsCount']/100)).join(volume_block) + "<span>",
+            item = "<li class='page'>" +favIcon + link + wordsCount + "</li>";
 
-        var volume_block = "&#8211;";
-
-        if (pages_list[id]['favIconFormat']) favIcon = "<a><img src='" + "https://s3.amazonaws.com/edtag/" + domain + "." + pages_list[id]['favIconFormat'] + "' height='16' width='16'></a>";
-
-        var row = "<tr>" +
-
-            "<td>" + favIcon + "</td>" +
-
-            "<td class='study'>" +
-
-                "<a href='" + pages_list[id]['url'] + "' target='_blank' title='" + sort(url_tags).join(" . ").replace(/,/g, ": ") + "\n\nWords count: " + pages_list[id]['wordsCount'] + "\nUnique words count: " + pages_list[id]['uniqueWordsCount'] + "'>" + title + "</a>" +
-
-                "<span class='volume'>" + Array(Math.floor(pages_list[id]['uniqueWordsCount']/100)).join(volume_block) + "<span>" +
-
-            "</td>" +
-
-        "</tr>";
-
-        $('#data').append(row);
+        $('#out').append(item);
 
     }
 
-//    main.append('<table id="domains" border="0"></table>');
-//
-//    var domains_sort = sort(domains);
-//
-//    for (var id in domains_sort) {
-//
-//        if (favIconsFormat[domains_sort[id][0]]) {
-//
-//            var row = "<tr class='domain_control'>" +
-//                "<td><a href='"+ "http://" + domains_sort[id][0] + "' target='_blank'><img src='"+  "https://s3.amazonaws.com/edtag/" + domains_sort[id][0] + "." + favIconsFormat[domains_sort[id][0]] + "' height='16' width='16' title='" + domains_sort[id][0] + "'></a><span></td>" +
-//                "</tr>";
-//
-//            $('#domains').append(row);
-//        }
-//
-//        if (id == 15) break;
-//    }
-
-    //tags
-
-    main.append('<table id="tags" border="0"></table>');
+    main.append('<nav id="tags"></nav>');
 
     for (var tid in selected_tags) {
 
-        var row = "<tr>" + "<td><a href='javascript:void(0)' onclick='tag_sort(this)' title='remove' style='color: rgb(254, 65, 50);'>"+ selected_tags[tid] + "</a></td>" + "</tr>";
+        var row = "<a href='javascript:void(0)' onclick='tag_sort(this)' title='remove' class='selected'>"+ selected_tags[tid] + "</a>";
         $('#tags').append(row);
     }
 
@@ -211,14 +162,13 @@ function pages() {
 
         if (name.length > 25) name = name.substring(0, 21) + "..";
 
-        var row = "<tr>" + "<td><a href='javascript:void(0)' onclick='tag_sort(this)' title='" + tags_sort[id][1] + "'>"+ name + "</a></td>" + "</tr>";
+        var row = "<a href='javascript:void(0)' onclick='tag_sort(this)' title='" + tags_sort[id][1] + "'>"+ name + "</a>";
 
         $('#tags').append(row);
 
         if (id >= 15 - selected_tags.length) break;
     }
 
-//            $('#main').append('<div id="save"><td><a href="javascript:save()">save</a></td></div>');
 }
 
 function sort(map) {

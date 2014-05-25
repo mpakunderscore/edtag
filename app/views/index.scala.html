@@ -1,18 +1,20 @@
 @shell("Education") {
 
-    <div id="logo" class="menu"><a href="javascript:logo()">&#60; &#62;</a></div>
+    <div id="logo" class="menu"><a href="javascript:logo()">&#60; &#62; EdTag</a></div>
 
-    <div id="menu" class="menu">
-
-        <input id="search" type="text" />
-
-        <span class="selected" id="menu_pages"><a href="javascript:pages()">Courses</a></span>
-        <span class="selected" id="menu_domains"><a href="javascript:domains()">Sources</a></span>
-        <span class="selected" id="menu_extension"><a href="https://chrome.google.com/webstore/detail/edtag/kiecajbpclgoigecdbpaodejolmbhhal" target='_blank'>Add-on</a></span>
-
-        <span class="selected"><a href="mailto:contact&#64;edtag.io" target="_top">Contact</a></span>
-
-    </div>
+    <nav id="menu" class="menu">
+        <input id="search" type="search" />
+        <span class="selected" id="menu_pages">
+          <a href="javascript:pages()">Courses</a>
+        </span>
+        <span class="selected" id="menu_domains">
+          <a href="javascript:domains()">Sources</a>
+        </span>
+        <span class="selected" id="menu_extension">
+          <a href="https://chrome.google.com/webstore/detail/edtag/kiecajbpclgoigecdbpaodejolmbhhal" target='_blank'>Add-on</a>
+        </span>
+        <a href="mailto:contact&#64;edtag.io" target="_top" class="email">&#128231; Contact Us</a>
+    </nav>
 
     <div id="main" class="main"></div>
 }

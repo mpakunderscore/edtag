@@ -2,6 +2,7 @@ body, input {
 
     font: 13px helvetica, arial, freesans, clean, sans-serif;
     line-height: 1.5;
+    margin: 0;
 }
 
 body {
@@ -9,12 +10,7 @@ body {
 }
 
 #menu {
-    font: 13px helvetica, arial, freesans, clean, sans-serif;
-    position: fixed;
-    left: 210px;
-    right: 0;
-    min-width: 900px;
-    padding: 10px;
+
 }
 
 .menu a:link    {text-decoration: none; color: black;}
@@ -30,7 +26,7 @@ body {
     position: fixed;
     left: 20px;
     top: 24px;
-    width: 52px;
+    width: 120px;
     text-align: center;
     font: 18px andale mono;
 }
@@ -39,4 +35,68 @@ body {
     margin-left: 15px;
     display: inline-block;
     height: 33px;
+}
+#menu_domains{
+  border-bottom: 30px solid rgba(187, 187, 187, 0.12);
+}
+#menu_pages{ border-bottom: 0 };
+#menu_extension a{
+  cursor: alias;
+}
+ul#out {
+  padding-left: 10px;
+  li{
+    list-style: none;
+    height: 24px;
+    img{
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      vertical-align: bottom;
+    }
+    &.domain{
+      .title{
+        margin-left: 20px;
+      }
+      sup{
+        color: green;
+        font-size: 14px;
+        cursor: default;
+      }
+    }
+    &.page{
+    }
+  }
+
+}
+nav{
+  &#menu{
+    width: 880px;
+    font: 13px helvetica, arial, freesans, clean, sans-serif;
+    position: fixed;
+    left: 210px;
+    right: 0;
+    padding: 25px 10px 10px 10px;
+    height: 30px;
+    z-index: 1;
+    background: white;
+    a.email{
+      float: right;
+    }
+  }
+  &#tags{
+    a{
+      display: block;
+      &.selected{
+        color: rgb(254, 65, 50);
+        display: inline-block;
+        margin-left: 0;
+        &:after{
+          content: ">";
+          padding: 0px 3px;
+          color: gray;
+        }
+      }
+    }
+}
 }
