@@ -2,6 +2,8 @@ var pages_list = [];
 
 var selected_tags = [];
 
+var domains_selected_tags = [];
+
 function query(text) {
 
     $.get("/query", {text: text}, function( data ) {});
@@ -50,23 +52,28 @@ function sources() {
                 $('#out').append(item);
             }
 
-            main.append('<table id="tags" border="0"></table>');
+            main.append('<nav id="tags" class="menu"></nav>');
+
+            for (var tid in selected_tags) {
+
+                var row = "<a href='javascript:void(0)' onclick='domains_tag_sort(this)' title='remove' class='selected'>"+ selected_tags[tid] + "</a>";
+                $('#tags').append(row);
+            }
 
             var tags_sort = sort(tags);
-
             for (var id in tags_sort) {
 
                 var name = tags_sort[id][0];
 
-                if (name.length > 13) name = name.substring(0, 13) + "..";
+                if (domains_selected_tags.indexOf(name) >= 0) continue;
 
-                var row = "<tr>" +
-                    "<td><a href='javascript:void(0)' onclick='tag_sort(this)' title='" + tags_sort[id][1] + "'>"+ name + "</a></td>" +
-                    "</tr>";
+                if (name.length > 25) name = name.substring(0, 21) + "..";
+
+                var row = "<a href='javascript:void(0)' onclick='domains_tag_sort(this)' title='" + tags_sort[id][1] + "'>"+ name + "</a>";
 
                 $('#tags').append(row);
 
-                if (id == 15) break;
+                if (id >= 15 - domains_selected_tags.length) break;
             }
 
 
@@ -132,7 +139,7 @@ function courses() {
 
         var title = pages_list[id]['title'].replace("\<", "\<\\");
 
-        title = (title.length > 100) ? title.substring(0, 110) + "..." : title;
+        title = (title.length > 80) ? title.substring(0, 110) + "..." : title;
 
         var volume_block = "&#8211;",
             favIconURL = (pages_list[id]['favIconFormat']) ? "https://s3.amazonaws.com/edtag/" + domain + "." + pages_list[id]['favIconFormat'] : '',
@@ -140,13 +147,13 @@ function courses() {
             linkTags = sort(url_tags).join(" . ").replace(/,/g, ": ") + "Words count: " + pages_list[id]['wordsCount'] + "Unique words count: " + pages_list[id]['uniqueWordsCount'],
             link = "<a href='" + pages_list[id]['url'] + "' target='_blank' title='"+linkTags+"'>" + title + "</a>",
             wordsCount = "<span class='volume'>" + Array(Math.floor(pages_list[id]['uniqueWordsCount']/100)).join(volume_block) + "<span>",
-            item = "<li class='page'>" +favIcon + link + wordsCount + "</li>";
+            item = "<li class='page'>" + favIcon + link + wordsCount + "</li>";
 
         $('#out').append(item);
 
     }
 
-    main.append('<nav id="tags"></nav>');
+    main.append('<nav id="tags" class="menu"></nav>');
 
     for (var tid in selected_tags) {
 
@@ -192,4 +199,14 @@ function tag_sort(clicked) {
     else selected_tags.splice(selected_tags.indexOf(clicked.text), 1);
 
     courses();
+}
+
+function domains_tag_sort(clicked) { //sorry
+
+    if (domains_selected_tags.indexOf(clicked.text) < 0)
+        domains_selected_tags.push(clicked.text);
+
+    else domains_selected_tags.splice(domains_selected_tags.indexOf(clicked.text), 1);
+
+    sources();
 }
