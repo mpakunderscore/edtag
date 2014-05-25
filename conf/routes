@@ -3,24 +3,28 @@
 # ~~~~
 
 # Home page
-GET         /                      controllers.Application.index()
-POST        /auth                  controllers.Application.auth
+GET         /                    controllers.Web.courses
+POST        /auth                controllers.Application.auth
 
-#GET         /login               controllers.Application.login(email: String, password: String)
-#GET         /logout              controllers.Application.logout()
+GET         /courses             controllers.Web.courses
+GET         /sources              controllers.Web.sources
 
 
-GET         /add                   controllers.API.add(url: String)
-GET         /domains               controllers.API.getApprovedDomains
+GET         /personalization     controllers.Web.personalization
+GET         /contact             controllers.Web.contact
 
-GET         /alldomains            controllers.Web.domains
-GET         /pages                 controllers.Web.pages
 
-GET         /query                 controllers.System.query(text: String)
-GET         /delete                controllers.System.delete
+GET         /add                 controllers.API.add(url: String)
+GET         /domains             controllers.API.getApprovedDomains
+
+GET         /alldomains          controllers.Web.domains
+GET         /pages               controllers.Web.pages
+
+GET         /query               controllers.System.query(text: String)
+GET         /delete              controllers.System.delete
 #GET         /test                  controllers.System.test
 
-GET         /show/*id              controllers.Link.show(id: Integer)
+GET         /show/*id            controllers.Link.show(id: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file          controllers.Assets.at(path="/public", file)
+GET         /assets/*file        controllers.Assets.at(path="/public", file)

@@ -1,28 +1,8 @@
 @(webData: WebData)
 
+@shell("Link") {
 
-<!DOCTYPE html>
-<html>
-
-    <head>
-        <title>@webData.getTitle()</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/shell.css")">
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/menu.css")">
-
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-
-        <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-2.1.0.js")"></script>
-
-        <script type="text/javascript" src="@routes.Assets.at("javascripts/main.js")"></script>
-    </head>
-
-    <body>
-        <span>
-            @webData.getTags()
-        </span>
-
-    </body>
-
-    <script type="text/javascript" src="@routes.Assets.at("javascripts/extended.js")"></script>
-
-</html>
+    <span>
+        @webData.getTags()
+    </span>
+}

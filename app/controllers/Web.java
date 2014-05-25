@@ -9,6 +9,9 @@ import play.cache.Cache;
 import play.db.ebean.Model;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.contact;
+import views.html.index;
+import views.html.personalization;
 
 import java.lang.*;
 import java.lang.System;
@@ -45,5 +48,25 @@ public class Web extends Controller {
     public static Result domains() {
 
         return ok(toJson(Ebean.find(Domain.class).order().desc("state").findList()));
+    }
+
+    public static Result courses() {
+
+        return ok(index.render());
+    }
+
+    public static Result sources() {
+
+        return ok(index.render());
+    }
+
+    public static Result personalization() {
+
+        return ok(personalization.render());
+    }
+
+    public static Result contact() {
+
+        return ok(contact.render());
     }
 }

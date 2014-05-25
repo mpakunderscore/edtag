@@ -12,6 +12,6 @@ import static play.libs.Json.toJson;
 public class Link extends Controller {
 
     public static Result show(int id) {
-        return ok(toJson(Ebean.find(WebData.class).where().eq("id", id).findUnique()));
+        return ok(link.render(Ebean.find(WebData.class).where().eq("id", id).findUnique()));
     }
 }
