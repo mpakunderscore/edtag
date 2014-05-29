@@ -1,96 +1,109 @@
-function logo() {
+var edTag = angular.module('edTag', []);
 
-}
-
-function signInCallback(authResult) {
-
-    if (authResult['status']['signed_in']) {
-
-
-        document.getElementById('signOutButton').setAttribute('style', 'display: inline');
-        document.getElementById('signInButton').setAttribute('style', 'display: none');
-
-        $.post("/auth", { code: authResult['code'] });
-
-//        console.log(authResult);
-
-//        pages();
-        domains();
-
-        return;
-
-//        $.ajax({
-//            type: 'POST',
-//            url: '/signInCallback',
-//            contentType: 'application/octet-stream; charset=utf-8',
-//            processData: true,
-//            data: authResult['code'],
-//            success: function(result) {
-//
-//                console.log(result);
-//
-//                if (result['profile']){
-//
-//
-//
-//                } else {
-//
-//                    $('#main').html('Failed to make a server-side call. Check your configuration and console.');
-//                }
-//            }
-//        });
-
-
-    } else {
-
-        // Update the app to reflect a signed out user
-        // Possible error values:
-        //   "user_signed_out" - User is signed-out
-        //   "access_denied" - User denied access to your app
-        //   "immediate_failed" - Could not automatically log in the user
-
-        document.getElementById('signInButton').setAttribute('style', 'display: inline');
-        document.getElementById('signOutButton').setAttribute('style', 'display: none');
-        console.log('Sign-in state: ' + authResult['error']);
-    }
-
-//    pages();
-    domains();
-}
-
-var fixmeTop = 48;                              // Get initial position
-$(window).scroll(function() {                   // Assign scroll event listener
-
-    return;
-
-    var currentScroll = $(window).scrollTop();  // Get current position
-    if (currentScroll >= fixmeTop) {            // Make it fixed if you've scrolled to it
-
-        $('#domains').css({
-            position: 'fixed',
-            top: '20px',
-            left: '20px'
-        });
-
-        $('#tags').css({
-            position: 'fixed',
-            top: '20px',
-            left: '90px'
-        });
-
-
-    } else {
-
-        $('#domains').css({
-            position: 'absolute',
-            top: '67px',
-            left: '20px'
-        });
-
-        $('#tags').css({
-            position: 'absolute',
-            top: '67px',
-            left: '90px'
-        });
-    }
+edTag.controller('mainCtrl', function ($scope) {
+  $scope.phones = [
+    {'name': 'Nexus S',
+     'snippet': 'Fast just got faster with Nexus S.'},
+    {'name': 'Motorola XOOM™ with Wi-Fi',
+     'snippet': 'The Next, Next Generation tablet.'},
+    {'name': 'MOTOROLA XOOM™',
+     'snippet': 'The Next, Next Generation tablet.'}
+  ];
 });
+
+// function logo() {
+//
+// }
+//
+// function signInCallback(authResult) {
+//
+//     if (authResult['status']['signed_in']) {
+//
+//
+//         document.getElementById('signOutButton').setAttribute('style', 'display: inline');
+//         document.getElementById('signInButton').setAttribute('style', 'display: none');
+//
+//         $.post("/auth", { code: authResult['code'] });
+//
+// //        console.log(authResult);
+//
+// //        pages();
+//         domains();
+//
+//         return;
+//
+// //        $.ajax({
+// //            type: 'POST',
+// //            url: '/signInCallback',
+// //            contentType: 'application/octet-stream; charset=utf-8',
+// //            processData: true,
+// //            data: authResult['code'],
+// //            success: function(result) {
+// //
+// //                console.log(result);
+// //
+// //                if (result['profile']){
+// //
+// //
+// //
+// //                } else {
+// //
+// //                    $('#main').html('Failed to make a server-side call. Check your configuration and console.');
+// //                }
+// //            }
+// //        });
+//
+//
+//     } else {
+//
+//         // Update the app to reflect a signed out user
+//         // Possible error values:
+//         //   "user_signed_out" - User is signed-out
+//         //   "access_denied" - User denied access to your app
+//         //   "immediate_failed" - Could not automatically log in the user
+//
+//         document.getElementById('signInButton').setAttribute('style', 'display: inline');
+//         document.getElementById('signOutButton').setAttribute('style', 'display: none');
+//         console.log('Sign-in state: ' + authResult['error']);
+//     }
+//
+// //    pages();
+//     domains();
+// }
+//
+// var fixmeTop = 48;                              // Get initial position
+// $(window).scroll(function() {                   // Assign scroll event listener
+//
+//     return;
+//
+//     var currentScroll = $(window).scrollTop();  // Get current position
+//     if (currentScroll >= fixmeTop) {            // Make it fixed if you've scrolled to it
+//
+//         $('#domains').css({
+//             position: 'fixed',
+//             top: '20px',
+//             left: '20px'
+//         });
+//
+//         $('#tags').css({
+//             position: 'fixed',
+//             top: '20px',
+//             left: '90px'
+//         });
+//
+//
+//     } else {
+//
+//         $('#domains').css({
+//             position: 'absolute',
+//             top: '67px',
+//             left: '20px'
+//         });
+//
+//         $('#tags').css({
+//             position: 'absolute',
+//             top: '67px',
+//             left: '90px'
+//         });
+//     }
+// });
