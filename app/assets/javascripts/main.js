@@ -1,14 +1,23 @@
-var edTag = angular.module('edTag', []);
+var edTagApp = angular.module('edTagApp', []);
 
-edTag.controller('mainCtrl', function ($scope) {
-  $scope.phones = [
-    {'name': 'Nexus S',
-     'snippet': 'Fast just got faster with Nexus S.'},
-    {'name': 'Motorola XOOM™ with Wi-Fi',
-     'snippet': 'The Next, Next Generation tablet.'},
-    {'name': 'MOTOROLA XOOM™',
-     'snippet': 'The Next, Next Generation tablet.'}
-  ];
+edTagApp.controller('mainCtrl', function ($scope, $http) {
+  $http({method: 'GET', url: '/pages'}).
+    success(function(data, status, headers, config) {
+      $scope.links = data;
+
+      // this callback will be called asynchronously
+      // when the response is available
+    }).
+    error(function(data, status, headers, config) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
+  $scope.getDomain = function(url){
+    return url.replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
+  }
+  $scope.getWordsCount = function(words){
+    return Math.floor(words/100)
+  }
 });
 
 // function logo() {

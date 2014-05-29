@@ -147,7 +147,7 @@ function courses() {
             linkTags = "id: " + pages_list[id]['id'] + "\n\n" + sort(url_tags).join("  ").replace(/,/g, ":") + "\n\nWords count: " + pages_list[id]['wordsCount'] + "\nTags count: " + pages_list[id]['uniqueWordsCount'],
             link = "<a href='" + pages_list[id]['url'] + "' target='_blank' title='" + linkTags + "'>" + title + "</a>",
             wordsCount = "<span class='volume'>" + Array(Math.floor(pages_list[id]['uniqueWordsCount']/100)).join(volume_block) + "<span>",
-            item = "<li class='page'>" + favIcon + link + pages_list[id]['id'] + "</li>";
+            item = "<li class='page'>" + favIcon + link + wordsCount + "</li>";
 
         $('#out').append(item);
 
