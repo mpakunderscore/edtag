@@ -1,8 +1,9 @@
 @(webData: WebData)
 
+
 @shell("Link") {
 
-    <span>
-        @webData.getTags()
-    </span>
+      <div class="tag">
+          @webData.getTags()
+      </div>
 }

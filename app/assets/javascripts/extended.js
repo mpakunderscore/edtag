@@ -112,6 +112,7 @@ function courses() {
     for (var id in pages_list) {
 
         var url_tags = JSON.parse(pages_list[id]['tags']);
+        console.log(url_tags)
 
         var remove = false;
         for (var tid in selected_tags) {
