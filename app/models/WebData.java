@@ -1,9 +1,13 @@
 package models;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+import play.libs.Json;
+import play.libs.Json.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by pavelkuzmin on 01/03/14.
@@ -78,5 +82,9 @@ public class WebData extends Model {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public JsonNode getTagsList() {
+        return Json.parse(this.tags);
     }
 }

@@ -4,7 +4,6 @@ package controllers;
 import com.avaje.ebean.Ebean;
 import models.WebData;
 import play.mvc.*;
-import views.html.index;
 import views.html.link;
 
 import static play.libs.Json.toJson;
