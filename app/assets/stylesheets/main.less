@@ -71,3 +71,27 @@
 
 	text-align: right;
 }
+
+progress {
+	/* Important Thing */
+	-webkit-appearance: none;
+	border: none;
+	height: 5px;
+	vertical-align: middle;
+}
+
+/* All good till now. Now we'll style the background */
+progress::-webkit-progress-bar {
+	background: lightgray;
+	border-radius: 50px;
+	padding: 0px;
+	box-shadow: none;
+}
+
+/* Now the value part */
+progress::-webkit-progress-value {
+	border-radius: 10px;
+	box-shadow: none;
+	background: gray;
+	/* Looks great, now animating it */
+}

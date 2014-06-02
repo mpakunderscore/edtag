@@ -33,3 +33,5 @@ libraryDependencies += "com.google.http-client" % "google-http-client-jackson" %
 libraryDependencies += "commons-io" % "commons-io" % "2.4"
 
 libraryDependencies += "com.amazonaws" % "aws-java-sdk" % "1.3.11"
+
+closureCompilerOptions += "ecmascript5"
