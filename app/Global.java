@@ -26,7 +26,7 @@ public class Global extends GlobalSettings {
 
                     try {
 
-                        updateTags();
+                        updateTags(); //TODO and for domains
 
                     } catch (Exception e) {
                         e.printStackTrace();

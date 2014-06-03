@@ -14,10 +14,7 @@ import java.lang.System;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static play.libs.Json.toJson;
 
@@ -28,30 +25,9 @@ public class Page {
 
     public static WebData requestWebData(String url) {
 
-//        URL obj = new URL(url);
-//        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-//
-//        con.setRequestMethod("GET");
-//
-//        con.setRequestProperty("User-Agent", USER_AGENT);
-//
-//        int responseCode = con.getResponseCode();
-//
-//        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-//        String inputLine;
-//
-//        StringBuffer response = new StringBuffer();
-//
-//        while ((inputLine = in.readLine()) != null) {
-//            response.append(inputLine);
-//        }
-//        in.close();
+        String title;
+        Document doc;
 
-        String title = "";
-
-        Map<String, Integer> tagsMap = new HashMap<String, Integer>();
-
-        Document doc = null;
         Connection connection = Jsoup.connect(url);
 
         try {
@@ -69,10 +45,7 @@ public class Page {
 
         if (title.length() == 0) return null; //TODO
 
-        //TODO select tags
-
         Map<String, Integer> words = Text.getWords(text);
-
         Map<String, Integer> textTags = Text.getTags(words);
 
         HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -82,7 +55,14 @@ public class Page {
         map.putAll(textTags);
         sorted_map.putAll(map);
 
-        String tags = String.valueOf(toJson(sorted_map)); //TODO tagsMap = text + title + url + ...
+        List<Map<String, String>> tagsList = new ArrayList<>();
+        for (Map.Entry<String, Integer> set : sorted_map.entrySet()) {
+
+            Map<String, String> tag = new HashMap<>();
+            tag.put("name", set.getKey());
+            tag.put("weight", set.getValue().toString());
+            tagsList.add(tag);
+        }
 
         int uniqueWordsCount = words.size();
 
@@ -91,6 +71,6 @@ public class Page {
             wordsCount += value;
         }
 
-        return new WebData(url, title, tags, wordsCount, uniqueWordsCount);
+        return new WebData(url, title, String.valueOf(toJson(tagsList)), wordsCount, uniqueWordsCount);
     }
 }

@@ -8,7 +8,7 @@ POST        /auth                controllers.Application.auth
 
 
 GET         /courses             controllers.Web.courses
-GET         /sources              controllers.Web.sources
+GET         /sources             controllers.Web.sources
 
 GET         /personalization     controllers.Web.personalization
 GET         /contact             controllers.Web.contact

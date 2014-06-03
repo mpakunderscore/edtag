@@ -1,9 +1,6 @@
 package utils;
 
-import controllers.parsers.FavIcon;
-import controllers.parsers.Page;
-import controllers.parsers.Watcher;
-import controllers.parsers.Wiki;
+import controllers.parsers.*;
 import models.WebData;
 import play.Logger;
 
@@ -16,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -25,22 +23,25 @@ public class Test {
 
     public static void main(String [] args) throws IOException {
 
+        Map<String, Integer> textTags = new HashMap<>();
 
-//        WebData webData = Page.requestWebData("https://www.codehunt.com/#");
-//        WebData webData = Page.requestWebData("http://coffeescript.org/");
+        textTags.put("test1", 1);
+        textTags.put("test2", 2);
 
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        ValueComparator bvc =  new ValueComparator(map);
+        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
 
-        WebData webData = Page.requestWebData("http://en.wikipedia.org/wiki/Computational_linguistics");
+        map.putAll(textTags);
+        sorted_map.putAll(map);
 
-        if (webData == null) {
+        List<Map<String, String>> tagsList = new ArrayList<>();
+        for (Map.Entry<String, Integer> set : sorted_map.entrySet()) {
 
-
-            Logger.error("Error");
+            Map<String, String> tag = new HashMap<>();
+            tag.put("name", set.getKey());
+            tag.put("weight", set.getValue().toString());
+            tagsList.add(tag);
         }
-
-
-
     }
-
-
 }

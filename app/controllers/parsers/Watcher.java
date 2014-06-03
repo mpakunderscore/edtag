@@ -19,8 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.List;
 
 import static play.libs.Json.toJson;
 
@@ -80,14 +80,27 @@ public final class Watcher {
         //TODO select tags
 
         Map<String, Integer> words = Text.getWords(text);
-
         Map<String, Integer> textTags = Text.getTags(words);
 
-        String tags = String.valueOf(toJson(textTags));
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        ValueComparator bvc =  new ValueComparator(map);
+        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+
+        map.putAll(textTags);
+        sorted_map.putAll(map);
+
+        List<Map<String, String>> tagsList = new ArrayList<>();
+        for (Map.Entry<String, Integer> set : sorted_map.entrySet()) {
+
+            Map<String, String> tag = new HashMap<>();
+            tag.put("name", set.getKey());
+            tag.put("weight", set.getValue().toString());
+            tagsList.add(tag);
+        }
 
         String favIconFormat = FavIcon.save(domainString, doc);
 
-        return new Domain(domainString, title, tags, Domain.UNCHECKED, favIconFormat);
+        return new Domain(domainString, title, String.valueOf(toJson(tagsList)), Domain.UNCHECKED, favIconFormat);
     }
 
 

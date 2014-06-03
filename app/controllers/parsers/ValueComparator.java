@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by pavelkuzmin on 16/04/14.
  */
-class ValueComparator implements Comparator<String> {
+public class ValueComparator implements Comparator<String> {
 
     Map<String, Integer> base;
     public ValueComparator(Map<String, Integer> base) {
