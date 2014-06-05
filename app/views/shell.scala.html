@@ -19,13 +19,13 @@
 
     </head>
 
-    <body>
+    <body ng-controller="mainCtrl">
 
         <div id="logo" class="menu"><a href="/">&#60; &#62;</a></div>
 
         <nav id="menu" class="menu">
 
-            <input id="search" type="text" ng-model="search" />
+            <input id="search" type="text" placeholder="Search" ng-model="searchText"/>
 
             <span id="courses">
                 <a href="/courses">Courses</a>

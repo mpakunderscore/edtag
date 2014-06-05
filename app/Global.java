@@ -13,31 +13,41 @@ import java.util.List;
  */
 public class Global extends GlobalSettings {
 
+    private static final boolean update = false;
+
     public void onStart(Application app) {
 
         if (Ebean.find(Tag.class).findList().size() == 0) {
 
             Wiki.loadSimpleWords();
-
-            Thread thread = new Thread(new Runnable() {
-
-                @Override
-                public void run() {
-
-                    try {
-
-                        updateTags(); //TODO and for domains
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-            thread.start();
         }
 
+        if (update) updateDatabase();
+
         Logger.info("Application has started");
+    }
+
+    private void updateDatabase() {
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                try {
+
+//                    updateWebData();
+                    updateTags();
+//                    updateDomains();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+
     }
 
     private void updateTags() {
