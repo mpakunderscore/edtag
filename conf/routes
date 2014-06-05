@@ -11,7 +11,7 @@ GET         /courses             controllers.Web.courses
 GET         /sources             controllers.Web.sources
 
 GET         /personalization     controllers.Web.personalization
-GET         /contact             controllers.Web.contact
+GET         /about               controllers.Web.about
 
 
 GET         /add                 controllers.API.add(url: String)

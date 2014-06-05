@@ -66,7 +66,7 @@ public class Web extends Controller {
         return ok(personalization.render());
     }
 
-    public static Result contact() {
+    public static Result about() {
 
         return ok(contact.render());
     }

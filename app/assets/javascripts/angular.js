@@ -18363,7 +18363,7 @@ var ngCloakDirective = ngDirective({
  *     by specifying `as propertyName`.
  *
  * @example
- * Here is a simple form for editing user contact information. Adding, removing, clearing, and
+ * Here is a simple form for editing user about information. Adding, removing, clearing, and
  * greeting are methods declared on the controller (see source tab). These methods can
  * easily be called from the angular markup. Notice that the scope becomes the `this` for the
  * controller's instance. This allows for easy access to the view data from the controller. Also
@@ -18393,9 +18393,9 @@ var ngCloakDirective = ngDirective({
           this.contacts.splice(index, 1);
         };
 
-        SettingsController1.prototype.clearContact = function(contact) {
-          contact.type = 'phone';
-          contact.value = '';
+        SettingsController1.prototype.clearContact = function(about) {
+          about.type = 'phone';
+          about.value = '';
         };
       </script>
       <div id="ctrl-as-exmpl" ng-controller="SettingsController1 as settings">
@@ -18403,14 +18403,14 @@ var ngCloakDirective = ngDirective({
         [ <a href="" ng-click="settings.greet()">greet</a> ]<br/>
         Contact:
         <ul>
-          <li ng-repeat="contact in settings.contacts">
-            <select ng-model="contact.type">
+          <li ng-repeat="about in settings.contacts">
+            <select ng-model="about.type">
                <option>phone</option>
                <option>email</option>
             </select>
-            <input type="text" ng-model="contact.value"/>
-            [ <a href="" ng-click="settings.clearContact(contact)">clear</a>
-            | <a href="" ng-click="settings.removeContact(contact)">X</a> ]
+            <input type="text" ng-model="about.value"/>
+            [ <a href="" ng-click="settings.clearContact(about)">clear</a>
+            | <a href="" ng-click="settings.removeContact(about)">X</a> ]
           </li>
           <li>[ <a href="" ng-click="settings.addContact()">add</a> ]</li>
        </ul>
@@ -18424,24 +18424,24 @@ var ngCloakDirective = ngDirective({
              .getAttribute('value')).toBe('John Smith');
 
          var firstRepeat =
-             container.findElement(by.repeater('contact in settings.contacts').row(0));
+             container.findElement(by.repeater('about in settings.contacts').row(0));
          var secondRepeat =
-             container.findElement(by.repeater('contact in settings.contacts').row(1));
+             container.findElement(by.repeater('about in settings.contacts').row(1));
 
-         expect(firstRepeat.findElement(by.model('contact.value')).getAttribute('value'))
+         expect(firstRepeat.findElement(by.model('about.value')).getAttribute('value'))
              .toBe('408 555 1212');
-         expect(secondRepeat.findElement(by.model('contact.value')).getAttribute('value'))
+         expect(secondRepeat.findElement(by.model('about.value')).getAttribute('value'))
              .toBe('john.smith@example.org');
 
          firstRepeat.findElement(by.linkText('clear')).click();
 
-         expect(firstRepeat.findElement(by.model('contact.value')).getAttribute('value'))
+         expect(firstRepeat.findElement(by.model('about.value')).getAttribute('value'))
              .toBe('');
 
          container.findElement(by.linkText('add')).click();
 
-         expect(container.findElement(by.repeater('contact in settings.contacts').row(2))
-             .findElement(by.model('contact.value'))
+         expect(container.findElement(by.repeater('about in settings.contacts').row(2))
+             .findElement(by.model('about.value'))
              .getAttribute('value'))
              .toBe('yourname@example.org');
        });
@@ -18469,9 +18469,9 @@ var ngCloakDirective = ngDirective({
            this.contacts.splice(index, 1);
           };
 
-          $scope.clearContact = function(contact) {
-           contact.type = 'phone';
-           contact.value = '';
+          $scope.clearContact = function(about) {
+           about.type = 'phone';
+           about.value = '';
           };
         }
       </script>
@@ -18480,14 +18480,14 @@ var ngCloakDirective = ngDirective({
         [ <a href="" ng-click="greet()">greet</a> ]<br/>
         Contact:
         <ul>
-          <li ng-repeat="contact in contacts">
-            <select ng-model="contact.type">
+          <li ng-repeat="about in contacts">
+            <select ng-model="about.type">
                <option>phone</option>
                <option>email</option>
             </select>
-            <input type="text" ng-model="contact.value"/>
-            [ <a href="" ng-click="clearContact(contact)">clear</a>
-            | <a href="" ng-click="removeContact(contact)">X</a> ]
+            <input type="text" ng-model="about.value"/>
+            [ <a href="" ng-click="clearContact(about)">clear</a>
+            | <a href="" ng-click="removeContact(about)">X</a> ]
           </li>
           <li>[ <a href="" ng-click="addContact()">add</a> ]</li>
        </ul>
@@ -18501,24 +18501,24 @@ var ngCloakDirective = ngDirective({
              .getAttribute('value')).toBe('John Smith');
 
          var firstRepeat =
-             container.findElement(by.repeater('contact in contacts').row(0));
+             container.findElement(by.repeater('about in contacts').row(0));
          var secondRepeat =
-             container.findElement(by.repeater('contact in contacts').row(1));
+             container.findElement(by.repeater('about in contacts').row(1));
 
-         expect(firstRepeat.findElement(by.model('contact.value')).getAttribute('value'))
+         expect(firstRepeat.findElement(by.model('about.value')).getAttribute('value'))
              .toBe('408 555 1212');
-         expect(secondRepeat.findElement(by.model('contact.value')).getAttribute('value'))
+         expect(secondRepeat.findElement(by.model('about.value')).getAttribute('value'))
              .toBe('john.smith@example.org');
 
          firstRepeat.findElement(by.linkText('clear')).click();
 
-         expect(firstRepeat.findElement(by.model('contact.value')).getAttribute('value'))
+         expect(firstRepeat.findElement(by.model('about.value')).getAttribute('value'))
              .toBe('');
 
          container.findElement(by.linkText('add')).click();
 
-         expect(container.findElement(by.repeater('contact in contacts').row(2))
-             .findElement(by.model('contact.value'))
+         expect(container.findElement(by.repeater('about in contacts').row(2))
+             .findElement(by.model('about.value'))
              .getAttribute('value'))
              .toBe('yourname@example.org');
        });
