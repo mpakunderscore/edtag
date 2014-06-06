@@ -17,7 +17,9 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
     $scope.getDomain = function (url) {
         return url.replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
     };
+
     $scope.searchText = '';
+
     $scope.getWordsCount = function (words) {
         return Math.floor(words / 100)
     }

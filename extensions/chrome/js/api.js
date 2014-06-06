@@ -1,7 +1,9 @@
 //var host = "https://edtag.io";
 var host = "http://localhost:9000";
 
-var notificationTime = 2000;
+var notificationTime = 10000;
+
+var notID = 0;
 
 function setDomains() {
 
@@ -31,22 +33,54 @@ function add_url(tab) {
 
     var webData = JSON.parse(response);
 
-    console.log(tab.url.split("://")[1].replace("www.", ""));
+    var url = tab.url.split("://")[1].replace("www.", "");
 
-    notification(tab["favIconUrl"], webData.title.replace(" - Wikipedia, the free encyclopedia", ""), sort(JSON.parse(webData.tags)).join(", ")); //TODO
+    console.log(url);
+
+    var iconUrl = "https://s3.amazonaws.com/edtag/";
+
+    webData.favIconFormat = "ico";
+
+    if (webData.favIconFormat) iconUrl += url.split("/")[0] + "." + webData.favIconFormat;
+
+    else iconUrl += "blank.ico";
+
+    notification(iconUrl, webData.title.replace(" - Wikipedia, the free encyclopedia", ""), webData.tags); //TODO
 }
 
-function notification(favIcon, title, text) {
+function notification(iconUrl, title, text) {
 
-    var notification = window.webkitNotifications.createNotification(
-        favIcon,    // The image.
-        title,      // The title.
-        text        // The body.
-    );
+    var options = {
+        type : "basic",
+        title: title,
+        message: text,
+        expandedMessage: "Longer part of the message"
+    };
 
-    notification.show();
+    options.iconUrl = iconUrl;
 
-    setTimeout( function() { notification.cancel() }, notificationTime );
+    options.priority = 0;
+
+    options.buttons = [];
+//    options.buttons.push({ title: "ok" });
+
+    chrome.notifications.create("id"+notID++, options, creationCallback);
+}
+
+function creationCallback(notID) {
+
+    console.log("Succesfully created " + notID + " notification");
+
+//    if (document.getElementById("clear").checked) {
+
+        setTimeout(function() {
+
+            chrome.notifications.clear(notID, function(wasCleared) {
+                console.log("Notification " + notID + " cleared: " + wasCleared);
+            });
+
+        }, notificationTime);
+//    }
 }
 
 function sort(tags) {
