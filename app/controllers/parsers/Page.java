@@ -47,22 +47,7 @@ public class Page {
 
         Map<String, Integer> words = Text.getWords(text);
         Map<String, Integer> textTags = Text.getTags(words);
-
-        HashMap<String, Integer> map = new HashMap<String, Integer>();
-        ValueComparator bvc =  new ValueComparator(map);
-        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
-
-        map.putAll(textTags);
-        sorted_map.putAll(map);
-
-        List<Map<String, String>> tagsList = new ArrayList<>();
-        for (Map.Entry<String, Integer> set : sorted_map.entrySet()) {
-
-            Map<String, String> tag = new HashMap<>();
-            tag.put("name", set.getKey());
-            tag.put("weight", set.getValue().toString());
-            tagsList.add(tag);
-        }
+        List<Map<String, String>> tagsList = Text.getTagsList(textTags);
 
         int uniqueWordsCount = words.size();
 

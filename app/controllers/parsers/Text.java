@@ -1,7 +1,6 @@
 package controllers.parsers;
 
 import models.Tag;
-import models.WebData;
 import play.Logger;
 
 import java.util.*;
@@ -47,9 +46,6 @@ public class Text {
 
         Map<String, Integer> bigrams = new HashMap<>();
 
-        ValueComparator bvc =  new ValueComparator(bigrams);
-        TreeMap<String, Integer> sortedBigrams  = new TreeMap<>(bvc);
-
         for (int i = 0; i < wordsList.size() - 1; i++) {
 
             String bigram = wordsList.get(i) + " " + wordsList.get(i + 1);
@@ -58,9 +54,7 @@ public class Text {
             else bigrams.put(bigram, 1);
         }
 
-        sortedBigrams.putAll(bigrams);
-
-        return sortedBigrams;
+        return bigrams;
     }
 
     public static Map<String, Integer> getTags(Map<String, Integer> words) {
@@ -70,7 +64,7 @@ public class Text {
         int i = 0;
         for (Map.Entry<String, Integer> word : words.entrySet()) {
 
-            Tag tag = Wiki.getPage(word.getKey());
+            Tag tag = Wiki.getTagPage(word.getKey());
 
             if (tag == null) {
 
@@ -79,11 +73,11 @@ public class Text {
 
             } else if (tag.isMark()) {
 
-                Logger.debug("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories() + (tag.getRedirect() == null ? "" : " " + tag.getRedirect()));
+//                Logger.debug("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories() + (tag.getRedirect() == null ? "" : " " + tag.getRedirect()));
 
                 if (tag.getRedirect() != null) {
 
-                    Tag redirect = Wiki.getPage(tag.getRedirect());
+                    Tag redirect = Wiki.getTagPage(tag.getRedirect());
 
                     if (redirect != null && !redirect.isMark()) continue;
 
@@ -103,5 +97,26 @@ public class Text {
         }
 
         return tags;
+    }
+
+    public static List<Map<String, String>> getTagsList(Map<String, Integer> textTags) {
+
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        ValueComparator bvc =  new ValueComparator(map);
+        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+
+        map.putAll(textTags);
+        sorted_map.putAll(map);
+
+        List<Map<String, String>> tagsList = new ArrayList<>();
+        for (Map.Entry<String, Integer> set : sorted_map.entrySet()) {
+
+            Map<String, String> tag = new HashMap<>();
+            tag.put("name", set.getKey());
+            tag.put("weight", set.getValue().toString());
+            tagsList.add(tag);
+        }
+
+        return tagsList;
     }
 }

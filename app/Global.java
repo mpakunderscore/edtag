@@ -5,6 +5,7 @@ import models.Tag;
 import models.WebData;
 import play.GlobalSettings;
 import play.*;
+import play.libs.Json;
 
 import java.util.List;
 
@@ -56,17 +57,19 @@ public class Global extends GlobalSettings {
 
         for (WebData webData : list) {
 
+            if (Json.parse(webData.getTags()).isArray()) continue;
+
             WebData withTags = Page.requestWebData(webData.getUrl());
 
             if (withTags == null) {
-                Logger.error("[page tags updated error] " + webData.getId() + " " + webData.getUrl() + " " + webData.getTags());
+                Logger.error("[page tags update error] " + webData.toString());
                 continue;
             }
 
             webData.setTags(withTags.getTags());
             webData.update();
 
-            Logger.debug("[page tags updated] " + webData.getId() + " " + webData.getUrl() + " " + webData.getTags());
+            Logger.debug("[page tags updated] " + webData.toString() );
         }
 
         Logger.info("Tags updated for " + list.size() + " pages.");

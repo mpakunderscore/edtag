@@ -8,6 +8,7 @@ import play.libs.Json.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by pavelkuzmin on 01/03/14.
@@ -86,5 +87,10 @@ public class WebData extends Model {
 
     public JsonNode getTagsList() {
         return Json.parse(this.tags);
+    }
+
+    public String toString() {
+
+        return this.getTitle() + " " + this.getId() + " " + this.getUrl() + " " + this.getTags();
     }
 }

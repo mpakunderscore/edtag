@@ -69,7 +69,7 @@ public class System extends Controller {
 //
 ////        if (!name.equals(word)) {
 ////
-////            redirect = getPage(name);
+////            redirect = getTagPage(name);
 ////            redirect_name = name;
 ////        }
 //

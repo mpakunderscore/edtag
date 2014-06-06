@@ -3,6 +3,7 @@ package controllers.parsers;
 import models.WebData;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static play.libs.Json.toJson;
@@ -15,12 +16,10 @@ public class PDF {
     public static WebData requestWebData(String url) {
 
         Map<String, Integer> words = new HashMap<String, Integer>();
+        Map<String, Integer> textTags = new HashMap<String, Integer>();
 
-        Map<String, Integer> tagsMap = new HashMap<String, Integer>();
-
-        tagsMap.put("pdf", 0); //TODO system tags
-
-        String tags = String.valueOf(toJson(tagsMap));
+        textTags.put("pdf", 0);
+        List<Map<String, String>> tagsList = Text.getTagsList(textTags);
 
         String title = url;
 
@@ -31,6 +30,6 @@ public class PDF {
             wordsCount += value;
         }
 
-        return new WebData(url, title, tags, wordsCount, uniqueWordsCount);
+        return new WebData(url, title, String.valueOf(toJson(tagsList)), wordsCount, uniqueWordsCount);
     }
 }

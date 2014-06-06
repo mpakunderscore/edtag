@@ -20,6 +20,7 @@ import static play.libs.Json.toJson;
 public class Wiki { //TODO wiki api == old crap
 
     private static final List<String> unmarkedCategories = new ArrayList<String>() {{
+
         add("english grammar");
         add("disambiguation pages");
         add("grammar");
@@ -32,7 +33,7 @@ public class Wiki { //TODO wiki api == old crap
     private static final String url = "http://en.wikipedia.org/wiki/";
     private static final String simpleWordsPageUrl = "http://simple.wikipedia.org/wiki/Wikipedia:List_of_1000_basic_words";
 
-    public static Tag getPage(String word) { //TODO lang check
+    public static Tag getTagPage(String word) { //TODO lang check
 
         Tag tag = null;
 
@@ -49,7 +50,10 @@ public class Wiki { //TODO wiki api == old crap
 
         } catch (IOException exception) { //TODO
 
-            return null;
+            tag = new Tag(word, null, null, false);
+            tag.save();
+
+            return tag;
         }
 
         String redirect_name = null;
