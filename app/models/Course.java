@@ -1,8 +1,13 @@
 package models;
 
+import com.avaje.ebean.Ebean;
+import com.fasterxml.jackson.databind.JsonNode;
 import play.db.ebean.Model;
+import play.libs.Json;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pavelkuzmin on 27/05/14.
@@ -32,8 +37,23 @@ public class Course extends Model {
         this.title = title;
     }
 
-    public String getWebDataIds() {
-        return webDataIds;
+    public com.fasterxml.jackson.databind.JsonNode getWebDataIds() {
+        return Json.parse(this.webDataIds);
+    }
+
+    public List<WebData> getWebDataList() {
+
+        List<WebData> webDataList = new ArrayList<>();
+
+        for (JsonNode node : this.getWebDataIds()) {
+
+            WebData webData = Ebean.find(WebData.class).where().eq("id", node.asInt()).findUnique();
+
+            if (webData != null)
+                webDataList.add(webData);
+        }
+
+        return webDataList;
     }
 
     public void setWebDataIds(String webDataIds) {
