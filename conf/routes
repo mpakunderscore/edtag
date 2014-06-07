@@ -20,6 +20,9 @@ GET         /domains             controllers.API.getApprovedDomains
 GET         /alldomains          controllers.Web.domains
 GET         /pages               controllers.Web.pages
 
+GET         /course/save         controllers.Web.saveCourse(title: String, webDataIds: String)
+GET         /course/update       controllers.Web.updateCourse(id: Integer, title: String, webDataIds: String)
+
 
 GET         /query               controllers.System.query(text: String)
 GET         /delete              controllers.System.delete

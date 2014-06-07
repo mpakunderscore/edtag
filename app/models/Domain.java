@@ -4,7 +4,9 @@ package models;
  * Created by ya.surin on 3/19/2014.
  */
 
+import com.fasterxml.jackson.databind.JsonNode;
 import play.db.ebean.Model;
+import play.libs.Json;
 
 import javax.persistence.*;
 import java.security.Timestamp;
@@ -68,5 +70,9 @@ public class Domain extends Model {
 
     public void setFavIconFormat(String favIconFormat) {
         this.favIconFormat = favIconFormat;
+    }
+
+    public JsonNode getTagsList() {
+        return Json.parse(this.tags);
     }
 }

@@ -8,6 +8,7 @@ import models.WebData;
 import models.UserData;
 import play.cache.Cache;
 import play.db.ebean.Model;
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.contact;
@@ -51,15 +52,44 @@ public class Web extends Controller {
         return ok(toJson(Ebean.find(Domain.class).order().desc("state").findList()));
     }
 
+    public static Result courses() {
+
+        List<Course> courses = Ebean.find(Course.class).findList();
+
+        return ok(toJson(courses));
+    }
+
+
     public static Result saveCourse(String title, String webDataIds) {
+
+        if (!Json.parse(webDataIds).isArray())
+            return ok();
 
         Course course = new Course();
 
         course.setTitle(title);
-        course.setTags(webDataIds);
+        course.setWebDataIds(webDataIds);
+//        course.setTags();
+
+        course.save();
+
+        return created();
+    }
+
+    public static Result updateCourse(int id, String title, String webDataIds) {
+
+        if (!Json.parse(webDataIds).isArray())
+            return ok();
+
+        Course course = Ebean.find(Course.class).where().eq("id", id).findUnique();
+
+        course.setTitle(title);
+        course.setWebDataIds(webDataIds);
+//        course.setTags();
 
         course.save();
 
         return ok();
     }
+
 }
