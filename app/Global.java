@@ -58,7 +58,7 @@ public class Global extends GlobalSettings {
 
         for (WebData webData : webDataList) {
 
-            if (Json.parse(webData.getTags()).isArray()) continue;
+//            if (Json.parse(webData.getTags()).isArray()) continue;
 
             WebData withTags = Page.requestWebData(webData.getUrl());
 
@@ -67,7 +67,7 @@ public class Global extends GlobalSettings {
                 continue;
             }
 
-            webData.setTags(withTags.getTags());
+            webData.setTags(Json.stringify(withTags.getTags()));
             webData.update();
 
             Logger.debug("[page tags updated] " + webData.toString() );

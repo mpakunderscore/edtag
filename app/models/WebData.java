@@ -18,7 +18,7 @@ import java.util.Map;
 public class WebData extends Model {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long id;
 
     @Constraints.Required
@@ -56,9 +56,9 @@ public class WebData extends Model {
         return title;
     }
 
-    public String getTags() {
-        return tags;
-    }
+//    public String getTags() {
+//        return tags;
+//    }
 
     public static String getDomainString(String url) {
 
@@ -85,7 +85,7 @@ public class WebData extends Model {
         this.tags = tags;
     }
 
-    public JsonNode getTagsList() {
+    public JsonNode getTags() {
         return Json.parse(this.tags);
     }
 
