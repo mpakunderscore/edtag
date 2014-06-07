@@ -68,12 +68,12 @@ public class Application extends Controller {
 
     public static Result personal() {
 
-        return ok(personalization.render());
+        return ok(personal.render());
     }
 
     public static Result about() {
 
-        return ok(contact.render());
+        return ok(about.render());
     }
 
 
