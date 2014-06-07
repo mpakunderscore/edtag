@@ -11,6 +11,17 @@
 
 	padding-left: 0;
 
+	.title {
+
+		padding: 10px 0 10px 32px;
+		text-align: left;
+
+		&progress::-webkit-progress-value {
+
+			background: rgba(105, 235, 94, 0.25);
+		}
+	}
+
 	li {
 
 		list-style: none;
@@ -26,11 +37,6 @@
 			padding-left: 6px;
 			padding-right: 16px;
 			//			padding-right: 16px;
-
-		}
-
-		.title {
-			padding-left: 20px;
 		}
 	}
 }
@@ -79,18 +85,10 @@ progress {
 	vertical-align: middle;
 }
 
-/* All good till now. Now we'll style the background */
 progress::-webkit-progress-bar {
 	background: rgba(211, 211, 211, 0.47);
-	border-radius: 50px;
-	padding: 0px;
-	box-shadow: none;
 }
 
-/* Now the value part */
-progress::-webkit-progress-value {
-	border-radius: 10px;
-	box-shadow: none;
+&progress::-webkit-progress-value {
 	background: rgba(128, 128, 128, 0.36);
-	/* Looks great, now animating it */
 }

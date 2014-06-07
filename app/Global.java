@@ -7,7 +7,9 @@ import play.GlobalSettings;
 import play.*;
 import play.libs.Json;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by pavelkuzmin on 19/05/14.
@@ -37,9 +39,8 @@ public class Global extends GlobalSettings {
 
                 try {
 
-//                    updateWebData();
-                    updateTags();
-//                    updateDomains();
+                    updateWebData();
+                    updateDomains();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -51,11 +52,11 @@ public class Global extends GlobalSettings {
 
     }
 
-    private void updateTags() {
+    private void updateWebData() {
 
-        List<WebData> list = Ebean.find(WebData.class).findList();
+        List<WebData> webDataList = Ebean.find(WebData.class).findList();
 
-        for (WebData webData : list) {
+        for (WebData webData : webDataList) {
 
             if (Json.parse(webData.getTags()).isArray()) continue;
 
@@ -72,7 +73,19 @@ public class Global extends GlobalSettings {
             Logger.debug("[page tags updated] " + webData.toString() );
         }
 
-        Logger.info("Tags updated for " + list.size() + " pages.");
+        Logger.info("Tags updated for " + webDataList.size() + " pages.");
+    }
+
+    private void updateDomains() {
+
+        Map<String, Map<String, Integer>> domainsTags = new HashMap<>();
+
+        List<WebData> webDataList = Ebean.find(WebData.class).findList();
+
+        for (WebData webData : webDataList) {
+
+        }
+
     }
 
     public void onStop(Application app) {

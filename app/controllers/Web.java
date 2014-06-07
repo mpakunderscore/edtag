@@ -2,6 +2,7 @@ package controllers;
 
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
+import models.Course;
 import models.Domain;
 import models.WebData;
 import models.UserData;
@@ -11,7 +12,6 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.contact;
 import views.html.courses;
-import views.html.personalization;
 import views.html.sources;
 
 import java.lang.*;
@@ -38,7 +38,7 @@ public class Web extends Controller {
 //        List<Long> webDataIds = userDataList.stream().map(UserData::getWebDataId).collect(Collectors.toList());
 
         //get webData (title and tags)
-        List<WebData> webDataList = Ebean.find(WebData.class).order().desc("id").findList().subList(0, 100); //TODO bad solution
+        List<WebData> webDataList = Ebean.find(WebData.class).order().desc("id").findList(); //TODO bad solution
 
 //        List<WebData> webDataSortedList = userDataList.stream().map(userData -> webDataMap.get(userData.getWebDataId())).collect(Collectors.toList()); //TODO combine userData and webData
 
@@ -51,23 +51,15 @@ public class Web extends Controller {
         return ok(toJson(Ebean.find(Domain.class).order().desc("state").findList()));
     }
 
-    public static Result courses() {
+    public static Result saveCourse(String title, String webDataIds) {
 
-        return ok(courses.render());
-    }
+        Course course = new Course();
 
-    public static Result sources() {
+        course.setTitle(title);
+        course.setTags(webDataIds);
 
-        return ok(sources.render());
-    }
+        course.save();
 
-    public static Result personalization() {
-
-        return ok(personalization.render());
-    }
-
-    public static Result about() {
-
-        return ok(contact.render());
+        return ok();
     }
 }

@@ -38,10 +38,6 @@ public class Application extends Controller {
 
     private static final String SSL_HEADER = "x-forwarded-proto";
 
-    public static Result show(int id) {
-        return ok(toJson(Ebean.find(WebData.class).where().eq("user_id", id).findUnique()));
-    }
-
 //    @SecureSocial.SecuredAction
     public static Result index() {
 
@@ -49,7 +45,7 @@ public class Application extends Controller {
             return redirect("https://" + request().host()
                     + request().uri());
 
-        return ok(index.render());
+        return courses();
     }
 
     private static boolean isHttpsRequest(Http.Request request) {
@@ -58,6 +54,31 @@ public class Application extends Controller {
         return request.getHeader(SSL_HEADER) != null
                 && request.getHeader(SSL_HEADER)
                 .contains("https");
+    }
+
+    public static Result courses() {
+
+        return ok(courses.render());
+    }
+
+    public static Result sources() {
+
+        return ok(sources.render());
+    }
+
+    public static Result personal() {
+
+        return ok(personalization.render());
+    }
+
+    public static Result about() {
+
+        return ok(contact.render());
+    }
+
+
+    public static Result show(int id) {
+        return ok(toJson(Ebean.find(WebData.class).where().eq("user_id", id).findUnique()));
     }
 
     public static Result login() {

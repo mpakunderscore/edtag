@@ -1,22 +1,20 @@
-@shell("Courses") {
+@shell("Edtag Courses") {
 
 
     <div id="main" >
         <ul class="links" id="out">
 
-            @*<p style="padding: 10px 0px 10px 32px; text-align: left;">*@
-                @*Software requirements specification*@
-                @*<progress class="volume" value="25" max="100" style="padding-left: 20px;"></progress>*@
-            @*</p>*@
-
-
+            <p class="title">
+                Software requirements specification
+                <progress class="volume" value="125" max="300" style="padding-left: 20px; width: 500px;"></progress>
+            </p>
 
             <li ng-repeat="link in links | filter:searchText" class='page'>
 
                 <img src="https://s3.amazonaws.com/edtag/{{getDomain(link.url)}}.{{link.favIconFormat}}" ng-show="link.favIconFormat">
 
                 <a href='{{link.url}}' target='_blank' title='{{link.tags}}'>{{link.title}}</a>
-                <progress class='volume' value='{{getWordsCount(link.wordsCount)}}' max="100"></progress>
+                <progress class='volume' value='{{getCount(link.uniqueWordsCount)}}' max='50'></progress>
 
             <li>
 

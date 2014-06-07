@@ -20,7 +20,7 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
 
     $scope.searchText = '';
 
-    $scope.getWordsCount = function (words) {
+    $scope.getCount = function (words) {
         return Math.floor(words / 100)
     }
 });
@@ -54,7 +54,7 @@ edTagApp.controller('srcCtrl', function ($scope, $http) {
         return url.replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
     };
 
-    $scope.getWordsCount = function (words) {
+    $scope.getCount = function (words) {
         return Math.floor(words / 100)
     }
 });
