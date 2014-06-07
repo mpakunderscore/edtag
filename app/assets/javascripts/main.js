@@ -1,10 +1,24 @@
 var edTagApp = angular.module('edTagApp', []);
 
 edTagApp.controller('mainCtrl', function ($scope, $http) {
-
+    $scope.allTags = []
     $http({method: 'GET', url: '/pages'}).
         success(function (data, status, headers, config) {
             $scope.links = data;
+            angular.forEach(data, function(link){
+              //console.log(link.tags)
+              angular.forEach(link.tags, function(tag){
+
+                if (tag.weight > 25 && tag.name.length > 10) {
+                  $scope.allTags.push(tag)
+                }
+              })
+            })
+
+            var reducedTags = _.uniq($scope.allTags, "name")
+            //var sortedTags = _.map(_.sortBy(reducedTags, 'weight'), _.values);
+
+            $scope.sortedTags =_.sortBy(reducedTags)
 
             // this callback will be called asynchronously
             // when the response is available
