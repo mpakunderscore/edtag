@@ -19,5 +19,14 @@
             <li>
 
         </ul>
+
+        <nav id="tags" class="menu">
+            <ul>
+                <li ng-repeat="tag in sortedTags" class='tag'>
+                    <a href="javascript:tagSort(this)" title="{{tag[1]}}">{{tag[0]}}</a>
+                </li>
+            </ul>
+        </nav>
+
     </div>
 }
