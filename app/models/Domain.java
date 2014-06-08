@@ -60,8 +60,8 @@ public class Domain extends Model {
         return title;
     }
 
-    public String getTags() {
-        return tags;
+    public JsonNode getTags() {
+        return Json.parse(this.tags);
     }
 
     public String getFavIconFormat() {
@@ -70,9 +70,5 @@ public class Domain extends Model {
 
     public void setFavIconFormat(String favIconFormat) {
         this.favIconFormat = favIconFormat;
-    }
-
-    public JsonNode getTagsList() {
-        return Json.parse(this.tags);
     }
 }

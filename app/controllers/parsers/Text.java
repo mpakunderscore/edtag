@@ -99,7 +99,7 @@ public class Text {
         return tags;
     }
 
-    public static List<Map<String, String>> getTagsList(Map<String, Integer> textTags) {
+    public static List<JSONTag> getTagsList(Map<String, Integer> textTags) {
 
         HashMap<String, Integer> map = new HashMap<String, Integer>();
         ValueComparator bvc =  new ValueComparator(map);
@@ -108,12 +108,18 @@ public class Text {
         map.putAll(textTags);
         sorted_map.putAll(map);
 
-        List<Map<String, String>> tagsList = new ArrayList<>();
+        List<JSONTag> tagsList = new ArrayList<>();
         for (Map.Entry<String, Integer> set : sorted_map.entrySet()) {
 
-            Map<String, String> tag = new HashMap<>();
-            tag.put("name", set.getKey());
-            tag.put("weight", set.getValue().toString());
+//            Map<String, String> tag = new HashMap<>();
+//            tag.put("name", set.getKey());
+//            tag.put("weight", set.getValue().toString());
+//            tagsList.add(tag);
+
+            JSONTag tag = new JSONTag();
+            tag.name = set.getKey();
+            tag.weight = set.getValue();
+
             tagsList.add(tag);
         }
 

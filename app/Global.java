@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class Global extends GlobalSettings {
 
-    private static final boolean update = false;
+    private static final boolean update = true;
 
     public void onStart(Application app) {
 

@@ -47,7 +47,7 @@ public class Page {
 
         Map<String, Integer> words = Text.getWords(text);
         Map<String, Integer> textTags = Text.getTags(words);
-        List<Map<String, String>> tagsList = Text.getTagsList(textTags);
+        List<JSONTag> tagsList = Text.getTagsList(textTags);
 
         int uniqueWordsCount = words.size();
 

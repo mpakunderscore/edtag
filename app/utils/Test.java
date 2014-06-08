@@ -40,12 +40,18 @@ public class Test {
         map.putAll(textTags);
         sorted_map.putAll(map);
 
-        List<Map<String, String>> tagsList = new ArrayList<>();
+        List<JSONTag> tagsList = new ArrayList<>();
         for (Map.Entry<String, Integer> set : sorted_map.entrySet()) {
 
-            Map<String, String> tag = new HashMap<>();
-            tag.put("name", set.getKey());
-            tag.put("weight", set.getValue().toString());
+//            Map<String, String> tag = new HashMap<>();
+//            tag.put("name", set.getKey());
+//            tag.put("weight", set.getValue().toString());
+//            tagsList.add(tag);
+
+            JSONTag tag = new JSONTag();
+            tag.name = set.getKey();
+            tag.weight = set.getValue();
+
             tagsList.add(tag);
         }
 
@@ -53,10 +59,18 @@ public class Test {
         tagsMap.put("test1", 1);
         tagsMap.put("test2", 2);
 
-        String line = String.valueOf(toJson(tagsMap));
+//        String line = String.valueOf(toJson(tagsMap));
 
-//        String line = String.valueOf(toJson(tagsList));
+        String line = String.valueOf(toJson(tagsList));
 
         System.out.println(Json.parse(line).isArray());
+        System.out.println(line);
     }
 }
+
+class JSONTag {
+
+    public String name;
+    public int weight;
+}
+

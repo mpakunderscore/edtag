@@ -19,7 +19,7 @@ public class PDF {
         Map<String, Integer> textTags = new HashMap<String, Integer>();
 
         textTags.put("pdf", 0);
-        List<Map<String, String>> tagsList = Text.getTagsList(textTags);
+        List<JSONTag> tagsList = Text.getTagsList(textTags);
 
         String title = url;
 

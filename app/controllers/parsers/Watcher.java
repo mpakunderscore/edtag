@@ -79,7 +79,7 @@ public final class Watcher {
 
         Map<String, Integer> words = Text.getWords(text);
         Map<String, Integer> textTags = Text.getTags(words);
-        List<Map<String, String>> tagsList = Text.getTagsList(textTags);
+        List<JSONTag> tagsList = Text.getTagsList(textTags);
 
         String favIconFormat = FavIcon.save(domainString, doc);
 
