@@ -1,6 +1,8 @@
 package models;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import play.db.ebean.Model;
+import play.libs.Json;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,8 +36,8 @@ public class Tag extends Model {
         return mark;
     }
 
-    public String getCategories() {
-        return categories;
+    public JsonNode getCategories() {
+        return Json.parse(this.categories);
     }
 
     public String getRedirect() {
