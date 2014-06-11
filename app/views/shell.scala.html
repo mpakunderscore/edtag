@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html ng-app="edTagApp">
-    
+
     <head>
 
         <title>@title</title>
@@ -10,8 +10,8 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/menu.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        
-        <script src="@routes.Assets.at("javascripts/jquery-2.1.0.js")"></script>
+
+        <script src="@routes.Assets.at("javascripts/lodash.js")"></script>
         <script src="@routes.Assets.at("javascripts/extended.js")"></script>
         <script src="@routes.Assets.at("javascripts/ga.js")"></script>
         <script src="@routes.Assets.at("javascripts/angular.js")"></script>
@@ -21,28 +21,14 @@
 
     <body ng-controller="mainCtrl">
 
-        <div id="logo" class="menu"><a href="/">&#60; &#62;</a></div>
+        <div id="logo"><a href="/">&#60; &#62;</a></div>
 
-        <nav id="menu" class="menu">
-
+        <nav class="top-menu">
             <input id="search" type="text" placeholder="Search" ng-model="searchText"/>
-
-            <span id="courses">
-                <a href="/courses">Courses</a>
-            </span>
-
-            <span id="sources">
-                <a href="/sources">Sources</a>
-            </span>
-
-            <span id="personal">
-                <a href="/personal">Personal</a>
-            </span>
-
-            <span id="about">
-                <a href="/about">About</a>
-            </span>
-
+            <a href="/courses" id="courses">Courses</a>
+            <a href="/sources" id="sources">Sources</a>
+            <a href="/personal" id="personal">Personal</a>
+            <a href="/about" id="about">About</a>
         </nav>
 
             <!-- What are you doing here? -_-' -->

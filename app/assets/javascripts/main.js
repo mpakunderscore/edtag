@@ -1,7 +1,9 @@
 var edTagApp = angular.module('edTagApp', []);
 
 edTagApp.controller('mainCtrl', function ($scope, $http) {
-    $scope.allTags = []
+    var allTags = []
+    var sum = function(a,b){ return a+b; };
+
     $http({method: 'GET', url: '/pages'}).
         success(function (data, status, headers, config) {
             $scope.links = data;
@@ -10,15 +12,21 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
               angular.forEach(link.tags, function(tag){
 
                 if (tag.weight > 25 && tag.name.length > 10) {
-                  $scope.allTags.push(tag)
+                  allTags.push(tag)
                 }
               })
             })
 
-            var reducedTags = _.uniq($scope.allTags, "name")
-            //var sortedTags = _.map(_.sortBy(reducedTags, 'weight'), _.values);
 
-            $scope.sortedTags =_.sortBy(reducedTags)
+var reducedTags = _.chain(allTags).groupBy('name').map(function(v){
+  return {name:v[0].name,weight:_.pluck(v,"weight").reduce(sum)};
+}).value();
+
+// finally, we $scope.allTags$scope.allTagsget the value
+//            var reducedTags = _.uniq($scope.allTags, "name")
+//            var sortedTags = _.map(_.sortBy(reducedTags, 'weight'), _.values);
+
+            $scope.sortedTags =_.sortBy(reducedTags, 'weight').reverse()
 
             // this callback will be called asynchronously
             // when the response is available

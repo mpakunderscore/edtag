@@ -4,15 +4,14 @@
     <div id="main" >
         <ul class="links" id="out">
 
-            <p class="title">
-                Software requirements specification
-                <progress class="volume" value="125" max="300" style="padding-left: 20px; width: 500px;"></progress>
-            </p>
+            <nav id="tags" class="menu">
+              <a href="#" ng-repeat="tag in sortedTags" title="{{tag.weight}}">{{tag.name}}</a>
+            </nav>
 
             <li ng-repeat="link in links | filter:searchText" class='page'>
 
                 <img src="https://s3.amazonaws.com/edtag/{{getDomain(link.url)}}.{{link.favIconFormat}}" ng-show="link.favIconFormat">
-
+                <img src="assets/images/default-favicon.png" ng-show="!link.favIconFormat">
                 <a href='{{link.url}}' target='_blank' title='{{link.tags}}'>{{link.title}}</a>
                 <progress class='volume' value='{{getCount(link.uniqueWordsCount)}}' max='50'></progress>
 
