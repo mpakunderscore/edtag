@@ -1,25 +1,66 @@
-body, input {
-
-	font: 13px helvetica, arial, freesans, clean, sans-serif;
+body {
+	font: 13px helvetica;
 	line-height: 1.5;
 	margin: 0;
+	a {
 
-//	background-color: rgba(239, 239, 239, 0.04);
+		&:link {
+			text-decoration: none;
+			color: #4183C4;
+		}
+		&:visited {
+			color: #457cc1;
+		}
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	input, textarea {
+		background-color: #ffffff;
+	}
+	ul{
+		&.link{
+			position: absolute;
+			top: 52px;
+			left: 220px;
+			right: 0;
+			min-width: 900px;
+			margin-bottom: 50px;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+			background-color: rgb(255, 255, 255);
+			padding-left: 0;
+			.title {
+				padding: 10px 0 10px 32px;
+				text-align: left;
+				&progress::-webkit-progress-value {
+					background: rgba(105, 235, 94, 0.25);
+				}
+			}
+
+			li {
+
+				list-style: none;
+				margin: 12px;
+
+				img {
+
+					width: 16px;
+					height: 16px;
+					//			margin-right: 5px;
+					vertical-align: bottom;
+
+					padding-left: 6px;
+					padding-right: 16px;
+					//			padding-right: 16px;
+				}
+			}
+		}
+	}
 }
 
-body {
 
-}
 
-input[type="search"] {
 
-	border: 1px solid gray;
-	border-radius: 0;
-}
-
-input, textarea {
-	background-color: #ffffff;
-}
 
 .menu a {
 	margin-left: 20px;
@@ -59,34 +100,27 @@ input, textarea {
 }
 
 nav {
-
-	&#menu {
-
-//		border-left: 1px solid gray;
-
+	overflow: scroll;
+	height: 80%;
+	&.top-menu{
 		background-color: #ffffff;
-
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-
-
-
-
 		min-width: 880px;
 		font: 13px helvetica, arial, freesans, clean, sans-serif;
-
 		position: fixed;
 		left: 220px;
 		right: 0;
-
+		position: absolute;
 		padding: 20px 0 20px 25px;
-
-
-//		z-index: 1;
-//		background: white;
-//		a#about {
-//			float: right;
-//		}
+		input[type="search"] {
+			border: 1px solid gray;
+			border-radius: 0;
+		}
+		a{
+			margin-left: 20px;
+		}
 	}
+
 	&#tags {
 
 		li {
@@ -95,8 +129,7 @@ nav {
 
 		a {
 			margin: 12px 24px 0 12px;
-			display: inline-block;
-
+			display: block;
 			&.selected {
 				color: rgb(254, 65, 50);
 			}

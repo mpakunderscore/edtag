@@ -1,41 +1,33 @@
 var edTagApp = angular.module('edTagApp', []);
 
 edTagApp.controller('mainCtrl', function ($scope, $http) {
-
+    var allTags = []
+    var sum = function(a,b){ return a+b; };
     $scope.selected_tags = {}
     $scope.allTags = {}
 
-    $http({method: 'GET', url: '/course/list'}).
+    $http({method: 'GET', url: '/pages'}).
         success(function (data, status, headers, config) {
+            $scope.links = data;
+            angular.forEach(data, function (link) {
+                angular.forEach(link.tags, function (tag) {
 
-            $scope.courses = data;
-            angular.forEach(data, function (course) {
-
-                //console.log(link.tags)
-                angular.forEach(course.tags, function (tag) {
-
-//                    if (tag.weight > 25 && tag.name.length > 10) {
-//                        $scope.allTags.push(tag)
-//                    }
-
-                    if ($scope.allTags[tag.name] != null) $scope.allTags[tag.name] += tag.weight;
-                    else $scope.allTags[tag.name] = tag.weight;
+                    if (tag.weight > 25 && tag.name.length > 3) {
+                      allTags.push(tag)
+                    }
+                    //(allTags[tag.name] != null) ? allTags[tag.name] += tag.weight : allTags[tag.name] = tag.weight;
                 })
-
-//                angular.forEach(course.webDataList, function (webData) {
-//
-//                })
             })
 
-//            var reducedTags = _.uniq($scope.allTags, "name")
-            //var sortedTags = _.map(_.sortBy(reducedTags, 'weight'), _.values);
 
-            $scope.sortedTags = sort($scope.allTags).slice(0, 15)
+            var reducedTags = _.chain(allTags).groupBy('name').map(function(v){
+              return {name:v[0].name,weight:_.pluck(v,"weight").reduce(sum)};
+            }).value();
 
-//            console.log($scope.sortedTags)
+            $scope.sortedTags =_.sortBy(reducedTags, 'weight').reverse()
 
-            // this callback will be called asynchronously
-            // when the response is available
+            //$scope.sortedTags = sort(allTags).slice(0, 15)
+
         }).
         error(function (data, status, headers, config) {
             // called asynchronously if an error occurs
@@ -51,11 +43,6 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
     $scope.getCount = function (words) {
         return Math.floor(words / 100)
     }
-});
-
-$("a[href='#logo']").click(function() {
-    $("html, body").animate({ scrollTop: 0 }, "slow");
-    return false;
 });
 
 function sort(map) {
