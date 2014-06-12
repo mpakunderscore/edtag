@@ -5,14 +5,14 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
     $scope.selected_tags = {}
     $scope.allTags = {}
 
-    $http({method: 'GET', url: '/pages'}).
+    $http({method: 'GET', url: '/course/list'}).
         success(function (data, status, headers, config) {
 
-            $scope.links = data;
-            angular.forEach(data, function (link) {
+            $scope.courses = data;
+            angular.forEach(data, function (course) {
 
                 //console.log(link.tags)
-                angular.forEach(link.tags, function (tag) {
+                angular.forEach(course.tags, function (tag) {
 
 //                    if (tag.weight > 25 && tag.name.length > 10) {
 //                        $scope.allTags.push(tag)
@@ -21,6 +21,10 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
                     if ($scope.allTags[tag.name] != null) $scope.allTags[tag.name] += tag.weight;
                     else $scope.allTags[tag.name] = tag.weight;
                 })
+
+//                angular.forEach(course.webDataList, function (webData) {
+//
+//                })
             })
 
 //            var reducedTags = _.uniq($scope.allTags, "name")
@@ -47,6 +51,11 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
     $scope.getCount = function (words) {
         return Math.floor(words / 100)
     }
+});
+
+$("a[href='#logo']").click(function() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
 });
 
 function sort(map) {

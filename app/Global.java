@@ -30,9 +30,9 @@ public class Global extends GlobalSettings {
             Wiki.loadSimpleWords();
         }
 
-        if (update) updateDatabase();
-
-        if (research) research();
+//        if (update) updateDatabase();
+//
+//        if (research) research();
 
         Logger.info("Application has started");
     }
