@@ -39,6 +39,7 @@ public class Web extends Controller {
 //        List<Long> webDataIds = userDataList.stream().map(UserData::getWebDataId).collect(Collectors.toList());
 
         //get webData (title and tags)
+        //.subList(0, 10)
         List<WebData> webDataList = Ebean.find(WebData.class).order().desc("id").findList(); //TODO bad solution
 
 //        List<WebData> webDataSortedList = userDataList.stream().map(userData -> webDataMap.get(userData.getWebDataId())).collect(Collectors.toList()); //TODO combine userData and webData

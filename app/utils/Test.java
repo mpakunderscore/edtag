@@ -68,9 +68,3 @@ public class Test {
     }
 }
 
-class JSONTag {
-
-    public String name;
-    public int weight;
-}
-
