@@ -6,9 +6,9 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
     $scope.selected_tags = {}
     $scope.allTags = {}
 
-    $http({method: 'GET', url: '/pages'}).
+    $http({method: 'GET', url: '/course/list'}).
         success(function (data, status, headers, config) {
-            $scope.links = data;
+            $scope.courses = data;
             angular.forEach(data, function (link) {
                 angular.forEach(link.tags, function (tag) {
 

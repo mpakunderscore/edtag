@@ -1,3 +1,141 @@
+body {
+	font: 13px helvetica;
+	line-height: 1.5;
+	margin: 0;
+	a {
+
+		&:link {
+			text-decoration: none;
+			color: #4183C4;
+		}
+		&:visited {
+			color: #457cc1;
+		}
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	input, textarea {
+		background-color: #ffffff;
+	}
+	ul{
+		&.cources{
+			position: absolute;
+			top: 52px;
+			left: 220px;
+			right: 0;
+			min-width: 900px;
+			margin-bottom: 50px;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+			background-color: rgb(255, 255, 255);
+			padding-left: 0;
+			.title {
+				padding: 10px 0 10px 32px;
+				text-align: left;
+				&progress::-webkit-progress-value {
+					background: rgba(105, 235, 94, 0.25);
+				}
+			}
+
+			li {
+
+				list-style: none;
+				margin: 12px;
+                ul.links{
+                    padding-left: 0;
+                }
+				img {
+
+					width: 16px;
+					height: 16px;
+					//			margin-right: 5px;
+					vertical-align: bottom;
+					padding-left: 6px;
+					padding-right: 16px;
+					//			padding-right: 16px;
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+.menu a {
+	margin-left: 20px;
+}
+
+.menu a:link {
+	text-decoration: none;
+	color: black;
+}
+
+.menu a:visited {
+	color: black;
+}
+
+.menu a:hover {
+	color: rgb(254, 65, 50);
+}
+
+#search {
+
+	padding-left: 0.4em;
+	width: 500px;
+}
+
+//#about {
+//	position: relative;
+//	padding-left: 50px;
+//}
+
+#logo {
+
+	position: fixed;
+	left: 15px;
+	top: 24px;
+
+	font: 16px andale mono;
+}
+
+nav {
+	height: 80%;
+	&.top-menu{
+		background-color: #ffffff;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+		min-width: 880px;
+		font: 13px helvetica, arial, freesans, clean, sans-serif;
+		position: fixed;
+		left: 220px;
+		right: 0;
+		position: absolute;
+		padding: 20px 0 20px 25px;
+		input[type="search"] {
+			border: 1px solid gray;
+			border-radius: 0;
+		}
+		a{
+			margin-left: 20px;
+		}
+	}
+
+	&#tags {
+
+		li {
+			list-style: none;
+		}
+
+		a {
+			margin: 12px 24px 0 12px;
+			display: block;
+			&.selected {
+				color: rgb(254, 65, 50);
+			}
+		}
+	}
+}
 #out {
 
 	position: absolute;
@@ -101,3 +239,4 @@ progress::-webkit-progress-bar {
 &progress::-webkit-progress-value {
 	background: rgba(128, 128, 128, 0.36);
 }
+

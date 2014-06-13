@@ -3,12 +3,19 @@
         <a href="#" ng-repeat="tag in sortedTags | limitTo: 15" title="{{tag.weight}}">{{tag.name}}</a>
     </nav>
     <section id="main" >
-        <ul class="links" id="out">
-            <li ng-repeat="link in links | filter:searchText" class='page'>
-                <img src="https://s3.amazonaws.com/edtag/{{getDomain(link.url)}}.{{link.favIconFormat}}" ng-show="link.favIconFormat">
-                <img src="assets/images/default-favicon.png" ng-show="!link.favIconFormat">
-                <a href='{{link.url}}' target='_blank' title='{{link.tags}}'>{{link.title}}</a>
-                <progress class='volume' value='{{getCount(link.uniqueWordsCount)}}' max='50'></progress>
+        <ul class="cources" id="out">
+            <li ng-repeat="course in courses | filter:searchText" class='page'>
+                <p class="title">
+                    {{course.title}}
+                    <progress class="volume" value="125" max="300" style="padding-left: 20px; width: 500px;"></progress>
+                </p>
+                <ul class="links">
+                    <li ng-repeat="webData in course.webDataList">
+                        <a href='#'><img src="https://s3.amazonaws.com/edtag/{{getDomain(webData.url)}}.{{webData.favIconFormat}}" ng-show="webData.favIconFormat"></a>
+                        <a href='{{webData.url}}' target='_blank' title='{{webData.tags}}'>{{webData.title}}</a>
+                        <progress class='volume' value='{{getCount(webData.uniqueWordsCount)}}' max='50'></progress>
+                    </li>
+                </ul>
             <li>
         </ul>
     </section>
