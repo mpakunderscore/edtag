@@ -26,9 +26,9 @@ public class Global extends GlobalSettings {
     public void onStart(Application app) {
 
 
-        if (update) updateDatabase();
-
-        if (research) research();
+//        if (update) updateDatabase();
+//
+//        if (research) research();
 
         Logger.info("Application has started");
     }
