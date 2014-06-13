@@ -25,10 +25,6 @@ public class Global extends GlobalSettings {
 
     public void onStart(Application app) {
 
-        if (Ebean.find(Tag.class).findList().size() == 0) {
-
-            Wiki.loadSimpleWords();
-        }
 
         if (update) updateDatabase();
 
