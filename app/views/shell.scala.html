@@ -20,7 +20,7 @@
 
     <body ng-controller="mainCtrl">
 
-        <div id="logo" class="menu"><a href="/">&#9906; &#62;</a></div>
+        <div id="logo" class="menu"><a ng-click="showSearch()" href="">&#9906;</a> &#62;</div>
         <nav class="top-menu">
             <input id="search" type="text" placeholder="Search" ng-model="searchText"/>
             <a href="/courses" id="courses">Courses</a>

@@ -5,7 +5,14 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
     var sum = function(a,b){ return a+b; };
     $scope.selected_tags = {}
     $scope.allTags = {}
+    $scope.addToCourse = function(obj){
+        console.log(obj.webData)
 
+    }
+    $scope.showSearch = function(){
+        var searchBar = angular.element(document.querySelector('.top-menu'));
+        console.log(searchBar.toggleClass('m-top'));
+    }
     $http({method: 'GET', url: '/course/list'}).
         success(function (data, status, headers, config) {
             $scope.courses = data;

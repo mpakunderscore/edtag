@@ -3,7 +3,6 @@ body {
 	line-height: 1.5;
 	margin: 0;
 	a {
-
 		&:link {
 			text-decoration: none;
 			color: #4183C4;
@@ -17,6 +16,10 @@ body {
 	}
 	input, textarea {
 		background-color: #ffffff;
+	}
+	input[type="search"]{
+		padding-left: 0.4em;
+		width: 500px;
 	}
 	ul{
 		&.cources{
@@ -57,34 +60,24 @@ body {
 			}
 		}
 	}
+	.menu{
+		a{
+			margin-left: 20px;
+			&:link{
+				text-decoration: none;
+				color: black;
+			}
+			&:visited{
+				color: black;
+			}
+			&:hover {
+				color: rgb(254, 65, 50);
+			}
+		}
+	}
+
 }
 
-
-
-
-
-.menu a {
-	margin-left: 20px;
-}
-
-.menu a:link {
-	text-decoration: none;
-	color: black;
-}
-
-.menu a:visited {
-	color: black;
-}
-
-.menu a:hover {
-	color: rgb(254, 65, 50);
-}
-
-#search {
-
-	padding-left: 0.4em;
-	width: 500px;
-}
 
 //#about {
 //	position: relative;
@@ -112,12 +105,20 @@ nav {
 		right: 0;
 		position: absolute;
 		padding: 20px 0 20px 25px;
+		height: 30px;
 		input[type="search"] {
 			border: 1px solid gray;
 			border-radius: 0;
 		}
 		a{
 			margin-left: 20px;
+		}
+		&.m-top{
+			position: fixed;
+			top: 0;
+			left: 220px;
+			background: rgba(255,255,255, 0.9);
+			z-index: 1;
 		}
 	}
 
@@ -239,4 +240,3 @@ progress::-webkit-progress-bar {
 &progress::-webkit-progress-value {
 	background: rgba(128, 128, 128, 0.36);
 }
-
