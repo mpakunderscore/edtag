@@ -1,7 +1,15 @@
-# --- Created by Ebean DDL
-# To stop Ebean DDL generation, remove this comment and start using Evolutions
 
 # --- !Ups
+
+create table course (
+  id                        bigint not null,
+  user_id                   integer,
+  description               varchar(255),
+  title                     varchar(255),
+  web_data_ids              varchar(255),
+  tags                      TEXT,
+  constraint pk_course primary key (id))
+;
 
 create table domains (
   url                       varchar(255) not null,
@@ -56,6 +64,8 @@ create table web_data (
   constraint pk_web_data primary key (id))
 ;
 
+create sequence course_seq;
+
 create sequence domains_seq;
 
 create sequence tag_seq;
@@ -73,6 +83,8 @@ create sequence web_data_seq;
 
 # --- !Downs
 
+drop table if exists course cascade;
+
 drop table if exists domains cascade;
 
 drop table if exists query cascade;
@@ -86,6 +98,8 @@ drop table if exists user_data cascade;
 drop table if exists user_hash cascade;
 
 drop table if exists web_data cascade;
+
+drop sequence if exists course_seq;
 
 drop sequence if exists domains_seq;
 

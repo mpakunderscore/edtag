@@ -29,7 +29,7 @@ public class Test {
 
     public static void main(String [] args) throws IOException {
 
-        API.getLinksFromUrl("https://gibbon.co/keesvannunen/the-lean-startup");
+        API.getLinksFromUrl("http://www.reddit.com/r/reddit.com/comments/cktxy/reddit_lets_compile_a_list_of_the_best_online/");
     }
 }
 
