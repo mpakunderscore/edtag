@@ -17,7 +17,8 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
         success(function (data, status, headers, config) {
             $scope.courses = data;
             angular.forEach(data, function (link) {
-                angular.forEach(link.tags, function (tag) {
+                console.log(link);
+		angular.forEach(link.tags, function (tag) {
 
                     if (tag.weight > 25 && tag.name.length > 3) {
                       allTags.push(tag)

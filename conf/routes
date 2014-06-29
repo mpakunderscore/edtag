@@ -3,8 +3,8 @@
 # ~~~~
 
 # Home page
-GET         /                     controllers.Application.index
-POST        /auth                 controllers.Application.auth
+GET         /                    controllers.Application.index
+POST        /auth                controllers.Application.auth
 
 
 GET         /courses              controllers.Application.courses
@@ -32,7 +32,7 @@ GET         /query                controllers.System.query(text: String)
 GET         /delete               controllers.System.delete
 #GET         /test                  controllers.System.test
 
-GET         /show/*id             controllers.Link.show(id: Integer)
+GET         /bundle/*id            controllers.Link.show(id: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file         controllers.Assets.at(path="/public", file)
