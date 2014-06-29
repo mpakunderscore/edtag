@@ -2,6 +2,7 @@ package controllers;
 
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
+import controllers.parsers.Watcher;
 import models.Course;
 import models.Domain;
 import models.WebData;
@@ -11,7 +12,6 @@ import play.db.ebean.Model;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.contact;
 import views.html.courses;
 import views.html.sources;
 
@@ -88,6 +88,41 @@ public class Web extends Controller {
         course.setWebDataIds(webDataIds);
 //        course.setTags();
 
+        course.save();
+
+        return ok();
+    }
+
+    public static Result addBundle(String urls, String title, String description) {
+
+        JsonNode jsonUrlsList = Json.parse(urls);
+
+        if (!jsonUrlsList.isArray())
+            return ok();
+
+        Course course = new Course();
+        course.setTitle(title);
+        course.setDescription(description);
+
+        List<String> urlsList = null;
+        List<WebData> webDataList = null;
+        List<Long> webDataIds = null;
+
+//        for (JsonNode url : urlsList.elements())
+//            url.asText();
+
+        for (String url : urlsList) {
+
+            WebData webData = Ebean.find(WebData.class).where().eq("url", url).findUnique();
+
+            if (webData == null)
+                webData = Watcher.requestWebData(url);
+
+            webDataList.add(webData);
+            webDataIds.add(webData.getId());
+        }
+
+        course.setWebDataIds(Json.toJson(webDataIds).asText());
         course.save();
 
         return ok();

@@ -5,9 +5,14 @@ import controllers.parsers.Watcher;
 import models.Domain;
 import models.UserData;
 import models.WebData;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+import javax.lang.model.element.Element;
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -79,5 +84,41 @@ public class API extends Controller {
         }
 
         return ok(toJson(result));
+    }
+
+    public static Result getLinksFromUrl(String url) {
+
+        List<String> links = new ArrayList<>();
+
+        String urlDomain = WebData.getDomainString(url);
+
+        Document doc;
+
+        Connection connection = Jsoup.connect(url);
+
+        try {
+
+            doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).get();
+
+        } catch (IOException exception) { //TODO
+
+            return null;
+        }
+
+        Elements linksElements = doc.body().select("a");
+
+        for (org.jsoup.nodes.Element element : linksElements) {
+
+            String link = element.attr("href");
+
+            String linkDomain = WebData.getDomainString(link);
+
+            if (linkDomain == null || urlDomain.equals(linkDomain))
+                continue;
+
+            links.add(link);
+        }
+
+        return ok(toJson(links));
     }
 }
