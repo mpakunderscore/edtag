@@ -3,15 +3,17 @@
 # ~~~~
 
 # Home page
-GET         /                    controllers.Application.index
-POST        /auth                controllers.Application.auth
+GET         /                     controllers.Application.index
+# POST        /auth                controllers.Application.auth
 
+GET         /bundles              controllers.Application.bundles
+# GET         /sources              controllers.Application.sources
+GET         /bookmarks            controllers.Application.bookmarks
 
-GET         /courses              controllers.Application.courses
-GET         /sources              controllers.Application.sources
-
-GET         /personal             controllers.Application.personal
+# GET         /personal             controllers.Application.personal
 GET         /about                controllers.Application.about
+
+GET         /signin               controllers.Application.signin
 
 
 GET         /add                  controllers.API.add(url: String)

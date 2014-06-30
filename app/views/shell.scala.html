@@ -21,12 +21,21 @@
     <body ng-controller="mainCtrl">
 
         <div id="logo" class="menu"><a ng-click="showSearch()" href="">&#9906;</a> &#62;</div>
+
         <nav class="top-menu">
+
             <input id="search" type="text" placeholder="Search" ng-model="searchText"/>
-            <a href="/courses" id="courses">Courses</a>
-            <a href="/sources" id="sources">Sources</a>
-            <a href="/personal" id="personal">Personal</a>
+
+            <a href="/bundles" id="bundles">Bundles</a>
+            <a href="/bookmarks" id="sources">Bookmarks</a>
+
+            @*<a href="/sources" id="sources">Sources</a>*@
+            @*<a href="/personal" id="personal">Personal</a>*@
+
             <a href="/about" id="about">About</a>
+
+            <a href="/signin" id="signin">Sign In</a>
+
         </nav>
 
             <!-- What are you doing here? -_-' -->
@@ -34,7 +43,5 @@
         @content
 
     </body>
-
-
 
 </html>

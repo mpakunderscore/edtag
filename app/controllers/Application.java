@@ -1,33 +1,15 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
-import com.google.api.client.auth.oauth2.TokenResponse;
-import com.google.api.client.auth.oauth2.TokenResponseException;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.jackson.JacksonFactory;
-import com.google.api.services.plus.Plus;
-import com.google.api.services.plus.model.PeopleFeed;
-import models.Domain;
-import models.User;
-import models.UserHash;
 import models.WebData;
-import org.mindrot.jbcrypt.BCrypt;
 import play.Play;
-import play.libs.Crypto;
 import play.mvc.*;
 
 import views.html.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.lang.*;
-import java.lang.System;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Scanner;
@@ -45,7 +27,7 @@ public class Application extends Controller {
             return redirect("https://" + request().host()
                     + request().uri());
 
-        return courses();
+        return bundles();
     }
 
     private static boolean isHttpsRequest(Http.Request request) {
@@ -56,25 +38,30 @@ public class Application extends Controller {
                 .contains("https");
     }
 
-    public static Result courses() {
+    public static Result bundles() {
 
-        return ok(courses.render());
+        return ok(bundles.render());
     }
 
-    public static Result sources() {
+    public static Result bookmarks() {
 
-        return ok(sources.render());
-    }
-
-    public static Result personal() {
-
-        return ok(personal.render());
+//        return ok(bookmarks.render());
+        return ok();
     }
 
     public static Result about() {
 
         return ok(about.render());
     }
+
+    public static Result signin() {
+
+        return ok();
+    }
+
+
+
+
 
 
     public static Result show(int id) {

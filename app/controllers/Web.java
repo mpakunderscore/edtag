@@ -3,20 +3,14 @@ package controllers;
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
 import controllers.parsers.Watcher;
-import models.Course;
+import models.Bundle;
 import models.Domain;
 import models.WebData;
-import models.UserData;
-import play.cache.Cache;
-import play.db.ebean.Model;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.courses;
-import views.html.sources;
 
 import java.lang.*;
-import java.lang.System;
 import java.util.*;
 
 import static play.libs.Json.toJson;
@@ -55,10 +49,13 @@ public class Web extends Controller {
 
     public static Result courses() {
 
-        List<Course> courses = Ebean.find(Course.class).findList();
+        List<Bundle> bundles = Ebean.find(Bundle.class).findList();
 
-        return ok(toJson(courses));
+        return ok(toJson(bundles));
     }
+
+
+
 
 
     public static Result saveCourse(String title, String webDataIds) {
@@ -66,13 +63,13 @@ public class Web extends Controller {
         if (!Json.parse(webDataIds).isArray())
             return ok();
 
-        Course course = new Course();
+        Bundle bundle = new Bundle();
 
-        course.setTitle(title);
-        course.setWebDataIds(webDataIds);
+        bundle.setTitle(title);
+        bundle.setWebDataIds(webDataIds);
 //        course.setTags();
 
-        course.save();
+        bundle.save();
 
         return created();
     }
@@ -82,13 +79,13 @@ public class Web extends Controller {
         if (!Json.parse(webDataIds).isArray())
             return ok();
 
-        Course course = Ebean.find(Course.class).where().eq("id", id).findUnique();
+        Bundle bundle = Ebean.find(Bundle.class).where().eq("id", id).findUnique();
 
-        course.setTitle(title);
-        course.setWebDataIds(webDataIds);
+        bundle.setTitle(title);
+        bundle.setWebDataIds(webDataIds);
 //        course.setTags();
 
-        course.save();
+        bundle.save();
 
         return ok();
     }
@@ -100,9 +97,9 @@ public class Web extends Controller {
         if (!jsonUrlsList.isArray())
             return ok();
 
-        Course course = new Course();
-        course.setTitle(title);
-        course.setDescription(description);
+        Bundle bundle = new Bundle();
+        bundle.setTitle(title);
+        bundle.setDescription(description);
 
         List<String> urlsList = null;
         List<WebData> webDataList = null;
@@ -122,8 +119,8 @@ public class Web extends Controller {
             webDataIds.add(webData.getId());
         }
 
-        course.setWebDataIds(Json.toJson(webDataIds).asText());
-        course.save();
+        bundle.setWebDataIds(Json.toJson(webDataIds).asText());
+        bundle.save();
 
         return ok();
     }
