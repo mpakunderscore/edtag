@@ -69,8 +69,8 @@ body {
 #logo {
 
 	position: fixed;
-	left: 20px;
-	top: 20px;
+	left: 25px;
+	top: 22px;
 
 	font: 16px andale mono;
 //	background-color: gray;
@@ -96,12 +96,16 @@ nav {
 	&.top-menu {
 
 		background-color: #ffffff;
+
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 		min-width: 880px;
+
 		font: 13px helvetica, arial, freesans, clean, sans-serif;
+
 		position: fixed;
 		left: 220px;
 		right: 0;
+
 		padding: 20px 0 20px 25px;
 		height: 30px;
 
@@ -134,8 +138,14 @@ nav {
 			z-index: 1;
 		}
 
-		&#signin {
-			text-align: right;
+		#signin {
+
+			padding-top: 8px;
+			padding-right: 30px;
+
+//			background-color: gray;
+//			text-align: right;
+			float: right;
 		}
 	}
 
@@ -148,7 +158,14 @@ nav {
 		a {
 			margin: 12px 24px 0 12px;
 			display: block;
-			&.selected {
+			&:link {
+				text-decoration: none;
+				color: black;
+			}
+			&:visited {
+				color: black;
+			}
+			&:hover {
 				color: rgb(254, 65, 50);
 			}
 		}

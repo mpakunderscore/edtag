@@ -3,36 +3,39 @@
 # ~~~~
 
 # Home page
-GET         /                     controllers.Application.index
+GET         /                    controllers.Application.index
 # POST        /auth                controllers.Application.auth
 
-GET         /bundles              controllers.Application.bundles
+GET         /bundles             controllers.Application.bundles
 # GET         /sources              controllers.Application.sources
-GET         /bookmarks            controllers.Application.bookmarks
+GET         /bookmarks           controllers.Application.bookmarks
 
 # GET         /personal             controllers.Application.personal
-GET         /about                controllers.Application.about
+GET         /about               controllers.Application.about
 
-GET         /signin               controllers.Application.signin
-
-
-GET         /add                  controllers.API.add(url: String)
-GET         /domains              controllers.API.getApprovedDomains
-
-GET         /links                controllers.API.getLinksFromUrl(url: String)
-
-GET         /alldomains           controllers.Web.domains
-GET         /pages                controllers.Web.pages
+GET         /signin              controllers.Application.signin
 
 
+GET         /add                 controllers.API.add(url: String)
+GET         /domains             controllers.API.getApprovedDomains
 
-POST        /course/add           controllers.Web.addBundle(urls: String, title: String, description: String)
+GET         /links               controllers.API.getLinksFromUrl(url: String)
 
-GET         /query                controllers.System.query(text: String)
-GET         /delete               controllers.System.delete
+GET         /alldomains          controllers.Web.domains
+GET         /pages               controllers.Web.pages
+
+GET         /bundles/list        controllers.Web.pages
+
+
+
+
+POST        /course/add          controllers.Web.addBundle(urls: String, title: String, description: String)
+
+GET         /query               controllers.System.query(text: String)
+GET         /delete              controllers.System.delete
 #GET         /test                  controllers.System.test
 
-GET         /bundle/*id           controllers.Link.show(id: Integer)
+GET         /bundle/*id          controllers.Link.show(id: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file         controllers.Assets.at(path="/public", file)
+GET         /assets/*file        controllers.Assets.at(path="/public", file)

@@ -10,6 +10,7 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
 
+        <script src="@routes.Assets.at("javascripts/jquery-2.1.0.js")"></script>
         <script src="@routes.Assets.at("javascripts/lodash.js")"></script>
         <script src="@routes.Assets.at("javascripts/extended.js")"></script>
         <script src="@routes.Assets.at("javascripts/ga.js")"></script>
@@ -20,7 +21,7 @@
 
     <body ng-controller="mainCtrl">
 
-        <nav id="logo" ><a ng-click="showSearch()" href="">&#9906; &#62;</a></nav>
+        <nav id="logo"><a ng-click="showSearch()" href="">&#60; &#62;</a></nav>
 
         <nav class="top-menu">
 

@@ -13,7 +13,7 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
         var searchBar = angular.element(document.querySelector('.top-menu'));
         console.log(searchBar.toggleClass('m-top'));
     }
-    $http({method: 'GET', url: '/course/list'}).
+    $http({method: 'GET', url: '/bundles/list'}).
         success(function (data, status, headers, config) {
             $scope.courses = data;
             angular.forEach(data, function (link) {
@@ -98,3 +98,16 @@ edTagApp.controller('srcCtrl', function ($scope, $http) {
         return Math.floor(words / 100)
     }
 });
+
+window.onscroll = function (e) {
+
+    var doc = document.documentElement;
+    var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+
+    if (top > 30)
+        document.getElementById("logo").children[0].innerHTML = "&#9906; &#62;";
+
+    else
+        document.getElementById("logo").children[0].innerHTML = "&#60; &#62;";
+
+}
