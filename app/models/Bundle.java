@@ -28,8 +28,21 @@ public class Bundle extends Model {
 
     String webDataIds;
 
+    List<WebData> webDataList;
+
     @Column(columnDefinition = "TEXT") //as json object
     String tags;
+
+    public Bundle() {
+    }
+
+    public Bundle(int userId, String description, String title, String webDataIds, String tags) {
+        this.userId = userId;
+        this.description = description;
+        this.title = title;
+        this.webDataIds = webDataIds;
+        this.tags = tags;
+    }
 
     public String getTitle() {
         return title;
@@ -43,21 +56,6 @@ public class Bundle extends Model {
         return Json.parse(this.webDataIds);
     }
 
-    public List<WebData> getWebDataList() {
-
-        List<WebData> webDataList = new ArrayList<>();
-
-        for (JsonNode node : this.getWebDataIds()) {
-
-            WebData webData = Ebean.find(WebData.class).where().eq("id", node.asInt()).findUnique();
-
-            if (webData != null)
-                webDataList.add(webData);
-        }
-
-        return webDataList;
-    }
-
     public void setWebDataIds(String webDataIds) {
         this.webDataIds = webDataIds;
     }
@@ -66,8 +64,8 @@ public class Bundle extends Model {
         return tags;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
+    public void setTags(List<WebData> webDataList) {
+//        this.tags = ; //TODO save tags for bundle
     }
 
     public String getDescription() {
@@ -92,5 +90,13 @@ public class Bundle extends Model {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public void setWebDataList(List<WebData> webDataList) {
+        this.webDataList = webDataList;
+    }
+
+    public List<WebData> getWebDataList() {
+        return webDataList;
     }
 }

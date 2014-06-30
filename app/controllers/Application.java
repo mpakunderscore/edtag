@@ -99,7 +99,7 @@ public class Application extends Controller {
 
         //        String gPlusId = request().queryParams("gplus_id");
 
-        String code = request().body().asFormUrlEncoded().get("code")[0];
+//        String code = request().body().asFormUrlEncoded().get("code")[0];
 
 //        String token = request().body().asFormUrlEncoded().get("token")[0];
 
@@ -107,6 +107,6 @@ public class Application extends Controller {
 
 
 
-        return ok();
+        return ok(auth.render());
     }
 }

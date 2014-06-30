@@ -15,7 +15,7 @@ body {
 			top: 52px;
 			left: 220px;
 			right: 0;
-			min-width: 900px;
+			min-width: 700px;
 			margin-bottom: 50px;
 			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 			background-color: rgb(255, 255, 255);
@@ -33,10 +33,15 @@ body {
 
 			li {
 
+				border: 1px solid lightgrey;
+
+				background-color: lightgrey;
+
 				list-style: none;
 				margin: 12px;
 				width: 250px;
 				height: 150px;
+
 				float: left;
 
 				a {
@@ -104,7 +109,7 @@ nav {
 		background-color: #ffffff;
 
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-		min-width: 880px;
+		min-width: 700px;
 
 		font: 13px helvetica, arial, freesans, clean, sans-serif;
 
@@ -119,17 +124,22 @@ nav {
 
 			padding-left: 0.4em;
 			width: 400px;
+			float: left;
 		}
-		.menu{
+
+		.menu {
 
             list-style: none;
-            width: auto;
-            float: right;
-            margin: 5px 50px 0 0;
+			width: 100%;
+			min-width: 200px;
+//            float: left;
+            margin: 8px 50px 0 0;
 
-			li{
+			padding-left: 0;
+
+			li {
                 float: left;
-                width: auto;
+//                width: auto;
 
 				a {
 					margin-left: 20px;
@@ -143,10 +153,11 @@ nav {
 					&:hover {
 						color: rgb(254, 65, 50);
 					}
-				}	
+				}
             }
-        }
 
+			li:last-child { float:right; margin-right: 30px}
+		}
 
 		&.m-top {
 
@@ -155,16 +166,6 @@ nav {
 			left: 220px;
 			background: rgba(255, 255, 255, 0.9);
 			z-index: 1;
-		}
-
-		#signin {
-
-//			padding-top: 8px;
-//			padding-right: 30px;
-
-//			background-color: gray;
-//			text-align: right;
-//			float: right;
 		}
 	}
 
@@ -217,7 +218,7 @@ nav {
 	top: 52px;
 	left: 220px;
 	right: 0;
-	min-width: 900px;
+	min-width: 700px;
 	margin-bottom: 50px;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 	background-color: rgb(255, 255, 255);
@@ -299,4 +300,41 @@ progress::-webkit-progress-bar {
 
 &progress::-webkit-progress-value {
 	background: rgba(128, 128, 128, 0.36);
+}
+
+#auth {
+
+	position: absolute;
+	top: 52px;
+	left: 220px;
+	right: 0;
+	min-width: 700px;
+	margin-bottom: 50px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	background-color: rgb(255, 255, 255);
+
+	padding-left: 0;
+
+	li {
+
+		list-style: none;
+		margin: 24px;
+
+		p {
+			padding-left: 0.7em;
+		}
+
+		input {
+			padding-left: 0.4em;
+		}
+
+		a {
+			text-decoration: none;
+
+			&#enter {
+				color: green;
+			}
+		}
+
+	}
 }

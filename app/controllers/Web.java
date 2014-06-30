@@ -92,6 +92,10 @@ public class Web extends Controller {
 
     public static Result addBundle(String urls, String title, String description) {
 
+        int userId = 0;
+        if (session("userId") != null)
+            userId = Integer.parseInt(session("userId"));
+
         JsonNode jsonUrlsList = Json.parse(urls);
 
         if (!jsonUrlsList.isArray())
@@ -100,13 +104,15 @@ public class Web extends Controller {
         Bundle bundle = new Bundle();
         bundle.setTitle(title);
         bundle.setDescription(description);
+        bundle.setUserId(userId);
 
-        List<String> urlsList = null;
-        List<WebData> webDataList = null;
-        List<Long> webDataIds = null;
 
-//        for (JsonNode url : urlsList.elements())
-//            url.asText();
+        List<String> urlsList = new ArrayList<>();
+        List<WebData> webDataList = new ArrayList<>();
+        List<Long> webDataIds = new ArrayList<>();
+
+        for (int i = 0; i < jsonUrlsList.size(); i++)
+            urlsList.add(jsonUrlsList.get(i).asText());
 
         for (String url : urlsList) {
 
@@ -120,9 +126,13 @@ public class Web extends Controller {
         }
 
         bundle.setWebDataIds(Json.toJson(webDataIds).asText());
+        bundle.setTags(webDataList);
+
         bundle.save();
 
-        return ok();
+        bundle.setWebDataList(webDataList);
+
+        return ok(toJson(bundle));
     }
 
 }

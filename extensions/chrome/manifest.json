@@ -20,5 +20,5 @@
         "default_title": "Education Tags"
 	},
 	  
-	"permissions": ["notifications", "tabs", "activeTab", "http://localhost:9000/*", "https://edtag.io/*", "https://s3.amazonaws.com/edtag/*"]
+	"permissions": ["notifications", "identity", "tabs", "activeTab", "http://localhost:9000/*", "https://edtag.io/*", "https://s3.amazonaws.com/edtag/*"]
 }

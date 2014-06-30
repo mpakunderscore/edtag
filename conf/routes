@@ -4,7 +4,7 @@
 
 # Home page
 GET         /                    controllers.Application.index
-# POST        /auth                controllers.Application.auth
+GET         /auth                controllers.Application.auth
 
 GET         /bundles             controllers.Application.bundles
 # GET         /sources              controllers.Application.sources
@@ -26,10 +26,7 @@ GET         /pages               controllers.Web.pages
 
 GET         /bundles/list        controllers.Web.pages
 
-
-
-
-POST        /course/add          controllers.Web.addBundle(urls: String, title: String, description: String)
+POST        /bundles/add         controllers.Web.addBundle(urls: String, title: String, description: String)
 
 GET         /query               controllers.System.query(text: String)
 GET         /delete              controllers.System.delete

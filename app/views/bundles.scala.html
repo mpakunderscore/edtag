@@ -4,7 +4,9 @@
         <a href="#" ng-repeat="tag in sortedTags | limitTo: 15" title="{{tag.weight}}">{{tag.name}}</a>
     </nav>
     <section id="main" >
+
         <ul class="bundles" id="out">
+
 		<li ng-repeat="bundle in courses | filter:searchText" class="page" style="background-image: url(/assets/images/bg.jpg)">
 			<a ng-href="/bundle/{{bundle.id}}">{{bundle.title}}</a>
 		</li>
