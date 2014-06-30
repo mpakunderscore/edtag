@@ -1,4 +1,5 @@
 @shell("Bundles") {
+
     <nav id="tags" >
         <a href="#" ng-repeat="tag in sortedTags | limitTo: 15" title="{{tag.weight}}">{{tag.name}}</a>
     </nav>
@@ -17,7 +18,8 @@
                         <a ng-click='addToCourse(this)'>
                             <img ng-show="webData.favIconFormat" ng-src="https://s3.amazonaws.com/edtag/{{getDomain(webData.url)}}.{{webData.favIconFormat}}">
                             <img ng-show="!webData.favIconFormat" src="/assets/images/default-favicon.png">
-                        </a>
-
+                        </a-->
+        </ul>
+    </section>
 
 }

@@ -47,7 +47,7 @@ public class Web extends Controller {
         return ok(toJson(Ebean.find(Domain.class).order().desc("state").findList()));
     }
 
-    public static Result courses() {
+    public static Result bundles() {
 
         List<Bundle> bundles = Ebean.find(Bundle.class).findList();
 
