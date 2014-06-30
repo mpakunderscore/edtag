@@ -114,20 +114,30 @@ nav {
 			padding-left: 0.4em;
 			width: 400px;
 		}
+		.menu{
+            list-style: none;
+            width: auto;
+            float: right;
+            margin: 5px 50px 0 0;
+			li{
+                float: left;
+                width: auto;
+				a {
+					margin-left: 20px;
+					&:link {
+						text-decoration: none;
+						color: black;
+					}
+					&:visited {
+						color: black;
+					}
+					&:hover {
+						color: rgb(254, 65, 50);
+					}
+				}	
+            }
+        }
 
-		a {
-			margin-left: 20px;
-			&:link {
-				text-decoration: none;
-				color: black;
-			}
-			&:visited {
-				color: black;
-			}
-			&:hover {
-				color: rgb(254, 65, 50);
-			}
-		}
 
 		&.m-top {
 
@@ -140,8 +150,8 @@ nav {
 
 		#signin {
 
-			padding-top: 8px;
-			padding-right: 30px;
+//			padding-top: 8px;
+//			padding-right: 30px;
 
 //			background-color: gray;
 //			text-align: right;

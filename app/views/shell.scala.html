@@ -27,16 +27,14 @@
 
             <input id="search" placeholder="Search" ng-model="searchText"/>
 
-            <a href="/bundles" id="bundles">Bundles</a>
-            <a href="/bookmarks" id="sources">Bookmarks</a>
-
-            @*<a href="/sources" id="sources">Sources</a>*@
-            @*<a href="/personal" id="personal">Personal</a>*@
-
-            <a href="/about" id="about">About</a>
-
-            <a href="/signin" id="signin">Sign In</a>
-
+            <ul class="menu">
+	    	<li><a href="/bundles" id="bundles">Bundles</a></li>
+            	<li><a href="/bookmarks" id="sources">Bookmarks</a></li>
+           	@*<a href="/sources" id="sources">Sources</a>*@
+            	@*<a href="/personal" id="personal">Personal</a>*@
+            	<li><a href="/about" id="about">About</a></li>
+            	<li><a href="/signin" id="signin">Sign In</a></li>
+	    </ul>
         </nav>
 
         @content
