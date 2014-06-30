@@ -22,6 +22,8 @@ public class Course extends Model {
 
     private int userId;
 
+    String description;
+
     String title;
 
     String webDataIds;
@@ -66,5 +68,13 @@ public class Course extends Model {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

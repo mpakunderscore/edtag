@@ -4,7 +4,10 @@
     </nav>
     <section id="main" >
         <ul class="cources" id="out">
-            <li ng-repeat="course in courses | filter:searchText" class='page'>
+		<li ng-repeat="bundle in courses | filter:searchText" class="page" style="background-image: url(/assets/images/bg.jpg)">
+			<a ng-href="/bundle/{{bundle.id}}">{{bundle.title}}</a>
+		</li>
+            <!--<li ng-repeat="course in courses | filter:searchText" class='page'>
                 <p class="title">
                     {{course.title}}
                     <progress class="volume" value="125" max="300" style="padding-left: 20px; width: 500px;"></progress>
@@ -20,7 +23,7 @@
                         <progress class='volume' value='{{getCount(webData.uniqueWordsCount)}}' max='50'></progress>
                     </li>
                 </ul>
-            <li>
+            <li>--!>
         </ul>
     </section>
 }

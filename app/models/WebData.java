@@ -58,7 +58,17 @@ public class WebData extends Model {
 
     public static String getDomainString(String url) {
 
-        return url.split("://")[1].split("/")[0].replace("www.", "");
+        String domain = null;
+
+        try {
+
+            domain = url.split("://")[1].split("/")[0].replace("www.", "");
+
+        } catch (Exception e) {
+            return null;
+        }
+
+        return domain;
     }
 
     public String getFavIconFormat() {
