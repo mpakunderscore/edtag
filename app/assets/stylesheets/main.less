@@ -1,11 +1,16 @@
+body, input { //bug
+
+	font: 13px helvetica, arial, freesans, clean, sans-serif;
+	line-height: 1.5;
+}
+
 body {
 
-	font: 13px helvetica;
-	line-height: 1.5;
 	margin: 0;
 
 	ul {
 		&.bundles {
+
 			position: absolute;
 			top: 52px;
 			left: 220px;
@@ -15,9 +20,12 @@ body {
 			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 			background-color: rgb(255, 255, 255);
 			padding-left: 0;
+
 			.title {
+
 				padding: 10px 0 10px 32px;
 				text-align: left;
+
 				&progress::-webkit-progress-value {
 					background: rgba(105, 235, 94, 0.25);
 				}
@@ -55,7 +63,54 @@ body {
 			}
 		}
 	}
-	.menu {
+
+}
+
+#logo {
+
+	position: fixed;
+	left: 20px;
+	top: 20px;
+
+	font: 16px andale mono;
+//	background-color: gray;
+
+	a {
+		&:link {
+			text-decoration: none;
+			color: black;
+		}
+		&:visited {
+			color: black;
+		}
+		&:hover {
+			color: rgb(254, 65, 50);
+		}
+	}
+}
+
+nav {
+
+	height: 80%;
+
+	&.top-menu {
+
+		background-color: #ffffff;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+		min-width: 880px;
+		font: 13px helvetica, arial, freesans, clean, sans-serif;
+		position: fixed;
+		left: 220px;
+		right: 0;
+		padding: 20px 0 20px 25px;
+		height: 30px;
+
+		input {
+
+			padding-left: 0.4em;
+			width: 400px;
+		}
+
 		a {
 			margin-left: 20px;
 			&:link {
@@ -69,57 +124,18 @@ body {
 				color: rgb(254, 65, 50);
 			}
 		}
-	}
 
-}
-
-//#about {
-//	position: relative;
-//	padding-left: 50px;
-//}
-
-#logo {
-
-	position: fixed;
-	left: 15px;
-	top: 24px;
-
-	font: 16px andale mono;
-}
-
-nav {
-	height: 80%;
-	&.top-menu {
-		background-color: #ffffff;
-		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-		min-width: 880px;
-		font: 13px helvetica, arial, freesans, clean, sans-serif;
-		position: fixed;
-		left: 220px;
-		right: 0;
-		position: absolute;
-		padding: 20px 0 20px 25px;
-		height: 30px;
-		input[type="search"] {
-
-			border: 1px solid gray;
-			border-radius: 0;
-		}
-		input, textarea {
-		}
-		input {
-			padding-left: 0.4em;
-			width: 400px;
-		}
-		a {
-			margin-left: 20px;
-		}
 		&.m-top {
+
 			position: fixed;
 			top: 0;
 			left: 220px;
 			background: rgba(255, 255, 255, 0.9);
 			z-index: 1;
+		}
+
+		&#signin {
+			text-align: right;
 		}
 	}
 

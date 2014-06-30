@@ -20,11 +20,11 @@
 
     <body ng-controller="mainCtrl">
 
-        <div id="logo" class="menu"><a ng-click="showSearch()" href="">&#9906;</a> &#62;</div>
+        <nav id="logo" ><a ng-click="showSearch()" href="">&#9906; &#62;</a></nav>
 
         <nav class="top-menu">
 
-            <input id="search" type="text" placeholder="Search" ng-model="searchText"/>
+            <input id="search" placeholder="Search" ng-model="searchText"/>
 
             <a href="/bundles" id="bundles">Bundles</a>
             <a href="/bookmarks" id="sources">Bookmarks</a>
@@ -38,10 +38,10 @@
 
         </nav>
 
-            <!-- What are you doing here? -_-' -->
-
         @content
 
     </body>
+
+        <!-- What are you doing here? -_-' -->
 
 </html>
