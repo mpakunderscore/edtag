@@ -11,8 +11,11 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
     }
     $scope.showSearch = function(){
         var searchBar = angular.element(document.querySelector('.top-menu'));
+        document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;";
+        document.getElementById("search").focus();
         console.log(searchBar.toggleClass('m-top'));
     }
+
     $http({method: 'GET', url: '/bundles/list'}).
         success(function (data, status, headers, config) {
             $scope.courses = data;
