@@ -38,6 +38,7 @@ body {
 				width: 250px;
 				height: 150px;
 				float: left;
+
 				a {
 					width: 250px;
 					margin: 0;
@@ -115,13 +116,16 @@ nav {
 			width: 400px;
 		}
 		.menu{
+
             list-style: none;
             width: auto;
             float: right;
             margin: 5px 50px 0 0;
+
 			li{
                 float: left;
                 width: auto;
+
 				a {
 					margin-left: 20px;
 					&:link {
@@ -155,7 +159,7 @@ nav {
 
 //			background-color: gray;
 //			text-align: right;
-			float: right;
+//			float: right;
 		}
 	}
 
@@ -179,7 +183,12 @@ nav {
 		}
 
 		a {
-			max-width: 100px;
+//			max-width: 100px;
+			width: 180px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
 			margin: 12px 24px 0 12px;
 			display: block;
 

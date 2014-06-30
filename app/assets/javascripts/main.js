@@ -9,10 +9,13 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
         console.log(obj.webData)
 
     }
-    $scope.showSearch = function(){
+    $scope.showSearch = function() {
+
         var searchBar = angular.element(document.querySelector('.top-menu'));
-        document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;";
+
+        document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;"; //TODO make this if only hide = false
         document.getElementById("search").focus();
+
         console.log(searchBar.toggleClass('m-top'));
     }
 
@@ -107,10 +110,11 @@ window.onscroll = function (e) {
     var doc = document.documentElement;
     var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 
-    if (top > 30)
+    if (top > 30) {
+
         document.getElementById("logo").children[0].innerHTML = "&#9906; &#62;";
+        //TODO hide top-menu here
 
-    else
+    } else
         document.getElementById("logo").children[0].innerHTML = "&#60; &#62;";
-
 }
