@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Entity
-public class Course extends Model {
+public class Bundle extends Model {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
