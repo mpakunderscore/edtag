@@ -15,7 +15,6 @@ dist
 /.settings
 .DS_Store
 public/favicons
-conf/evolutions/default/1.sql
 activator-sbt-echo-play-shim.sbt
 project/activator-sbt-echo-play-shim.sbt
 project/activator-sbt-eclipse-shim.sbt
