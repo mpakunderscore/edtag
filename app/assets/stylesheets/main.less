@@ -2,6 +2,8 @@ body, input { //bug
 
 	font: 13px helvetica, arial, freesans, clean, sans-serif;
 	line-height: 1.5;
+
+
 }
 
 body {
@@ -19,16 +21,18 @@ body {
 			margin-bottom: 50px;
 			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 			background-color: rgb(255, 255, 255);
-			padding-left: 0;
+//			padding-left: 8px;
+
+//			margin-left: -10px;
 
 			.title {
 
-				padding: 10px 0 10px 32px;
+//				padding: 10px 0 10px 20px;
 				text-align: left;
 
-				&progress::-webkit-progress-value {
-					background: rgba(105, 235, 94, 0.25);
-				}
+//				&progress::-webkit-progress-value {
+//					background: rgba(105, 235, 94, 0.25);
+//				}
 			}
 
 			li {
@@ -38,8 +42,10 @@ body {
 				background-color: lightgrey;
 
 				list-style: none;
-				margin: 12px;
-				width: 250px;
+
+				margin: 20px 20px 0 0;
+
+				width: 280px;
 				height: 150px;
 
 				float: left;
@@ -50,8 +56,10 @@ body {
 					padding: 5px 10px;
 					display: block;
 					background: rgba(255, 255, 255, 0.9);
-					color: red;
+					color: #a00405;
 					text-transform: capitalize;
+
+					text-decoration: none;
 				}
 				ul.links {
 					padding-left: 0;
@@ -117,7 +125,8 @@ nav {
 		left: 220px;
 		right: 0;
 
-		padding: 20px 0 20px 25px;
+		padding: 20px 0 20px 40px;
+
 		height: 30px;
 
 		input {
@@ -156,7 +165,7 @@ nav {
 				}
             }
 
-			li:last-child { float:right; margin-right: 30px}
+			li:last-child { float:right; margin-right: 30px;}
 		}
 
 		&.m-top {
@@ -318,10 +327,10 @@ progress::-webkit-progress-bar {
 	li {
 
 		list-style: none;
-		margin: 24px;
+		margin: 24px 0 24px 40px;
 
 		p {
-			padding-left: 0.7em;
+			padding-left: 0.6em;
 		}
 
 		input {
