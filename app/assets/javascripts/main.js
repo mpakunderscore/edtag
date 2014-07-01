@@ -21,26 +21,31 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
 
     $http({method: 'GET', url: '/bundles/list'}).
         success(function (data, status, headers, config) {
-            $scope.courses = data;
-            angular.forEach(data, function (link) {
-                console.log(link);
-		angular.forEach(link.tags, function (tag) {
 
+            $scope.bundles = data;
+
+            angular.forEach(data, function (bundle) {
+
+//                console.log(link);
+		        angular.forEach(bundle.tags, function (tag) {
+
+                    tag.weight = parseInt(tag.weight);
                     if (tag.weight > 25 && tag.name.length > 3) {
                       allTags.push(tag)
                     }
-                    //(allTags[tag.name] != null) ? allTags[tag.name] += tag.weight : allTags[tag.name] = tag.weight;
+
+//                    (allTags[tag.name] != null) ? allTags[tag.name] += parseInt(tag.weight) : allTags[tag.name] = parseInt(tag.weight);
                 })
             })
 
 
             var reducedTags = _.chain(allTags).groupBy('name').map(function(v){
-              return {name:v[0].name,weight:_.pluck(v,"weight").reduce(sum)};
+              return {name:v[0].name,weight:_.pluck(v, "weight").reduce(sum)};
             }).value();
 
             $scope.sortedTags =_.sortBy(reducedTags, 'weight').reverse()
 
-            //$scope.sortedTags = sort(allTags).slice(0, 15)
+//            $scope.sortedTags = sort(allTags).slice(0, 15)
 
         }).
         error(function (data, status, headers, config) {

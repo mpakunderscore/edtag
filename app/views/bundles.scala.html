@@ -8,8 +8,14 @@
 
         <ul class="bundles">
 
-            <li ng-repeat="bundle in courses | filter:searchText" style="background-image: url(/assets/images/bg.jpg)">
+            <li ng-repeat="bundle in bundles | filter:searchText" style="background-image: url(/assets/images/bg.jpg)">
+
+                <div class="img"></div>
+
                 <a ng-href="/bundle/{{bundle.id}}">{{bundle.title}}</a>
+
+                <div class="links"></div>
+
             </li>
             <!--<li ng-repeat="course in courses | filter:searchText" class='page'>
                 <p class="title">
