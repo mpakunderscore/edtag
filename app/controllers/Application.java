@@ -109,4 +109,9 @@ public class Application extends Controller {
 
         return ok(auth.render());
     }
+
+    public static Result bundleGeneration() {
+
+        return ok(bundleGeneration.render());
+    }
 }

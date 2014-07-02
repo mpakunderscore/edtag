@@ -1,6 +1,6 @@
 @(webData: WebData)
 
-@shell("Link") {
+@shell("Bundle") {
 
     <section class="main">
 
@@ -14,7 +14,6 @@
             </a>
             <a href='{{webData.url}}' target='_blank' title='{{webData.tags}}'>{{webData.title}}</a>
             
-            <progress class='volume' value='{{getCount(webData.uniqueWordsCount)}}' max='50'></progress>
        </li>
      </ul>
 

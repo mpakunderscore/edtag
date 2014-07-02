@@ -3,31 +3,34 @@
 # ~~~~
 
 # Home page
-GET         /                    controllers.Application.index
-GET         /auth                controllers.Application.auth
+GET         /                          controllers.Application.index
+GET         /auth                      controllers.Application.auth
 
-GET         /bundles             controllers.Application.bundles
-GET         /bookmarks           controllers.Application.bookmarks
-GET         /about               controllers.Application.about
-GET         /signin              controllers.Application.signin
-
-
-GET         /add                 controllers.API.add(url: String)
-GET         /domains             controllers.API.getApprovedDomains
+GET         /bundles                   controllers.Application.bundles
+GET         /bookmarks                 controllers.Application.bookmarks
+GET         /about                     controllers.Application.about
+GET         /signin                    controllers.Application.signin
 
 
-GET         /analyze/page/links  controllers.API.getLinksFromUrl(url: String)
+GET         /add                       controllers.API.add(url: String)
+GET         /domains                   controllers.API.getApprovedDomains
 
 
-GET        /bundle/add          controllers.Web.addBundle(urls: String, title: String, description: String)
-POST        /bundle/edit/*id     controllers.Web.editBundle(id: Integer, urls: String, title: String, description: String)
+GET         /analyze/page/links        controllers.API.getLinksFromUrl(url: String)
 
 
-GET         /bundles/list        controllers.Web.bundles
-GET         /pages/list          controllers.Web.pages
+GET         /bundle/add                controllers.Web.addBundle(urls: String, title: String, description: String)
+POST        /bundle/edit/*id           controllers.Web.editBundle(id: Integer, urls: String, title: String, description: String)
+
+GET         /bundle/generation         controllers.Application.bundleGeneration
 
 
-GET         /bundle/*id          controllers.Bundle.show(id: Integer)
+
+GET         /bundles/list              controllers.Web.bundles
+GET         /pages/list                controllers.Web.pages
+
+
+GET         /bundle/*id                controllers.Bundle.show(id: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file        controllers.Assets.at(path="/public", file)
+GET         /assets/*file              controllers.Assets.at(path="/public", file)
