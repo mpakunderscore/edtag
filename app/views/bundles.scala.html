@@ -1,4 +1,4 @@
-@shell("Bunches") {
+@shell("Bundles") {
 
     <nav id="tags" >
         <ul>
@@ -12,9 +12,9 @@
 
         <ul class="bundles">
 
-            <li ng-repeat="bundle in bundles | filter:searchText" style="background-image: url(/assets/images/bg.jpg)">
+            <li ng-repeat="bundle in bundles | filter:searchText">
 
-                <div class="img"></div>
+                <div class="img"><img ng-src="https://s3.amazonaws.com/edtag/bundles/bundle.{{bundle.id}}.png"></div>
                 @*<progress class='count' value='{{getCount(bundle.wordsCount)}}' max='70'></progress>*@
                 <a ng-href="/bundle/{{bundle.id}}">{{bundle.title}}</a>
 
