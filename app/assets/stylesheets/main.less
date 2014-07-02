@@ -1,3 +1,7 @@
+html {
+	overflow-y: scroll;
+}
+
 body, input { //bug
 
 	font: 13px helvetica, arial, freesans, clean, sans-serif;
@@ -277,10 +281,10 @@ nav {
 	}
 }
 
-#auth {
+.out {
 
 	position: absolute;
-	top: 52px;
+	top: 58px;
 	left: 220px;
 	right: 0;
 	min-width: 700px;
@@ -296,19 +300,26 @@ nav {
 		margin: 24px 0 24px 40px;
 
 		p {
-			padding-left: 0.5em;
+//			padding-left: 0.5em;
 		}
 
 		input {
 			padding-left: 0.4em;
+			width: 230px;
+		}
+
+		&.title {
+			font: 15px arial;
+			line-height: 1.8;
 		}
 
 		a {
+			color: #457cc1;
 			text-decoration: none;
 
-			&#enter {
-				color: green;
-			}
+//			&#enter {
+//				color: #457cc1;
+//			}
 		}
 
 	}
