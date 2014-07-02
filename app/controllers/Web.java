@@ -54,38 +54,26 @@ public class Web extends Controller {
         return ok(toJson(bundles));
     }
 
+    public static Result editBundle(int id, String urls, String title, String description) {
 
+        int userId = 0;
+        if (session("userId") != null)
+            userId = Integer.parseInt(session("userId"));
 
+        JsonNode jsonUrlsList = Json.parse(urls);
 
-
-    public static Result saveCourse(String title, String webDataIds) {
-
-        if (!Json.parse(webDataIds).isArray())
+        if (!jsonUrlsList.isArray())
             return ok();
 
-        Bundle bundle = new Bundle();
+        Bundle newBundle = new Bundle(userId, title, description, jsonUrlsList);
+        Bundle oldBundle = Ebean.find(Bundle.class).where().eq("id", id).findUnique();
 
-        bundle.setTitle(title);
-        bundle.setWebDataIds(webDataIds);
-//        course.setTags();
+        oldBundle.setTitle(newBundle.getTitle());
+        oldBundle.setDescription(newBundle.getDescription());
+        oldBundle.setWebDataIds(newBundle.getWebDataIds());
+        oldBundle.setTags(String.valueOf(toJson(newBundle.getTags())));
 
-        bundle.save();
-
-        return created();
-    }
-
-    public static Result updateCourse(int id, String title, String webDataIds) {
-
-        if (!Json.parse(webDataIds).isArray())
-            return ok();
-
-        Bundle bundle = Ebean.find(Bundle.class).where().eq("id", id).findUnique();
-
-        bundle.setTitle(title);
-        bundle.setWebDataIds(webDataIds);
-//        course.setTags();
-
-        bundle.save();
+        oldBundle.update();
 
         return ok();
     }
@@ -101,38 +89,11 @@ public class Web extends Controller {
         if (!jsonUrlsList.isArray())
             return ok();
 
-        Bundle bundle = new Bundle();
-        bundle.setTitle(title);
-        bundle.setDescription(description);
-        bundle.setUserId(userId);
-
-
-        List<String> urlsList = new ArrayList<>();
-        List<WebData> webDataList = new ArrayList<>();
-        List<Long> webDataIds = new ArrayList<>();
-
-        for (int i = 0; i < jsonUrlsList.size(); i++)
-            urlsList.add(jsonUrlsList.get(i).asText());
-
-        for (String url : urlsList) {
-
-            WebData webData = Ebean.find(WebData.class).where().eq("url", url).findUnique();
-
-            if (webData == null)
-                webData = Watcher.requestWebData(url);
-
-            webDataList.add(webData);
-            webDataIds.add(webData.getId());
-        }
-
-        bundle.setWebDataIds(Json.toJson(webDataIds).asText());
-        bundle.setTags(webDataList);
-
+        Bundle bundle = new Bundle(userId, title, description, jsonUrlsList);
         bundle.save();
 
-        bundle.setWebDataList(webDataList);
+//        bundle.setWebDataList(webDataList);
 
         return ok(toJson(bundle));
     }
-
 }
