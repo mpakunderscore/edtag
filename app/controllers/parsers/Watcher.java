@@ -2,23 +2,12 @@ package controllers.parsers;
 
 import models.Domain;
 import models.WebData;
-import org.apache.commons.io.FileUtils;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import play.Logger;
-import play.libs.F;
-import play.libs.WS;
-import play.mvc.Http;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.*;
 import java.util.List;
 
@@ -77,9 +66,9 @@ public final class Watcher {
 
         if (title.length() == 0) return null; //TODO
 
-        Map<String, Integer> words = Text.getWords(text);
-        Map<String, Integer> textTags = Text.getTags(words);
-        List<JSONTag> tagsList = Text.getTagsList(textTags);
+        Map<String, Integer> words = TagParser.getWords(text);
+        Map<String, Integer> textTags = TagParser.getTags(words);
+        List<JSONTag> tagsList = TagParser.getTagsList(textTags);
 
         String favIconFormat = FavIcon.save(domainString, doc);
 
