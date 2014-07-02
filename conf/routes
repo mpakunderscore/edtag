@@ -4,13 +4,15 @@
 
 # Home page
 GET         /                          controllers.Application.index
-GET         /auth                      controllers.Application.auth
+GET         /login                     controllers.Application.login
+
 
 GET         /bundles                   controllers.Application.bundles
 GET         /bookmarks                 controllers.Application.bookmarks
 GET         /about                     controllers.Application.about
-GET         /signin                    controllers.Application.signin
 
+GET         /signin                    controllers.Application.signIn
+GET         /signout                   controllers.Application.signOut
 
 GET         /add                       controllers.API.add(url: String)
 GET         /domains                   controllers.API.getApprovedDomains

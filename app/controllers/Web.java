@@ -20,28 +20,15 @@ import static play.libs.Json.toJson;
  */
 public class Web extends Controller {
 
-    //TODO cache
     public static Result pages() {
 
         int pageSetSize = 200;
 
-        //get userData (lastUpdate and count)
-//        List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", 0).order().desc("last_update").setMaxRows(pageSetSize).findList();
-
-//        if (userDataList.size() == 0) return ok();
-
-//        List<Long> webDataIds = userDataList.stream().map(UserData::getWebDataId).collect(Collectors.toList());
-
-        //get webData (title and tags)
-        //.subList(0, 10)
         List<WebData> webDataList = Ebean.find(WebData.class).order().desc("id").findList(); //TODO bad solution
-
-//        List<WebData> webDataSortedList = userDataList.stream().map(userData -> webDataMap.get(userData.getWebDataId())).collect(Collectors.toList()); //TODO combine userData and webData
 
         return ok(toJson(webDataList));
     }
 
-    //TODO cache & sort
     public static Result domains() {
 
         return ok(toJson(Ebean.find(Domain.class).order().desc("state").findList()));
