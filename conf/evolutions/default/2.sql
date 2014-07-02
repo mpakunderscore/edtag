@@ -1,3 +1,5 @@
+# Add Bundle Drop Course
+
 # --- !Ups
 
 create table bundle (
@@ -7,19 +9,10 @@ create table bundle (
   title                     varchar(255),
   web_data_ids              varchar(255),
   tags                      TEXT,
-  constraint pk_course primary key (id))
+  constraint pk_bundle primary key (id))
 ;
 
+
+
+
 create sequence bundle_seq;
-
-
-# --- !Downs
-
-drop table if exists course cascade;
-
-drop sequence if exists course_seq;
-
-drop table if exists bundle cascade;
-
-drop sequence if exists bundle_seq;
-
