@@ -3,15 +3,20 @@
 @shell("Link") {
 
     <section class="main">
+
     <ul class="links">
+
         <li ng-repeat="webData in course.webDataList">
+
             <a ng-click='addToCourse(this)'>
                 <img ng-show="webData.favIconFormat" ng-src="https://s3.amazonaws.com/edtag/{{getDomain(webData.url)}}.{{webData.favIconFormat}}">
                 <img ng-show="!webData.favIconFormat" src="/assets/images/default-favicon.png">
             </a>
             <a href='{{webData.url}}' target='_blank' title='{{webData.tags}}'>{{webData.title}}</a>
+            
             <progress class='volume' value='{{getCount(webData.uniqueWordsCount)}}' max='50'></progress>
        </li>
      </ul>
+
      </section>
 }
