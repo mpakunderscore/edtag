@@ -38,7 +38,7 @@ body {
 
 			li {
 
-				font: 15px arial;
+//				font: 15px arial;
 				line-height: 1.8;
 
 //				border: 1px solid lightgrey;
@@ -47,10 +47,10 @@ body {
 
 				list-style: none;
 
-				margin: 20px 20px 0 0;
+				margin: 25px 20px 0 0;
 
 				width: 280px;
-				height: 350px;
+				height: 300px;
 
 				float: left;
 
@@ -62,14 +62,43 @@ body {
 				}
 
 				div.img {
-					background-color: rgba(0, 0, 0, 0.11);
-					height: 100px;
+
+					background-color: rgba(0, 0, 0, 0.05);
+					height: 200px;
 				}
+
+				progress.count {
+
+//					margin-top: -50px;
+
+//					padding: 0;
+
+					width: 280px;
+
+					border-radius: 0;
+
+					-webkit-appearance: none;
+					-moz-border-radius: 0;
+					-webkit-border-radius: 0;
+					border: none;
+					height: 1px;
+					vertical-align: midle;
+				}
+
+				progress.count::-webkit-progress-bar {
+					background: rgba(0, 0, 0, 0.02);
+				}
+
+				progress.count::-webkit-progress-value {
+					background: rgba(69, 124, 193, 0.36);
+				}
+
+
 
 				a {
 //					width: 250px;
 
-					margin: 0;
+//					margin-top: -25px;
 
 					padding: 10px;
 
@@ -96,16 +125,7 @@ body {
 				ul.links {
 					padding-left: 0;
 				}
-				img {
 
-					width: 16px;
-					height: 16px;
-					//			margin-right: 5px;
-					vertical-align: bottom;
-					padding-left: 6px;
-					padding-right: 16px;
-					//			padding-right: 16px;
-				}
 			}
 		}
 	}
@@ -116,7 +136,7 @@ body {
 
 	position: fixed;
 	left: 25px;
-	top: 22px;
+	top: 25px;
 	width: 30px;
 	height: 20px;
 
@@ -148,10 +168,12 @@ nav {
 
 		background-color: #ffffff;
 
-		box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+//		border-bottom: 1px solid lightgrey;
+
+//		box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 		min-width: 700px;
 
-		font: 13px helvetica, arial, freesans, clean, sans-serif;
+//		font: 15px;
 
 		position: fixed;
 		left: 220px;
@@ -213,7 +235,7 @@ nav {
 	&#tags {
 
 		position: fixed;
-		top: 66px;
+		top: 72px;
 		left: 0;
 		//	bottom: 0px;
 
@@ -227,17 +249,19 @@ nav {
 
 		li {
 			list-style: none;
+			display: block;
+			margin: 12px 24px 0 12px;
 		}
 
 		a {
 //			max-width: 100px;
-			width: 180px;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
+//			width: auth;
+//			white-space: nowrap;
+//			overflow: hidden;
+//			text-overflow: ellipsis;
 
-			margin: 12px 24px 0 12px;
-			display: block;
+
+
 
 			&:link {
 				text-decoration: none;
@@ -251,96 +275,6 @@ nav {
 			}
 		}
 	}
-}
-
-#out {
-
-	position: absolute;
-	top: 52px;
-	left: 220px;
-	right: 0;
-	min-width: 700px;
-	margin-bottom: 50px;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-	background-color: rgb(255, 255, 255);
-
-	padding-left: 0;
-
-	.title {
-
-		padding: 10px 0 10px 32px;
-		text-align: left;
-
-		&progress::-webkit-progress-value {
-
-			background: rgba(105, 235, 94, 0.25);
-		}
-	}
-
-	li {
-
-		list-style: none;
-		margin: 12px;
-
-		img {
-
-			width: 16px;
-			height: 16px;
-			//			margin-right: 5px;
-			vertical-align: bottom;
-
-			margin-left: 6px;
-			margin-right: 16px;
-			//			padding-right: 16px;
-
-			&:hover {
-				opacity: 0.2;
-			}
-		}
-	}
-}
-
-#out a {
-
-	&:link {
-		text-decoration: none;
-		color: #4183C4;
-	}
-	&:visited {
-		color: #457cc1;
-	}
-	&:hover {
-		text-decoration: underline;
-	}
-}
-
-.volume {
-	padding-left: 10px;
-}
-
-#save {
-	position: fixed;
-	top: 24px;
-	left: 0;
-	width: 193px;
-
-	text-align: right;
-}
-
-progress {
-	/* Important Thing */
-	-webkit-appearance: none;
-	border: none;
-	height: 1px;
-	vertical-align: middle;
-}
-
-progress::-webkit-progress-bar {
-	background: rgba(211, 211, 211, 0.47);
-}
-
-&progress::-webkit-progress-value {
-	background: rgba(128, 128, 128, 0.36);
 }
 
 #auth {
@@ -362,7 +296,7 @@ progress::-webkit-progress-bar {
 		margin: 24px 0 24px 40px;
 
 		p {
-			padding-left: 0.6em;
+			padding-left: 0.5em;
 		}
 
 		input {
