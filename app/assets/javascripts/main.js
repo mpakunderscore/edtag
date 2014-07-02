@@ -26,13 +26,14 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
 
             angular.forEach(data, function (bundle) {
 
-//                console.log(link);
+                console.log(bundle);
 		        angular.forEach(bundle.tags, function (tag) {
 
-                    tag.weight = parseInt(tag.weight);
-                    if (tag.weight > 25 && tag.name.length > 3) {
+//                    tag.weight = tag.weight;
+//                    if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3) {
                       allTags.push(tag)
-                    }
+//                    console.log(tag);
+//                    }
 
 //                    (allTags[tag.name] != null) ? allTags[tag.name] += parseInt(tag.weight) : allTags[tag.name] = parseInt(tag.weight);
                 })
