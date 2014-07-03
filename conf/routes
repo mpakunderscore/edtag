@@ -23,7 +23,7 @@ GET         /analyze/page/links        controllers.API.getLinksFromUrl(url: Stri
 
 GET         /bundle/add                controllers.Web.addBundle(urls: String, title: String, description: String)
 POST        /bundle/edit/*id           controllers.Web.editBundle(id: Integer, urls: String, title: String, description: String)
-
+GET        /bundles/add         controllers.Web.addBundle(urls: String, title: String, description: String)
 GET         /bundle/generation         controllers.Application.bundleGeneration
 
 
