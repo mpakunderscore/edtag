@@ -1,19 +1,11 @@
 package controllers.parsers;
 
-import controllers.*;
 import models.WebData;
 import org.jsoup.Connection;
-import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.lang.System;
-import java.net.HttpURLConnection;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.util.*;
 
 import static play.libs.Json.toJson;
@@ -45,9 +37,9 @@ public class Page {
 
         if (title.length() == 0) return null; //TODO
 
-        Map<String, Integer> words = Text.getWords(text);
-        Map<String, Integer> textTags = Text.getTags(words);
-        List<JSONTag> tagsList = Text.getTagsList(textTags);
+        Map<String, Integer> words = TagParser.getWords(text);
+        Map<String, Integer> textTags = TagParser.getTags(words);
+        List<JSONTag> tagsList = TagParser.getTagsList(textTags);
 
         int uniqueWordsCount = words.size();
 

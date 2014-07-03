@@ -20,7 +20,11 @@ public class Application extends Controller {
 
     private static final String SSL_HEADER = "x-forwarded-proto";
 
-//    @SecureSocial.SecuredAction
+    /**
+     * Main method, catch non https
+     * @return
+     */
+
     public static Result index() {
 
         if (Play.isProd() && !isHttpsRequest(request()))
@@ -29,6 +33,12 @@ public class Application extends Controller {
 
         return bundles();
     }
+
+    /**
+     * Check https
+     * @param request
+     * @return
+     */
 
     private static boolean isHttpsRequest(Http.Request request) {
 
@@ -43,6 +53,11 @@ public class Application extends Controller {
         return ok(bundles.render());
     }
 
+    /**
+     * Not bookmarks, may be pages or links
+     * @return
+     */
+
     public static Result bookmarks() {
 
 //        return ok(bookmarks.render());
@@ -54,59 +69,29 @@ public class Application extends Controller {
         return ok(about.render());
     }
 
-    public static Result signin() {
-
-        return ok();
-    }
-
-
-
-
-
-
-    public static Result show(int id) {
-        return ok(toJson(Ebean.find(WebData.class).where().eq("user_id", id).findUnique()));
-    }
-
     public static Result login() {
 
-        Http.Request request = request();
-        Http.Session session = session();
+        return ok(login.render());
+    }
+
+
+    public static Result signIn() {
 
         return ok();
     }
 
-    public static String token() throws FileNotFoundException {
+    public static Result signOut() {
 
-        String APPLICATION_NAME = "";
+        session().clear();
+//        flash("success", "You've been logged out");
 
-        // Create a state token to prevent request forgery.
-        // Store it in the session for later validation.
-        String state = new BigInteger(130, new SecureRandom()).toString(32);
-        session().put("state", state);
-        // Read index.html into memory, and set the Client ID,
-        // Token State, and Application Name in the HTML before serving it.
-
-        return new Scanner(new File("index.html"), "UTF-8")
-                .useDelimiter("\\A").next()
-//                .replaceAll("[{]{2}\\s*CLIENT_ID\\s*[}]{2}", CLIENT_ID)
-                .replaceAll("[{]{2}\\s*STATE\\s*[}]{2}", state)
-                .replaceAll("[{]{2}\\s*APPLICATION_NAME\\s*[}]{2}",
-                        APPLICATION_NAME);
+        return
+                redirect(routes.Application.index());
     }
 
-    public static Result auth() {
 
-        //        String gPlusId = request().queryParams("gplus_id");
+    public static Result bundleGeneration() {
 
-//        String code = request().body().asFormUrlEncoded().get("code")[0];
-
-//        String token = request().body().asFormUrlEncoded().get("token")[0];
-
-//        GoogleAuth.getAuth(code);
-
-
-
-        return ok(auth.render());
+        return ok(bundleGeneration.render());
     }
 }

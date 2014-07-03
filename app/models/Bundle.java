@@ -2,12 +2,18 @@ package models;
 
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
+import controllers.parsers.TagParser;
+import controllers.parsers.Watcher;
 import play.db.ebean.Model;
 import play.libs.Json;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static play.libs.Json.toJson;
 
 /**
  * Created by pavelkuzmin on 27/05/14.
@@ -28,7 +34,7 @@ public class Bundle extends Model {
 
     String webDataIds;
 
-    List<WebData> webDataList;
+//    List<WebData> webDataList;
 
     @Column(columnDefinition = "TEXT") //as json object
     String tags;
@@ -36,12 +42,41 @@ public class Bundle extends Model {
     public Bundle() {
     }
 
-    public Bundle(int userId, String description, String title, String webDataIds, String tags) {
-        this.userId = userId;
-        this.description = description;
-        this.title = title;
-        this.webDataIds = webDataIds;
-        this.tags = tags;
+    public Bundle(int userId, String title, String description, JsonNode jsonUrlsList) {
+
+        this.setTitle(title);
+        this.setDescription(description);
+        this.setUserId(userId);
+
+        List<String> urlsList = new ArrayList<>();
+        List<WebData> webDataList = new ArrayList<>();
+        List<Long> webDataIds = new ArrayList<>();
+
+        for (int i = 0; i < jsonUrlsList.size(); i++)
+            urlsList.add(jsonUrlsList.get(i).asText());
+
+        for (String url : urlsList) {
+
+            WebData webData = Ebean.find(WebData.class).where().eq("url", url).findUnique();
+
+            if (webData == null) {
+
+                webData = Watcher.requestWebData(url);
+
+                if (webData == null)
+                    continue;
+
+                webData.save();
+            }
+
+            webDataList.add(webData);
+            webDataIds.add(webData.getId());
+        }
+
+        this.setWebDataIds(String.valueOf(toJson(webDataIds)));
+//        this.setWebDataList(webDataList);
+
+        this.setTags(String.valueOf(toJson(TagParser.getTagsForBundle(webDataList))));
     }
 
     public String getTitle() {
@@ -52,20 +87,21 @@ public class Bundle extends Model {
         this.title = title;
     }
 
-    public com.fasterxml.jackson.databind.JsonNode getWebDataIds() {
-        return Json.parse(this.webDataIds);
+    public String getWebDataIds() {
+        return webDataIds;
     }
 
     public void setWebDataIds(String webDataIds) {
         this.webDataIds = webDataIds;
     }
 
-    public String getTags() {
-        return tags;
+    public JsonNode getTags() {
+        return Json.parse(this.tags);
+
     }
 
-    public void setTags(List<WebData> webDataList) {
-//        this.tags = ; //TODO save tags for bundle
+    public void setTags(String tags) {
+        this.tags = tags; //TODO save tags for bundle
     }
 
     public String getDescription() {
@@ -92,11 +128,12 @@ public class Bundle extends Model {
         this.userId = userId;
     }
 
-    public void setWebDataList(List<WebData> webDataList) {
-        this.webDataList = webDataList;
-    }
+//    public void setWebDataList(List<WebData> webDataList) {
+//        this.webDataList = webDataList;
+//    }
 
-    public List<WebData> getWebDataList() {
-        return webDataList;
-    }
+//    public List<WebData> getWebDataList() {
+//        return new ArrayList<>();
+//        return webDataList;
+//    }
 }
