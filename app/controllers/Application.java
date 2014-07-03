@@ -58,10 +58,9 @@ public class Application extends Controller {
      * @return
      */
 
-    public static Result bookmarks() {
+    public static Result links() {
 
-//        return ok(bookmarks.render());
-        return ok();
+        return ok(links.render());
     }
 
     public static Result about() {

@@ -8,7 +8,7 @@ GET         /login                     controllers.Application.login
 
 
 GET         /bundles                   controllers.Application.bundles
-GET         /bookmarks                 controllers.Application.bookmarks
+GET         /links                     controllers.Application.links
 GET         /about                     controllers.Application.about
 
 GET         /signin                    controllers.Application.signIn
@@ -23,13 +23,13 @@ GET         /analyze/page/links        controllers.API.getLinksFromUrl(url: Stri
 
 GET         /bundle/add                controllers.Web.addBundle(urls: String, title: String, description: String)
 POST        /bundle/edit/*id           controllers.Web.editBundle(id: Integer, urls: String, title: String, description: String)
-GET        /bundles/add         controllers.Web.addBundle(urls: String, title: String, description: String)
+
 GET         /bundle/generation         controllers.Application.bundleGeneration
 
 
 
 GET         /bundles/list              controllers.Web.bundles
-GET         /pages/list                controllers.Web.pages
+GET         /links/list                controllers.Web.links
 
 
 GET         /bundle/*id                controllers.Bundle.show(id: Integer)

@@ -1,6 +1,7 @@
 var edTagApp = angular.module('edTagApp', []);
 
 edTagApp.controller('mainCtrl', function ($scope, $http) {
+
     var allTags = []
     var sum = function(a,b){ return a+b; };
     $scope.selected_tags = {}

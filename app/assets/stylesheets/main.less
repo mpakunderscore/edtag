@@ -26,10 +26,11 @@ body {
 			}
 
 			a {
-				width: 180px;
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
+				width: auto;
+//				width: 180px;
+//				white-space: nowrap;
+//				overflow: hidden;
+//				text-overflow: ellipsis;
 				margin: 12px 24px 0 12px;
 				display: block;
 				&:link {
@@ -47,7 +48,6 @@ body {
 
 		&.top-menu {
 			background-color: #ffffff;
-			box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 			min-width: 700px;
 			position: fixed;
 			left: 220px;
@@ -58,6 +58,8 @@ body {
 				padding-left: 0.4em;
 				width: 400px;
 				float: left;
+				font: 13px helvetica, arial, freesans, clean, sans-serif;
+				line-height: 1.5;
 			}
 			&.m-top {
 				position: fixed;
@@ -76,7 +78,7 @@ body {
 				li {
 					float: left;
 					a {
-						margin-left: 20px;
+						margin-left: 25px;
 						&:link {
 							text-decoration: none;
 							color: black;
@@ -146,35 +148,37 @@ body {
 		background-color: rgb(255, 255, 255);
 	}
 	ul {
+		&.links {
+//			img {
+//
+//				width: 16px;
+//				height: 16px;
+//				vertical-align: bottom;
+//				padding: 0 16px 0 6px;
+//			}
+		}
 		&.bundles  {
-			position: absolute;
-			top: 58px;
-			left: 220px;
-			right: 0;
-			min-width: 700px;
-			margin-bottom: 50px;
-			box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-			background-color: rgb(255, 255, 255);
+
 			.title {
 				text-align: left;
 			}
 
 			li {
 
-				font: 15px arial;
+				font: 17px arial;
 				line-height: 1.8;
 				list-style: none;
 				margin: 20px 20px 0 0;
 				width: 280px;
-				height: 350px;
+				height: 300px;
 				float: left;
 				div.links {
 				}
 
-				div.img {
-					background-color: rgba(0, 0, 0, 0.11);
-					height: 100px;
-				}
+//				img {
+//					background-color: rgba(0, 0, 0, 0.11);
+//					height: 100px;
+//				}
 
 				a {
 					margin: 0;
@@ -196,26 +200,8 @@ body {
 				ul.links {
 					padding-left: 0;
 				}
-				img {
 
-					width: 16px;
-					height: 16px;
-					vertical-align: bottom;
-					padding: 0 16px 0 6px;
-				}
 			}
 		}
 	}
-}
-
-
-
-
-
-#save {
-	position: fixed;
-	top: 24px;
-	left: 0;
-	width: 193px;
-	text-align: right;
 }

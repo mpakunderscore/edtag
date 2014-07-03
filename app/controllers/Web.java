@@ -20,7 +20,7 @@ import static play.libs.Json.toJson;
  */
 public class Web extends Controller {
 
-    public static Result pages() {
+    public static Result links() {
 
         int pageSetSize = 200;
 
