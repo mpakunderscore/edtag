@@ -3,6 +3,10 @@ package controllers;
 import com.avaje.ebean.Ebean;
 import models.WebData;
 import play.Play;
+
+import play.data.DynamicForm;
+import play.data.Form;
+import play.data.validation.Constraints;
 import play.mvc.*;
 
 import views.html.*;
@@ -13,6 +17,7 @@ import java.lang.*;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Scanner;
+
 
 import static play.libs.Json.toJson;
 
@@ -76,7 +81,17 @@ public class Application extends Controller {
 
     public static Result signIn() {
 
-        return ok();
+        DynamicForm requestData = Form.form().bindFromRequest();
+        String email = requestData.get("email");
+        String password = requestData.get("password");
+        return ok("Hello " + email + " " + password);
+//
+//            session().clear();
+//            session("email", loginForm.get().email);
+//
+//            return
+//                    redirect(routes.Application.index());
+//        }
     }
 
     public static Result signOut() {
@@ -93,4 +108,19 @@ public class Application extends Controller {
 
         return ok(bundleGeneration.render());
     }
+}
+
+class Login {
+
+    @Constraints.Required
+    public String email;
+    public String password;
+
+    public String validate() {
+//        if(authenticate(email,password) == null) {
+//            return "Invalid email or password";
+//        }
+        return null;
+    }
+
 }

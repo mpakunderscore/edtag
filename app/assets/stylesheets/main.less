@@ -146,6 +146,25 @@ body {
 		margin-bottom: 50px;
 		box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 		background-color: rgb(255, 255, 255);
+
+		input {
+
+			padding-left: 0.4em;
+			font: 13px helvetica, arial, freesans, clean, sans-serif;
+			line-height: 1.5;
+
+			width: 200px;
+		}
+
+		li {
+			list-style: none;
+			margin: 20px 20px 0 0;
+
+			a {
+				color: #4183C4;
+				text-decoration: none;
+			}
+		}
 	}
 	ul {
 		&.links {
@@ -159,14 +178,16 @@ body {
 		}
 		&.bundles  {
 
+
+
 			.title {
 				text-align: left;
 			}
 
 			li {
+//				background-color: lightgray;
 
-				font: 17px arial;
-				line-height: 1.8;
+
 				list-style: none;
 				margin: 20px 20px 0 0;
 				width: 280px;
@@ -175,18 +196,22 @@ body {
 				div.links {
 				}
 
-//				img {
-//					background-color: rgba(0, 0, 0, 0.11);
-//					height: 100px;
-//				}
+				img {
+					background-color: rgba(0, 0, 0, 0.11);
+					width: 280px;
+					height: 180px;
+				}
 
 				a {
+					font: 17px arial;
+					line-height: 1.8;
 					margin: 0;
 					padding: 10px;
 					display: block;
 					background: rgba(255, 255, 255, 0.9);
 					text-transform: capitalize;
 					text-decoration: none;
+
 					&:link {
 						text-decoration: none;
 						color: #4183C4;

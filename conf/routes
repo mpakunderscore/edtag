@@ -11,7 +11,7 @@ GET         /bundles                   controllers.Application.bundles
 GET         /links                     controllers.Application.links
 GET         /about                     controllers.Application.about
 
-GET         /signin                    controllers.Application.signIn
+POST        /signin                    controllers.Application.signIn
 GET         /signout                   controllers.Application.signOut
 
 GET         /add                       controllers.API.add(url: String)
