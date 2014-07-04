@@ -156,15 +156,66 @@ body {
 
 //			background: none;
 //			border: none;
-			color: #000000;
+			color: #4183C4;
 //			text-decoration: none;
 //			cursor: pointer;
 		}
 
-		#editable {
-			width: 400px;
-			height: 300px;
-			border-color: 1px solid lightgray;
+
+		&.generator {
+
+			#editable {
+				width: 590px;
+				height: 300px;
+				border: 1px solid lightgray;
+			}
+
+			#bundle {
+
+				position: relative;
+				left: 310px;
+				width: 280px;
+				top: 20px;
+				height: 250px;
+
+				img {
+					box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+					width: 280px;
+					height: 180px;
+				}
+
+				.title {
+
+					font: 17px helvetica, arial, freesans, clean, sans-serif;
+					line-height: 1.8;
+					color: #4183C4;
+					margin: 0;
+					padding: 5px 15px;
+
+				}
+
+				.linksCount {
+					padding-left: 15px;
+
+					font: 11px helvetica, arial, freesans, clean, sans-serif;
+					color: gray;
+
+
+				}
+			}
+
+			#imageUpload {
+				position: inherit;
+				left: 40px;
+				top: 20px;
+			}
+
+			#linksForm {
+//				position: rel;
+//				left: 40px;
+//				top: 200px;
+
+			}
 		}
 
 		li {
@@ -172,6 +223,7 @@ body {
 			margin: 20px 20px 0 0;
 
 			a {
+//				padding-left: 20px;
 				color: #4183C4;
 				text-decoration: none;
 			}
@@ -204,13 +256,14 @@ body {
 				}
 
 				img {
+					box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 //					background-color: rgba(0, 0, 0, 0.02);
 					width: 280px;
 					height: 180px;
 				}
 
 				a {
-					font: 17px arial;
+					font: 17px helvetica, arial, freesans, clean, sans-serif;
 					line-height: 1.8;
 					margin: 0;
 					padding: 5px 15px;

@@ -2,16 +2,28 @@
 
 @shell("Bundle generator", email) {
 
-    <ul class="out">
+    <ul class="out generator">
 
-        <li class=""><input type="file"  name="image"        placeholder="Image"></li>
-        <li class=""><input type="url"  name="url"           placeholder="Image URL"></li>
-        <li class=""><input type="text"  name="title"        placeholder="Title"></li>
-        <li class=""><input type="text"  name="description"  placeholder="Description"></li>
-        <li class=""><section id="editable" contenteditable="true">
-            <p>Insert links here</p>
-        </section></li>
-        <li class=""><input type="submit" href="/bundle/add" id="enter"></li>
-        <li></li>
+        <section id="bundle">
+            <img>
+            <section class="title" contenteditable="true">Write title for this bundle</section>
+            <span class="linksCount">0</span>
+        </section>
+
+        <section id="imageUpload">
+            <li>Basic form for bundle</li>
+            <li><input type="file"  name="image"        placeholder="Image"></li>
+            <li><input type="url"   name="url"          placeholder="or Image URL"></li>
+        </section>
+
+        <section id="linksForm">
+            <li><input type="url"   name="urlsLink"     placeholder="Page with links"></li>
+            <li><a href="">generate links from page</a> or add your own</li>
+            <li><section id="editable" contenteditable="true">
+            </section></li>
+
+            <li><input type="submit" href="/bundle/add" id="enter"></li>
+            <li></li>
+        </section>
     </ul>
 }
