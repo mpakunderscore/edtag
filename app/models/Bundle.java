@@ -8,10 +8,7 @@ import play.db.ebean.Model;
 import play.libs.Json;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static play.libs.Json.toJson;
 
@@ -136,4 +133,21 @@ public class Bundle extends Model {
 //        return new ArrayList<>();
 //        return webDataList;
 //    }
+
+    public int getLinksCount() {
+        return randInt(4, 19); //TODO make normal db model!
+    }
+
+    public static int randInt(int min, int max) {
+
+        // Usually this should be a field rather than a method variable so
+        // that it is not re-seeded every call.
+        Random rand = new Random();
+
+        // nextInt is normally exclusive of the top value,
+        // so add 1 to make it inclusive
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+
+        return randomNum;
+    }
 }

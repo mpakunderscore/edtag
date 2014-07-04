@@ -1,6 +1,7 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
+import models.Bundle;
 import models.WebData;
 import play.Play;
 
@@ -14,6 +15,7 @@ import views.html.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.*;
+import java.lang.System;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Scanner;
@@ -30,6 +32,7 @@ public class Application extends Controller {
      * @return
      */
 
+//    @Security.Authenticated(Secured.class)
     public static Result index() {
 
         if (Play.isProd() && !isHttpsRequest(request()))
@@ -55,7 +58,12 @@ public class Application extends Controller {
 
     public static Result bundles() {
 
-        return ok(bundles.render());
+        return ok(bundles.render(session("email")));
+    }
+
+    public static Result bundle(int id) {
+
+        return ok(bundle.render(Ebean.find(Bundle.class).where().eq("id", id).findUnique(), session("email")));
     }
 
     /**
@@ -65,17 +73,17 @@ public class Application extends Controller {
 
     public static Result links() {
 
-        return ok(links.render());
+        return ok(links.render(session("email")));
     }
 
     public static Result about() {
 
-        return ok(about.render());
+        return ok(about.render(session("email")));
     }
 
     public static Result login() {
 
-        return ok(login.render());
+        return ok(login.render(session("email")));
     }
 
 
@@ -84,7 +92,15 @@ public class Application extends Controller {
         DynamicForm requestData = Form.form().bindFromRequest();
         String email = requestData.get("email");
         String password = requestData.get("password");
-        return ok("Hello " + email + " " + password);
+
+//        if (true) return ok(login.render());
+
+        System.out.println(email + password);
+
+        session("email", email);
+
+        return
+                redirect(routes.Application.index());
 //
 //            session().clear();
 //            session("email", loginForm.get().email);
@@ -106,21 +122,6 @@ public class Application extends Controller {
 
     public static Result bundleGeneration() {
 
-        return ok(bundleGeneration.render());
+        return ok(bundleGeneration.render(session("email")));
     }
-}
-
-class Login {
-
-    @Constraints.Required
-    public String email;
-    public String password;
-
-    public String validate() {
-//        if(authenticate(email,password) == null) {
-//            return "Invalid email or password";
-//        }
-        return null;
-    }
-
 }

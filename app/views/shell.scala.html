@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String, email: String)(content: Html)
 
 <!DOCTYPE html>
 <html ng-app="edTagApp">
@@ -35,10 +35,14 @@
                 <li><a href="/links" id="links">Links</a></li>
                 <li><a href="/about" id="about">About</a></li>
 
-                <li><a href="/bundle/generation" id="generation">&#8226;</a></li>
+                <li><a href="/generation" id="generation">&#8226;</a></li>
 
+                @if(email == null) {
+                    <li><a href="/login" class="auth">Sign In</a></li>
+                } else {
+                    <li>@email <a href="/signout" class="auth">Sign Out</a></li>
+                }
 
-                <li><a href="/login" id="signin" class="auth">Sign In</a></li>
 	        </ul>
         </nav>
 

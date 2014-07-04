@@ -21,18 +21,17 @@ GET         /domains                   controllers.API.getApprovedDomains
 GET         /analyze/page/links        controllers.API.getLinksFromUrl(url: String)
 
 
-GET         /bundle/add                controllers.Web.addBundle(urls: String, title: String, description: String)
-POST        /bundle/edit/*id           controllers.Web.editBundle(id: Integer, urls: String, title: String, description: String)
+GET         /bundle/*id                controllers.Application.bundle(id: Integer)
+GET         /api/bundle/add            controllers.Web.addBundle(urls: String, title: String, description: String)
+POST        /api/bundle/edit/*id       controllers.Web.editBundle(id: Integer, urls: String, title: String, description: String)
 
-GET         /bundle/generation         controllers.Application.bundleGeneration
+GET         /generation                controllers.Application.bundleGeneration
 
 
 
 GET         /bundles/list              controllers.Web.bundles
 GET         /links/list                controllers.Web.links
 
-
-GET         /bundle/*id                controllers.Bundle.show(id: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file              controllers.Assets.at(path="/public", file)

@@ -1,4 +1,6 @@
-@shell("Bundles") {
+@(email: String)
+
+@shell("Bundles", email) {
 
     <nav id="tags" >
         <ul>
@@ -17,7 +19,7 @@
                 <img ng-src="https://s3.amazonaws.com/edtag/bundles/bundle.{{bundle.id}}.png">
                 @*<progress class='count' value='{{getCount(bundle.wordsCount)}}' max='70'></progress>*@
                 <a ng-href="/bundle/{{bundle.id}}">{{bundle.title}}</a>
-
+                <span class="linksCount">{{bundle.linksCount}} links</span>
             </li>
             <!--<li ng-repeat="course in courses | filter:searchText" class='page'>
                 <p class="title">

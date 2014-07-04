@@ -1,12 +1,12 @@
-@(webData: WebData)
+@(bundle: Bundle, email: String)
 
-@shell("Bundle") {
+@shell("Bundle", email) {
 
     <section class="main">
 
     <ul class="out">
 
-        <li ng-repeat="webData in course.webDataList">
+        <li ng-repeat="webData in bundle.webDataList">
 
             <a ng-click='addToCourse(this)'>
                 <img ng-show="webData.favIconFormat" ng-src="https://s3.amazonaws.com/edtag/{{getDomain(webData.url)}}.{{webData.favIconFormat}}">
