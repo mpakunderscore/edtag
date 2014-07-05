@@ -2,15 +2,13 @@
 
 @shell("Authorization", email) {
     <section id="main" >
-        <ul class="out">
+        <ul class="out login">
             @helper.form(routes.Application.signIn()) {
                 <li>Simple authorization or registration</li>
                 <li><input id="email" name="email" type="email" placeholder="Email"/></li>
                 <li><input id="password" name="password" type="password" placeholder="Password"/></li>
                 <li><input type="submit" href="/signin" id="enter"></li>
             }
-
-            <li></li>
         </ul>
     </section>
 }

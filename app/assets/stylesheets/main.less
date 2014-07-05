@@ -17,23 +17,27 @@ body {
 
 		&#tags {
 			position: fixed;
-			top: 66px;
+			top: 58px;
 			left: 0;
 			width: 220px;
 			text-align: right;
-			padding-top: 10px;
+			padding-top: 15px;
+
 			li {
 				list-style: none;
+				padding-right: 20px;
+				padding-bottom: 15px;
+
 			}
 
 			a {
-				width: auto;
+//				width: auto;
 //				width: 180px;
 //				white-space: nowrap;
 //				overflow: hidden;
 //				text-overflow: ellipsis;
-				margin: 12px 24px 0 12px;
-				display: block;
+//				margin: 15px 0 0 15px;
+				display: inline-block;
 				&:link {
 					text-decoration: none;
 					color: black;
@@ -106,7 +110,6 @@ body {
 			}
 		}
 
-
 		&#logo {
 			position: fixed;
 			left: 25px;
@@ -164,8 +167,23 @@ body {
 //			cursor: pointer;
 		}
 
+		&.login {
+
+			li {
+				padding-bottom: 20px;
+				padding-left: 30px;
+			}
+
+			padding-top: 20px;
+		}
 
 		&.generator {
+
+//			padding-left: 30px;
+
+			li {
+				padding-bottom: 15px;
+			}
 
 			#editable {
 				width: 590px;
@@ -209,22 +227,22 @@ body {
 
 			#imageUpload {
 				position: inherit;
-				left: 40px;
+				left: 30px;
 				top: 20px;
 			}
 
 			#linksForm {
 				position: relative;
 //				left: 40px;
-				padding-left: 40px;
+				padding-left: 30px;
+//				padding-bottom: 20px;
 //				top: 200px;
-
 			}
 		}
 
 		li {
 			list-style: none;
-			margin: 20px 20px 0 0;
+//			margin: 20px 20px 0 0;
 
 			a {
 //				padding-left: 20px;
@@ -236,17 +254,27 @@ body {
 	ul {
 		&.links {
 
+			padding-top: 15px;
+
 			li {
 
+				a {
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+
+//				height: 100%;
 				position: relative;
-				margin: 20px 20px 20px 20px;
+				padding-left: 20px;
+				padding-bottom: 15px;
 
 				img {
 
+					vertical-align: middle;
 					width: 16px;
 					height: 16px;
-					vertical-align: bottom;
-					padding-right: 10px;
+					padding-right: 15px;
 				}
 			}
 
