@@ -11,15 +11,17 @@
         </ul>
     </nav>
 
-    <section id="main" >
+    <section id="main" ng-controller="linksCtrl">
 
-        <ul class="out bundles">
+        <ul class="out links">
 
-            <li ng-repeat="bundle in bundles | filter:searchText">
+            <li ng-repeat="link in links | filter:searchText">
 
-                <img ng-src="https://s3.amazonaws.com/edtag/bundles/bundle.{{bundle.id}}.png">
-                @*<progress class='count' value='{{getCount(bundle.wordsCount)}}' max='70'></progress>*@
-                <a ng-href="/bundle/{{bundle.id}}">{{bundle.title}}</a>
+
+                <img ng-show="link.favIconFormat" ng-src="https://s3.amazonaws.com/edtag/{{getDomain(link.url)}}.{{link.favIconFormat}}">
+                <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
+
+                <a href="">{{link.title}}</a>
 
             </li>
                 <!--<li ng-repeat="course in courses | filter:searchText" class='page'>

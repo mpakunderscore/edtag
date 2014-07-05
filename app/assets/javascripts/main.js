@@ -4,20 +4,16 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
 
     var allTags = []
     var sum = function(a,b){ return a+b; };
-    $scope.selected_tags = {}
-    $scope.allTags = {}
-    $scope.addToCourse = function(obj){
-        console.log(obj.webData)
 
-    }
+    $scope.selected_tags = {};
+    $scope.allTags = {}
+
     $scope.showSearch = function() {
 
         var searchBar = angular.element(document.querySelector('.top-menu'));
 
-        document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;"; //TODO make this if only hide = false
+        document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;";
         document.getElementById("search").focus();
-
-        console.log(searchBar.toggleClass('m-top'));
     }
 
     $http({method: 'GET', url: '/bundles/list'}).
@@ -27,76 +23,64 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
 
             angular.forEach(data, function (bundle) {
 
-                console.log(bundle);
 		        angular.forEach(bundle.tags, function (tag) {
 
-//                    tag.weight = tag.weight;
-//                    if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3) {
-                      allTags.push(tag)
-//                    console.log(tag);
-//                    }
-
-//                    (allTags[tag.name] != null) ? allTags[tag.name] += parseInt(tag.weight) : allTags[tag.name] = parseInt(tag.weight);
+//                    if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3)
+                        allTags.push(tag)
                 })
             })
-
 
             var reducedTags = _.chain(allTags).groupBy('name').map(function(v){
               return {name:v[0].name,weight:_.pluck(v, "weight").reduce(sum)};
             }).value();
 
             $scope.sortedTags =_.sortBy(reducedTags, 'weight').reverse()
-
-//            $scope.sortedTags = sort(allTags).slice(0, 15)
-
         }).
         error(function (data, status, headers, config) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
         });
 
-    $scope.getDomain = function (url) {
-        return url.replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
-    };
-
     $scope.searchText = ''
 
-    $scope.getCount = function (words) {
-        return Math.floor(words / 100)
-    }
 });
 
-function sort(map) {
+edTagApp.controller('linksCtrl', function ($scope, $http) {
 
-    var sortable = [];
-    for (var key in map)
-        if (map[key] != null)
-            sortable.push([key, map[key]]);
+    var allTags = []
+    var sum = function(a,b){ return a+b; };
 
-    sortable.sort(function(b, a) {return a[1] - b[1]});
+    $scope.selected_tags = {};
+    $scope.allTags = {}
 
-    return sortable
-}
+    $scope.showSearch = function() {
 
-edTagApp.controller('srcCtrl', function ($scope, $http) {
+        var searchBar = angular.element(document.querySelector('.top-menu'));
+
+        document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;";
+        document.getElementById("search").focus();
+    }
 
     $scope.tags = [];
-    $http({method: 'GET', url: '/alldomains'}).
+    $http({method: 'GET', url: '/links/list'}).
         success(function (data, status, headers, config) {
 
             $scope.links = data;
 
-            angular.forEach(data, function (item) {
-                var tags = item.tags;
-                //  var obj = eval('{' + item.tags + '}');
-                //for(tag in item.tags){
-                console.log(typeof(tags));
-                //if (weight > 5) $scope.tags.push(tag)
-                //}
-            });
+            angular.forEach(data, function (link) {
 
-            // this callback will be called asynchronously
-            // when the response is available
+                angular.forEach(link.tags, function (tag) {
+
+//                    if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3)
+                    allTags.push(tag)
+                })
+            })
+
+            var reducedTags = _.chain(allTags).groupBy('name').map(function(v){
+                return {name:v[0].name,weight:_.pluck(v, "weight").reduce(sum)};
+            }).value();
+
+            $scope.sortedTags =_.sortBy(reducedTags, 'weight').reverse()
         }).
         error(function (data, status, headers, config) {
             // called asynchronously if an error occurs
@@ -106,10 +90,6 @@ edTagApp.controller('srcCtrl', function ($scope, $http) {
     $scope.getDomain = function (url) {
         return url.replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
     };
-
-    $scope.getCount = function (words) {
-        return Math.floor(words / 100)
-    }
 });
 
 window.onscroll = function (e) {
