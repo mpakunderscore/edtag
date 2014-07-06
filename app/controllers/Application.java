@@ -2,7 +2,9 @@ package controllers;
 
 import com.avaje.ebean.Ebean;
 import models.Bundle;
+import models.User;
 import models.WebData;
+import org.mindrot.jbcrypt.BCrypt;
 import play.Play;
 
 import play.data.DynamicForm;
@@ -93,21 +95,27 @@ public class Application extends Controller {
         String email = requestData.get("email");
         String password = requestData.get("password");
 
-//        if (true) return ok(login.render());
+        if (email.length() == 0 || password.length() == 0)
+            return
+                    redirect(routes.Application.login());
 
-        System.out.println(email + password);
+        User user = Ebean.find(User.class).where().eq("email", email).findUnique();
+        if (user == null) {
 
-        session("email", email);
+            user = new User(email, password);
+            user.save();
+            session("email", email);
+
+        } else if (BCrypt.checkpw(password, user.getPassword())) {
+            session("email", email);
+
+        } else
+            return
+                    redirect(routes.Application.login());
 
         return
                 redirect(routes.Application.index());
-//
-//            session().clear();
-//            session("email", loginForm.get().email);
-//
-//            return
-//                    redirect(routes.Application.index());
-//        }
+
     }
 
     public static Result signOut() {

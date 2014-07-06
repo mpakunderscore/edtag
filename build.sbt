@@ -34,4 +34,6 @@ libraryDependencies += "commons-io" % "commons-io" % "2.4"
 
 libraryDependencies += "com.amazonaws" % "aws-java-sdk" % "1.3.11"
 
+libraryDependencies += "org.mindrot" % "jbcrypt" % "0.3m"
+
 closureCompilerOptions += "ecmascript5"
