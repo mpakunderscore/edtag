@@ -1,5 +1,7 @@
 var edTagApp = angular.module('edTagApp', []);
 
+var m_top = true;
+
 edTagApp.controller('mainCtrl', function ($scope, $http) {
 
     var allTags = []
@@ -10,10 +12,23 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
 
     $scope.showSearch = function() {
 
+        var doc = document.documentElement;
+        var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+
+        if (top <= 30) return;
+
         var searchBar = angular.element(document.querySelector('.top-menu'));
 
-        document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;";
+        if (m_top)
+            document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;";
+        else
+            document.getElementById("logo").children[0].innerHTML = "&#9906; &#62;";
+
         document.getElementById("search").focus();
+
+        m_top = !m_top;
+
+        console.log(searchBar.toggleClass('m-top'));
     }
 
     $http({method: 'GET', url: '/bundles/list'}).
@@ -99,7 +114,11 @@ window.onscroll = function (e) {
 
     if (top > 30) {
 
-        document.getElementById("logo").children[0].innerHTML = "&#9906; &#62;";
+        if (m_top)
+            document.getElementById("logo").children[0].innerHTML = "&#9906; &#62;";
+
+        else
+            document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;";
         //TODO hide top-menu here
 
     } else

@@ -1,6 +1,6 @@
 @(email: String)
 
-@shell("Authorization", email) {
+@shell("Sign In", email) {
     <section id="main" >
         <ul class="out login">
             @helper.form(routes.Application.signIn()) {

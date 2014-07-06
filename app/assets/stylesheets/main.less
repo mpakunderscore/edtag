@@ -53,12 +53,14 @@ body {
 
 		&.top-menu {
 			background-color: #ffffff;
+
 			min-width: 700px;
 			position: fixed;
-			left: 210px;
+			left: 220px;
 			right: 0;
-			padding: 20px 0 20px 40px;
+			padding: 20px 0 20px 30px;
 			height: 30px;
+
 			input {
 				padding-left: 0.4em;
 				width: 400px;
@@ -68,10 +70,11 @@ body {
 			}
 			&.m-top {
 				position: fixed;
-				top: 0;
-				left: 220px;
+//				top: 0;
+//				left: 220px;
 				background: rgba(255, 255, 255, 0.9);
 				z-index: 1;
+
 			}
 			.menu {
 				list-style: none;
@@ -112,12 +115,12 @@ body {
 
 		&#logo {
 			position: fixed;
-			left: 25px;
+			left: 30px;
 			top: 22px;
-			width: 30px;
+			width: 35px;
 			height: 20px;
 			text-align: right;
-			font: 16px andale mono;
+			font: 18px andale mono;
 			a {
 				&:link {
 					text-decoration: none;
@@ -134,6 +137,8 @@ body {
 
 	}
 	.out{
+
+
 		position: absolute;
 		top: 58px;
 		left: 220px;
@@ -145,6 +150,8 @@ body {
 
 		box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 		background-color: rgb(255, 255, 255);
+
+//		z-index: 1;
 
 		input {
 
@@ -179,6 +186,8 @@ body {
 
 		&.generator {
 
+//			position: fixed;
+
 //			padding-left: 30px;
 
 			li {
@@ -186,7 +195,7 @@ body {
 			}
 
 			#editable {
-				width: 590px;
+				width: 600px;
 				height: 300px;
 				border: 1px solid lightgray;
 			}
@@ -256,15 +265,24 @@ body {
 
 			padding-top: 15px;
 
+			min-height: 500px;
+
 			li {
 
 				a {
+					&:link {
+//						text-decoration: none;
+					}
+					&:visited {
+						color: black;
+					}
+
 					&:hover {
 						text-decoration: underline;
 					}
 				}
 
-//				height: 100%;
+
 				position: relative;
 				padding-left: 20px;
 				padding-bottom: 15px;
@@ -312,15 +330,15 @@ body {
 //					text-transform: capitalize;
 					text-decoration: none;
 
-					&:link {
-						text-decoration: none;
-						color: #4183C4;
-					}
-					&:visited {
-						color: #457cc1;
-					}
-					&:hover {
-					}
+//					&:link {
+//						text-decoration: none;
+//						color: #4183C4;
+//					}
+//					&:visited {
+//						color: #457cc1;
+//					}
+//					&:hover {
+//					}
 				}
 				ul.links {
 					padding-left: 0;
