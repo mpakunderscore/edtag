@@ -65,13 +65,12 @@ public class Application extends Controller {
 
     public static Result bundle(int id) {
 
-        return ok(bundle.render(Ebean.find(Bundle.class).where().eq("id", id).findUnique(), session("email")));
-    }
+        Bundle bundleModel = Ebean.find(Bundle.class).where().eq("id", id).findUnique();
 
-    /**
-     * Not bookmarks, may be pages or links
-     * @return
-     */
+        bundleModel.setWebDataList(Ebean.find(WebData.class).where().eq("id", id).findList());
+
+        return ok(bundle.render(bundleModel, session("email")));
+    }
 
     public static Result links() {
 
@@ -105,6 +104,7 @@ public class Application extends Controller {
             user = new User(email, password);
             user.save();
             session("email", email);
+//            session("userId", user.getId()); //fuck, forgot about userId
 
         } else if (BCrypt.checkpw(password, user.getPassword())) {
             session("email", email);

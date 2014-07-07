@@ -4,7 +4,11 @@
 
     <section class="main">
 
-    <ul class="out">
+    <ul class="out bundle">
+
+        <img ng-src="@{"https://s3.amazonaws.com/edtag/bundles/bundle." + bundle.getId + ".png"}">
+        <section class="title" contenteditable="true">@bundle.getTitle</section>
+        <span class="linksCount">@bundle.getLinksCount links</span>
 
         <li ng-repeat="webData in bundle.webDataList">
 
@@ -14,7 +18,7 @@
             </a>
             <a href='{{webData.url}}' target='_blank' title='{{webData.tags}}'>{{webData.title}}</a>
             
-       </li>
+        </li>
      </ul>
 
      </section>

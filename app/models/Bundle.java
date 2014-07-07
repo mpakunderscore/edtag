@@ -31,7 +31,7 @@ public class Bundle extends Model {
 
     String webDataIds;
 
-//    List<WebData> webDataList;
+    List<WebData> webDataList;
 
     @Column(columnDefinition = "TEXT") //as json object
     String tags;
@@ -94,11 +94,10 @@ public class Bundle extends Model {
 
     public JsonNode getTags() {
         return Json.parse(this.tags);
-
     }
 
     public void setTags(String tags) {
-        this.tags = tags; //TODO save tags for bundle
+        this.tags = tags;
     }
 
     public String getDescription() {
@@ -125,14 +124,13 @@ public class Bundle extends Model {
         this.userId = userId;
     }
 
-//    public void setWebDataList(List<WebData> webDataList) {
-//        this.webDataList = webDataList;
-//    }
+    public void setWebDataList(List<WebData> webDataList) {
+        this.webDataList = webDataList;
+    }
 
-//    public List<WebData> getWebDataList() {
-//        return new ArrayList<>();
-//        return webDataList;
-//    }
+    public List<WebData> getWebDataList() {
+        return webDataList;
+    }
 
     public int getLinksCount() {
         return randInt(4, 19); //TODO make normal db model!
