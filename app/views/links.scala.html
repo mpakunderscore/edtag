@@ -6,7 +6,7 @@
     <nav id="tags" >
         <ul>
             <li ng-repeat="tag in sortedTags | limitTo: 15">
-                <a href="#" title="{{tag.weight}}">{{tag.name}}</a>
+                <a href="#" title="{{tag.weight}}" ng-click="filterByTag(this)">{{tag.name}}</a>
             </li>
         </ul>
     </nav>

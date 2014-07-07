@@ -1,6 +1,7 @@
 body {
 	overflow-y: scroll;
-	font: 13px helvetica, arial, freesans, clean, sans-serif;
+	font-size: 13px;
+	font-family: Helvetica;
 	line-height: 1.5;
 	margin: 0;
 	progress {
@@ -14,7 +15,6 @@ body {
 	}
 	nav{
 		height: 80%;
-
 		&#tags {
 			position: fixed;
 			top: 58px;
@@ -22,21 +22,13 @@ body {
 			width: 220px;
 			text-align: right;
 			padding-top: 15px;
-
 			li {
 				list-style: none;
 				padding-right: 20px;
 				padding-bottom: 15px;
-
 			}
 
 			a {
-//				width: auto;
-//				width: 180px;
-//				white-space: nowrap;
-//				overflow: hidden;
-//				text-overflow: ellipsis;
-//				margin: 15px 0 0 15px;
 				display: inline-block;
 				&:link {
 					text-decoration: none;
@@ -53,28 +45,23 @@ body {
 
 		&.top-menu {
 			background-color: #ffffff;
-
 			min-width: 700px;
 			position: fixed;
 			left: 220px;
 			right: 0;
 			padding: 20px 0 20px 30px;
 			height: 30px;
-
 			input {
 				padding-left: 0.4em;
 				width: 400px;
 				float: left;
-				font: 13px helvetica, arial, freesans, clean, sans-serif;
+				font-size: 13px;
 				line-height: 1.5;
 			}
 			&.m-top {
 				position: fixed;
-//				top: 0;
-//				left: 220px;
 				background: rgba(255, 255, 255, 0.9);
 				z-index: 1;
-
 			}
 			.menu {
 				list-style: none;
@@ -105,7 +92,7 @@ body {
 					}
 					span.name {
 
-						font: 11px helvetica, arial, freesans, clean, sans-serif;
+						font-size: 11px;
 						color: gray;
 
 					}
@@ -137,100 +124,67 @@ body {
 
 	}
 	.out{
-
-
 		position: absolute;
 		top: 58px;
 		left: 220px;
 		right: 0;
 		min-width: 700px;
-
 		padding: 0;
 		margin-bottom: 50px;
-
 		box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 		background-color: rgb(255, 255, 255);
-
-//		z-index: 1;
-
 		input {
-
 			padding-left: 0.4em;
-			font: 13px helvetica, arial, freesans, clean, sans-serif;
+			font-size: 13px;
 			line-height: 1.5;
-
 			width: 200px;
 		}
 
 		input[type="submit"] {
-
 			width: auto;
 			padding-left: 0;
-
-//			background: none;
-//			border: none;
 			color: #4183C4;
-//			text-decoration: none;
-//			cursor: pointer;
 		}
 
 		&.login {
-
 			li {
 				padding-bottom: 20px;
 				padding-left: 30px;
 			}
-
 			padding-top: 20px;
 		}
 
 		&.generator {
-
-//			position: fixed;
-
-//			padding-left: 30px;
-
 			li {
 				padding-bottom: 15px;
 			}
-
 			#editable {
 				width: 600px;
 				height: 300px;
 				border: 1px solid lightgray;
 			}
-
 			#bundle {
-
 				position: relative;
 				left: 350px;
 				width: 280px;
 				top: 20px;
 				height: 250px;
-
 				img {
 					box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 					width: 280px;
 					height: 180px;
 				}
-
 				.title {
-
-					font: 17px helvetica, arial, freesans, clean, sans-serif;
+					font-size: 17px;
 					line-height: 1.8;
 					color: #4183C4;
 					margin: 0;
 					padding: 5px 15px;
-
 				}
-
 				.linksCount {
 					padding-left: 15px;
-
-					font: 11px helvetica, arial, freesans, clean, sans-serif;
+					font-size: 11px;
 					color: gray;
-
-
 				}
 			}
 
@@ -242,19 +196,13 @@ body {
 
 			#linksForm {
 				position: relative;
-//				left: 40px;
 				padding-left: 30px;
-//				padding-bottom: 20px;
-//				top: 200px;
 			}
 		}
 
 		li {
 			list-style: none;
-//			margin: 20px 20px 0 0;
-
 			a {
-//				padding-left: 20px;
 				color: #4183C4;
 				text-decoration: none;
 			}
@@ -262,16 +210,11 @@ body {
 	}
 	ul {
 		&.links {
-
 			padding-top: 15px;
-
 			min-height: 500px;
-
 			li {
-
 				a {
 					&:link {
-//						text-decoration: none;
 					}
 					&:visited {
 						color: black;
@@ -281,12 +224,9 @@ body {
 						text-decoration: underline;
 					}
 				}
-
-
 				position: relative;
 				padding-left: 20px;
 				padding-bottom: 15px;
-
 				img {
 
 					vertical-align: middle;
@@ -301,9 +241,6 @@ body {
 
 			li {
 				position: relative;
-//				background-color: rgba(211, 211, 211, 0.10);
-
-
 				list-style: none;
 				margin: 0 30px 20px 0;
 				width: 280px;
@@ -315,46 +252,26 @@ body {
 
 				img {
 					box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-//					background-color: rgba(0, 0, 0, 0.02);
 					width: 280px;
 					height: 180px;
 				}
 
 				a {
-					font: 17px helvetica, arial, freesans, clean, sans-serif;
+					font-size: 17px;
 					line-height: 1.8;
 					margin: 0;
 					padding: 5px 15px;
 					display: block;
-//					background: rgba(255, 255, 255, 0.9);
-//					text-transform: capitalize;
 					text-decoration: none;
-
-//					&:link {
-//						text-decoration: none;
-//						color: #4183C4;
-//					}
-//					&:visited {
-//						color: #457cc1;
-//					}
-//					&:hover {
-//					}
 				}
 				ul.links {
 					padding-left: 0;
 				}
 
 				span.linksCount {
-
-//					position:absolute;
 					padding-left: 15px;
-
-					font: 11px helvetica, arial, freesans, clean, sans-serif;
+					font-size: 11px;
 					color: gray;
-
-//					right: 0;
-//					bottom: 0;
-//					text-align: right;
 				}
 
 			}
