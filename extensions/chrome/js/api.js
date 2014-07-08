@@ -1,21 +1,9 @@
-//var host = "https://edtag.io";
-var host = "http://localhost:9000";
+var host = "https://edtag.io";
+//var host = "http://localhost:9000";
 
-var notificationTime = 10000;
+var notificationTime = 3000;
 
 var notID = 0;
-
-function setDomains() {
-
-    var url = host + "/domains";
-
-    var request = new XMLHttpRequest();
-    request.open( "GET", url, false );
-    request.send( null );
-
-    var domains = request.responseText;
-    localStorage.setItem("domains", domains);
-}
 
 function add_url(tab) {
 
@@ -31,21 +19,27 @@ function add_url(tab) {
 
     if (response.length == 0) return; //TODO
 
-    var webData = JSON.parse(response);
+    var link = JSON.parse(response);
 
-    var url = tab.url.split("://")[1].replace("www.", "");
+    var tabUrl = tab.url.split("://")[1].replace("www.", "");
 
-    console.log(url);
+//    console.log(tabUrl);
 
     var iconUrl = "https://s3.amazonaws.com/edtag/";
 
-    webData.favIconFormat = "ico";
+    link.favIconFormat = "ico";
 
-    if (webData.favIconFormat) iconUrl += url.split("/")[0] + "." + webData.favIconFormat;
+    if (link.favIconFormat) iconUrl += tabUrl.split("/")[0] + "." + link.favIconFormat;
 
     else iconUrl += "blank.ico";
 
-    notification(iconUrl, webData.title.replace(" - Wikipedia, the free encyclopedia", ""), webData.tags); //TODO
+    var tags = link.tags;
+
+    var tagNames = [];
+    for (var id in tags)
+        tagNames.push(tags[id].name);
+
+    notification(iconUrl, link.title.replace(" - Wikipedia, the free encyclopedia", ""), tagNames.join(", ")); //TODO
 }
 
 function notification(iconUrl, title, text) {
@@ -64,7 +58,9 @@ function notification(iconUrl, title, text) {
     options.buttons = [];
 //    options.buttons.push({ title: "ok" });
 
-    chrome.notifications.create("id"+notID++, options, creationCallback);
+    var id = "id" + notID++;
+
+    chrome.notifications.create(id, options, creationCallback);
 }
 
 function creationCallback(notID) {
@@ -81,22 +77,4 @@ function creationCallback(notID) {
 
         }, notificationTime);
 //    }
-}
-
-function sort(tags) {
-
-    var sortable = [];
-    var sorted_tags = [];
-
-    for (var tag in tags)
-        if (tags[tag] != null)
-            sortable.push([tag, tags[tag]]);
-
-    sortable.sort(function(b, a) {return a[1] - b[1]});
-
-    for(var key in sortable) {
-        sorted_tags.push(sortable[key][0]);
-    }
-
-    return sorted_tags;
 }
