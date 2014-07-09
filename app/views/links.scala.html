@@ -5,12 +5,6 @@
 
     <nav id="tags" >
         <ul>
-            <li>
-                <a href="#" title="">global</a>
-            </li>
-            <li>
-                <a href="#" title="">personal</a>
-            </li>
             <li ng-repeat="tag in sortedTags | limitTo: 15">
                 <a href="#" title="{{tag.weight}}">{{tag.name}}</a>
             </li>

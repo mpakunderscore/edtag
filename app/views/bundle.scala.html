@@ -6,9 +6,21 @@
 
     <ul class="out bundle">
 
-        <img ng-src="@{"https://s3.amazonaws.com/edtag/bundles/bundle." + bundle.getId + ".png"}">
-        <section class="title" contenteditable="true">@bundle.getTitle</section>
-        <span class="linksCount">@bundle.getLinksCount links</span>
+        <ul class="top">
+            <li>
+                <img ng-src="@{"https://s3.amazonaws.com/edtag/bundles/bundle." + bundle.getId + ".png"}">
+            </li>
+            <li>
+                <ul>
+                    <li><section class="title" contenteditable="true">@bundle.getTitle</section></li>
+                    <li><span class="linksCount">@bundle.getLinksCount links</span></li>
+                    <li class="back"><a href="javascript:window.history.back()">back</a></li>
+                </ul>
+            </li>
+
+        </ul>
+
+
 
         <li ng-repeat="webData in bundle.webDataList">
 
