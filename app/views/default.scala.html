@@ -20,7 +20,10 @@
     <body ng-controller="mainCtrl">
         <header>
             <button ng-click="showSearch()" id="logo">&#60; &#62;</button>
-
+            <!-- <div id="logo" class="menu"><a ng-click="showSearch()" >&#9906;</a> &#62;</div> -->
+            <!-- <nav id="logo"> -->
+                <!-- <a ng-click="showSearch()" href="">&#60; &#62;</a> -->
+            <!-- </nav> -->
             <!-- <nav id="dot"></nav> -->
 
             <nav class="top-menu">
@@ -37,18 +40,9 @@
                             <a href="/signout" class="auth">Sign Out</a>
                         </li>
                     }
-    	        </ul>
-            </nav>
-        </header>
-        <aside >
-            <nav id="tags" >
-                <ul>
-                    <li ng-repeat="tag in sortedTags">
-                        <a ng-href="#{{tag.name}}" ng-click="filterByTag(this)" title="{{tag.weight}}">{{tag.name}}</a>
-                    </li>
                 </ul>
             </nav>
-        </aside>
+        </header>
         @content
 
     </body>

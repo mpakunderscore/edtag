@@ -13,44 +13,41 @@ body {
 			background: rgba(211, 211, 211, 0.47);
 		}
 	}
-	nav{
-		height: 80%;
-		&#tags {
-			position: fixed;
-			top: 58px;
-			left: 0;
-			width: 220px;
+	header{
+		height: 50px;
+		width: 100%;
+		button#logo {
+			width: 50px;
+			cursor: pointer;
+			height: 20px;
 			text-align: right;
-			padding-top: 15px;
-			li {
-				list-style: none;
-				padding-right: 20px;
-				padding-bottom: 15px;
+			font: 18px andale mono;
+			vertical-align: bottom;
+			background: none;
+			border: none;
+			float: left;
+			position: fixed;
+			top: 20px;
+			left: 155px;
+			&:link {
+				text-decoration: none;
+				color: black;
 			}
-
-			a {
-				display: inline-block;
-				&:link {
-					text-decoration: none;
-					color: black;
-				}
-				&:visited {
-					color: black;
-				}
-				&:hover {
-					color: rgb(254, 65, 50);
-				}
+			&:visited {
+				color: black;
+			}
+			&:hover {
+				color: rgb(254, 65, 50);
 			}
 		}
-
-		&.top-menu {
+		nav.top-menu {
 			background-color: #ffffff;
 			min-width: 700px;
-			position: fixed;
-			left: 220px;
-			right: 0;
 			padding: 20px 0 20px 30px;
 			height: 30px;
+			float: left;
+			margin-left: 200px;
+			width: 100%;
 			input {
 				padding-left: 0.4em;
 				width: 400px;
@@ -65,11 +62,10 @@ body {
 			}
 			.menu {
 				list-style: none;
-				width: 100%;
 				min-width: 200px;
-				margin: 8px 50px 0 0;
+				margin: 8px 0px 0 -240px;
 				padding-left: 0;
-
+				width: 100%;
 				li {
 					float: left;
 					a {
@@ -100,15 +96,124 @@ body {
 			}
 		}
 
-		&#logo {
+	}
+	section{
+		&.full-width{
+			position: absolute;
+			top: 58px;
+			left: 220px;
+			right: 0;
+			min-width: 700px;
+			padding: 0;
+			margin-bottom: 50px;
+			box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+			background-color: rgb(255, 255, 255);
+			padding: 20px;
+		}
+	}
+	.preview-bundle{
+		width: 280px;
+		height: 250px;
+		float: left;
+		margin-left: 20px;
+		.pic{
+			width: 280px;
+			height: 180px;
+			float: left;
+		}
+		.name{
+			font-size: 17px;
+			font-weight: normal;
+			color: #4183C4;
+			min-height: 25px;
+			visibility: visible;
+			width: 280px;
+			float: left;
+			margin: 0;
+			padding: 5px 0;
+		}
+		.links-count{
+
+		}
+	}
+	.add-bundle{
+		height: 250px;
+		width: 250px;
+		float: left;
+		input[type="file"]{
+			margin-bottom: 10px;
+		}
+		input[type="text"],
+		input[type="url"]{
+			width: 230px;
+			margin-bottom: 10px;
+			float: none;
+			padding: 5px;
+			box-shadow: none;
+			border: 1px solid #ccc;
+			&:focus{
+			//	border-bottom: 1px solid lightgray;
+				box-shadow: none;
+				padding: 5px;
+				border: 1px solid #777;
+			}
+		}
+		input[type="url"]{
+
+		}
+
+		input[type="submit"]{
+			margin-top: 20px;
+			padding: .5em 1em;
+			color: #444;
+			border: 0 rgba(0,0,0,0);
+			background-color: #E6E6E6;
+			text-decoration: none;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+		textarea {
+			width: 600px;
+			height: 300px;
+			border: 1px solid lightgray;
+			resize: none;
+			float: left;
+		}
+
+		.title {
+			font-size: 17px;
+			line-height: 1.8;
+			color: #4183C4;
+			margin: 0;
+			padding: 5px 15px;
+			position: absolute;
+			left: 500px;
+		}
+		.linksCount {
+			padding-left: 15px;
+			font-size: 11px;
+			color: gray;
+		}
+	}
+
+	nav{
+		height: 80%;
+		&#tags {
 			position: fixed;
-			left: 30px;
-			top: 22px;
-			width: 35px;
-			height: 20px;
+			top: 58px;
+			left: 0;
+			width: 220px;
 			text-align: right;
-			font: 18px andale mono;
+			padding-top: 15px;
+			overflow: scroll;
+			li {
+				list-style: none;
+				padding-right: 20px;
+				padding-bottom: 15px;
+			}
+
 			a {
+				display: inline-block;
 				&:link {
 					text-decoration: none;
 					color: black;
@@ -122,6 +227,9 @@ body {
 			}
 		}
 
+
+
+
 	}
 	.out{
 		position: absolute;
@@ -133,6 +241,7 @@ body {
 		margin-bottom: 50px;
 		box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 		background-color: rgb(255, 255, 255);
+		padding: 20px;
 		input {
 			padding-left: 0.4em;
 			font-size: 13px;
@@ -152,52 +261,6 @@ body {
 				padding-left: 30px;
 			}
 			padding-top: 20px;
-		}
-
-		&.generator {
-			li {
-				padding-bottom: 15px;
-			}
-			#editable {
-				width: 600px;
-				height: 300px;
-				border: 1px solid lightgray;
-			}
-			#bundle {
-				position: relative;
-				left: 350px;
-				width: 280px;
-				top: 20px;
-				height: 250px;
-				img {
-					box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-					width: 280px;
-					height: 180px;
-				}
-				.title {
-					font-size: 17px;
-					line-height: 1.8;
-					color: #4183C4;
-					margin: 0;
-					padding: 5px 15px;
-				}
-				.linksCount {
-					padding-left: 15px;
-					font-size: 11px;
-					color: gray;
-				}
-			}
-
-			#imageUpload {
-				position: inherit;
-				left: 30px;
-				top: 20px;
-			}
-
-			#linksForm {
-				position: relative;
-				padding-left: 30px;
-			}
 		}
 
 		li {

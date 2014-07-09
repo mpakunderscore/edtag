@@ -1,12 +1,37 @@
-var edTagApp = angular.module('edTagApp', []);
+
 
 var m_top = true;
+
+edTagApp.controller('UploadController', function($scope, fileReader) {
+     console.log(fileReader)
+    $scope.bundle = {
+        name: '',
+        links: [
+            {url: ""},
+        ],
+        img: null
+
+    }
+    $scope.addLink = function(){
+        $scope.bundle.links.push({url : ""});
+    }
+    $scope.getFile = function () {
+        $scope.progress = 0;
+        fileReader.readAsDataUrl($scope.file, $scope).then(function(result) {
+            $scope.imageSrc = result;
+        });
+    };
+
+    $scope.$on("fileProgress", function(e, progress) {
+        $scope.progress = progress.loaded / progress.total;
+    });
+
+});
 
 edTagApp.controller('mainCtrl', function ($scope, $http) {
 
     var allTags = []
     var sum = function(a,b){ return a+b; };
-
     $scope.selected_tags = {};
     $scope.allTags = {}
 
@@ -38,9 +63,9 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
 
             angular.forEach(data, function (bundle) {
 
-		        angular.forEach(bundle.tags, function (tag) {
+                angular.forEach(bundle.tags, function (tag) {
 
-//                    if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3)
+                    if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3)
                         allTags.push(tag)
                 })
             })
@@ -57,7 +82,10 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
         });
 
     $scope.searchText = ''
+    $scope.filterByTag = function(link){
+        console.log(link.tag)
 
+    }
 });
 
 edTagApp.controller('linksCtrl', function ($scope, $http) {
