@@ -77,7 +77,7 @@ public class Web extends Controller {
             return ok();
 
         Http.MultipartFormData body = request().body().asMultipartFormData();
-        Http.MultipartFormData.FilePart image = body.getFile("image.png");
+        Http.MultipartFormData.FilePart image = body.getFiles().get(0);
 
         File file;
         if (image != null)
