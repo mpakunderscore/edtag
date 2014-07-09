@@ -1,29 +1,24 @@
 @(email: String)
 
-@shell("Bundle generator", email) {
+@default("Bundle generator", email) {
+<section class="full-width" ng-controller="UploadController">
+    <h2>Basic form for bundle generation</h2>
+    <form action="/bundle/add"  class="add-bundle">
+        <input type="file" ng-file-select="onFileSelect($files)" >
+        <!-- <input type="url" name="url" placeholder="or Image URL"> -->
 
-    <ul class="out generator">
+        <input type="text" ng-model="bundle.name" class="bundle-name" placeholder="Write title for your bundle">
 
-        <section id="bundle">
-            <img>
-            <section class="title" contenteditable="true">Write title for your bundle</section>
-            <span class="linksCount">0 links</span>
-        </section>
-
-        <section id="imageUpload">
-            <li>Basic form for bundle</li>
-            <li><input type="file"  name="image"        placeholder="Image"></li>
-            <li><input type="url"   name="url"          placeholder="or Image URL"></li>
-            <li><a href="#">upload image</a></li>
-        </section>
-
-        <section id="linksForm">
-            <li><input type="url"   name="urlsLink"     placeholder="Page with links"></li>
-            <li><a href="">generate links from page</a> or add your own</li>
-            <li><section name="urls" id="editable" contenteditable="true">
-            </section></li>
-
-            <li><input type="submit" href="/bundle/add" id="enter"></li>
-        </section>
-    </ul>
+        <input type="url" ng-repeat="link in bundle.links" ng-model="bundle.links[$index].url" placeholder="Link {{$index}}">
+        <button type="button" ng-click="addLink()">+</button><br/>
+        <!-- <a href="">generate links from page</a> or add your own<br/> -->
+        <!-- <textarea name="urls" id="editable" contenteditable="true"></textarea> -->
+        <input type="submit" value="Generate">
+    </form>
+    <div class="preview-bundle">
+        <img ng-src="{{imageSrc}}" class="pic"/>
+        <h4 class="name">{{bundle.name}}</h4>
+        <div>{{bundle.links.length}} links</div>
+    </div>
+</section>
 }

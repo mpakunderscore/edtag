@@ -1,6 +1,7 @@
 body {
 	overflow-y: scroll;
-	font: 13px helvetica, arial, freesans, clean, sans-serif;
+	font-size: 13px;
+	font-family: Helvetica;
 	line-height: 1.5;
 	margin: 0;
 	progress {
@@ -12,77 +13,60 @@ body {
 			background: rgba(211, 211, 211, 0.47);
 		}
 	}
-	nav{
-		height: 80%;
-
-		&#tags {
-			position: fixed;
-			top: 58px;
-			left: 0;
-			width: 220px;
+	header{
+		height: 50px;
+		width: 100%;
+		button#logo {
+			width: 50px;
+			cursor: pointer;
+			height: 20px;
 			text-align: right;
-			padding-top: 15px;
-
-			li {
-				list-style: none;
-				padding-right: 20px;
-				padding-bottom: 15px;
-
+			font: 18px andale mono;
+			vertical-align: bottom;
+			background: none;
+			border: none;
+			float: left;
+			position: fixed;
+			top: 20px;
+			left: 155px;
+			&:link {
+				text-decoration: none;
+				color: black;
 			}
-
-			a {
-//				width: auto;
-//				width: 180px;
-//				white-space: nowrap;
-//				overflow: hidden;
-//				text-overflow: ellipsis;
-//				margin: 15px 0 0 15px;
-				display: inline-block;
-				&:link {
-					text-decoration: none;
-					color: black;
-				}
-				&:visited {
-					color: black;
-				}
-				&:hover {
-					color: rgb(254, 65, 50);
-				}
+			&:visited {
+				color: black;
+			}
+			&:hover {
+				color: rgb(254, 65, 50);
 			}
 		}
-
-		&.top-menu {
+		nav.top-menu {
 			background-color: #ffffff;
-
-
-			position: fixed;
-			left: 220px;
-			right: 0;
+			min-width: 700px;
 			padding: 20px 0 20px 30px;
 			height: 30px;
-			min-width: 900px;
+			float: left;
+			margin-left: 200px;
+			width: 100%;
+
 			input {
 				padding-left: 0.4em;
 				width: 400px;
 				float: left;
-				font: 13px helvetica, arial, freesans, clean, sans-serif;
+				font-size: 13px;
 				line-height: 1.5;
 			}
 			&.m-top {
 				position: fixed;
-//				top: 0;
-//				left: 220px;
 				background: rgba(255, 255, 255, 0.9);
 				z-index: 1;
-
 			}
 			.menu {
 				list-style: none;
-				width: 100%;
-//				min-width: 400px;
-				margin: 8px 50px 0 0;
+				min-width: 200px;
+				margin: 8px 0px 0 -240px;
 				padding-left: 0;
-
+				width: 100%;
 				li {
 					float: left;
 					a {
@@ -105,7 +89,7 @@ body {
 					}
 					span.name {
 
-						font: 11px helvetica, arial, freesans, clean, sans-serif;
+						font-size: 11px;
 						color: gray;
 
 					}
@@ -113,15 +97,124 @@ body {
 			}
 		}
 
-		&#logo {
+	}
+	section{
+		&.full-width{
+			position: absolute;
+			top: 58px;
+			left: 220px;
+			right: 0;
+			min-width: 700px;
+			padding: 0;
+			margin-bottom: 50px;
+			box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+			background-color: rgb(255, 255, 255);
+			padding: 20px;
+		}
+	}
+	.preview-bundle{
+		width: 280px;
+		height: 250px;
+		float: left;
+		margin-left: 20px;
+		.pic{
+			width: 280px;
+			height: 180px;
+			float: left;
+		}
+		.name{
+			font-size: 17px;
+			font-weight: normal;
+			color: #4183C4;
+			min-height: 25px;
+			visibility: visible;
+			width: 280px;
+			float: left;
+			margin: 0;
+			padding: 5px 0;
+		}
+		.links-count{
+
+		}
+	}
+	.add-bundle{
+		height: 250px;
+		width: 250px;
+		float: left;
+		input[type="file"]{
+			margin-bottom: 10px;
+		}
+		input[type="text"],
+		input[type="url"]{
+			width: 230px;
+			margin-bottom: 10px;
+			float: none;
+			padding: 5px;
+			box-shadow: none;
+			border: 1px solid #ccc;
+			&:focus{
+			//	border-bottom: 1px solid lightgray;
+				box-shadow: none;
+				padding: 5px;
+				border: 1px solid #777;
+			}
+		}
+		input[type="url"]{
+
+		}
+
+		input[type="submit"]{
+			margin-top: 20px;
+			padding: .5em 1em;
+			color: #444;
+			border: 0 rgba(0,0,0,0);
+			background-color: #E6E6E6;
+			text-decoration: none;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+		textarea {
+			width: 600px;
+			height: 300px;
+			border: 1px solid lightgray;
+			resize: none;
+			float: left;
+		}
+
+		.title {
+			font-size: 17px;
+			line-height: 1.8;
+			color: #4183C4;
+			margin: 0;
+			padding: 5px 15px;
+			position: absolute;
+			left: 500px;
+		}
+		.linksCount {
+			padding-left: 15px;
+			font-size: 11px;
+			color: gray;
+		}
+	}
+
+	nav{
+		height: 80%;
+		&#tags {
 			position: fixed;
-			left: 30px;
-			top: 22px;
-			width: 35px;
-			height: 20px;
+			top: 58px;
+			left: 0;
+			width: 220px;
 			text-align: right;
-			font: 18px andale mono;
+			padding-top: 15px;
+			overflow: scroll;
+			li {
+				list-style: none;
+				padding-right: 20px;
+				padding-bottom: 15px;
+			}
+
 			a {
+				display: inline-block;
 				&:link {
 					text-decoration: none;
 					color: black;
@@ -135,38 +228,32 @@ body {
 			}
 		}
 
+
+
+
 	}
 	.out{
-
-
 		position: absolute;
 		top: 58px;
 		left: 220px;
 		right: 0;
 		min-width: 900px;
-
 		padding: 0;
 		margin-bottom: 50px;
-
 		box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 		background-color: rgb(255, 255, 255);
-
-//		z-index: 1;
-
+		padding: 20px;
 		input {
-
 			padding-left: 0.4em;
-			font: 13px helvetica, arial, freesans, clean, sans-serif;
+			font-size: 13px;
 			line-height: 1.5;
-
 			width: 200px;
 		}
 
 		input[type="submit"] {
-
 			width: auto;
 			padding-left: 0;
-
+			color: #4183C4;
 //			background: none;
 //			border: none;
 //			color: #4183C4;
@@ -175,12 +262,10 @@ body {
 		}
 
 		&.login {
-
 			li {
 				padding-bottom: 20px;
 				padding-left: 30px;
 			}
-
 			padding-top: 20px;
 		}
 
@@ -305,13 +390,9 @@ body {
 
 
 		}
-
 		li {
 			list-style: none;
-//			margin: 20px 20px 0 0;
-
 			a {
-//				padding-left: 20px;
 				color: #4183C4;
 				text-decoration: none;
 			}
@@ -319,16 +400,11 @@ body {
 	}
 	ul {
 		&.links {
-
 			padding-top: 15px;
-
 			min-height: 500px;
-
 			li {
-
 				a {
 					&:link {
-//						text-decoration: none;
 					}
 					&:visited {
 						color: black;
@@ -338,12 +414,9 @@ body {
 						text-decoration: underline;
 					}
 				}
-
-
 				position: relative;
 				padding-left: 20px;
 				padding-bottom: 15px;
-
 				img {
 
 					vertical-align: middle;
@@ -358,9 +431,6 @@ body {
 
 			li {
 				position: relative;
-//				background-color: rgba(211, 211, 211, 0.10);
-
-
 				list-style: none;
 				margin: 0 30px 20px 0;
 				width: 280px;
@@ -372,46 +442,26 @@ body {
 
 				img {
 					box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-//					background-color: rgba(0, 0, 0, 0.02);
 					width: 280px;
 					height: 180px;
 				}
 
 				a {
-					font: 17px helvetica, arial, freesans, clean, sans-serif;
+					font-size: 17px;
 					line-height: 1.8;
 					margin: 0;
 					padding: 5px 15px;
 					display: block;
-//					background: rgba(255, 255, 255, 0.9);
-//					text-transform: capitalize;
 					text-decoration: none;
-
-//					&:link {
-//						text-decoration: none;
-//						color: #4183C4;
-//					}
-//					&:visited {
-//						color: #457cc1;
-//					}
-//					&:hover {
-//					}
 				}
 				ul.links {
 					padding-left: 0;
 				}
 
 				span.linksCount {
-
-//					position:absolute;
 					padding-left: 15px;
-
-					font: 11px helvetica, arial, freesans, clean, sans-serif;
+					font-size: 11px;
 					color: gray;
-
-//					right: 0;
-//					bottom: 0;
-//					text-align: right;
 				}
 
 			}
