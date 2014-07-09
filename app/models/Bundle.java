@@ -71,7 +71,7 @@ public class Bundle extends Model {
         }
 
         this.setWebDataIds(String.valueOf(toJson(webDataIds)));
-//        this.setWebDataList(webDataList);
+        this.setWebDataList(webDataList);
 
         this.setTags(String.valueOf(toJson(TagParser.getTagsForBundle(webDataList))));
     }

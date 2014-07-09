@@ -3,35 +3,36 @@
 # ~~~~
 
 # Home page
-GET         /                          controllers.Application.index
-GET         /login                     controllers.Application.login
+GET         /                           controllers.Application.index
+GET         /login                      controllers.Application.login
 
 
-GET         /bundles                   controllers.Application.bundles
-GET         /links                     controllers.Application.links
-GET         /about                     controllers.Application.about
+GET         /bundles                    controllers.Application.bundles
+GET         /links                      controllers.Application.links
+GET         /about                      controllers.Application.about
 
-POST        /signin                    controllers.Application.signIn
-GET         /signout                   controllers.Application.signOut
+POST        /signin                     controllers.Application.signIn
+GET         /signout                    controllers.Application.signOut
 
-GET         /add                       controllers.API.add(url: String)
-GET         /domains                   controllers.API.getApprovedDomains
-
-
-GET         /analyze/page/links        controllers.API.getLinksFromUrl(url: String)
+GET         /add                        controllers.API.add(url: String)
+GET         /domains                    controllers.API.getApprovedDomains
 
 
-GET         /bundle/*id                controllers.Application.bundle(id: Integer)
-GET         /api/bundle/add            controllers.Web.addBundle(urls: String, title: String, description: String)
-POST        /api/bundle/edit/*id       controllers.Web.editBundle(id: Integer, urls: String, title: String, description: String)
-
-GET         /generation                controllers.Application.bundleGeneration
+GET         /analyze/page/links         controllers.API.getLinksFromUrl(url: String)
 
 
+GET         /bundle/*id                 controllers.Application.bundle(id: Integer)
+POST        /api/bundle/add             controllers.Web.addBundle(urls: String, title: String, description: String)
+POST        /api/bundle/edit/*id        controllers.Web.editBundle(id: Integer, urls: String, title: String, description: String)
+GET         /api/bundle/preview         controllers.Web.previewBundle(urls: String, title: String, description: String)
 
-GET         /bundles/list              controllers.Web.bundles
-GET         /links/list                controllers.Web.links
+GET         /generation                 controllers.Application.bundleGeneration
+
+
+
+GET         /bundles/list               controllers.Web.bundles
+GET         /links/list                 controllers.Web.links
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file              controllers.Assets.at(path="/public", file)
+GET         /assets/*file               controllers.Assets.at(path="/public", file)
