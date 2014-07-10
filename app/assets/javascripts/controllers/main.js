@@ -2,31 +2,7 @@
 
 var m_top = true;
 
-edTagApp.controller('UploadController', function($scope, fileReader) {
-     console.log(fileReader)
-    $scope.bundle = {
-        name: '',
-        links: [
-            {url: ""},
-        ],
-        img: null
 
-    }
-    $scope.addLink = function(){
-        $scope.bundle.links.push({url : ""});
-    }
-    $scope.getFile = function () {
-        $scope.progress = 0;
-        fileReader.readAsDataUrl($scope.file, $scope).then(function(result) {
-            $scope.imageSrc = result;
-        });
-    };
-
-    $scope.$on("fileProgress", function(e, progress) {
-        $scope.progress = progress.loaded / progress.total;
-    });
-
-});
 
 edTagApp.controller('mainCtrl', function ($scope, $http) {
 
@@ -44,10 +20,7 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
 
         var searchBar = angular.element(document.querySelector('.top-menu'));
 
-        if (m_top)
-            document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;";
-        else
-            document.getElementById("logo").children[0].innerHTML = "&#9906; &#62;";
+        document.getElementById("logo").innerHTML = (m_top) ? "&#9906; &#60;" : "&#9906; &#62;";
 
         document.getElementById("search").focus();
 
@@ -143,12 +116,12 @@ window.onscroll = function (e) {
     if (top > 30) {
 
         if (m_top)
-            document.getElementById("logo").children[0].innerHTML = "&#9906; &#62;";
+            document.getElementById("logo").innerHTML = "&#9906; &#62;";
 
         else
-            document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;";
+            document.getElementById("logo").innerHTML = "&#9906; &#60;";
         //TODO hide top-menu here
 
     } else
-        document.getElementById("logo").children[0].innerHTML = "&#60; &#62;";
+        document.getElementById("logo").innerHTML = "&#60; &#62;";
 }

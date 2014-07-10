@@ -1,18 +1,13 @@
 @(email: String)
 
 @default("Bundle generator", email) {
-<section class="full-width" ng-controller="UploadController">
+<section class="full-width" ng-controller="uploadController">
     <h2>Basic form for bundle generation</h2>
-    <form action="/bundle/add"  class="add-bundle">
+    <form ng-submit="submitBundle()"  class="add-bundle">
         <input type="file" ng-file-select="onFileSelect($files)" >
-        <!-- <input type="url" name="url" placeholder="or Image URL"> -->
-
         <input type="text" ng-model="bundle.name" class="bundle-name" placeholder="Write title for your bundle">
-
         <input type="url" ng-repeat="link in bundle.links" ng-model="bundle.links[$index].url" placeholder="Link {{$index}}">
         <button type="button" ng-click="addLink()">+</button><br/>
-        <!-- <a href="">generate links from page</a> or add your own<br/> -->
-        <!-- <textarea name="urls" id="editable" contenteditable="true"></textarea> -->
         <input type="submit" value="Generate">
     </form>
     <div class="preview-bundle">
