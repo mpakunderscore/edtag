@@ -20,7 +20,7 @@ GET         /signout                    controllers.Application.signOut
 
 
 # objects api (json)
-POST        /api/bundle/add             controllers.Web.addBundle(urls: String, title: String, description: String)
+POST        /api/bundle/add             controllers.Web.addBundle
 POST        /api/bundle/edit/*id        controllers.Web.editBundle(id: Integer, urls: String, title: String, description: String)
 GET         /api/bundle/preview         controllers.Web.previewBundle(urls: String, title: String, description: String)
 GET         /api/bundle/*id             controllers.Web.bundle(id: Integer)

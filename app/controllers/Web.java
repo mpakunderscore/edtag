@@ -73,19 +73,23 @@ public class Web extends Controller {
         return ok();
     }
 
-    public static Result addBundle(String urls, String title, String description) {
+    public static Result addBundle() {
 
         int userId = 0;
         if (session("userId") != null)
             userId = Integer.parseInt(session("userId"));
 
+        Http.MultipartFormData body = request().body().asMultipartFormData();
+        Http.MultipartFormData.FilePart image = body.getFiles().get(0);
+
+        String urls = body.asFormUrlEncoded().get("urls")[0];
+        String title = body.asFormUrlEncoded().get("title")[0];
+        String description = body.asFormUrlEncoded().get("description")[0];
+
         JsonNode jsonUrlsList = Json.parse(urls);
 
         if (!jsonUrlsList.isArray())
             return ok();
-
-        Http.MultipartFormData body = request().body().asMultipartFormData();
-        Http.MultipartFormData.FilePart image = body.getFiles().get(0);
 
         File file;
         if (image != null)
