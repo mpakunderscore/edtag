@@ -2,34 +2,42 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
+# main page
 GET         /                           controllers.Application.index
 GET         /login                      controllers.Application.login
-
 
 GET         /bundles                    controllers.Application.bundles
 GET         /links                      controllers.Application.links
 GET         /about                      controllers.Application.about
 
+
+GET         /bundle/*id                 controllers.Application.bundle(id: Integer)
+
+
+# api
 POST        /signin                     controllers.Application.signIn
 GET         /signout                    controllers.Application.signOut
 
-GET         /add                        controllers.API.add(url: String)
-GET         /domains                    controllers.API.getApprovedDomains
 
-
-GET         /analyze/page/links         controllers.API.getLinksFromUrl(url: String)
-
-
-GET         /bundle/*id                 controllers.Application.bundle(id: Integer)
+# objects api (json)
 POST        /api/bundle/add             controllers.Web.addBundle(urls: String, title: String, description: String)
 POST        /api/bundle/edit/*id        controllers.Web.editBundle(id: Integer, urls: String, title: String, description: String)
 GET         /api/bundle/preview         controllers.Web.previewBundle(urls: String, title: String, description: String)
+GET         /api/bundle/*id             controllers.Web.bundle(id: Integer)
 
 GET         /generation                 controllers.Application.bundleGeneration
 
 
+#extension
+GET         /add                        controllers.API.add(url: String)
+GET         /domains                    controllers.API.getApprovedDomains
 
+
+#test
+GET         /analyze/page/links         controllers.API.getLinksFromUrl(url: String)
+
+
+#api list
 GET         /bundles/list               controllers.Web.bundles
 GET         /links/list                 controllers.Web.links
 

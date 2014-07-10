@@ -41,6 +41,14 @@ public class Web extends Controller {
         return ok(toJson(bundles));
     }
 
+    public static Result bundle(int id) {
+
+        Bundle bundle = Ebean.find(Bundle.class).where().eq("id", id).findUnique();
+        bundle.setWebDataList();
+
+        return ok(toJson(bundle));
+    }
+
     public static Result editBundle(int id, String urls, String title, String description) {
 
         int userId = 0;

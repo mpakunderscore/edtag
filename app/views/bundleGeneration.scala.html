@@ -3,7 +3,7 @@
 @default("Bundle generator", email) {
 <section class="full-width" ng-controller="UploadController">
     <h2>Basic form for bundle generation</h2>
-    <form action="/bundle/add"  class="add-bundle">
+    <form action="/api/bundle/add" class="add-bundle" method="POST">
         <input type="file" ng-file-select="onFileSelect($files)" >
         <!-- <input type="url" name="url" placeholder="or Image URL"> -->
 
