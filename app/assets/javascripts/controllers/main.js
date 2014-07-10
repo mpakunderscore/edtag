@@ -45,9 +45,9 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
         var searchBar = angular.element(document.querySelector('.top-menu'));
 
         if (m_top)
-            document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;";
+            document.getElementById("logo").innerHTML = "&#9906; &#60;";
         else
-            document.getElementById("logo").children[0].innerHTML = "&#9906; &#62;";
+            document.getElementById("logo").innerHTML = "&#9906; &#62;";
 
         document.getElementById("search").focus();
 
@@ -143,12 +143,12 @@ window.onscroll = function (e) {
     if (top > 30) {
 
         if (m_top)
-            document.getElementById("logo").children[0].innerHTML = "&#9906; &#62;";
+            document.getElementById("logo").innerHTML = "&#9906; &#62;";
 
         else
-            document.getElementById("logo").children[0].innerHTML = "&#9906; &#60;";
+            document.getElementById("logo").innerHTML = "&#9906; &#60;";
         //TODO hide top-menu here
 
     } else
-        document.getElementById("logo").children[0].innerHTML = "&#60; &#62;";
+        document.getElementById("logo").innerHTML = "&#60; &#62;";
 }
