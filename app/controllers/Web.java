@@ -41,6 +41,14 @@ public class Web extends Controller {
         return ok(toJson(bundles));
     }
 
+    public static Result bundle(int id) {
+
+        Bundle bundle = Ebean.find(Bundle.class).where().eq("id", id).findUnique();
+        bundle.setWebDataList();
+
+        return ok(toJson(bundle));
+    }
+
     public static Result editBundle(int id, String urls, String title, String description) {
 
         int userId = 0;
@@ -77,7 +85,7 @@ public class Web extends Controller {
             return ok();
 
         Http.MultipartFormData body = request().body().asMultipartFormData();
-        Http.MultipartFormData.FilePart image = body.getFile("image.png");
+        Http.MultipartFormData.FilePart image = body.getFiles().get(0);
 
         File file;
         if (image != null)

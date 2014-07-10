@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Expr;
 import com.fasterxml.jackson.databind.JsonNode;
 import controllers.parsers.TagParser;
 import controllers.parsers.Watcher;
@@ -128,24 +129,21 @@ public class Bundle extends Model {
         this.webDataList = webDataList;
     }
 
+    public void setWebDataList() {
+
+        List<Integer> ids = new ArrayList<>();
+        JsonNode jsonUrlsList = Json.parse(getWebDataIds());
+        for (int i = 0; i < jsonUrlsList.size(); i++)
+            ids.add(jsonUrlsList.get(i).asInt());
+
+        this.webDataList = Ebean.find(WebData.class).where().in("id", ids).findList();
+    }
+
     public List<WebData> getWebDataList() {
         return webDataList;
     }
 
     public int getLinksCount() {
-        return randInt(4, 19); //TODO make normal db model!
-    }
-
-    public static int randInt(int min, int max) {
-
-        // Usually this should be a field rather than a method variable so
-        // that it is not re-seeded every call.
-        Random rand = new Random();
-
-        // nextInt is normally exclusive of the top value,
-        // so add 1 to make it inclusive
-        int randomNum = rand.nextInt((max - min) + 1) + min;
-
-        return randomNum;
+        return webDataIds.split(",").length; //TODO :(
     }
 }
