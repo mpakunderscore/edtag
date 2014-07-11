@@ -90,7 +90,7 @@ public class Web extends Controller {
             userId = Integer.parseInt(session("userId"));
 
         Http.MultipartFormData body = request().body().asMultipartFormData();
-        Http.MultipartFormData.FilePart image = body.getFile("picture");
+        Http.MultipartFormData.FilePart image = body.getFile("image");
 
         String urls = body.asFormUrlEncoded().get("urls")[0];
         String title = body.asFormUrlEncoded().get("title")[0];
@@ -112,7 +112,7 @@ public class Web extends Controller {
 
         if (S3Plugin.amazonS3 == null) {
 
-            throw new RuntimeException("Could not save");
+//            throw new RuntimeException("Could not save bundle image");
 
         } else {
 
