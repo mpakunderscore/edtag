@@ -1,5 +1,5 @@
-var host = "https://edtag.io";
-//var host = "http://localhost:9000";
+//var host = "https://edtag.io";
+var host = "http://localhost:9000";
 
 var notificationTime = 3000;
 

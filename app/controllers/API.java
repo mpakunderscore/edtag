@@ -24,13 +24,13 @@ import static play.libs.Json.toJson;
  */
 public class API extends Controller {
 
-    public static Result add(String url) throws Exception {
+    public static Result add(String url, int userId) throws Exception {
 
 //        url = url.split(Pattern.quote("?"))[0]; //TODO
 
-        int userId = 0;
-        if (session("userId") != null)
-            userId = Integer.parseInt(session("userId"));
+//        int userId = 0;
+//        if (session("userId") != null)
+//            userId = Integer.parseInt(session("userId"));
 
         WebData webData = Ebean.find(WebData.class).where().eq("url", url).findUnique();
         if (webData == null) {

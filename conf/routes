@@ -28,11 +28,13 @@ GET         /api/bundle/*id             controllers.Web.bundle(id: Integer)
 GET         /api/user                   controllers.Web.user
 # GET         /api/user/*id               controllers.Web.user(id: Integer)
 
+
+# test
 GET         /generation                 controllers.Application.bundleGeneration
 
 
-#extension
-GET         /add                        controllers.API.add(url: String)
+#extension (will be api)
+GET         /add                        controllers.API.add(url: String, userId: Integer)
 GET         /domains                    controllers.API.getApprovedDomains
 
 
