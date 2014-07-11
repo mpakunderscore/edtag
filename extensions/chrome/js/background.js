@@ -1,5 +1,5 @@
-//var host = "https://edtag.io";
-var host = "http://localhost:9000";
+var host = "https://edtag.io";
+//var host = "http://localhost:9000";
 
 //setDomains();
 
@@ -22,9 +22,28 @@ var host = "http://localhost:9000";
 
 chrome.browserAction.onClicked.addListener(function(tab) {
 
-    chrome.identity.launchWebAuthFlow(
-        {'url': host + '/auth', 'interactive': true},
-        function(redirect_url) { /* Extract token from redirect_url */ });
+    var userId = localStorage["userId"];
+    if (!userId) {
 
-    add_url(tab);
+        var url = host + "/api/user";
+
+        var request = new XMLHttpRequest();
+        request.open("GET", url, false);
+        request.send(null);
+
+        var response = request.responseText;
+
+        if (response.length == 0) {
+
+            var newURL = host + "/login";
+            chrome.tabs.create({ url: newURL });
+            return;
+        }
+
+        var user = JSON.parse(response);
+
+        userId = user.id;
+    }
+
+    add_url(tab, userId);
 });

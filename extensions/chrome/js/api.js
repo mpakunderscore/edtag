@@ -5,11 +5,11 @@ var notificationTime = 3000;
 
 var notID = 0;
 
-function add_url(tab) {
+function add_url(tab, userId) {
 
     if (tab.status != "complete") return;
 
-    var url = host + "/add?url=" + encodeURIComponent(tab.url);
+    var url = host + "/add?url=" + encodeURIComponent(tab.url) + "&userId=" + userId;
 
     var request = new XMLHttpRequest();
     request.open( "GET", url, false );

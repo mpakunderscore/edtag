@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import controllers.parsers.Watcher;
 import models.Bundle;
 import models.Domain;
+import models.User;
 import models.WebData;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -47,6 +48,15 @@ public class Web extends Controller {
         bundle.setWebDataList();
 
         return ok(toJson(bundle));
+    }
+
+    public static Result user() {
+
+        if (session("userId") == null)
+            return ok();
+
+        else
+            return ok(toJson(Ebean.find(User.class).where().eq("id", Integer.valueOf(session("userId"))).findUnique()));
     }
 
     public static Result editBundle(int id, String urls, String title, String description) {

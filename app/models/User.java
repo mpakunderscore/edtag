@@ -1,11 +1,10 @@
 package models;
 
 import org.mindrot.jbcrypt.BCrypt;
+import play.api.data.validation.Constraints;
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by pavelkuzmin on 01/03/14.
@@ -16,6 +15,9 @@ import javax.persistence.Table;
 public class User extends Model {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+    int id;
+
     String email;
     String password; //hash
 
@@ -28,7 +30,15 @@ public class User extends Model {
         return email;
     }
 
-    public String getPassword() {
-        return password;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean checkpw(String password) {
+        return BCrypt.checkpw(password, this.password);
     }
 }

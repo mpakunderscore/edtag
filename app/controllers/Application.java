@@ -103,9 +103,11 @@ public class Application extends Controller {
             user = new User(email, password);
             user.save();
             session("email", email);
-//            session("userId", user.getId()); //fuck, forgot about userId
+            session("userId", String.valueOf(user.getId())); //fuck, forgot about userId
 
-        } else if (BCrypt.checkpw(password, user.getPassword())) {
+        } else if (user.checkpw(password)) {
+
+            session("userId", String.valueOf(user.getId())); //fuck, forgot about userId
             session("email", email);
 
         } else
