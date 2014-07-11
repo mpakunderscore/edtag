@@ -90,7 +90,7 @@ public class Web extends Controller {
             userId = Integer.parseInt(session("userId"));
 
         Http.MultipartFormData body = request().body().asMultipartFormData();
-        Http.MultipartFormData.FilePart image = body.getFiles().get(0);
+        Http.MultipartFormData.FilePart image = body.getFile("picture");
 
         String urls = body.asFormUrlEncoded().get("urls")[0];
         String title = body.asFormUrlEncoded().get("title")[0];

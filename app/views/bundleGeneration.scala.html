@@ -1,19 +1,29 @@
 @(email: String)
 
 @default("Bundle generator", email) {
-<section class="full-width" ng-controller="uploadController">
-    <h2>Basic form for bundle generation</h2>
-    <form action="/api/bundle/add"  class="add-bundle" method="POST">
-        <input type="file" ng-file-select="onFileSelect($files)" >
-        <input type="text" ng-model="bundle.name" class="bundle-name" placeholder="Write title for your bundle">
-        <input type="url" ng-repeat="link in bundle.links" ng-model="bundle.links[$index].url" placeholder="Link {{$index}}">
-        <button type="button" ng-click="addLink()">+</button><br/>
-        <input type="submit" value="Generate">
-    </form>
-    <div class="preview-bundle">
-        <img ng-src="{{imageSrc}}" class="pic"/>
-        <h4 class="name">{{bundle.name}}</h4>
-        <div>{{bundle.links.length}} links</div>
-    </div>
-</section>
+
+    <section class="full-width" ng-controller="uploadController">
+
+        <h2>Basic form for bundle generation</h2>
+
+        @helper.form(action = routes.Web.addBundle(), 'enctype -> "multipart/form-data") {
+
+            <input type="file" name="picture">
+            <input type="text" name="title">
+            <input type="text" name="description">
+            <input type="text" name="urls">
+
+            <p>
+                <input type="submit">
+            </p>
+
+        }
+
+        <div class="preview-bundle">
+            <img ng-src="{{imageSrc}}" class="pic"/>
+            <h4 class="name">{{bundle.name}}</h4>
+            <div>{{bundle.links.length}} links</div>
+        </div>
+
+    </section>
 }
