@@ -5,15 +5,13 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
 import controllers.parsers.Watcher;
-import models.Bundle;
-import models.Domain;
-import models.User;
-import models.WebData;
+import models.*;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import plugins.S3Plugin;
+import views.html.links;
 
 import java.io.File;
 import java.lang.*;
@@ -33,6 +31,21 @@ public class Web extends Controller {
         List<WebData> webDataList = Ebean.find(WebData.class).order().desc("id").findList().subList(0, pageSetSize); //TODO bad solution
 
         return ok(toJson(webDataList));
+    }
+
+    public static Result favorites() {
+
+        int userId;
+        if (session("userId") != null)
+            userId = Integer.parseInt(session("userId"));
+
+        else
+            return ok();
+
+        List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", userId).findList();
+
+
+        return ok(toJson(userDataList));
     }
 
     public static Result bundles() {
