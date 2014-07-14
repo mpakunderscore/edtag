@@ -1,15 +1,13 @@
 @(email: String)
 
 @default("Bundle generator", email) {
-
-    <section class="full-width" ng-controller="uploadController">
     <section class="full-width" ng-controller="uploadController">
         <h2>Bundle generation</h2>
         <div class="preview-bundle ml0">
             <img ng-src="{{imageSrc}}" class="pic"/>
             <h4 class="name">{{bundle.name}}</h4>
-            <div>{{bundle.links.length}} links</div>
-            
+            <div>{{links.length}} links</div>
+
         </div>
 
 
@@ -19,10 +17,9 @@
             <input type="text" name="description" placeholder="Bundle description" ng-model="bundle.description">
             <input type="url" name="url" placeholder="Link with urls" ng-model="bundle.url">
             <button type="button" ng-click="analyse()">Analyse</button>
-           {{bundle}} 
+           {{bundle}}
         </form>
-        <textarea class="bundle-links" name="links" ng-model="bundle.links">  
-        </textarea>
+        <textarea class="bundle-links" name="links" ng-model="bundle.links">  </textarea>
         <button ng-click="addBundle()" class="fl">Generate</button>
     </section>
 
