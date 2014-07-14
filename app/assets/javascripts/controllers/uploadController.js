@@ -6,23 +6,26 @@ edTagApp.controller('uploadController', function($scope, fileReader, $http) {
         img: null
 
     }
+    $scope.bundle.links = [];
     $scope.addLink = function(){
         $scope.bundle.links.push({url : ""});
+        console.log($scope.bundle.links)
     }
      $scope.getFile = function () {
         fileReader.readAsDataUrl($scope.file, $scope).then(function(result) {
             $scope.imageSrc = result;
         });
     };
+    $scope.links = []
     $scope.analyse = function(){
         $http.get('/analyze/page/links',{params: {url: $scope.bundle.url}},{headers: {'Accept': 'application/json; charset=utf-8','Accept-Charset': 'charset=utf-8'}})
         .success(function(data, status, headers, config) {
-            var links = []
+
             angular.forEach(data, function(value, key) {
                 console.log(value.url);
-                links.push(value.url)
+                $scope.links.push(value.url)
             });
-            $scope.bundle.links = links.join("\n");
+            $scope.bundle.links = $scope.links.join("\n");
         })
         .error(function(data, status, headers, config) {
             console.log(data);
