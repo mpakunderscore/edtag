@@ -6,6 +6,7 @@ import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
 import controllers.parsers.Watcher;
 import models.*;
+import org.apache.commons.io.FilenameUtils;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http;
@@ -13,8 +14,10 @@ import play.mvc.Result;
 import plugins.S3Plugin;
 import views.html.links;
 
-import java.io.File;
+import java.io.*;
 import java.lang.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 import static play.libs.Json.toJson;
@@ -96,7 +99,7 @@ public class Web extends Controller {
         return ok();
     }
 
-    public static Result addBundle() {
+    public static Result addBundle() throws IOException {
 
         int userId = 0;
         if (session("userId") != null)
@@ -126,6 +129,19 @@ public class Web extends Controller {
         if (S3Plugin.amazonS3 == null) {
 
 //            throw new RuntimeException("Could not save bundle image");
+            File tempFile = new File("public/bundles/bundle." + bundle.getId() + ".png");
+            tempFile.createNewFile();
+
+            InputStream in = new FileInputStream(tempFile);
+            OutputStream out = new FileOutputStream(file, true);
+
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) > 0){
+                out.write(buf, 0, len);
+            }
+            in.close();
+            out.close();
 
         } else {
 
