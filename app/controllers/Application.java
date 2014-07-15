@@ -41,7 +41,7 @@ public class Application extends Controller {
             return redirect("https://" + request().host()
                     + request().uri());
 
-        return bundles();
+        return redirect(routes.Application.bundles());
     }
 
     /**
