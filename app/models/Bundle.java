@@ -46,9 +46,9 @@ public class Bundle extends Model {
         this.setDescription(description);
         this.setUserId(userId);
 
-        List<String> urlsList = new ArrayList<>();
-        List<WebData> webDataList = new ArrayList<>();
-        List<Long> webDataIds = new ArrayList<>();
+        List<String> urlsList = new ArrayList<String>();
+        List<WebData> webDataList = new ArrayList<WebData>();
+        List<Long> webDataIds = new ArrayList<Long>();
 
         for (int i = 0; i < jsonUrlsList.size(); i++)
             urlsList.add(jsonUrlsList.get(i).asText());
@@ -131,7 +131,7 @@ public class Bundle extends Model {
 
     public void setWebDataList() {
 
-        List<Integer> ids = new ArrayList<>();
+        List<Integer> ids = new ArrayList<Integer>();
         JsonNode jsonUrlsList = Json.parse(getWebDataIds());
         for (int i = 0; i < jsonUrlsList.size(); i++)
             ids.add(jsonUrlsList.get(i).asInt());

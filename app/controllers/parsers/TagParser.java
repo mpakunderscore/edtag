@@ -30,11 +30,11 @@ public class TagParser {
 
     public static Map<String, Integer> getWords(String text) {
 
-        Map<String, Integer> words = new HashMap<>();
-        List<String> wordsList = new ArrayList<>();
+        Map<String, Integer> words = new HashMap<String, Integer>();
+        List<String> wordsList = new ArrayList<String>();
 
         ValueComparator bvc =  new ValueComparator(words);
-        Map<String, Integer> sortedWords  = new TreeMap<>(bvc);
+        Map<String, Integer> sortedWords  = new TreeMap<String, Integer>(bvc);
 
         Matcher matcher = wordPattern.matcher(text);
         while (matcher.find()) {
@@ -66,7 +66,7 @@ public class TagParser {
 
     private static Map<String, Integer> getBigrams(List<String> wordsList) {
 
-        Map<String, Integer> bigrams = new HashMap<>();
+        Map<String, Integer> bigrams = new HashMap<String, Integer>();
 
         for (int i = 0; i < wordsList.size() - 1; i++) {
 
@@ -89,7 +89,7 @@ public class TagParser {
 
     public static Map<String, Integer> getTags(Map<String, Integer> wordsMap) {
 
-        Map<String, Integer> tags = new HashMap<>();
+        Map<String, Integer> tags = new HashMap<String, Integer>();
 
         int i = 0;
         for (Map.Entry<String, Integer> word : wordsMap.entrySet()) {
@@ -144,7 +144,7 @@ public class TagParser {
         map.putAll(tags);
         sorted_map.putAll(map);
 
-        List<JSONTag> tagsList = new ArrayList<>();
+        List<JSONTag> tagsList = new ArrayList<JSONTag>();
         for (Map.Entry<String, Integer> set : sorted_map.entrySet()) {
 
             JSONTag tag = new JSONTag();
@@ -167,7 +167,7 @@ public class TagParser {
 
     public static List<JSONTag> getTagsForBundle(List<WebData> webDataList) {
 
-        Map<String, Integer> tagsMap = new HashMap<>();
+        Map<String, Integer> tagsMap = new HashMap<String, Integer>();
 
         for (WebData webData : webDataList) {
 

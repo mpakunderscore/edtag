@@ -67,7 +67,7 @@ public class Wiki { //TODO wiki api == old crap
 
         Elements links = doc.body().select("#mw-normal-catlinks ul a");
 
-        List<String> categories = new ArrayList<>();
+        List<String> categories = new ArrayList<String>();
 
         boolean mark = true;
 

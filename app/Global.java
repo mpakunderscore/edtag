@@ -35,7 +35,7 @@ public class Global extends GlobalSettings {
 
     private void research() {
 
-        Map<String, Integer> categories = new HashMap<>();
+        Map<String, Integer> categories = new HashMap<String, Integer>();
         Map<?, Tag> tagsMap = Ebean.find(Tag.class).findMap();
         List<WebData> webDataList = Ebean.find(WebData.class).findList();
 
@@ -117,7 +117,7 @@ public class Global extends GlobalSettings {
 
     private void updateDomains() {
 
-        Map<String, Map<String, Integer>> domainsTags = new HashMap<>();
+        Map<String, Map<String, Integer>> domainsTags = new HashMap<String, Map<String, Integer>>();
 
         List<WebData> webDataList = Ebean.find(WebData.class).findList();
 

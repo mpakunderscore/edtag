@@ -20,8 +20,9 @@ public class User extends Model {
 
     String email;
     String password; //hash
+    String facebook; //hash of id (bad solution)
 
-    public User(String email, String password) {
+    public User(String email, String password, String facebook) {
         this.email = email;
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
@@ -40,5 +41,9 @@ public class User extends Model {
 
     public boolean checkpw(String password) {
         return BCrypt.checkpw(password, this.password);
+    }
+
+    public boolean checkfb(String facebook) {
+        return BCrypt.checkpw(facebook, this.facebook);
     }
 }

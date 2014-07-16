@@ -88,7 +88,7 @@ public class API extends Controller {
 
     public static Result getLinksFromUrl(String url) {
 
-        List<Map<String, String>> links = new ArrayList<>();
+        List<Map<String, String>> links = new ArrayList<Map<String, String>>();
 
         String urlDomain = WebData.getDomainString(url);
 
@@ -116,7 +116,7 @@ public class API extends Controller {
             if (linkDomain == null || urlDomain.equals(linkDomain))
                 continue;
 
-            Map<String, String> linkMap = new HashMap<>();
+            Map<String, String> linkMap = new HashMap<String, String>();
             linkMap.put("url", link);
 
             links.add(linkMap);
