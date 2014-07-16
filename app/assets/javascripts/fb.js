@@ -14,10 +14,30 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
 
         FB.api('/me', function(response) {
+
             console.log(JSON.stringify(response));
 
-            //TODO sign in call
+            var form = document.createElement("form");
+            form.setAttribute("method", "POST");
+            form.setAttribute("action", "/signin");
 
+            var params = {};
+            params["email"] = response.email;
+            params["facebook"] = response.id;
+
+            for(var key in params) {
+                if(params.hasOwnProperty(key)) {
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", key);
+                    hiddenField.setAttribute("value", params[key]);
+
+                    form.appendChild(hiddenField);
+                }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
         });
         // Logged into your app and Facebook.
 
@@ -87,5 +107,4 @@ function logoutUser() {
             });
         }
     });
-
 }

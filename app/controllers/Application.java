@@ -92,20 +92,21 @@ public class Application extends Controller {
         DynamicForm requestData = Form.form().bindFromRequest();
         String email = requestData.get("email");
         String password = requestData.get("password");
+        String facebook = requestData.get("facebook");
 
-        if (email.length() == 0 || password.length() == 0)
+        if (email.length() == 0 || (password.length() == 0 && facebook.length() == 0))
             return
                     redirect(routes.Application.login());
 
         User user = Ebean.find(User.class).where().eq("email", email).findUnique();
         if (user == null) {
 
-            user = new User(email, password);
+            user = new User(email, password, facebook);
             user.save();
             session("email", email);
             session("userId", String.valueOf(user.getId())); //fuck, forgot about userId
 
-        } else if (user.checkpw(password)) {
+        } else if ((password.length() != 0 && user.checkpw(password)) || (facebook.length() != 0 && user.checkfb(facebook))) {
 
             session("userId", String.valueOf(user.getId())); //fuck, forgot about userId
             session("email", email);
