@@ -10,16 +10,15 @@
         </div>
 
 
-        <form class="add-bundle ml20" action="/analyze/page/links" enctype="multipart/form-data">
+        <form class="add-bundle ml20" ng-submit="submitBundle()" enctype="multipart/form-data">
             <input type="file" name="image" ng-file-select="onFileSelect($files)" ng-model="bundle.img">
             <input type="text" name="title" placeholder="Bundle name" ng-model="bundle.name">
             <input type="text" name="description" placeholder="Bundle description" ng-model="bundle.description">
             <input type="url" name="url" placeholder="Link with urls" ng-model="bundle.url">
             <button type="button" ng-click="analyse()">Analyse</button>
-           {{bundle}}
-        </form>
-        <textarea class="bundle-links" name="links" ng-model="bundle.links">  </textarea>
-        <button ng-click="addBundle()" class="fl">Generate</button>
-    </section>
+        	<textarea class="bundle-links" name="links" ng-model="bundle.links">  </textarea>
+        	<button class="fl" type="submit">Generate</button>
+     	</form>
+	</section>
 
 }

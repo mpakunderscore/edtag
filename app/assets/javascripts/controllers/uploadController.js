@@ -31,20 +31,23 @@ edTagApp.controller('uploadController', function($scope, fileReader, $http) {
             console.log(data);
         });
     };
-
+	var fd = new FormData()
+	angular.forEach($scope.files, function(){
+		fd.append('file', file);	
+	});
     $scope.submitBundle = function(){
-            $http({
-                url: '/api/bundle/add',
-                method: "POST",
-                data: $scope.bundle
+            $http.post('/api/bundle/add', fd, {
+				transformRequest: angular.identity, 
+				headers: {'Content-Type': undefined}
+				}
+           	)
+            .success(function(response) {
+            	console.log('success', response)
             })
-            .then(function(response) {
-                    console.log('success', response)
-                },
-                function(response) { // optional
-                    console.log('failure', response)
-                }
-            );
+            .error(function(response) { // optional
+            	console.log('failure', response)
+            });
+            
     };
 
 });
