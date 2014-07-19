@@ -9,6 +9,7 @@ GET         /login                      controllers.Application.login
 GET         /bundles                    controllers.Application.bundles
 GET         /links                      controllers.Application.links
 GET         /about                      controllers.Application.about
+GET         /favorites                  controllers.Application.favorites
 
 
 GET         /bundle/*id                 controllers.Application.bundle(id: Integer)

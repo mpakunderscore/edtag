@@ -81,6 +81,11 @@ public class Application extends Controller {
         return ok(about.render(session("email")));
     }
 
+    public static Result favorites() {
+
+        return ok(links.render(session("email")));
+    }
+
     public static Result login() {
 
         return ok(login.render(session("email")));
