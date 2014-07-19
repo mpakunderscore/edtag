@@ -83,7 +83,7 @@ public class Application extends Controller {
 
     public static Result favorites() {
 
-        return ok(links.render(session("email")));
+        return ok(favorites.render(session("email")));
     }
 
     public static Result login() {
