@@ -103,8 +103,11 @@ public class Web extends Controller {
         if (session("userId") != null)
             userId = Integer.parseInt(session("userId"));
 
+        Http.Request request = request();
+
         Http.MultipartFormData body = request().body().asMultipartFormData();
-        Http.MultipartFormData.FilePart image = body.getFile("image");
+//        Http.MultipartFormData.FilePart image = body.getFile("file");
+        Http.MultipartFormData.FilePart image = body.getFiles().get(0);
 
         String urls = body.asFormUrlEncoded().get("urls")[0];
         String title = body.asFormUrlEncoded().get("title")[0];
@@ -130,8 +133,8 @@ public class Web extends Controller {
             File tempFile = new File("public/bundles/bundle." + bundle.getId() + ".png");
             tempFile.createNewFile();
 
-            InputStream in = new FileInputStream(tempFile);
-            OutputStream out = new FileOutputStream(file, true);
+            InputStream in = new FileInputStream(file);
+            OutputStream out = new FileOutputStream(tempFile, true);
 
             byte[] buf = new byte[1024];
             int len;

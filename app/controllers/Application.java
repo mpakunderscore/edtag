@@ -81,6 +81,11 @@ public class Application extends Controller {
         return ok(about.render(session("email")));
     }
 
+    public static Result favorites() {
+
+        return ok(links.render(session("email")));
+    }
+
     public static Result login() {
 
         return ok(login.render(session("email")));
@@ -93,6 +98,9 @@ public class Application extends Controller {
         String email = requestData.get("email");
         String password = requestData.get("password");
         String facebook = requestData.get("facebook");
+
+        if (password == null) password = "";
+        if (facebook == null) facebook = "";
 
         if (email.length() == 0 || (password.length() == 0 && facebook.length() == 0))
             return

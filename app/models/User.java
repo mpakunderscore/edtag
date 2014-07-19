@@ -22,9 +22,10 @@ public class User extends Model {
     String password; //hash
     String facebook; //hash of id (bad solution)
 
-    public User(String email, String password, String facebook) {
+    public User(String email, String password, String facebook) { //TODO
         this.email = email;
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.facebook = facebook;
     }
 
     public String getEmail() {
@@ -44,6 +45,6 @@ public class User extends Model {
     }
 
     public boolean checkfb(String facebook) {
-        return BCrypt.checkpw(facebook, this.facebook);
+        return facebook.equals(this.facebook);
     }
 }
