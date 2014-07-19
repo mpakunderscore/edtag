@@ -79,7 +79,7 @@ public class API extends Controller {
         List<Domain> domains = Ebean.find(Domain.class).where().eq("state", Domain.TRUSTED).findList();
 
         List<String> result = new ArrayList<String>();
-        for (Domain domain: domains) {
+        for (Domain domain : domains) {
             result.add(domain.getUrl());
         }
 

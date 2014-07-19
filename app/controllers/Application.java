@@ -94,6 +94,9 @@ public class Application extends Controller {
         String password = requestData.get("password");
         String facebook = requestData.get("facebook");
 
+        if (password == null) password = "";
+        if (facebook == null) facebook = "";
+
         if (email.length() == 0 || (password.length() == 0 && facebook.length() == 0))
             return
                     redirect(routes.Application.login());
