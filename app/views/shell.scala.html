@@ -1,48 +1,7 @@
 @(title: String, email: String)(content: Html)
 
-<!DOCTYPE html>
-<html ng-app="edTagApp">
+    @default(title, email) {
 
-    <head>
-
-        <title>@title</title>
-
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script src="@routes.Assets.at("javascripts/lodash.js")"></script>
-        <script src="@routes.Assets.at("javascripts/ga.js")"></script>
-        <script src="@routes.Assets.at("javascripts/angular.js")"></script>
-        <script src="@routes.Assets.at("javascripts/app.js")"></script>
-        <script src="@routes.Assets.at("javascripts/controllers/main.js")"></script>
-        <script src="@routes.Assets.at("javascripts/directives/ng-file-select.js")"></script>
-        <script src="@routes.Assets.at("javascripts/filters/selectedTag.js")"></script>
-        <script src="@routes.Assets.at("javascripts/fb.js")"></script>
-    </head>
-
-    <body ng-controller="mainCtrl">
-        <header>
-            <button ng-click="showSearch()" id="logo">&#60; &#62;</button>
-
-            <!-- <nav id="dot"></nav> -->
-
-            <nav class="top-menu">
-                <input id="search" placeholder="Search" ng-model="searchText"/>
-                <ul class="menu">
-                    <li><a href="/bundles" id="bundles">Bundles</a></li>
-                    <li><a href="/links" id="links">Links</a></li>
-                    @if(email == null) {
-                        <li><a href="/login" class="auth">Sign In</a></li>
-                    } else {
-                        <li><a href="/favorites" id="favorites">Favorites</a></li>
-                        <li>
-
-                            @*<span class="name">@email</span>*@
-                            <a href="javascript:logoutUser()" class="auth">Sign Out</a>
-                        </li>
-                    }
-    	        </ul>
-            </nav>
-        </header>
         <aside >
             <nav id="tags" >
                 <ul>
@@ -54,9 +13,4 @@
             </nav>
         </aside>
         @content
-
-    </body>
-
-        <!-- What are you doing here? -_-' -->
-
-</html>
+}
