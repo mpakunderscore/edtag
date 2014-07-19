@@ -16,7 +16,7 @@ edTagApp.controller('uploadController', function($scope, fileReader, $http) {
             $scope.imageSrc = result;
         });
     };
-    $scope.links = []
+    $scope.links = [];
     $scope.analyse = function(){
         $http.get('/analyze/page/links',{params: {url: $scope.bundle.url}},{headers: {'Accept': 'application/json; charset=utf-8','Accept-Charset': 'charset=utf-8'}})
         .success(function(data, status, headers, config) {
@@ -31,20 +31,20 @@ edTagApp.controller('uploadController', function($scope, fileReader, $http) {
             console.log(data);
         });
     };
+	var file = $scope.myFile;
 	var fd = new FormData()
-	angular.forEach($scope.files, function(){
-		fd.append('file', file);	
-	});
+	//angular.forEach($scope.files, function(){
+	fd.append('file', file);	
+	//});
     $scope.submitBundle = function(){
             $http.post('/api/bundle/add', fd, {
 				transformRequest: angular.identity, 
 				headers: {'Content-Type': undefined}
-				}
-           	)
+			})
             .success(function(response) {
             	console.log('success', response)
             })
-            .error(function(response) { // optional
+            .error(function(response) {
             	console.log('failure', response)
             });
             
