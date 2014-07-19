@@ -6,10 +6,10 @@ var m_top = true;
 
 edTagApp.controller('mainCtrl', function ($scope, $http) {
 
-    var allTags = []
+    var allTags = [];
     var sum = function(a,b){ return a+b; };
     $scope.selected_tags = {};
-    $scope.allTags = {}
+    $scope.allTags = [];
 
     $scope.showSearch = function() {
 
@@ -33,11 +33,9 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
         success(function (data, status, headers, config) {
 
             $scope.bundles = data;
-
             angular.forEach(data, function (bundle) {
-
+				
                 angular.forEach(bundle.tags, function (tag) {
-
                     if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3)
                         allTags.push(tag)
                 })
@@ -56,8 +54,30 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
 
     $scope.searchText = ''
     $scope.filterByTag = function(link){
-        console.log(link.tag)
-
+    	console.log(link)
+    	var bundles = [];
+    	var tags = []
+    	angular.forEach($scope.bundles, function(bundle){
+			angular.forEach (bundle.tags, function(tag) {
+				if (link.tag.name == tag.name) {
+					bundles.push(bundle);
+					
+				}
+				
+			})
+		})
+		$scope.bundles = bundles
+		
+		angular.forEach($scope.bundles, function(bundle){
+			angular.forEach (bundle.tags, function(tag) {
+				if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3) allTags.push(tag)
+			})
+		})
+		var reducedTags = _.chain(allTags).groupBy('name').map(function(v){
+              return {name:v[0].name,weight:_.pluck(v, "weight").reduce(sum)};
+            }).value();
+        $scope.sortedTags =_.sortBy(reducedTags, 'weight').reverse()    
+		console.log($scope.sortedTags)
     }
 });
 
