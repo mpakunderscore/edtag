@@ -1,7 +1,7 @@
 @(email: String)
 
 @default("Bundle generator", email) {
-    <section class="full-width" ng-controller="uploadController">
+    <section class="full-width" ng-controller="bundleGenerationCtrl">
         <div class="preview-bundle ml0">
             <img ng-src="{{imageSrc}}" class="pic"/>
             <h4 class="name">{{bundle.name}}</h4>
@@ -10,7 +10,7 @@
         </div>
 
 
-        <form class="add-bundle ml20" ng-submit="submitBundle()" enctype="multipart/form-data">
+        <form class="add-bundle ml20" enctype="multipart/form-data">
             <div class="input-data">
 				<input type="file" name="image" ng-file-select="onFileSelect($files)" file-model="myFile">
             	<input type="text" name="title" placeholder="Bundle name" ng-model="bundle.name">
@@ -19,7 +19,7 @@
             	<button type="button" ng-click="analyse()" class="mb40">Analyse</button>
         	</div>
 			<textarea class="bundle-links" name="links" ng-model="bundle.links">  </textarea>
-        	<button class="fl" type="submit">Generate</button>
+        	<button class="fl" type="submit" ng-click="submitBundle()" >Generate</button>
      	</form>
 	</section>
 
