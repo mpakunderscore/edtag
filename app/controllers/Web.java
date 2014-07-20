@@ -113,8 +113,7 @@ public class Web extends Controller {
         String title = body.asFormUrlEncoded().get("title")[0];
         String description = body.asFormUrlEncoded().get("description")[0];
 
-        //JsonNode jsonUrlsList = Json.parse(urls); doesn't parse not sure what's wrong (Gleb)
-        JsonNode jsonUrlsList = Json.parse("[]");
+        JsonNode jsonUrlsList = Json.parse(urls);
 
         if (!jsonUrlsList.isArray())
             return ok();
