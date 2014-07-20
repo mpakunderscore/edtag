@@ -113,7 +113,8 @@ public class Web extends Controller {
         String title = body.asFormUrlEncoded().get("title")[0];
         String description = body.asFormUrlEncoded().get("description")[0];
 
-        JsonNode jsonUrlsList = Json.parse(urls);
+        //JsonNode jsonUrlsList = Json.parse(urls); doesn't parse not sure what's wrong (Gleb)
+        JsonNode jsonUrlsList = Json.parse("[]");
 
         if (!jsonUrlsList.isArray())
             return ok();
@@ -125,7 +126,7 @@ public class Web extends Controller {
             return ok();
 
         Bundle bundle = new Bundle(userId, title, description, jsonUrlsList);
-        bundle.save();
+
 
         if (S3Plugin.amazonS3 == null) {
 
@@ -152,6 +153,7 @@ public class Web extends Controller {
             S3Plugin.amazonS3.putObject(putObjectRequest); // upload file
         }
 
+        bundle.save();
         return ok(toJson(bundle));
     }
 
