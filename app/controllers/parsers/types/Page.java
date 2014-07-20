@@ -1,5 +1,8 @@
-package controllers.parsers;
+package controllers.parsers.types;
 
+import controllers.parsers.JSONTag;
+import controllers.parsers.TagParser;
+import controllers.parsers.Watcher;
 import models.WebData;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

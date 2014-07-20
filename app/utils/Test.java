@@ -1,5 +1,6 @@
 package utils;
 
+import com.cybozu.labs.langdetect.LangDetectException;
 import com.fasterxml.jackson.databind.JsonNode;
 import controllers.API;
 import controllers.parsers.*;
@@ -25,10 +26,12 @@ import static play.libs.Json.toJson;
  */
 public class Test {
 
-    public static void main(String [] args) throws IOException {
+    public static void main(String [] args) throws IOException, LangDetectException {
 
+        LangDetect.init("lib/profiles");
 
-
+        System.out.println(LangDetect.detect("education"));
+        System.out.println(LangDetect.detect("слово"));
     }
 }
 

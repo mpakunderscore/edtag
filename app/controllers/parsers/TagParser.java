@@ -1,6 +1,7 @@
 package controllers.parsers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import controllers.parsers.types.Wiki;
 import models.Tag;
 import models.WebData;
 import play.Logger;
@@ -96,10 +97,12 @@ public class TagParser {
 
             Tag tag = Wiki.getTagPage(word.getKey());
 
-            if (tag == null)
+            if (tag == null) {
+
+                Logger.debug("[tag null] " + word.getKey());
                 break;
 
-            else if (tag.isMark()) {
+            } else if (tag.isMark()) {
 
                 Logger.debug("[tag] " + word.getKey() + ": " + word.getValue() + " " + tag.getCategories() + (tag.getRedirect() == null ? "" : " " + tag.getRedirect()));
 
@@ -118,8 +121,13 @@ public class TagParser {
 
                 } else tags.put(word.getKey(), word.getValue());
 
-                i++;
+
+
+            } else {
+                Logger.debug("[tag not mark] " + word.getKey());
             }
+
+            i++;
 
             if (i == defaultTagsCount) break;
         }

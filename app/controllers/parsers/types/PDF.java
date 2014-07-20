@@ -1,5 +1,7 @@
-package controllers.parsers;
+package controllers.parsers.types;
 
+import controllers.parsers.JSONTag;
+import controllers.parsers.TagParser;
 import models.WebData;
 
 import java.util.HashMap;

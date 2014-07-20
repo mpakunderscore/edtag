@@ -79,12 +79,7 @@ public class Web extends Controller {
         if (session("userId") != null)
             userId = Integer.parseInt(session("userId"));
 
-        JsonNode jsonUrlsList = Json.parse(urls);
-
-        if (!jsonUrlsList.isArray())
-            return ok();
-
-        Bundle newBundle = new Bundle(userId, title, description, jsonUrlsList);
+        Bundle newBundle = new Bundle(userId, title, description, urls);
         Bundle oldBundle = Ebean.find(Bundle.class).where().eq("id", id).findUnique();
 
         oldBundle.setTitle(newBundle.getTitle());
@@ -103,20 +98,17 @@ public class Web extends Controller {
         if (session("userId") != null)
             userId = Integer.parseInt(session("userId"));
 
-        Http.Request request = request();
-
         Http.MultipartFormData body = request().body().asMultipartFormData();
-//        Http.MultipartFormData.FilePart image = body.getFile("file");
         Http.MultipartFormData.FilePart image = body.getFiles().get(0);
 
         String urls = body.asFormUrlEncoded().get("urls")[0];
         String title = body.asFormUrlEncoded().get("title")[0];
         String description = body.asFormUrlEncoded().get("description")[0];
 
-        JsonNode jsonUrlsList = Json.parse(urls);
+//        JsonNode jsonUrlsList = Json.parse(urls);
 
-        if (!jsonUrlsList.isArray())
-            return ok();
+//        if (!jsonUrlsList.isArray())
+//            return ok();
 
         File file;
         if (image != null)
@@ -124,7 +116,7 @@ public class Web extends Controller {
         else
             return ok();
 
-        Bundle bundle = new Bundle(userId, title, description, jsonUrlsList);
+        Bundle bundle = new Bundle(userId, title, description, urls);
 
 
         if (S3Plugin.amazonS3 == null) {
@@ -162,12 +154,12 @@ public class Web extends Controller {
         if (session("userId") != null)
             userId = Integer.parseInt(session("userId"));
 
-        JsonNode jsonUrlsList = Json.parse(urls);
+//        JsonNode jsonUrlsList = Json.parse(urls);
+//
+//        if (!jsonUrlsList.isArray())
+//            return ok();
 
-        if (!jsonUrlsList.isArray())
-            return ok();
-
-        Bundle bundle = new Bundle(userId, title, description, jsonUrlsList);
+        Bundle bundle = new Bundle(userId, title, description, urls);
 
         return ok(toJson(bundle));
     }

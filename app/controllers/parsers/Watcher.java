@@ -1,5 +1,7 @@
 package controllers.parsers;
 
+import controllers.parsers.types.PDF;
+import controllers.parsers.types.Page;
 import models.Domain;
 import models.WebData;
 import org.jsoup.Connection;

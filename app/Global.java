@@ -1,8 +1,10 @@
 import com.avaje.ebean.Ebean;
+import com.cybozu.labs.langdetect.DetectorFactory;
+import com.cybozu.labs.langdetect.LangDetectException;
 import com.fasterxml.jackson.databind.JsonNode;
-import controllers.parsers.Page;
+import controllers.parsers.LangDetect;
+import controllers.parsers.types.Page;
 import controllers.parsers.ValueComparator;
-import controllers.parsers.Wiki;
 import models.Tag;
 import models.WebData;
 import play.GlobalSettings;
@@ -24,6 +26,14 @@ public class Global extends GlobalSettings {
     private static final boolean research = false;
 
     public void onStart(Application app) {
+
+        try {
+
+            LangDetect.init("lib/profiles");
+
+        } catch (LangDetectException e) {
+            e.printStackTrace();
+        }
 
 
 //        if (update) updateDatabase();

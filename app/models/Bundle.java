@@ -5,6 +5,7 @@ import com.avaje.ebean.Expr;
 import com.fasterxml.jackson.databind.JsonNode;
 import controllers.parsers.TagParser;
 import controllers.parsers.Watcher;
+import play.Logger;
 import play.db.ebean.Model;
 import play.libs.Json;
 
@@ -40,18 +41,22 @@ public class Bundle extends Model {
     public Bundle() {
     }
 
-    public Bundle(int userId, String title, String description, JsonNode jsonUrlsList) {
+    public Bundle(int userId, String title, String description, String urls) {
 
         this.setTitle(title);
         this.setDescription(description);
         this.setUserId(userId);
 
-        List<String> urlsList = new ArrayList<String>();
+//        List<String> urlsList = new ArrayList<String>();
         List<WebData> webDataList = new ArrayList<WebData>();
         List<Long> webDataIds = new ArrayList<Long>();
 
-        for (int i = 0; i < jsonUrlsList.size(); i++)
-            urlsList.add(jsonUrlsList.get(i).asText());
+//        for (int i = 0; i < jsonUrlsList.size(); i++)
+//            urlsList.add(jsonUrlsList.get(i).asText());
+
+        String[] urlsList = urls.split("\r\n");
+
+        Logger.debug(title + " " + urlsList.length);
 
         for (String url : urlsList) {
 
@@ -59,6 +64,7 @@ public class Bundle extends Model {
 
             if (webData == null) {
 
+                Logger.debug("Can't find webData: " + url);
                 webData = Watcher.requestWebData(url);
 
                 if (webData == null)

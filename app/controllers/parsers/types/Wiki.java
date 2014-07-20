@@ -1,6 +1,9 @@
-package controllers.parsers;
+package controllers.parsers.types;
 
 import com.avaje.ebean.Ebean;
+import com.cybozu.labs.langdetect.LangDetectException;
+import controllers.parsers.LangDetect;
+import controllers.parsers.Watcher;
 import models.Tag;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -30,7 +33,7 @@ public class Wiki { //TODO wiki api == old crap
         add("english modal and auxiliary verbs");
     }};
 
-    private static final String url = "http://en.wikipedia.org/wiki/";
+    private static final String url = ".wikipedia.org/wiki/";
     private static final String simpleWordsPageUrl = "http://simple.wikipedia.org/wiki/Wikipedia:List_of_1000_basic_words";
 
     public static Tag getTagPage(String word) { //TODO lang check
@@ -42,13 +45,16 @@ public class Wiki { //TODO wiki api == old crap
         if (tag != null) return tag;
 
         Document doc = null;
-        Connection connection = Jsoup.connect(url + word);
 
         try {
 
+            String lang = LangDetect.detect(word);
+
+            Connection connection = Jsoup.connect("http://" + lang + url + word);
+
             doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).get();
 
-        } catch (IOException exception) { //TODO
+        } catch (Exception exception) { //TODO
 
             tag = new Tag(word, null, null, false);
             tag.save();
