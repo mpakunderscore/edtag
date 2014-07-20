@@ -24,7 +24,7 @@ public final class Watcher {
 
     public static WebData requestWebData(String url) {
 
-        Logger.debug("[web data] " + url);
+        Logger.debug("[get web data] " + url);
 
         //TODO types of webData (html, pdf, fb2, txt) move type checker into Interface
         if (url.endsWith(".pdf")) {

@@ -64,7 +64,7 @@ public class Bundle extends Model {
 
             if (webData == null) {
 
-                Logger.debug("Can't find webData: " + url);
+                Logger.debug("[can't find web data in database]  " + url);
                 webData = Watcher.requestWebData(url);
 
                 if (webData == null)

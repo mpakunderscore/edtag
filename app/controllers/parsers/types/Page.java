@@ -7,6 +7,7 @@ import models.WebData;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import play.Logger;
 
 import java.io.IOException;
 import java.util.*;
@@ -27,10 +28,11 @@ public class Page {
 
         try {
 
-            doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).get();
+            doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).timeout(100).get();
 
         } catch (IOException exception) { //TODO
 
+            Logger.debug("[webData is null]  " + url);
             return null;
         }
 
