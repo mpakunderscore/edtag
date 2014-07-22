@@ -81,7 +81,7 @@ function fill($scope, $http, url) {
 
                 angular.forEach(link.tags, function (tag) {
 
-//                    if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3)
+                    if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3)
                     allTags.push(tag)
                 })
             })
