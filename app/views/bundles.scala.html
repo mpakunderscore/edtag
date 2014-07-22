@@ -1,12 +1,12 @@
 @(email: String)
 
-@shell("Bundles", email) {
+@shell("Bundles", email, "bundlesCtrl") {
 
-    <section id="main">
+    <section id="main" ng-controller="bundlesCtrl">
 
         <ul class="out bundles">
 
-            <li ng-repeat="bundle in bundles | filter:searchText">
+            <li ng-repeat="bundle in data | filter:searchText">
 
                 <img ng-src="https://s3.amazonaws.com/edtag/bundles/bundle.{{bundle.id}}.png">
                 @*<progress class='count' value='{{getCount(bundle.wordsCount)}}' max='70'></progress>*@

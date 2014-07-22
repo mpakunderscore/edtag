@@ -1,8 +1,8 @@
-@(title: String, email: String)(content: Html)
+@(title: String, email: String, controller: String)(content: Html)
 
     @default(title, email) {
 
-        <aside >
+        <aside ng-controller="@controller">
             <nav id="tags" >
                 <ul>
                     <li ng-repeat="tag in sortedTags">

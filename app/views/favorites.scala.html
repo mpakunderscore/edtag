@@ -1,17 +1,8 @@
 @(email: String)
 
-@shell("Favorites", email) {
+@shell("Favorites", email, "favoritesCtrl") {
 
-
-    <nav id="tags" >
-        <ul>
-            <li ng-repeat="tag in sortedTags | limitTo: 15">
-                <a href="#" title="{{tag.weight}}" ng-click="filterByTag(this)">{{tag.name}}</a>
-            </li>
-        </ul>
-    </nav>
-
-    <section id="main" ng-controller="linksCtrl">
+    <section id="main" ng-controller="favoritesCtrl">
 
         <ul class="out favorites">
 
