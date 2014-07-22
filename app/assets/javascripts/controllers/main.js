@@ -92,7 +92,7 @@ function fill($scope, $http, url) {
 
             $scope.sortedTags = _.sortBy(reducedTags, 'weight').reverse()
 
-            console.log($scope.sortedTags);
+//            console.log($scope.sortedTags);
         }).
         error(function (data, status, headers, config) {
             // called asynchronously if an error occurs
@@ -113,6 +113,11 @@ edTagApp.controller('bundlesCtrl', function ($scope, $http) {
 edTagApp.controller('linksCtrl', function ($scope, $http) {
 
     fill($scope, $http, '/links/list');
+
+    $scope.favoriteLink = function (data) {
+
+        console.log(data);
+    }
 });
 
 edTagApp.controller('favoritesCtrl', function ($scope, $http) {
@@ -138,6 +143,3 @@ window.onscroll = function (e) {
         document.getElementById("logo").innerHTML = "&#60; &#62;";
 }
 
-function favorite(id) {
-
-}
