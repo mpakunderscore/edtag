@@ -99,9 +99,9 @@ function fill($scope, $http, url) {
             // or server returns response with an error status.
         });
 
-//    $scope.getDomain = function (url) {
-//        return url.replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
-//    };
+    $scope.getDomain = function (url) {
+        return url.replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
+    };
 
 }
 
