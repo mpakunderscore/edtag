@@ -70,27 +70,12 @@ edTagApp.controller('mainCtrl', function ($scope, $http, $location) {
 
 function fill($scope, $http, url) {
 
-    var allTags = [];
-    $scope.tags = [];
     $http({method: 'GET', url: url}).
         success(function (data, status, headers, config) {
 
             $scope.data = data;
 
-            angular.forEach(data, function (link) {
-
-                angular.forEach(link.tags, function (tag) {
-
-                    if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3)
-                    allTags.push(tag)
-                })
-            })
-
-            var reducedTags = _.chain(allTags).groupBy('name').map(function (v) {
-                return {name: v[0].name, weight: _.pluck(v, "weight").reduce(sum)};
-            }).value();
-
-            $scope.sortedTags = _.sortBy(reducedTags, 'weight').reverse()
+            $scope.sortedTags = getTags(data);
 
 //            console.log($scope.sortedTags);
         }).
@@ -102,17 +87,60 @@ function fill($scope, $http, url) {
     $scope.getDomain = function (url) {
         return url.replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
     };
+}
 
+function getTags(data) {
+
+    var allTags = [];
+
+    angular.forEach(data, function (link) {
+
+        angular.forEach(link.tags, function (tag) {
+
+//            if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3)
+                allTags.push(tag)
+        })
+    })
+
+    var reducedTags = _.chain(allTags).groupBy('name').map(function (v) {
+        return {name: v[0].name, weight: _.pluck(v, "weight").reduce(sum)};
+    }).value();
+
+    return _.sortBy(reducedTags, 'weight').reverse();
 }
 
 edTagApp.controller('bundlesCtrl', function ($scope, $http) {
 
-    fill($scope, $http, '/bundles/list');
+    fill($scope, $http, '/api/bundles/list');
 });
+
+edTagApp.controller('bundleCtrl', function ($scope, $http, $location) {
+
+    var id = $location.absUrl().split("/")[$location.absUrl().split("/").length-1]; //TODO -_- it's 03:21, sorry
+
+    $http({method: 'GET', url: '/api/bundle/' + id}).
+        success(function (data, status, headers, config) {
+
+            $scope.data = data.webDataList;
+
+            $scope.sortedTags = getTags(data.webDataList);
+
+//            console.log($scope.data);
+        }).
+        error(function (data, status, headers, config) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+
+    $scope.getDomain = function (url) {
+        return url.replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
+    };
+});
+
 
 edTagApp.controller('linksCtrl', function ($scope, $http) {
 
-    fill($scope, $http, '/links/list');
+    fill($scope, $http, '/api/links/list');
 
     $scope.favoriteLink = function (data) {
 
@@ -122,7 +150,7 @@ edTagApp.controller('linksCtrl', function ($scope, $http) {
 
 edTagApp.controller('favoritesCtrl', function ($scope, $http) {
 
-    fill($scope, $http, '/links/favorites');
+    fill($scope, $http, '/api/links/favorites');
 });
 
 window.onscroll = function (e) {

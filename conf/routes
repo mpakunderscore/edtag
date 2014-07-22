@@ -44,9 +44,9 @@ GET         /analyze/page/links         controllers.API.getLinksFromUrl(url: Str
 
 
 #api list
-GET         /bundles/list               controllers.Web.bundles
-GET         /links/list                 controllers.Web.links
-GET         /links/favorites            controllers.Web.favorites
+GET         /api/bundles/list           controllers.Web.bundles
+GET         /api/links/list             controllers.Web.links
+GET         /api/links/favorites        controllers.Web.favorites
 
 
 # Map static resources from the /public folder to the /assets URL path

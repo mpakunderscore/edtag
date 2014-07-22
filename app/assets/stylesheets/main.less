@@ -383,6 +383,54 @@ body {
 //				margin: 0;
 			}
 
+			.links {
+				padding-top: 200px;
+				min-height: 500px;
+				li {
+					a {
+						&:link {
+						}
+						&:visited {
+							color: #4e4e4e;
+						}
+
+						&:hover {
+							text-decoration: underline;
+						}
+
+						&.favorite {
+
+							padding-left: 10px;
+							padding-right: 10px;
+							margin: 0;
+							//						vertical-align: middle;
+
+
+							font-size: 12px;
+
+							&:link {
+								color: rgba(0, 0, 0, 0.08);
+							}
+
+							&:hover {
+								color: gold;
+								text-decoration: none;
+							}
+						}
+					}
+					position: relative;
+					padding-left: 20px;
+					padding-bottom: 15px;
+					img {
+
+						vertical-align: middle;
+						width: 16px;
+						height: 16px;
+						padding-right: 15px;
+					}
+				}
+			}
+
 			.top {
 //				list-style: none;
 //				height: max;

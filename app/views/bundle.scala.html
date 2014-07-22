@@ -2,36 +2,36 @@
 
 @shell(bundle.getTitle, email, "bundleCtrl") {
 
-    <section class="main">
+    <section class="main" ng-controller="bundleCtrl">
 
-    <ul class="out bundle">
+        <ul class="out bundle">
 
-        <ul class="top">
-            <li>
-                <img ng-src="@{"https://s3.amazonaws.com/edtag/bundles/bundle." + bundle.getId + ".png"}">
-            </li>
-            <li>
-                <ul>
-                    <li><section class="title" contenteditable="true">@bundle.getTitle</section></li>
-                    <li><span class="linksCount">@bundle.getLinksCount links</span></li>
-                    <li class="back"><a href="javascript:window.history.back()">back</a></li>
-                </ul>
-            </li>
+            <ul class="top">
+                <li>
+                    <img ng-src="@{"https://s3.amazonaws.com/edtag/bundles/bundle." + bundle.getId + ".png"}">
+                </li>
+                <li>
+                    <ul>
+                        <li><section class="title" contenteditable="true">@bundle.getTitle</section></li>
+                        <li><span class="linksCount">@bundle.getLinksCount links</span></li>
+                        @*<li class="back"><a href="javascript:window.history.back()">back</a></li>*@
+                    </ul>
+                </li>
 
-        </ul>
+            </ul>
 
 
+            <ul class="links">
+                <li ng-repeat="link in data | filter:searchText">
 
-        <li ng-repeat="webData in bundle.webDataList">
+                    <img ng-show="link.favIconFormat" ng-src="https://s3.amazonaws.com/edtag/{{getDomain(link.url)}}.{{link.favIconFormat}}">
+                    <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
 
-            <a ng-click='addToCourse(this)'>
-                <img ng-show="webData.favIconFormat" ng-src="https://s3.amazonaws.com/edtag/{{getDomain(webData.url)}}.{{webData.favIconFormat}}">
-                <img ng-show="!webData.favIconFormat" src="/assets/images/default-favicon.png">
-            </a>
-            <a href='{{webData.url}}' target='_blank' title='{{webData.tags}}'>{{webData.title}}</a>
-            
-        </li>
-     </ul>
+                    <a href='{{link.url}}' target='_blank' title='{{link.tags}}'>{{link.title}}</a>
+                </li>
+            </ul>
+
+         </ul>
 
      </section>
 }
