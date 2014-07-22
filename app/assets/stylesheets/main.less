@@ -17,7 +17,7 @@ html {
 body {
 	overflow-y: scroll;
 	font-size: 13px;
-	font-family: sans-serif;
+	font-family: helvetica, arial, freesans, clean, sans-serif;
 	line-height: 1.5;
 	margin: 0;
 	progress {
@@ -99,6 +99,9 @@ body {
 							color: black;
 						}
 						&:hover {
+							color: rgb(254, 65, 50);
+						}
+						&.current-page {
 							color: rgb(254, 65, 50);
 						}
 					}
@@ -472,11 +475,8 @@ body {
 			min-height: 500px;
 			li {
 				a {
-					&:link {
-					}
-					&:visited {
-						color: black;
-					}
+					color: #4183C4;
+
 
 					&:hover {
 						text-decoration: underline;
@@ -529,7 +529,7 @@ body {
 					&:link {
 					}
 					&:visited {
-						color: black;
+						color: #4e4e4e;
 					}
 
 					&:hover {
@@ -548,9 +548,6 @@ body {
 
 						&:link {
 							color: rgba(0, 0, 0, 0.08);
-						}
-						&:visited {
-							color: black;
 						}
 
 						&:hover {

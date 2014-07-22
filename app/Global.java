@@ -32,7 +32,8 @@ public class Global extends GlobalSettings {
             LangDetect.init("lib/profiles");
 
         } catch (LangDetectException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            //TODO
         }
 
 

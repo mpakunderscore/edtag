@@ -1,10 +1,6 @@
-
-
 var m_top = true;
 
-
-
-edTagApp.controller('mainCtrl', function ($scope, $http) {
+edTagApp.controller('mainCtrl', function ($scope, $http, $location) {
 
     var allTags = [];
     var sum = function(a,b){ return a+b; };
@@ -27,6 +23,18 @@ edTagApp.controller('mainCtrl', function ($scope, $http) {
         m_top = !m_top;
 
         console.log(searchBar.toggleClass('m-top'));
+    }
+
+    $scope.getClass = function(path) {
+
+//        console.log(path);
+//        console.log($location.path().substr(0, path.length));
+
+        if ($location.absUrl().indexOf(path) > -1) {
+            return "current-page"
+        } else {
+            return ""
+        }
     }
 
     $http({method: 'GET', url: '/bundles/list'}).
