@@ -9,6 +9,7 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import play.Logger;
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -106,20 +107,26 @@ public class API extends Controller {
         }
 
         Elements linksElements = doc.body().select("a");
+        Set<String> urls = new HashSet<String>();
 
         for (org.jsoup.nodes.Element element : linksElements) {
 
             String link = element.attr("href");
+
+//            Logger.debug(link);
 
             String linkDomain = WebData.getDomainString(link);
 
             if (linkDomain == null || urlDomain.equals(linkDomain))
                 continue;
 
+            if (urls.contains(link)) continue;
+
             Map<String, String> linkMap = new HashMap<String, String>();
             linkMap.put("url", link);
 
             links.add(linkMap);
+            urls.add(link);
         }
 
         return ok(toJson(links));

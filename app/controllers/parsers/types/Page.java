@@ -28,11 +28,11 @@ public class Page {
 
         try {
 
-            doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).timeout(100).get();
+            doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).timeout(5000).get();
 
         } catch (IOException exception) { //TODO
 
-            Logger.debug("[webData is null]  " + url);
+            Logger.error("[webData is NULL]  " + url);
             return null;
         }
 

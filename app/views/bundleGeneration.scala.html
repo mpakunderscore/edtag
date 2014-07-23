@@ -4,22 +4,25 @@
     <section class="full-width" ng-controller="bundleGenerationCtrl">
         <div class="preview-bundle ml0">
             <img ng-src="{{imageSrc}}" class="pic"/>
-            <h4 class="name">{{bundle.name}}</h4>
-            <div>{{links.length}} links</div>
+            <h4 class="title">{{bundle.title}}</h4>
+            <span class="links-count">0 links</span>
 
         </div>
-3
+
 
         <form class="add-bundle ml20" enctype="multipart/form-data">
             <div class="input-data">
-				<input type="file" name="image" ng-file-select="onFileSelect($files)" file-model="myFile">
-            	<input type="text" name="title" placeholder="Bundle name" ng-model="bundle.name">
+
+            	<input type="text" name="title" placeholder="Bundle title" ng-model="bundle.title">
             	<input type="text" name="description" placeholder="Bundle description" ng-model="bundle.description">
-            	<input type="url" name="url" placeholder="Link with urls" ng-model="bundle.url">
-            	<button type="button" ng-click="analyse()" class="mb40">Analyse</button>
+
+                <input type="file" name="image" ng-file-select="onFileSelect($files)" file-model="myFile">
+
+            	<input type="url" name="url" placeholder="Link with urls" ng-model="bundle.url" class="analyse-url">
+            	<button type="button" ng-click="analyse()" class="analyse">Analyse</button>
         	</div>
 			<textarea class="bundle-links" name="links" ng-model="bundle.links">  </textarea>
-        	<button class="fl" type="submit" ng-click="submitBundle()" >Generate</button>
+        	<button type="submit" ng-click="submitBundle()"  class="generate">Generate</button>
      	</form>
 	</section>
 

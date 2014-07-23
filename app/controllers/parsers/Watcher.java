@@ -41,7 +41,7 @@ public final class Watcher {
 
         String domainString = WebData.getDomainString(url);
 
-        Logger.debug("[domain] " + domainString);
+        Logger.debug("[get domain] " + domainString);
 
         String title = "";
 

@@ -117,7 +117,7 @@ public class Web extends Controller {
             return ok();
 
         Bundle bundle = new Bundle(userId, title, description, urls);
-
+        bundle.save();
 
         if (S3Plugin.amazonS3 == null) {
 
@@ -144,7 +144,7 @@ public class Web extends Controller {
             S3Plugin.amazonS3.putObject(putObjectRequest); // upload file
         }
 
-        bundle.save();
+
         return ok(toJson(bundle));
     }
 

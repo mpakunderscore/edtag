@@ -70,6 +70,7 @@ public class Bundle extends Model {
                 if (webData == null)
                     continue;
 
+                Logger.debug("[save web data]  " + url);
                 webData.save();
             }
 
@@ -150,6 +151,6 @@ public class Bundle extends Model {
     }
 
     public int getLinksCount() {
-        return webDataIds.split(",").length - 1; //TODO :(
+        return webDataIds.split(",").length; //TODO :(
     }
 }

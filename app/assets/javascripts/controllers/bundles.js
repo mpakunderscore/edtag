@@ -2,9 +2,9 @@ edTagApp.controller('bundleGenerationCtrl', function($scope, fileReader, $http, 
     //console.log(fileReader)
     //var acceptHeader = 'application/json; charset=utf-8';
     $scope.bundle = {
-        name: 'Test bundle',
-        description: 'Some description',
-        url: "http://ya.ru",
+        title: 'Some test bundle, please ignore',
+        description: '',
+        url: "http://en.wikipedia.org/wiki/List_of_search_engines",
         links: []
     }
 

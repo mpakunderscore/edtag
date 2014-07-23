@@ -1,17 +1,21 @@
 html {
 	-webkit-font-smoothing: antialiased;
 }
-.fl{
-    float: left;
+
+.fl {
+	float: left;
 }
-.mb40{
+
+.mb40 {
 	margin-bottom: 40px;
 }
-.ml0{
+
+.ml0 {
 	margin-left: 0;
 }
-.ml20{
-    margin-left: 20px;
+
+.ml20 {
+	margin-left: 20px;
 }
 
 body {
@@ -29,7 +33,7 @@ body {
 			background: rgba(211, 211, 211, 0.47);
 		}
 	}
-	header{
+	header {
 		height: 50px;
 		width: 100%;
 		button#logo {
@@ -55,7 +59,7 @@ body {
 			&:hover {
 				color: rgb(254, 65, 50);
 			}
-			&:focus{
+			&:focus {
 				outline: none;
 			}
 		}
@@ -121,31 +125,35 @@ body {
 		}
 
 	}
-	section{
-		&.full-width{
+	section {
+		&.full-width {
 			position: absolute;
 			top: 71px; //TODO 58!
-//			padding-top: 10px;
+			//			padding-top: 10px;
 			left: 220px;
 			right: 0;
 			min-width: 700px;
-//			padding: 0;
+			//			padding: 0;
 			margin-bottom: 50px;
 			box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 			background-color: rgb(255, 255, 255);
-//			padding: 20px;
+			//			padding: 20px;
 		}
 	}
-	.preview-bundle{
+
+	.preview-bundle {
+
+//		background-color: lightsalmon;
+
 		width: 280px;
 		height: 250px;
 		float: left;
-		.pic{
+		.pic {
 			width: 280px;
 			height: 180px;
 			float: left;
 		}
-		.name{
+		.title {
 			font-size: 17px;
 			font-weight: normal;
 			color: #4183C4;
@@ -154,78 +162,109 @@ body {
 			width: 280px;
 			float: left;
 			margin: 0;
-			padding: 5px 0;
+			padding: 15px 20px;
+			padding-bottom: 10px;
 		}
-		.links-count{
-
+		.links-count {
+			padding-left: 20px;
+			font-size: 11px;
+			color: gray;
 		}
 	}
-	form.add-bundle{
-		height: 250px;
-		width: 520px;
+	form.add-bundle {
+
+//		background-color: lightgray;
+		height: 620px;
+//		width: 550px;
 		float: left;
-		.input-data{
-			width: 250px;
-			height: 250px;
+
+		padding-top: 20px;
+
+		.input-data {
+			width: 300px;
+			height: 280px;
 			float: left;
-			input[type="file"]{
+			input[type="file"] {
 				margin-bottom: 10px;
 			}
 			input[type="text"],
-			input[type="url"]{
-				width: 230px;
+			input[type="url"] {
+				width: 315px;
 				margin-bottom: 10px;
 				float: none;
 				padding: 5px;
 				box-shadow: none;
 				border: 1px solid #ccc;
-				&:focus{
-				//	border-bottom: 1px solid lightgray;
+				&:focus {
+					//	border-bottom: 1px solid lightgray;
 					box-shadow: none;
 					padding: 5px;
 					border: 1px solid #777;
 				}
 			}
-			input[type="url"]{
+			input[type="url"] {
 			}
-			input[type="submit"]{
+			input[type="submit"] {
 				margin-top: 20px;
 				padding: .5em 1em;
 				color: #444;
-				border: 0 rgba(0,0,0,0);
+				border: 0 rgba(0, 0, 0, 0);
 				background-color: #E6E6E6;
 				text-decoration: none;
 				border-radius: 2px;
 				cursor: pointer;
 			}
+
+			.analyse {
+				position: absolute;
+				left: 370px;
+				top: 280px;
+			}
+
+			.analyse-url {
+				position: absolute;
+				left: 21px;
+				top: 275px;
+			}
+
 			.title {
 				font-size: 17px;
 				line-height: 1.8;
 				color: #4183C4;
 				margin: 0;
-				padding: 5px 15px;
+				padding: 5px 20px;
 				position: absolute;
 				left: 500px;
 			}
 		}
-		.bundle-links{
-			width: 250px;
-			height: 170px;
-			margin-bottom: 20px;
+
+		.generate {
+			position: absolute;
+			left: 560px;
+			top: 590px;
+		}
+
+		.bundle-links {
+
+			position: absolute;
+			left: 20px;
+			top: 320px;
+
+			width: 600px;
+			height: 250px;
+//			margin-bottom: 20px;
 			border: 1px solid lightgray;
 			resize: none;
 			float: left;
 		}
 
-
-		
 		.linksCount {
-			padding-left: 15px;
+			padding-left: 20px;
 			font-size: 11px;
 			color: gray;
 		}
 	}
-	nav{
+	nav {
 		height: 80%;
 		&#tags {
 			position: fixed;
@@ -234,7 +273,7 @@ body {
 			width: 220px;
 			text-align: right;
 			padding-top: 15px;
-//			overflow: scroll;
+			//			overflow: scroll;
 			li {
 				list-style: none;
 				padding-right: 20px;
@@ -256,11 +295,8 @@ body {
 			}
 		}
 
-
-
-
 	}
-	.out{
+	.out {
 		position: absolute;
 		top: 58px;
 		left: 220px;
@@ -270,15 +306,13 @@ body {
 		margin-bottom: 50px;
 		box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 		background-color: rgb(255, 255, 255);
-//		padding: 20px;
+		//		padding: 20px;
 		input {
 			padding-left: 0.4em;
 			font-size: 13px;
 			line-height: 1.5;
 			width: 200px;
 		}
-
-
 
 		&.login {
 
@@ -287,10 +321,10 @@ body {
 			li {
 				padding: 0 30px 30px;
 				//				padding-bottom: 20px;
-//				padding-left: 30px;
+				//				padding-left: 30px;
 
 			}
-//			padding-top: 20px;
+			//			padding-top: 20px;
 
 			h2 {
 				font: 17px sans-serif;
@@ -299,12 +333,12 @@ body {
 			}
 
 			input[type="submit"] {
-//				width: auto;
+				//				width: auto;
 				padding-left: 0;
-//				color: #4183C4;
+				//				color: #4183C4;
 				width: 210px;
-//							background: none;
-							border: none;
+				//							background: none;
+				border: none;
 				background-color: rgba(211, 211, 211, 0.43);
 				//			color: #4183C4;
 				//			text-decoration: none;
@@ -318,9 +352,9 @@ body {
 
 		&.generator {
 
-//			position: fixed;
+			//			position: fixed;
 
-//			padding-left: 30px;
+			//			padding-left: 30px;
 
 			li {
 				padding-bottom: 15px;
@@ -369,10 +403,10 @@ body {
 
 			#linksForm {
 				position: relative;
-//				left: 40px;
+				//				left: 40px;
 				padding-left: 30px;
-//				padding-bottom: 20px;
-//				top: 200px;
+				//				padding-bottom: 20px;
+				//				top: 200px;
 			}
 		}
 
@@ -380,7 +414,7 @@ body {
 
 			ul {
 				padding: 0;
-//				margin: 0;
+				//				margin: 0;
 			}
 
 			.links {
@@ -404,7 +438,6 @@ body {
 							padding-right: 10px;
 							margin: 0;
 							//						vertical-align: middle;
-
 
 							font-size: 12px;
 
@@ -432,13 +465,13 @@ body {
 			}
 
 			.top {
-//				list-style: none;
-//				height: max;
+				//				list-style: none;
+				//				height: max;
 
 				li {
 					float: left;
 					height: 180px;
-//					padding: 0;
+					//					padding: 0;
 
 					img {
 						box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
@@ -448,7 +481,7 @@ body {
 
 					ul {
 
-//						list-style: none;
+						//						list-style: none;
 
 						li {
 							float: none;
@@ -469,20 +502,18 @@ body {
 							}
 
 							&.back {
-//								float: bottom;
+								//								float: bottom;
 
-														position: fixed;
-														left: 0;
-														bottom: 0;
+								position: fixed;
+								left: 0;
+								bottom: 0;
 							}
 
 						}
 					}
 				}
 
-
 			}
-
 
 		}
 		li {
@@ -507,24 +538,23 @@ body {
 			}
 
 			h3 {
-//				font-size: 15px;
+				//				font-size: 15px;
 				font-weight: lighter;
 				color: lightgray;
 
 				padding: 10px 10px 10px 30px;
 
 				//				padding: 20px 20px 20px 30px;
-//				margin-bottom: 20px;
-//				padding-bottom: 20px;
+				//				margin-bottom: 20px;
+				//				padding-bottom: 20px;
 
 			}
 
 			padding-top: 15px;
-//			min-height: 500px;
+			//			min-height: 500px;
 			li {
 				a {
 					color: #4183C4;
-
 
 					&:hover {
 						text-decoration: underline;
@@ -536,7 +566,6 @@ body {
 						padding-right: 10px;
 						margin: 0;
 						//						vertical-align: middle;
-
 
 						font-size: 12px;
 
@@ -564,7 +593,6 @@ body {
 					padding-right: 15px;
 				}
 
-
 			}
 
 		}
@@ -589,8 +617,7 @@ body {
 						padding-left: 10px;
 						padding-right: 10px;
 						margin: 0;
-//						vertical-align: middle;
-
+						//						vertical-align: middle;
 
 						font-size: 12px;
 
@@ -615,22 +642,23 @@ body {
 					padding-right: 15px;
 				}
 
-
 			}
 
 		}
-		&.bundles  {
+		&.bundles {
+			//			min-width: 300px;
+			//			&ul:after {
+			//				width: 80%;
+			//				display: inline-block;
+			//			}
 
 			li {
 				position: relative;
-				list-style: none;
+				//				list-style: none;
 				margin: 0 30px 20px 0;
 				width: 280px;
 				height: 300px;
 				float: left;
-
-				div.links {
-				}
 
 				img {
 					box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
@@ -642,7 +670,7 @@ body {
 					font-size: 17px;
 					line-height: 1.8;
 					margin: 0;
-					padding: 5px 15px;
+					padding: 5px 20px;
 					display: block;
 					text-decoration: none;
 				}
@@ -651,7 +679,7 @@ body {
 				}
 
 				span.linksCount {
-					padding-left: 15px;
+					padding-left: 20px;
 					font-size: 11px;
 					color: gray;
 				}
