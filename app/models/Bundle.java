@@ -150,6 +150,6 @@ public class Bundle extends Model {
     }
 
     public int getLinksCount() {
-        return webDataIds.split(",").length; //TODO :(
+        return webDataIds.split(",").length - 1; //TODO :(
     }
 }

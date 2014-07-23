@@ -106,7 +106,7 @@ function getTags(data) {
         return {name: v[0].name, weight: _.pluck(v, "weight").reduce(sum)};
     }).value();
 
-    return _.sortBy(reducedTags, 'weight').reverse();
+    return _.sortBy(reducedTags, 'weight').reverse().slice(0, 14);
 }
 
 edTagApp.controller('bundlesCtrl', function ($scope, $http) {
