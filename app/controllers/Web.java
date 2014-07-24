@@ -105,7 +105,7 @@ public class Web extends Controller {
             return ok(toJson(Ebean.find(User.class).where().eq("id", Integer.valueOf(session("userId"))).findUnique()));
     }
 
-    public static Result editBundle(int id, String urls, String title, String description) {
+    public static Result editBundle(int id, String urls, String title, String description) throws Exception {
 
         int userId = 0;
         if (session("userId") != null)
@@ -124,7 +124,7 @@ public class Web extends Controller {
         return ok();
     }
 
-    public static Result addBundle() throws IOException {
+    public static Result addBundle() throws Exception {
 
         int userId = 0;
         if (session("userId") != null)
@@ -180,7 +180,7 @@ public class Web extends Controller {
         return ok(toJson(bundle));
     }
 
-    public static Result previewBundle(String urls, String title, String description) {
+    public static Result previewBundle(String urls, String title, String description) throws Exception {
 
         int userId = 0;
         if (session("userId") != null)
