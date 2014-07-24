@@ -10,6 +10,13 @@ edTagApp.controller('mainCtrl', function ($scope, $http, $location) {
     $scope.selected_tags = {};
     $scope.allTags = [];
 
+    $scope.getBucket = function () {
+
+        return "https://s3-eu-west-1.amazonaws.com/dry-tundra-9556";
+//        return "https://s3.amazonaws.com/edtag";
+//        return "/assets";
+    }
+
     $scope.showSearch = function () {
 
         var doc = document.documentElement;

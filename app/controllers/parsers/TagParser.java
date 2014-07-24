@@ -121,13 +121,13 @@ public class TagParser {
 
                 } else tags.put(word.getKey(), word.getValue());
 
-
+                i++;
 
             } else {
                 Logger.debug("[tag not mark] " + word.getKey());
             }
 
-            i++;
+//            i++;
 
             if (i == defaultTagsCount) break;
         }
