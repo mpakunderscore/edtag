@@ -35,7 +35,7 @@ public class S3Plugin extends Plugin {
 
             AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
             amazonS3 = new AmazonS3Client(awsCredentials);
-            amazonS3.createBucket(s3Bucket, Region.EU_Ireland);
+//            amazonS3.createBucket(s3Bucket, Region.EU_Ireland);
 
             Logger.info("Using S3 Bucket: " + s3Bucket);
         }
