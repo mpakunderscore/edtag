@@ -30,6 +30,9 @@ public class S3Plugin extends Plugin {
         String secretKey = application.configuration().getString(AWS_SECRET_KEY);
         s3Bucket = application.configuration().getString(AWS_S3_BUCKET);
 
+        Logger.info("AWS_ACCESS_KEY: " + accessKey);
+        Logger.info("AWS_S3_BUCKET: " + s3Bucket);
+
         if ((accessKey != null) && (secretKey != null)) {
 
             AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
