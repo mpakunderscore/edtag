@@ -142,7 +142,7 @@ public class FavIcon {
 
             } else {
 
-                PutObjectRequest putObjectRequest = new PutObjectRequest(S3Plugin.s3Bucket, domainString + "." + format, file);
+                PutObjectRequest putObjectRequest = new PutObjectRequest(S3Plugin.s3Bucket, "favicons/" + domainString + "." + format, file);
 
                 putObjectRequest.withCannedAcl(CannedAccessControlList.PublicRead); // public for all
                 S3Plugin.amazonS3.putObject(putObjectRequest); // upload file

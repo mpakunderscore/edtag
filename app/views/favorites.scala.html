@@ -12,7 +12,7 @@
 
             <li ng-repeat="link in data | filter:searchText">
 
-                <img ng-show="link.favIconFormat" ng-src="{{getBucket()}}/{{getDomain(link.url)}}.{{link.favIconFormat}}">
+                <img ng-show="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
                 <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
 
                 <a href="{{link.url}}" target="_blank">{{link.title}}</a>
