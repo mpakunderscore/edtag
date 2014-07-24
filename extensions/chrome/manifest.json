@@ -20,5 +20,12 @@
         "default_title": "Education Tags"
 	},
 	  
-	"permissions": ["notifications", "identity", "tabs", "activeTab", "http://localhost:9000/*", "https://edtag.io/*", "https://s3.amazonaws.com/edtag/*"]
+	"permissions": [
+        "notifications",
+        "activeTab",
+        "https://dry-tundra-9556.herokuapp.com/*",
+        "http://localhost:9000/*",
+        "https://edtag.io/*",
+        "https://s3.amazonaws.com/edtag/*",
+        "https://s3-eu-west-1.amazonaws.com/dry-tundra-9556/*"]
 }

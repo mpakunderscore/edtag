@@ -38,7 +38,8 @@ public class API extends Controller {
 
             webData = Watcher.requestWebData(url);
 
-            if (webData == null) return ok("url error");
+            if (webData == null)
+                return ok("url error");
 
             String domainString = WebData.getDomainString(webData.getUrl());
 
@@ -47,7 +48,8 @@ public class API extends Controller {
 
                 domain = Watcher.requestDomain(url);
 
-                if (domain == null) return ok("domain error");
+                if (domain == null)
+                    return ok("domain error");
 
                 domain.save();
             }

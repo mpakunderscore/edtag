@@ -12,8 +12,8 @@ edTagApp.service('bundleUpload', ['$http', function ($http) {
         .success(function(){
             alert("success");
         })
-        .error(function(){
-            alert("error");
+        .error(function(data){
+            alert(data);
         });
     }
 }]);

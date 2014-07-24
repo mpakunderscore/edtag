@@ -41,7 +41,7 @@ public class Bundle extends Model {
     public Bundle() {
     }
 
-    public Bundle(int userId, String title, String description, String urls) {
+    public Bundle(int userId, String title, String description, String urls) throws Exception {
 
         this.setTitle(title);
         this.setDescription(description);
@@ -67,10 +67,26 @@ public class Bundle extends Model {
                 Logger.debug("[can't find web data in database]  " + url);
                 webData = Watcher.requestWebData(url);
 
-                if (webData == null)
+                if (webData == null) {
+                    Logger.error("[web data not responding]  " + url);
                     continue;
+                }
 
-                Logger.debug("[save web data]  " + url);
+                String domainString = WebData.getDomainString(webData.getUrl());
+
+                Domain domain = Ebean.find(Domain.class).where().idEq(domainString).findUnique();
+                if (domain == null) {
+
+                    domain = Watcher.requestDomain(url);
+
+                    if (domain == null)
+                        continue;
+
+                    domain.save();
+                }
+
+                webData.setFavIconFormat(domain.getFavIconFormat());
+
                 webData.save();
             }
 
