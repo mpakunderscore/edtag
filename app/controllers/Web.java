@@ -34,6 +34,33 @@ public class Web extends Controller {
         return ok(toJson(webDataList));
     }
 
+    public static Result favorite(Long webDataId) {
+
+        int userId;
+        if (session("userId") != null)
+            userId = Integer.parseInt(session("userId"));
+
+        else
+            return ok();
+
+        UserData userData = Ebean.find(UserData.class).where().eq("userId", userId).eq("webDataId", webDataId).findUnique();
+
+        if (userData == null) {
+
+            userData = new UserData(userId, webDataId);
+            userData.save();
+
+        } else {
+
+            userData.increaseCount();
+            userData.update();
+
+            return ok();
+        }
+
+        return ok();
+    }
+
     public static Result favorites() {
 
         int userId;
@@ -44,9 +71,14 @@ public class Web extends Controller {
             return ok();
 
         List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", userId).findList();
+        List<Long> ids = new ArrayList<Long>();
 
+        for (UserData userData : userDataList)
+            ids.add(userData.getWebDataId());
 
-        return ok(toJson(userDataList));
+        List<WebData> webDataList = Ebean.find(WebData.class).where().in("id", ids).findList();
+
+        return ok(toJson(webDataList));
     }
 
     public static Result bundles() {

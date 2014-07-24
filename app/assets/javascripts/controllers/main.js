@@ -145,6 +145,12 @@ edTagApp.controller('linksCtrl', function ($scope, $http) {
     $scope.favoriteLink = function (data) {
 
         console.log(data);
+
+        $http({method: 'GET', url: '/favorite?webDataId=' + data}).
+            success(function (data, status, headers, config) {
+            }).
+            error(function (data, status, headers, config) {
+            });
     }
 });
 

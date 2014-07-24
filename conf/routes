@@ -39,7 +39,7 @@ GET         /add                        controllers.API.add(url: String, userId:
 GET         /domains                    controllers.API.getApprovedDomains
 
 
-#test
+#bundle generation
 GET         /analyze/page/links         controllers.API.getLinksFromUrl(url: String)
 
 
@@ -47,6 +47,8 @@ GET         /analyze/page/links         controllers.API.getLinksFromUrl(url: Str
 GET         /api/bundles/list           controllers.Web.bundles
 GET         /api/links/list             controllers.Web.links
 GET         /api/links/favorites        controllers.Web.favorites
+
+GET         /favorite                   controllers.Web.favorite(webDataId: Long)
 
 
 # Map static resources from the /public folder to the /assets URL path
