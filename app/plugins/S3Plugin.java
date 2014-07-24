@@ -4,6 +4,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.Region;
 import play.Application;
 import play.Logger;
 import play.Plugin;
@@ -34,7 +35,7 @@ public class S3Plugin extends Plugin {
 
             AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
             amazonS3 = new AmazonS3Client(awsCredentials);
-            amazonS3.createBucket(s3Bucket, "EU");
+            amazonS3.createBucket(s3Bucket, Region.EU_Ireland);
 
             Logger.info("Using S3 Bucket: " + s3Bucket);
         }
