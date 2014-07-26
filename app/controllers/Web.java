@@ -29,7 +29,7 @@ public class Web extends Controller {
 
         int pageSetSize = 100;
 
-        List<WebData> webDataList = Ebean.find(WebData.class).order().desc("id").findList().subList(0, pageSetSize); //TODO bad solution
+        List<WebData> webDataList = Ebean.find(WebData.class).order().desc("id").findList(); //TODO bad solution
 
         return ok(toJson(webDataList));
     }
