@@ -21,6 +21,8 @@ public class Page {
 
     public static WebData requestWebData(String url) {
 
+        Long time = System.currentTimeMillis();
+
         String title;
         Document doc;
 
@@ -43,6 +45,7 @@ public class Page {
         if (title.length() == 0) return null; //TODO
 
         Map<String, Integer> words = TagParser.getWords(text);
+        Logger.debug("[words] " + words.size());
         Map<String, Integer> textTags = TagParser.getTags(words);
         List<JSONTag> tagsList = TagParser.getTagsList(textTags);
 
@@ -53,6 +56,7 @@ public class Page {
             wordsCount += value;
         }
 
+        Logger.debug("[time] " + (System.currentTimeMillis() - time)/1000);
         return new WebData(url, title, String.valueOf(toJson(tagsList)), wordsCount, uniqueWordsCount);
     }
 }

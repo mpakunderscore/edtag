@@ -165,7 +165,7 @@ public class FavIcon {
         BufferedOutputStream outputStream = null;
         URLConnection connection = url.openConnection();
 
-        connection.setReadTimeout(5000);
+        connection.setReadTimeout(15000);
         connection.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
         connection.addRequestProperty("User-Agent", "Mozilla");
         connection.addRequestProperty("Referer", "edtag.io");

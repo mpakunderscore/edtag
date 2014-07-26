@@ -1,7 +1,6 @@
 package controllers.parsers;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import controllers.parsers.types.Wiki;
 import models.Tag;
 import models.WebData;
 import play.Logger;
@@ -31,10 +30,11 @@ public class TagParser {
 
     public static Map<String, Integer> getWords(String text) {
 
+        Map<String, Integer> resultWords = new HashMap<String, Integer>();
         Map<String, Integer> words = new HashMap<String, Integer>();
         List<String> wordsList = new ArrayList<String>();
 
-        ValueComparator bvc =  new ValueComparator(words);
+        ValueComparator bvc =  new ValueComparator(resultWords);
         Map<String, Integer> sortedWords  = new TreeMap<String, Integer>(bvc);
 
         Matcher matcher = wordPattern.matcher(text);
@@ -48,11 +48,17 @@ public class TagParser {
             wordsList.add(word);
         }
 
-        Map<String, Integer> bigrams = getBigrams(wordsList);
+        setBigrams(wordsList, words);
 
-        words.putAll(bigrams);
+        for (Map.Entry<String, Integer> word : words.entrySet()) {
 
-        sortedWords.putAll(words);
+            if (word.getValue() > 2)
+                resultWords.put(word.getKey(), word.getValue());
+        }
+
+//        words.putAll(bigrams);
+
+        sortedWords.putAll(resultWords);
 
         return sortedWords;
     }
@@ -65,7 +71,7 @@ public class TagParser {
      * @return - Map of bigrams (unsorted)
      */
 
-    private static Map<String, Integer> getBigrams(List<String> wordsList) {
+    private static void setBigrams(List<String> wordsList, Map<String, Integer> words) {
 
         Map<String, Integer> bigrams = new HashMap<String, Integer>();
 
@@ -77,7 +83,17 @@ public class TagParser {
             else bigrams.put(bigram, 1);
         }
 
-        return bigrams;
+        for (String bigram : bigrams.keySet()) {
+
+            String firstWord = bigram.split(" ")[0];
+            String secondWord = bigram.split(" ")[1];
+
+//            if (words.containsKey(firstWord)) words.put(firstWord, words.get(firstWord) - bigrams.get(bigram));
+
+//            if (words.containsKey(secondWord)) words.put(secondWord, words.get(secondWord) - bigrams.get(bigram));
+        }
+
+        words.putAll(bigrams);
     }
 
     /**
@@ -95,7 +111,7 @@ public class TagParser {
         int i = 0;
         for (Map.Entry<String, Integer> word : wordsMap.entrySet()) {
 
-            Tag tag = Wiki.getTagPage(word.getKey());
+            Tag tag = TagFactory.getTagPage(word.getKey());
 
             if (tag == null) {
 
@@ -108,7 +124,7 @@ public class TagParser {
 
                 if (tag.getRedirect() != null) {
 
-                    Tag redirect = Wiki.getTagPage(tag.getRedirect());
+                    Tag redirect = TagFactory.getTagPage(tag.getRedirect());
 
                     if (redirect != null && !redirect.isMark()) continue;
 
@@ -124,7 +140,8 @@ public class TagParser {
                 i++;
 
             } else {
-                Logger.debug("[tag not mark] " + word.getKey());
+
+                Logger.debug("[tag not mark] " + word.getKey() + ": " + word.getValue());
             }
 
 //            i++;

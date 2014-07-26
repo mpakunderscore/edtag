@@ -1,4 +1,4 @@
-package controllers.parsers.types;
+package controllers.parsers;
 
 import com.avaje.ebean.Ebean;
 import com.cybozu.labs.langdetect.LangDetectException;
@@ -21,7 +21,7 @@ import static play.libs.Json.toJson;
 /**
  * Created by pavelkuzmin on 08/04/14.
  */
-public class Wiki { //TODO wiki api == old crap
+public class TagFactory { //TODO wiki api == old crap
 
     private static final List<String> unmarkedCategories = new ArrayList<String>() {{
 
@@ -32,11 +32,14 @@ public class Wiki { //TODO wiki api == old crap
         add("months");
         add("integers");
         add("english modal and auxiliary verbs");
-        add("многозначные термины");
+
+        add("многозначные термины"); //TODO
     }};
 
     private static final String url = ".wikipedia.org/wiki/";
-    private static final String simpleWordsPageUrl = "http://simple.wikipedia.org/wiki/Wikipedia:List_of_1000_basic_words";
+
+    private static final String simpleWordsUS = "http://simple.wikipedia.org/wiki/Wikipedia:List_of_1000_basic_words";
+    private static final String simpleWordsRU = "http://en.wiktionary.org/wiki/Appendix:Frequency_dictionary_of_the_modern_Russian_language_(the_Russian_National_Corpus)";
 
     public static Tag getTagPage(String word) {
 
@@ -52,7 +55,7 @@ public class Wiki { //TODO wiki api == old crap
 
             String lang = LangDetect.detect(word);
 
-            Logger.debug("[new tag] " + word + " [" + lang + "]");
+//            Logger.debug("[new tag] " + word + " [" + lang + "]");
 
             Connection connection = Jsoup.connect("http://" + lang + url + word);
 
@@ -100,7 +103,7 @@ public class Wiki { //TODO wiki api == old crap
     public static void loadSimpleWords() {
 
         Document doc = null;
-        Connection connection = Jsoup.connect(simpleWordsPageUrl);
+        Connection connection = Jsoup.connect(simpleWordsUS);
 
         try {
 
