@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  */
 public class TagParser {
 
-    static int defaultTagsCount = 5;
+    static int defaultTagsCount = 10;
 
     static int bundleTagsCount = 5;
 
@@ -129,7 +129,7 @@ public class TagParser {
 
 //            i++;
 
-            if (i == defaultTagsCount) break;
+            if (i > defaultTagsCount) break;
         }
 
         return tags;

@@ -10,6 +10,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import play.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,12 +32,13 @@ public class Wiki { //TODO wiki api == old crap
         add("months");
         add("integers");
         add("english modal and auxiliary verbs");
+        add("многозначные термины");
     }};
 
     private static final String url = ".wikipedia.org/wiki/";
     private static final String simpleWordsPageUrl = "http://simple.wikipedia.org/wiki/Wikipedia:List_of_1000_basic_words";
 
-    public static Tag getTagPage(String word) { //TODO lang check
+    public static Tag getTagPage(String word) {
 
         Tag tag = null;
 
@@ -49,6 +51,8 @@ public class Wiki { //TODO wiki api == old crap
         try {
 
             String lang = LangDetect.detect(word);
+
+            Logger.debug("[new tag] " + word + " [" + lang + "]");
 
             Connection connection = Jsoup.connect("http://" + lang + url + word);
 
