@@ -27,7 +27,9 @@
                     <img ng-show="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
                     <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
 
-                    <a href='{{link.url}}' target='_blank' title='{{link.tags}}'>{{link.title}}</a>
+                    <a href='{{link.url}}' target='_blank' title="{{link.url + '\n' + link.tags}}">{{link.title}}</a>
+
+                    <a ng-href="#" ng-click="favoriteLink(link.id)" class="favorite">&#9733;</a>
                 </li>
             </ul>
 
