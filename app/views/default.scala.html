@@ -31,18 +31,18 @@
                 <input id="search" placeholder="Search" ng-model="searchText"/>
                 <ul class="menu">
 
-                    <li><a ng-class="getClass('/bundles')" href="/bundles" id="bundles">Bundles</a></li>
-                    <li><a ng-class="getClass('/links')" href="/links" id="links">Links</a></li>
+                    <li><a ng-class="getClass('/bundles')" href="/bundles" id="bundles"><span>B</span>undles</a></li>
+                    <li><a ng-class="getClass('/links')" href="/links" id="links"><span>L</span>inks</a></li>
 
                     @if(email == null) {
 
-                        <li><a ng-class="getClass('/login')" href="/login" class="auth">Sign In</a></li>
+                        <li><a ng-class="getClass('/login')" href="/login" class="auth"><span>S</span>ign In</a></li>
 
                     } else {
 
-                        <li><a ng-class="getClass('/favorites')" href="/favorites" id="favorites">Favorites</a></li>
+                        <li><a ng-class="getClass('/favorites')" href="/favorites" id="favorites"><span>F</span>avorites</a></li>
 
-                        <li><a href="javascript:logoutUser()" class="auth">Sign Out</a></li>
+                        <li><a href="javascript:logoutUser()" class="auth"><span>S</span>ign Out</a></li>
                     }
 
                 </ul>
