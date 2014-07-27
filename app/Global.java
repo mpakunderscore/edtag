@@ -6,7 +6,9 @@ import controllers.parsers.LangDetect;
 import controllers.parsers.TagFactory;
 import controllers.parsers.types.Page;
 import controllers.parsers.ValueComparator;
+import models.Bundle;
 import models.Tag;
+import models.UserData;
 import models.WebData;
 import play.GlobalSettings;
 import play.*;
@@ -39,13 +41,8 @@ public class Global extends GlobalSettings {
 
         try {
 
-            TagFactory.loadSimpleWordsEN();
-            List<Tag> tags1 = Ebean.find(Tag.class).findList();
-            Logger.info("EN tags: " + tags1.size());
-
-            TagFactory.loadSimpleWordsRU();
-            List<Tag> tags2 = Ebean.find(Tag.class).findList();
-            Logger.info("EN tags: " + (tags2.size() - tags1.size()));
+//            TagFactory.loadSimpleWordsEN();
+//            TagFactory.loadSimpleWordsRU();
 
 //            updateDatabase();
 
@@ -53,6 +50,18 @@ public class Global extends GlobalSettings {
 
         } catch (Exception e) {
         }
+
+        List<Tag> tags = Ebean.find(Tag.class).findList();
+        Logger.info("Tags: " + tags.size());
+
+        List<WebData> webDataList = Ebean.find(WebData.class).findList();
+        Logger.info("Links: " + webDataList.size());
+
+        List<UserData> userDataList = Ebean.find(UserData.class).findList();
+        Logger.info("Favorites: " + userDataList.size());
+
+        List<Bundle> bundles = Ebean.find(Bundle.class).findList();
+        Logger.info("Bundle: " + bundles.size());
 
         Logger.info("Application has started");
     }

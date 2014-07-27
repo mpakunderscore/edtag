@@ -1,6 +1,6 @@
 //var host = "https://edtag.io";
-var host = "http://localhost:9000";
-//var host = "https://dry-tundra-9556.herokuapp.com";
+//var host = "http://localhost:9000";
+var host = "https://dry-tundra-9556.herokuapp.com";
 
 
 var notificationTime = 3000;
