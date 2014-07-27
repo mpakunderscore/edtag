@@ -28,10 +28,7 @@ public class Test {
 
     public static void main(String [] args) throws IOException, LangDetectException {
 
-        LangDetect.init("lib/profiles");
-
-        System.out.println(LangDetect.detect("education"));
-        System.out.println(LangDetect.detect("слово"));
+        TagFactory.loadSimpleWordsRU();
     }
 }
 

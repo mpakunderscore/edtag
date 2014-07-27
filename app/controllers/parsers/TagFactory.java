@@ -100,7 +100,7 @@ public class TagFactory { //TODO wiki api == old crap
         return tag;
     }
 
-    public static void loadSimpleWords() {
+    public static void loadSimpleWordsEN() {
 
         Document doc = null;
         Connection connection = Jsoup.connect(simpleWordsUS);
@@ -121,6 +121,41 @@ public class TagFactory { //TODO wiki api == old crap
 
             String wordText = word.text().toLowerCase();
             new Tag(wordText, null, "[\"simple words\"]", false).save();
+        }
+    }
+
+    public static void loadSimpleWordsRU() {
+
+        Document doc = null;
+        Connection connection = Jsoup.connect(simpleWordsRU);
+
+        try {
+
+            doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).get();
+
+        } catch (IOException exception) {
+
+            exception.printStackTrace();
+            return;
+        }
+
+        Elements words = doc.body().select("div[id=mw-content-text] ol li a");
+
+        int i = 0;
+        for (Element word : words) {
+
+            String wordText = word.text().toLowerCase();
+
+            try {
+                new Tag(wordText, null, "[\"simple words\"]", false).save();
+            } catch (Exception e) {
+                continue;
+            }
+
+            i++;
+
+            if (i > 2000)
+                break;
         }
     }
 }

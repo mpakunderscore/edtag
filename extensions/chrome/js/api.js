@@ -1,6 +1,6 @@
 //var host = "https://edtag.io";
-//var host = "http://localhost:9000";
-var host = "https://dry-tundra-9556.herokuapp.com";
+var host = "http://localhost:9000";
+//var host = "https://dry-tundra-9556.herokuapp.com";
 
 
 var notificationTime = 3000;
@@ -27,7 +27,7 @@ function add_url(tab, userId) {
 
 //    console.log(tabUrl);
 
-    var iconUrl = "https://s3.amazonaws.com/edtag/";
+    var iconUrl = "https://s3-eu-west-1.amazonaws.com/dry-tundra-9556/favicons/";
 
     link.favIconFormat = "ico";
 

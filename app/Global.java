@@ -3,6 +3,7 @@ import com.cybozu.labs.langdetect.DetectorFactory;
 import com.cybozu.labs.langdetect.LangDetectException;
 import com.fasterxml.jackson.databind.JsonNode;
 import controllers.parsers.LangDetect;
+import controllers.parsers.TagFactory;
 import controllers.parsers.types.Page;
 import controllers.parsers.ValueComparator;
 import models.Tag;
@@ -36,6 +37,11 @@ public class Global extends GlobalSettings {
             //TODO
         }
 
+//        if (update) {
+
+//            TagFactory.loadSimpleWordsEN();
+//            TagFactory.loadSimpleWordsRU();
+//        }
 
 //        if (update) updateDatabase();
 //
