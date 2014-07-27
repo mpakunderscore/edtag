@@ -120,7 +120,12 @@ public class TagFactory { //TODO wiki api == old crap
         for (Element word : words) {
 
             String wordText = word.text().toLowerCase();
-            new Tag(wordText, null, "[\"simple words\"]", false).save();
+
+            try {
+                new Tag(wordText, null, "[\"simple words\"]", false).save();
+            }catch (Exception e) {
+                continue;
+            }
         }
     }
 

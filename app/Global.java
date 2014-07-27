@@ -22,7 +22,7 @@ import java.util.TreeMap;
  */
 public class Global extends GlobalSettings {
 
-    private static final boolean update = false;
+    private static final boolean update = true;
 
     private static final boolean research = false;
 
@@ -37,15 +37,17 @@ public class Global extends GlobalSettings {
             //TODO
         }
 
-//        if (update) {
+        try {
 
-//            TagFactory.loadSimpleWordsEN();
-//            TagFactory.loadSimpleWordsRU();
-//        }
+            TagFactory.loadSimpleWordsEN();
+            TagFactory.loadSimpleWordsRU();
 
-//        if (update) updateDatabase();
-//
-//        if (research) research();
+//            updateDatabase();
+
+//            research();
+
+        } catch (Exception e) {
+        }
 
         Logger.info("Application has started");
     }
