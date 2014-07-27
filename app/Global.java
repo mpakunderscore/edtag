@@ -40,7 +40,12 @@ public class Global extends GlobalSettings {
         try {
 
             TagFactory.loadSimpleWordsEN();
+            List<Tag> tags1 = Ebean.find(Tag.class).findList();
+            Logger.info("EN tags: " + tags1.size());
+
             TagFactory.loadSimpleWordsRU();
+            List<Tag> tags2 = Ebean.find(Tag.class).findList();
+            Logger.info("EN tags: " + (tags2.size() - tags1.size()));
 
 //            updateDatabase();
 
