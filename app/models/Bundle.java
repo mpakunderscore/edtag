@@ -56,10 +56,11 @@ public class Bundle extends Model {
 
         String[] urlsList = urls.split("\r\n");
 
-        Logger.debug(title + " " + urlsList.length);
+        Logger.debug("[new bundle] '" + title + "' [" + urlsList.length + "]");
 
         for (String url : urlsList) {
 
+//            new GetWebData(url).now();
             WebData webData = Watcher.getWebData(url);
 
             if (webData == null) {

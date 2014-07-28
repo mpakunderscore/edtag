@@ -1,5 +1,6 @@
 package controllers.parsers;
 
+import com.amazonaws.services.importexport.model.Job;
 import com.avaje.ebean.Ebean;
 import controllers.parsers.types.PDF;
 import controllers.parsers.types.Page;
@@ -99,6 +100,7 @@ public final class Watcher {
             Domain domain = Ebean.find(Domain.class).where().idEq(domainString).findUnique();
             if (domain == null) {
 
+                Logger.debug("[can't find domain in database]  " + url);
                 domain = Watcher.requestDomain(url);
 
                 if (domain == null)

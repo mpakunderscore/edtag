@@ -29,7 +29,7 @@ function add_url(tab, userId) {
 
     var iconUrl = "https://s3-eu-west-1.amazonaws.com/dry-tundra-9556/favicons/";
 
-    link.favIconFormat = "ico";
+//    link.favIconFormat = "ico";
 
     if (link.favIconFormat) iconUrl += tabUrl.split("/")[0] + "." + link.favIconFormat;
 
