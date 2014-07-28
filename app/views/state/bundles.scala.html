@@ -6,7 +6,7 @@
 
         <ul class="out bundles">
 
-            <li ng-repeat="bundle in data | filter:searchText">
+            <li ng-repeat="bundle in dataList | filter:searchText">
 
                 <img ng-src="@{"{{getBucket()}}/bundles/bundle.{{bundle.id}}.png"}">
 

@@ -6,7 +6,7 @@
 
         <ul class="out links">
 
-            <li ng-repeat="link in data | filter:searchText">
+            <li ng-repeat="link in dataList | filter:searchText">
 
                 <img ng-show="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
                 <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
@@ -17,7 +17,7 @@
 
             </li>
 
-            <li ng-hide="data.length">Empty.</li>
+            <li ng-hide="dataList.length">Empty.</li>
         </ul>
 
     </section>

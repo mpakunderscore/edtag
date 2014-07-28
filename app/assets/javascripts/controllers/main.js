@@ -6,10 +6,6 @@ var sum = function (a, b) {
 
 edTagApp.controller('mainCtrl', function ($scope, $http, $location) {
 
-    var allTags = [];
-    $scope.selected_tags = {};
-    $scope.allTags = [];
-
     $scope.getBucket = function () {
 
         return "https://s3-eu-west-1.amazonaws.com/dry-tundra-9556";
@@ -45,34 +41,9 @@ edTagApp.controller('mainCtrl', function ($scope, $http, $location) {
     }
 
     $scope.searchText = ''
-    $scope.filterByTag = function (link) {
-
-        console.log(link)
-        var bundles = [];
-        var tags = []
-
-        angular.forEach($scope.bundles, function (bundle) {
-            angular.forEach(bundle.tags, function (tag) {
-                if (link.tag.name == tag.name) {
-                    bundles.push(bundle);
-
-                }
-
-            })
-        })
-        $scope.bundles = bundles
-
-        angular.forEach($scope.bundles, function (bundle) {
-            angular.forEach(bundle.tags, function (tag) {
-                if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3) allTags.push(tag)
-            })
-        })
-        var reducedTags = _.chain(allTags).groupBy('name').map(function (v) {
-            return {name: v[0].name, weight: _.pluck(v, "weight").reduce(sum)};
-        }).value();
-        $scope.sortedTags = _.sortBy(reducedTags, 'weight').reverse()
-        console.log($scope.sortedTags)
-    }
+    $scope.getDomain = function (url) {
+        return url.replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
+    };
 });
 
 function fill($scope, $http, url) {
@@ -80,7 +51,7 @@ function fill($scope, $http, url) {
     $http({method: 'GET', url: url}).
         success(function (data, status, headers, config) {
 
-            $scope.data = data;
+            $scope.dataList = data;
 
             $scope.sortedTags = getTags(data);
 
@@ -91,9 +62,11 @@ function fill($scope, $http, url) {
             // or server returns response with an error status.
         });
 
-    $scope.getDomain = function (url) {
-        return url.replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
-    };
+    $scope.selectedTags = [];
+
+    $scope.filterByTag = function (tag) {
+        filter($scope, tag)
+    }
 }
 
 function getTags(data) {
@@ -113,7 +86,7 @@ function getTags(data) {
         return {name: v[0].name, weight: _.pluck(v, "weight").reduce(sum)};
     }).value();
 
-    return _.sortBy(reducedTags, 'weight').reverse().slice(0, 14);
+    return _.sortBy(reducedTags, 'weight').reverse();
 }
 
 edTagApp.controller('bundlesCtrl', function ($scope, $http) {
@@ -128,7 +101,7 @@ edTagApp.controller('bundleCtrl', function ($scope, $http, $location) {
     $http({method: 'GET', url: '/api/bundle/' + id}).
         success(function (data, status, headers, config) {
 
-            $scope.data = data.webDataList;
+            $scope.dataList = data.webDataList;
 
             $scope.sortedTags = getTags(data.webDataList);
 
@@ -139,9 +112,11 @@ edTagApp.controller('bundleCtrl', function ($scope, $http, $location) {
             // or server returns response with an error status.
         });
 
-    $scope.getDomain = function (url) {
-        return url.replace("http://", "").replace("https://", "").replace("www.", "").split("/")[0];
-    };
+    $scope.selectedTags = [];
+
+    $scope.filterByTag = function (tag) {
+        filter($scope, tag)
+    }
 });
 
 
@@ -150,8 +125,6 @@ edTagApp.controller('linksCtrl', function ($scope, $http) {
     fill($scope, $http, '/api/links/list');
 
     $scope.favoriteLink = function (data) {
-
-        console.log(data);
 
         $http({method: 'GET', url: '/favorite?webDataId=' + data}).
             success(function (data, status, headers, config) {
@@ -165,6 +138,72 @@ edTagApp.controller('favoritesCtrl', function ($scope, $http) {
 
     fill($scope, $http, '/api/links/favorites');
 });
+
+function filter($scope, tag) {
+
+    if ($scope.selectedTags.indexOf(tag.name) < 0)
+        $scope.selectedTags.push(tag.name);
+
+    else $scope.selectedTags.splice($scope.selectedTags.indexOf(tag.name), 1);
+
+    console.log($scope.selectedTags);
+
+//    console.log($scope.data)
+
+    var newData = [];
+
+    angular.forEach($scope.dataList, function (data) {
+
+        var dataTagsKeys = [];
+        angular.forEach(data.tags, function (dataTag) {
+            dataTagsKeys.push(dataTag.name)
+        });
+
+//        console.log(dataTagsKeys);
+
+        var remove = false;
+        angular.forEach($scope.selectedTags, function (tag) {
+
+//            console.log(tag);
+
+            if (!(dataTagsKeys.indexOf(tag) > -1)) {
+                remove = true;
+//                console.log('[remove]');
+            }
+        });
+
+        if (!remove) {
+            newData.push(data);
+//            console.log('[add]');
+        }
+
+//        if (remove) {
+//            $scope.data.splice($scope.data.indexOf(data, 1));
+//        }
+    })
+
+//    $scope.$apply(function(){ //let angular know the changes
+
+    $scope.dataList = newData;
+    $scope.sortedTags = getTags(newData);
+//    });
+
+
+//        angular.forEach($scope.bundles, function (bundle) {
+//            angular.forEach(bundle.tags, function (tag) {
+//                if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3) allTags.push(tag)
+//            })
+//        })
+//        var reducedTags = _.chain(allTags).groupBy('name').map(function (v) {
+//            return {name: v[0].name, weight: _.pluck(v, "weight").reduce(sum)};
+//        }).value();
+//
+//        $scope.sortedTags = _.sortBy(reducedTags, 'weight').reverse()
+
+    console.log($scope.dataList)
+
+//    $scope.$apply()
+}
 
 window.onscroll = function (e) {
 
