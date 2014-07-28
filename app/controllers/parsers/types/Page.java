@@ -34,7 +34,7 @@ public class Page {
 
         } catch (IOException exception) { //TODO
 
-            Logger.error("[webData is NULL]  " + url);
+//            Logger.error("[webData is NULL]  " + url);
             return null;
         }
 

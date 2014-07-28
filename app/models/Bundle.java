@@ -60,34 +60,10 @@ public class Bundle extends Model {
 
         for (String url : urlsList) {
 
-            WebData webData = Ebean.find(WebData.class).where().eq("url", url).findUnique();
+            WebData webData = Watcher.getWebData(url);
 
             if (webData == null) {
-
-                Logger.debug("[can't find web data in database]  " + url);
-                webData = Watcher.requestWebData(url);
-
-                if (webData == null) {
-                    Logger.error("[web data not responding]  " + url);
-                    continue;
-                }
-
-                String domainString = WebData.getDomainString(webData.getUrl());
-
-                Domain domain = Ebean.find(Domain.class).where().idEq(domainString).findUnique();
-                if (domain == null) {
-
-                    domain = Watcher.requestDomain(url);
-
-                    if (domain == null)
-                        continue;
-
-                    domain.save();
-                }
-
-                webData.setFavIconFormat(domain.getFavIconFormat());
-
-                webData.save();
+                continue;
             }
 
             webDataList.add(webData);

@@ -33,31 +33,10 @@ public class API extends Controller {
 //        if (session("userId") != null)
 //            userId = Integer.parseInt(session("userId"));
 
-        WebData webData = Ebean.find(WebData.class).where().eq("url", url).findUnique();
-        if (webData == null) {
+        WebData webData = Watcher.getWebData(url);
 
-            webData = Watcher.requestWebData(url);
-
-            if (webData == null)
-                return ok("url error");
-
-            String domainString = WebData.getDomainString(webData.getUrl());
-
-            Domain domain = Ebean.find(Domain.class).where().idEq(domainString).findUnique();
-            if (domain == null) {
-
-                domain = Watcher.requestDomain(url);
-
-                if (domain == null)
-                    return ok("domain error");
-
-                domain.save();
-            }
-
-            webData.setFavIconFormat(domain.getFavIconFormat());
-
-            webData.save();
-        }
+        if (webData == null)
+            return internalServerError("webData == null"); //TODO
 
         UserData userData = Ebean.find(UserData.class).where().eq("userId", userId).eq("webDataId", webData.getId()).findUnique();
 

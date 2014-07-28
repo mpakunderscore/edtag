@@ -61,7 +61,7 @@ public class Global extends GlobalSettings {
         Logger.info("Favorites: " + userDataList.size());
 
         List<Bundle> bundles = Ebean.find(Bundle.class).findList();
-        Logger.info("Bundle: " + bundles.size());
+        Logger.info("Bundles: " + bundles.size());
 
         Logger.info("Application has started");
     }

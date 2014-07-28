@@ -1,5 +1,6 @@
 package controllers.parsers;
 
+import com.avaje.ebean.Ebean;
 import controllers.parsers.types.PDF;
 import controllers.parsers.types.Page;
 import models.Domain;
@@ -24,11 +25,12 @@ public final class Watcher {
 
     public static WebData requestWebData(String url) {
 
-        Logger.debug("[get web data] " + url);
+        Logger.debug("[get web data from web] " + url);
 
         //TODO types of webData (html, pdf, fb2, txt) move type checker into Interface
         if (url.endsWith(".pdf")) {
 
+            Logger.debug("[pdf] " + url);
             return PDF.requestWebData(url);
 
         } else { // if html page
@@ -56,7 +58,7 @@ public final class Watcher {
 
         } catch (IOException exception) { //TODO
 
-            Logger.error("domain: " + domainString);
+            Logger.error("[domain] " + domainString);
             exception.printStackTrace();
 
             return null;
@@ -66,7 +68,8 @@ public final class Watcher {
 
         title = doc.title();
 
-        if (title.length() == 0) return null; //TODO
+        if (title.length() == 0)
+            return null; //TODO
 
         Map<String, Integer> words = TagParser.getWords(text);
         Map<String, Integer> textTags = TagParser.getTags(words);
@@ -78,4 +81,37 @@ public final class Watcher {
     }
 
 
+    public static WebData getWebData(String url) throws Exception {
+
+        WebData webData = Ebean.find(WebData.class).where().eq("url", url).findUnique();
+        if (webData == null) {
+
+            Logger.debug("[can't find web data in database]  " + url);
+            webData = Watcher.requestWebData(url);
+
+            if (webData == null) {
+                Logger.error("[web data not responding]  " + url);
+                return null; //TODO
+            }
+
+            String domainString = WebData.getDomainString(webData.getUrl());
+
+            Domain domain = Ebean.find(Domain.class).where().idEq(domainString).findUnique();
+            if (domain == null) {
+
+                domain = Watcher.requestDomain(url);
+
+                if (domain == null)
+                    return null;
+
+                domain.save();
+            }
+
+            webData.setFavIconFormat(domain.getFavIconFormat());
+
+            webData.save();
+        }
+
+        return webData;
+    }
 }
