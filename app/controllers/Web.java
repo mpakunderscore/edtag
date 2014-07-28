@@ -12,7 +12,7 @@ import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import plugins.S3Plugin;
-import views.html.links;
+import views.html.state.links;
 
 import java.io.*;
 import java.lang.*;
@@ -70,7 +70,7 @@ public class Web extends Controller {
         else
             return ok();
 
-        List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", userId).findList();
+        List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", userId).order("lastUpdate").findList();
         List<Long> ids = new ArrayList<Long>();
 
         for (UserData userData : userDataList)

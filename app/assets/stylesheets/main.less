@@ -150,21 +150,28 @@ body {
 		height: 250px;
 		float: left;
 		.pic {
+			box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 			width: 280px;
 			height: 180px;
 			float: left;
+
+			margin-left: 20px;
+			margin-top: 20px;
 		}
 		.title {
 			font-size: 17px;
 			font-weight: normal;
+			line-height: 1.8;
 			color: #4183C4;
 			min-height: 25px;
 			visibility: visible;
 			width: 280px;
 			float: left;
 			margin: 0;
-			padding: 15px 20px;
+
+			padding-top: 10px;
 			padding-bottom: 10px;
+			padding-left: 20px;
 		}
 		.links-count {
 			padding-left: 20px;
@@ -180,6 +187,7 @@ body {
 		float: left;
 
 		padding-top: 20px;
+		padding-left: 20px;
 
 		.input-data {
 			width: 300px;
@@ -354,65 +362,7 @@ body {
 			}
 		}
 
-		&.generator {
 
-			//			position: fixed;
-
-			//			padding-left: 30px;
-
-			li {
-				padding-bottom: 15px;
-			}
-
-			#editable {
-				width: 600px;
-				height: 300px;
-				border: 1px solid lightgray;
-			}
-
-			#bundle {
-				position: relative;
-				left: 352px;
-				width: 280px;
-				top: 20px;
-				height: 250px;
-
-				img {
-					box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-					width: 280px;
-					height: 180px;
-				}
-
-				.title {
-					font: 17px helvetica, arial, freesans, clean, sans-serif;
-					line-height: 1.8;
-					color: #4183C4;
-					margin: 0;
-					padding: 5px 15px;
-				}
-
-				.linksCount {
-					padding-left: 15px;
-
-					font: 11px helvetica, arial, freesans, clean, sans-serif;
-					color: gray;
-				}
-			}
-
-			#imageUpload {
-				position: inherit;
-				left: 30px;
-				top: 20px;
-			}
-
-			#linksForm {
-				position: relative;
-				//				left: 40px;
-				padding-left: 30px;
-				//				padding-bottom: 20px;
-				//				top: 200px;
-			}
-		}
 
 		&.bundle {
 
@@ -422,7 +372,7 @@ body {
 			}
 
 			.links {
-				padding-top: 200px;
+				padding-top: 220px;
 				min-height: 500px;
 				li {
 					a {
@@ -481,9 +431,14 @@ body {
 						box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 						width: 280px;
 						height: 180px;
+
+						margin-left: 20px;
+						margin-top: 20px;
+
 					}
 
 					ul {
+
 
 						//						list-style: none;
 
@@ -496,7 +451,10 @@ body {
 								line-height: 1.8;
 								color: #4183C4;
 								margin: 0;
-								padding: 10px 20px;
+//								padding: 20px 20px;
+								padding-left: 20px;
+								padding-top: 20px;
+								padding-bottom: 10px;
 							}
 
 							.linksCount {
@@ -659,10 +617,12 @@ body {
 			li {
 				position: relative;
 				//				list-style: none;
-				margin: 10px 30px 10px 10px;
+				margin: 20px 0 0 20px;
 				width: 280px;
 				height: 300px;
 				float: left;
+
+				background-color: lightgray;
 
 				img {
 					box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
@@ -674,7 +634,8 @@ body {
 					font-size: 17px;
 					line-height: 1.8;
 					margin: 0;
-					padding: 5px 20px;
+					padding-top: 5px;
+					padding-bottom: 10px;
 					display: block;
 					text-decoration: none;
 				}
@@ -683,7 +644,7 @@ body {
 				}
 
 				span.linksCount {
-					padding-left: 20px;
+//					padding-left: 20px;
 					font-size: 11px;
 					color: gray;
 				}
