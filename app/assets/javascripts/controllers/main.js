@@ -51,7 +51,7 @@ function fill($scope, $http, url) {
     $http({method: 'GET', url: url}).
         success(function (data, status, headers, config) {
 
-            $scope.dataList = data;
+            $scope.dataList = getData(data);
 
             $scope.sortedTags = getTags(data);
 
@@ -67,6 +67,10 @@ function fill($scope, $http, url) {
     $scope.filterByTag = function (tag) {
         filter($scope, tag)
     }
+}
+
+function getData(data) {
+    return data;
 }
 
 function getTags(data) {
@@ -101,7 +105,7 @@ edTagApp.controller('bundleCtrl', function ($scope, $http, $location) {
     $http({method: 'GET', url: '/api/bundle/' + id}).
         success(function (data, status, headers, config) {
 
-            $scope.dataList = data.webDataList;
+            $scope.dataList = getData(data.webDataList);
 
             $scope.sortedTags = getTags(data.webDataList);
 
@@ -183,10 +187,14 @@ function filter($scope, tag) {
     })
 
 //    $scope.$apply(function(){ //let angular know the changes
-
-    $scope.dataList = newData;
-    $scope.sortedTags = getTags(newData);
+    console.log($scope.dataList);
+    $scope.dataList = getData(newData);
+//    console.log($scope.dataList);
+//        $scope.apply();
 //    });
+
+    $scope.sortedTags = getTags(newData);
+
 
 
 //        angular.forEach($scope.bundles, function (bundle) {

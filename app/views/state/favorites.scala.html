@@ -2,25 +2,21 @@
 
 @shell("Favorites", email, "favoritesCtrl") {
 
-    <section id="main" ng-controller="favoritesCtrl">
+   <ul class="out favorites">
 
-        <ul class="out favorites">
+       <h2>Install <a href="https://chrome.google.com/webstore/detail/edtag/kiecajbpclgoigecdbpaodejolmbhhal" target="_blank">browser extension</a> to save interesting links from the web for later</h2>
 
-            <h2>Install <a href="https://chrome.google.com/webstore/detail/edtag/kiecajbpclgoigecdbpaodejolmbhhal" target="_blank">browser extension</a> to save interesting links from the web for later</h2>
+       <h3>Currently only for chrome</h3>
 
-            <h3>Currently only for chrome</h3>
+       <li ng-repeat="link in dataList | filter:searchText">
 
-            <li ng-repeat="link in dataList | filter:searchText">
+           <img ng-show="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
+           <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
 
-                <img ng-show="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
-                <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
+           <a href="{{link.url}}" target="_blank">{{link.title}}</a>
 
-                <a href="{{link.url}}" target="_blank">{{link.title}}</a>
+       </li>
 
-            </li>
-
-            <li ng-show="!data.length">Empty.</li>
-        </ul>
-
-    </section>
+       <li ng-show="!dataList.length">Empty.</li>
+   </ul>
 }

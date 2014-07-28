@@ -2,22 +2,16 @@
 
 @shell("Bundles", email, "bundlesCtrl") {
 
-    <section id="main" ng-controller="bundlesCtrl">
+   <ul class="out bundles">
 
-        <ul class="out bundles">
+       <li ng-repeat="bundle in dataList | filter:searchText">
 
-            <li ng-repeat="bundle in dataList | filter:searchText">
+           <img ng-src="@{"{{getBucket()}}/bundles/bundle.{{bundle.id}}.png"}">
 
-                <img ng-src="@{"{{getBucket()}}/bundles/bundle.{{bundle.id}}.png"}">
+           @*<progress class='count' value='{{getCount(bundle.wordsCount)}}' max='70'></progress>*@
+           <a ng-href="/bundle/{{bundle.id}}">{{bundle.title}}</a>
+           <span class="linksCount">{{bundle.linksCount}} links</span>
+       </li>
 
-                @*<progress class='count' value='{{getCount(bundle.wordsCount)}}' max='70'></progress>*@
-                <a ng-href="/bundle/{{bundle.id}}">{{bundle.title}}</a>
-                <span class="linksCount">{{bundle.linksCount}} links</span>
-            </li>
-
-        </ul>
-
-    </section>
-
-
+   </ul>
 }

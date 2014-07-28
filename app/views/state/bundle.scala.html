@@ -2,38 +2,34 @@
 
 @shell(bundle.getTitle, email, "bundleCtrl") {
 
-    <section class="main" ng-controller="bundleCtrl">
+   <ul class="out bundle">
 
-        <ul class="out bundle">
+       <ul class="top">
+           <li>
+               <img ng-src="@{"{{getBucket()}}/bundles/bundle." + bundle.getId + ".png"}">
+           </li>
+           <li>
+               <ul>
+                   <li><section class="title" contenteditable="true">@bundle.getTitle</section></li>
+                   <li><span class="linksCount">@bundle.getLinksCount links</span></li>
+                   @*<li class="back"><a href="javascript:window.history.back()">back</a></li>*@
+               </ul>
+           </li>
 
-            <ul class="top">
-                <li>
-                    <img ng-src="@{"{{getBucket()}}/bundles/bundle." + bundle.getId + ".png"}">
-                </li>
-                <li>
-                    <ul>
-                        <li><section class="title" contenteditable="true">@bundle.getTitle</section></li>
-                        <li><span class="linksCount">@bundle.getLinksCount links</span></li>
-                        @*<li class="back"><a href="javascript:window.history.back()">back</a></li>*@
-                    </ul>
-                </li>
-
-            </ul>
+       </ul>
 
 
-            <ul class="links">
-                <li ng-repeat="link in dataList | filter:searchText">
+       <ul class="links">
+           <li ng-repeat="link in dataList | filter:searchText">
 
-                    <img ng-show="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
-                    <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
+               <img ng-show="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
+               <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
 
-                    <a href='{{link.url}}' target='_blank' title="{{link.url + '\n' + link.tags}}">{{link.title}}</a>
+               <a href='{{link.url}}' target='_blank' title="{{link.url + '\n' + link.tags}}">{{link.title}}</a>
 
-                    <a ng-href="#" ng-click="favoriteLink(link.id)" class="favorite">&#9733;</a>
-                </li>
-            </ul>
+               <a ng-href="#" ng-click="favoriteLink(link.id)" class="favorite">&#9733;</a>
+           </li>
+       </ul>
 
-         </ul>
-
-     </section>
+    </ul>
 }
