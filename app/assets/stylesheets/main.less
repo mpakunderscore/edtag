@@ -297,15 +297,18 @@ body {
 
 			a {
 				display: inline-block;
-				&:link {
-					text-decoration: none;
-					color: black;
-				}
-				&:visited {
-					color: black;
-				}
+				color: black;
+				text-decoration: none;
+
 				&:hover {
 					color: rgb(254, 65, 50);
+				}
+			}
+
+			a.selected {
+				color: rgb(254, 65, 50);
+				&:hover {
+					text-decoration: line-through;
 				}
 			}
 		}

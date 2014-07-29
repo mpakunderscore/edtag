@@ -51,6 +51,8 @@ function fill($scope, $http, url) {
     $http({method: 'GET', url: url}).
         success(function (data, status, headers, config) {
 
+            $scope.data = data;
+
             $scope.dataList = getData(data);
 
             $scope.sortedTags = getTags(data);
@@ -105,6 +107,8 @@ edTagApp.controller('bundleCtrl', function ($scope, $http, $location) {
     $http({method: 'GET', url: '/api/bundle/' + id}).
         success(function (data, status, headers, config) {
 
+            $scope.data = data;
+
             $scope.dataList = getData(data.webDataList);
 
             $scope.sortedTags = getTags(data.webDataList);
@@ -156,7 +160,7 @@ function filter($scope, tag) {
 
     var newData = [];
 
-    angular.forEach($scope.dataList, function (data) {
+    angular.forEach($scope.data, function (data) {
 
         var dataTagsKeys = [];
         angular.forEach(data.tags, function (dataTag) {
@@ -193,7 +197,25 @@ function filter($scope, tag) {
 //        $scope.apply();
 //    });
 
-    $scope.sortedTags = getTags(newData);
+    var newTags = getTags(newData);
+    var selectedTags = [];
+
+    angular.forEach(newTags, function (tag) {
+
+        angular.forEach($scope.selectedTags, function (selectedTag) {
+
+            if (tag.name === selectedTag)
+                newTags.splice(newTags.indexOf(tag), 1);
+        })
+    })
+
+    angular.forEach($scope.selectedTags, function (selectedTag) {
+        selectedTags.push({name: selectedTag, weight: 0})
+    })
+
+
+
+    $scope.sortedTags = selectedTags.concat(newTags);
 
 
 
