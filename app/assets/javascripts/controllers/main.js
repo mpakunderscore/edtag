@@ -107,7 +107,7 @@ edTagApp.controller('bundleCtrl', function ($scope, $http, $location) {
     $http({method: 'GET', url: '/api/bundle/' + id}).
         success(function (data, status, headers, config) {
 
-            $scope.data = data;
+            $scope.data = data.webDataList;
 
             $scope.dataList = getData(data.webDataList);
 
