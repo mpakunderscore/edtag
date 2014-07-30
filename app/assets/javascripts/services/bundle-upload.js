@@ -9,8 +9,8 @@ edTagApp.service('bundleUpload', ['$http', function ($http) {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         })
-        .success(function(){
-            alert("success");
+        .success(function(data){
+            alert(data);
         })
         .error(function(data){
             alert(data);

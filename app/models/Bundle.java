@@ -10,6 +10,8 @@ import play.db.ebean.Model;
 import play.libs.Json;
 
 import javax.persistence.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 
 import static play.libs.Json.toJson;
@@ -41,7 +43,7 @@ public class Bundle extends Model {
     public Bundle() {
     }
 
-    public Bundle(int userId, String title, String description, String urls) throws Exception {
+    public Bundle(int userId, String title, String description, String urls) {
 
         this.setTitle(title);
         this.setDescription(description);
@@ -57,11 +59,27 @@ public class Bundle extends Model {
         String[] urlsList = urls.split("\r\n");
 
         Logger.debug("[new bundle] '" + title + "' [" + urlsList.length + "]");
+        Long time = System.currentTimeMillis();
 
-        for (String url : urlsList) {
+        int i = 0;
+        for (String urlString : urlsList) {
+
+            Logger.debug("[check url] " + urlString + " (" + ++i + "/" + urlsList.length + ") ");
+
+            try {
+                new URL(urlString);
+            } catch (MalformedURLException e) {
+                Logger.error("[invalid url] " + urlString);
+                continue;
+            }
 
 //            new GetWebData(url).now();
-            WebData webData = Watcher.getWebData(url);
+            WebData webData;
+            try {
+                webData = Watcher.getWebData(urlString);
+            } catch (Exception e) {
+                continue;
+            }
 
             if (webData == null) {
                 continue;
@@ -75,6 +93,8 @@ public class Bundle extends Model {
         this.setWebDataList(webDataList);
 
         this.setTags(String.valueOf(toJson(TagParser.getTagsForBundle(webDataList))));
+
+        Logger.debug("[time for bundle] " + (System.currentTimeMillis() - time)/1000);
     }
 
     public String getTitle() {

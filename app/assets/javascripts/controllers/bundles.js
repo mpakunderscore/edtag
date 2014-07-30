@@ -4,7 +4,7 @@ edTagApp.controller('bundleGenerationCtrl', function($scope, fileReader, $http, 
     $scope.bundle = {
         title: 'Some test bundle, please ignore',
         description: '',
-        url: "http://en.wikipedia.org/wiki/List_of_search_engines",
+        url: "http://en.wikipedia.org/wiki/Special:Random",
         links: []
     }
 

@@ -11,10 +11,12 @@ import com.amazonaws.services.s3.transfer.TransferManager;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import play.Logger;
 import plugins.S3Plugin;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
@@ -63,76 +65,10 @@ public class FavIcon {
 
         try {
 
-//            URL url = new URL(favIconUrl);
-//
-//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//
-//            connection.setReadTimeout(5000);
-//            connection.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
-//            connection.addRequestProperty("User-Agent", "Mozilla");
-//            connection.addRequestProperty("Referer", "edtag.io");
-//
-//            connection.setRequestMethod("GET");
-//
-//            int responseCode = connection.getResponseCode();
-
-// --
-//            if (responseCode != HttpURLConnection.HTTP_OK) {
-//                return null;
-//            }
-//
-//            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-//
-//            String inputLine;
-//
-//            String[] bits = favIconUrl.split(Pattern.quote("."));
-//            format = bits[bits.length-1];
-//
-//            File file = new File(domainString + "." + format);
-//
-//            if (!file.exists()) {
-//                file.createNewFile();
-//            }
-//
-//            //use FileWriter to write file
-//            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-//            BufferedWriter bw = new BufferedWriter(fw);
-//
-//            while ((inputLine = br.readLine()) != null) {
-//                bw.write(inputLine);
-//            }
-//
-//            bw.close();
-//            br.close();
-
-// --
-
-
-
-
-
-
-
-//            if (responseCode != HttpURLConnection.HTTP_OK) {
-//                return null;
-//            }
-//
-//            String[] bits = favIconUrl.split(Pattern.quote("."));
-//            format = bits[bits.length-1];
-//
-//            File file = new File(domainString + "." + format);
-//
-//            FileUtils.copyURLToFile(url, file);
-
-// --
-
             String[] bits = favIconUrl.split(Pattern.quote("."));
             format = bits[bits.length-1];
 
             File file = copyFileFromWeb(favIconUrl, domainString + "." + format);
-// --
-
-
 
             if (file.length() == 0) return null;
 
@@ -155,7 +91,7 @@ public class FavIcon {
         return format;
     }
 
-    public static File copyFileFromWeb(String address, String filePath) throws Exception {
+    public static File copyFileFromWeb(String address, String filePath) throws MalformedURLException {
 
         byte[] buffer = new byte[1024];
         int bytesRead;
@@ -163,29 +99,35 @@ public class FavIcon {
         URL url = new URL(address);
         BufferedInputStream inputStream = null;
         BufferedOutputStream outputStream = null;
-        URLConnection connection = url.openConnection();
 
-        connection.setReadTimeout(15000);
-        connection.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
-        connection.addRequestProperty("User-Agent", "Mozilla");
-        connection.addRequestProperty("Referer", "edtag.io");
+        URLConnection connection = null;
+        try {
 
 
-        // If you need to use a proxy for your connection, the URL class has another openConnection method.
-        // For example, to connect to my local SOCKS proxy I can use:
-        // url.openConnection(new Proxy(Proxy.Type.SOCKS, newInetSocketAddress("localhost", 5555)));
+            connection = url.openConnection();
+            connection.setReadTimeout(1000);
 
-        inputStream = new BufferedInputStream(connection.getInputStream());
-        File file = new File(filePath);
-        outputStream = new BufferedOutputStream(new FileOutputStream(file));
+            connection.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
+            connection.addRequestProperty("User-Agent", "Mozilla");
+            connection.addRequestProperty("Referer", "https://dry-tundra-9556.herokuapp.com");
 
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, bytesRead);
+            inputStream = new BufferedInputStream(connection.getInputStream());
+            File file = new File(filePath);
+            outputStream = new BufferedOutputStream(new FileOutputStream(file));
+
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+
+            inputStream.close();
+            outputStream.close();
+
+            return file;
+
+        } catch (IOException e) {
+            Logger.error("[can't get favicon] " + address + " [" + e.getMessage() + "]");
         }
 
-        inputStream.close();
-        outputStream.close();
-
-        return file;
+        return null;
     }
 }

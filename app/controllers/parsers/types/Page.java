@@ -1,8 +1,10 @@
 package controllers.parsers.types;
 
+import controllers.parsers.FavIcon;
 import controllers.parsers.JSONTag;
 import controllers.parsers.TagParser;
 import controllers.parsers.Watcher;
+import models.Domain;
 import models.WebData;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -56,7 +58,59 @@ public class Page {
             wordsCount += value;
         }
 
-        Logger.debug("[time] " + (System.currentTimeMillis() - time)/1000);
+        Logger.debug("[time for web data] " + (System.currentTimeMillis() - time)/1000);
         return new WebData(url, title, String.valueOf(toJson(tagsList)), wordsCount, uniqueWordsCount);
+    }
+
+    public static Domain requestDomain(String url) {
+
+        Long time = System.currentTimeMillis();
+
+        String domainString = WebData.getDomainString(url);
+
+        Logger.debug("[get domain] " + domainString);
+
+        String title = "";
+
+        Map<String, Integer> tagsMap = new HashMap<String, Integer>();
+
+        Document doc = null;
+        Connection connection = Jsoup.connect("http://" + domainString);
+
+        try {
+
+            doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).get();
+
+        } catch (IOException exception) { //TODO
+
+            Logger.error("[can't get domain from web] " + domainString);
+//            exception.printStackTrace();
+
+            return null;
+        }
+
+        String text = doc.body().text();
+
+        title = doc.title();
+
+        if (title.length() == 0)
+            return null; //TODO
+
+        Map<String, Integer> words = TagParser.getWords(text);
+        Map<String, Integer> textTags = TagParser.getTags(words);
+        List<JSONTag> tagsList = TagParser.getTagsList(textTags);
+
+        Logger.debug("[time for domain] " + (System.currentTimeMillis() - time)/1000);
+        time = System.currentTimeMillis();
+
+        String favIconFormat = null;
+        try {
+            favIconFormat = FavIcon.save(domainString, doc);
+        } catch (Exception e) {
+        }
+
+        Logger.debug("[time for favicon] " + (System.currentTimeMillis() - time)/1000);
+
+        return new Domain(domainString, title, String.valueOf(toJson(tagsList)), Domain.UNCHECKED, favIconFormat);
     }
 }

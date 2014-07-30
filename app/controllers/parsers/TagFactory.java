@@ -55,7 +55,7 @@ public class TagFactory { //TODO wiki api == old crap
 
             String lang = LangDetect.detect(word);
 
-//            Logger.debug("[new tag] " + word + " [" + lang + "]");
+            Logger.debug("[new tag] " + word + " [" + lang + "]");
 
             Connection connection = Jsoup.connect("http://" + lang + url + word);
 

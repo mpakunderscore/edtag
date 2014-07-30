@@ -40,48 +40,6 @@ public final class Watcher {
         }
     }
 
-    public static Domain requestDomain(String url) throws Exception {
-
-        String domainString = WebData.getDomainString(url);
-
-        Logger.debug("[get domain] " + domainString);
-
-        String title = "";
-
-        Map<String, Integer> tagsMap = new HashMap<String, Integer>();
-
-        Document doc = null;
-        Connection connection = Jsoup.connect("http://" + domainString);
-
-        try {
-
-            doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).get();
-
-        } catch (IOException exception) { //TODO
-
-            Logger.error("[domain] " + domainString);
-            exception.printStackTrace();
-
-            return null;
-        }
-
-        String text = doc.body().text();
-
-        title = doc.title();
-
-        if (title.length() == 0)
-            return null; //TODO
-
-        Map<String, Integer> words = TagParser.getWords(text);
-        Map<String, Integer> textTags = TagParser.getTags(words);
-        List<JSONTag> tagsList = TagParser.getTagsList(textTags);
-
-        String favIconFormat = FavIcon.save(domainString, doc);
-
-        return new Domain(domainString, title, String.valueOf(toJson(tagsList)), Domain.UNCHECKED, favIconFormat);
-    }
-
-
     public static WebData getWebData(String url) throws Exception {
 
         WebData webData = Ebean.find(WebData.class).where().eq("url", url).findUnique();
@@ -101,7 +59,7 @@ public final class Watcher {
             if (domain == null) {
 
                 Logger.debug("[can't find domain in database]  " + url);
-                domain = Watcher.requestDomain(url);
+                domain = Page.requestDomain(url);
 
                 if (domain == null)
                     return null;

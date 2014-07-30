@@ -124,14 +124,28 @@ public class Web extends Controller {
         return ok();
     }
 
-    public static Result addBundle() throws Exception {
+    public static Result addBundle() {
 
         int userId = 0;
         if (session("userId") != null)
             userId = Integer.parseInt(session("userId"));
 
         Http.MultipartFormData body = request().body().asMultipartFormData();
-        Http.MultipartFormData.FilePart image = body.getFiles().get(0);
+        File file;
+
+        try {
+
+            Http.MultipartFormData.FilePart image = body.getFiles().get(0);
+
+            if (image != null)
+                file = image.getFile();
+            else
+                return ok("Can't get image");
+
+
+        } catch (Exception e) {
+            return ok("There is no file or images");
+        }
 
         String urls = body.asFormUrlEncoded().get("urls")[0];
         String title = body.asFormUrlEncoded().get("title")[0];
@@ -142,31 +156,25 @@ public class Web extends Controller {
 //        if (!jsonUrlsList.isArray())
 //            return ok();
 
-        File file;
-        if (image != null)
-            file = image.getFile();
-        else
-            return ok();
-
         Bundle bundle = new Bundle(userId, title, description, urls);
         bundle.save();
 
         if (S3Plugin.amazonS3 == null) {
 
 //            throw new RuntimeException("Could not save bundle image");
-            File tempFile = new File("public/bundles/bundle." + bundle.getId() + ".png");
-            tempFile.createNewFile();
-
-            InputStream in = new FileInputStream(file);
-            OutputStream out = new FileOutputStream(tempFile, true);
-
-            byte[] buf = new byte[1024];
-            int len;
-            while ((len = in.read(buf)) > 0){
-                out.write(buf, 0, len);
-            }
-            in.close();
-            out.close();
+//            File tempFile = new File("public/bundles/bundle." + bundle.getId() + ".png");
+//            tempFile.createNewFile();
+//
+//            InputStream in = new FileInputStream(file);
+//            OutputStream out = new FileOutputStream(tempFile, true);
+//
+//            byte[] buf = new byte[1024];
+//            int len;
+//            while ((len = in.read(buf)) > 0){
+//                out.write(buf, 0, len);
+//            }
+//            in.close();
+//            out.close();
 
         } else {
 
