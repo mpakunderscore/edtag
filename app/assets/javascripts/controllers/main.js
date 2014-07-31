@@ -276,9 +276,18 @@ window.onscroll = function (e) {
     var doc = document.documentElement;
     var scroll = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 
+    console.log(scroll)
 
+    if (scroll > 70) {
 
-    if (scroll > 30) {
+        if (m_top)
+            document.getElementById("logo").innerHTML = "&#9906; &#60;";
+
+        else
+            document.getElementById("logo").innerHTML = "&#9906; &#62;";
+
+    } else
+        document.getElementById("logo").innerHTML = "&#60; &#62;";
 
 //        if (m_top)
 //            document.getElementById("logo").innerHTML = "&#9906; &#62;";
@@ -287,40 +296,36 @@ window.onscroll = function (e) {
 //            document.getElementById("logo").innerHTML = "&#9906; &#60;";
 
 
-        if (scroll > position) {
+    if (scroll >= position) {
 
-            //scroll down. show nothing
+        //scroll down. show nothing
 //
-            document.getElementById("logo").innerHTML = "&#9906; &#62;";
-            document.querySelectorAll(".top-menu")[0].className = "top-menu";
-            //hide menu here
+        if (scroll > 70) document.getElementById("logo").innerHTML = "&#9906; &#62;";
+        document.querySelectorAll(".top-menu")[0].className = "top-menu";
+        //hide menu here
+
+
+
+    } else {
+
+        //scroll up. show nothing
+
+//        console.log(m_top);
+
+        if (m_top) {
+
+            document.querySelectorAll(".top-menu")[0].className = "top-menu m-top";
+//            document.querySelectorAll(".top-menu")[0].toggleClass("");
+            //show menu
 
         } else {
 
-            //scroll up. show nothing
+            document.querySelectorAll(".top-menu")[0].className = "top-menu";
 
-//            console.log(m_top);
-
-            if (m_top) {
-
-                document.querySelectorAll(".top-menu")[0].className = "top-menu m-top";
-//                document.querySelectorAll(".top-menu")[0].toggleClass("");
-                document.getElementById("logo").innerHTML = "&#9906; &#60;";
-                //show menu
-
-            } else {
-
-                document.querySelectorAll(".top-menu")[0].className = "top-menu";
-                document.getElementById("logo").innerHTML = "&#9906; &#62;";
-            }
         }
+    }
 
-        position = scroll;
-
-    } else
-        document.getElementById("logo").innerHTML = "&#60; &#62;";
-
-
+    position = scroll;
 }
 
 console.log("Menu autoshow for upscroll: " + m_top)

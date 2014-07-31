@@ -37,7 +37,7 @@ public class FavIcon {
 
         Elements links = doc.head().select("link[rel~=(^(shortcut )?icon$)]");
 
-        try {
+//        try {
 
             if (links.size() > 0) {
 
@@ -66,10 +66,10 @@ public class FavIcon {
             if (favIconFormat == null)
                 favIconFormat = check("https://www." + domainString + "/favicon.ico", domainString); // -_-
 
-        } catch (RuntimeException e) {
+//        } catch (RuntimeException e) {
 
-            return null;
-        }
+//            return null;
+//        }
 
         return favIconFormat;
     }

@@ -48,7 +48,7 @@ public class TagParser {
             wordsList.add(word);
         }
 
-        setBigrams(wordsList, words);
+//        setBigrams(wordsList, words);
 
         for (Map.Entry<String, Integer> word : words.entrySet()) {
 
