@@ -68,7 +68,7 @@ public class FavIcon {
             String[] bits = favIconUrl.split(Pattern.quote("."));
             format = bits[bits.length-1];
 
-            File file = copyFileFromWeb(favIconUrl, domainString + "." + format);
+            File file = copyFileFromWeb(favIconUrl, "public/favicons/" + domainString + "." + format);
 
             if (file.length() == 0) return null;
 

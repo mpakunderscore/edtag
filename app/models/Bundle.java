@@ -94,7 +94,7 @@ public class Bundle extends Model {
 
         this.setTags(String.valueOf(toJson(TagParser.getTagsForBundle(webDataList))));
 
-        Logger.debug("[time for bundle] " + (System.currentTimeMillis() - time)/1000);
+        Logger.debug("[time for bundle] " + (System.currentTimeMillis() - time)/60000 + " min");
     }
 
     public String getTitle() {

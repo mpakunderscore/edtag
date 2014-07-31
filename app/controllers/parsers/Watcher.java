@@ -58,7 +58,7 @@ public final class Watcher {
             Domain domain = Ebean.find(Domain.class).where().idEq(domainString).findUnique();
             if (domain == null) {
 
-                Logger.debug("[can't find domain in database]  " + url);
+                Logger.debug("[can't find domain in database]  " + domainString);
                 domain = Page.requestDomain(url);
 
                 if (domain == null)
