@@ -27,7 +27,9 @@ import java.util.regex.Pattern;
  */
 public class FavIcon {
 
-    public static String save(String domainString, Document doc) throws Exception {
+    public static String produce(String domainString, Document doc) {
+
+        Logger.debug("[produce domain favicon] " + domainString);
 
         String favIconFormat = null;
 
@@ -35,26 +37,39 @@ public class FavIcon {
 
         Elements links = doc.head().select("link[rel~=(^(shortcut )?icon$)]");
 
-        if (links.size() > 0) {
+        try {
 
-            link = links.first().attr("href").split(Pattern.quote("?"))[0].replaceAll("^\\/\\/", "");
+            if (links.size() > 0) {
 
-            if (link.startsWith("/")) link = "http://" + domainString + link; //TODO if only with www? my god, i hate web developers. oh, wait
+                link = links.first().attr("href").split(Pattern.quote("?"))[0].replaceAll("^\\/\\/", "");
 
-            else if (!link.startsWith("http")) link = "http://" + link;
+                if (link.startsWith("/"))
+                    link = "http://" + domainString + link; //TODO if only with www? my god, i hate web developers. oh, wait
 
-            favIconFormat = check(link, domainString);
+                else if (!link.startsWith("http")) link = "http://" + link;
+
+                favIconFormat = check(link, domainString);
+            }
+
+            if (link != null && favIconFormat == null)
+                favIconFormat = check(link.replace("http://", "http://www."), domainString);
+
+            if (favIconFormat == null)
+                favIconFormat = check("http://" + domainString + "/favicon.ico", domainString);
+
+            if (favIconFormat == null)
+                favIconFormat = check("http://www." + domainString + "/favicon.ico", domainString);
+
+            if (favIconFormat == null)
+                favIconFormat = check("https://" + domainString + "/favicon.ico", domainString);
+
+            if (favIconFormat == null)
+                favIconFormat = check("https://www." + domainString + "/favicon.ico", domainString); // -_-
+
+        } catch (RuntimeException e) {
+
+            return null;
         }
-
-        if (link != null && favIconFormat == null) favIconFormat = check(link.replace("http://", "http://www."), domainString);
-
-        if (favIconFormat == null) favIconFormat = check("http://" + domainString + "/favicon.ico", domainString);
-
-        if (favIconFormat == null) favIconFormat = check("http://www." + domainString + "/favicon.ico", domainString);
-
-        if (favIconFormat == null) favIconFormat = check("https://" + domainString + "/favicon.ico", domainString);
-
-        if (favIconFormat == null) favIconFormat = check("https://www." + domainString + "/favicon.ico", domainString); // -_-
 
         return favIconFormat;
     }
@@ -70,11 +85,13 @@ public class FavIcon {
 
             File file = copyFileFromWeb(favIconUrl, "public/favicons/" + domainString + "." + format);
 
-            if (file.length() == 0) return null;
+            if (file.length() == 0)
+                return null;
 
             if (S3Plugin.amazonS3 == null) {
 
-                throw new RuntimeException("Could not save");
+                throw
+                        new RuntimeException("Could not save");
 
             } else {
 
@@ -84,7 +101,7 @@ public class FavIcon {
                 S3Plugin.amazonS3.putObject(putObjectRequest); // upload file
             }
 
-        } catch (Exception e) {
+        } catch (MalformedURLException e) {
             return null;
         }
 
@@ -105,7 +122,7 @@ public class FavIcon {
 
 
             connection = url.openConnection();
-            connection.setReadTimeout(1000);
+            connection.setReadTimeout(15000);
 
             connection.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
             connection.addRequestProperty("User-Agent", "Mozilla");

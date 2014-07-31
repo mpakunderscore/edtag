@@ -27,9 +27,9 @@ public class Web extends Controller {
 
     public static Result links() {
 
-        int pageSetSize = 100;
+        int pageSetSize = 200;
 
-        List<WebData> webDataList = Ebean.find(WebData.class).order().desc("id").findList(); //TODO bad solution
+        List<WebData> webDataList = Ebean.find(WebData.class).order().desc("id").setMaxRows(pageSetSize).findList(); //TODO bad solution
 
         return ok(toJson(webDataList));
     }
@@ -70,20 +70,20 @@ public class Web extends Controller {
         else
             return ok();
 
-        List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", userId).order("lastUpdate").findList();
+        List<UserData> userDataList = Ebean.find(UserData.class).where().eq("user_id", userId).findList();
         List<Long> ids = new ArrayList<Long>();
 
         for (UserData userData : userDataList)
             ids.add(userData.getWebDataId());
 
-        List<WebData> webDataList = Ebean.find(WebData.class).where().in("id", ids).findList();
+        List<WebData> webDataList = Ebean.find(WebData.class).where().in("id", ids).order().desc("id").findList();
 
         return ok(toJson(webDataList));
     }
 
     public static Result bundles() {
 
-        List<Bundle> bundles = Ebean.find(Bundle.class).findList();
+        List<Bundle> bundles = Ebean.find(Bundle.class).order().desc("id").findList();
 
         return ok(toJson(bundles));
     }

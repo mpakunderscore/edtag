@@ -4,6 +4,7 @@ import com.cybozu.labs.langdetect.LangDetectException;
 import com.fasterxml.jackson.databind.JsonNode;
 import controllers.API;
 import controllers.parsers.*;
+import controllers.parsers.types.Page;
 import models.WebData;
 import play.Logger;
 import play.libs.Json;
@@ -28,7 +29,8 @@ public class Test {
 
     public static void main(String [] args) throws IOException, LangDetectException {
 
-        TagFactory.loadSimpleWordsRU();
+        //http://www.mitworld.mit.edu/favicon.ico
+        Page.requestDomain("http://mitworld.mit.edu");
     }
 }
 
