@@ -12,7 +12,7 @@ var m_top; //TODO
 
 if (supports_html5_storage()) {
 
-    m_top = localStorage.getItem("m_top") === "true";
+    m_top = localStorage.getItem("m_top");
 
 //    console.log(m_top);
 

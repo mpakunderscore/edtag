@@ -24,10 +24,6 @@ import java.util.TreeMap;
  */
 public class Global extends GlobalSettings {
 
-    private static final boolean update = true;
-
-    private static final boolean research = false;
-
     public void onStart(Application app) {
 
         try {
