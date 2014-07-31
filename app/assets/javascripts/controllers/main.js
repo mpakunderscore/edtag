@@ -20,6 +20,9 @@ if (supports_html5_storage()) {
 
         localStorage.setItem("m_top", true);
         m_top = true
+
+    } else {
+        m_top = m_top === "true"; // -_-
     }
 }
 
@@ -169,6 +172,8 @@ edTagApp.controller('linksCtrl', function ($scope, $http) {
             }).
             error(function (data, status, headers, config) {
             });
+
+        //TODO make star active here
     }
 });
 
