@@ -2,7 +2,7 @@ edTagApp.controller('bundleGenerationCtrl', function($scope, fileReader, $http, 
     //console.log(fileReader)
     //var acceptHeader = 'application/json; charset=utf-8';
     $scope.bundle = {
-        title: 'Some test bundle, please ignore',
+        title: 'Test bundle, please ignore',
         description: '',
         url: "http://en.wikipedia.org/wiki/Special:Random",
         links: []

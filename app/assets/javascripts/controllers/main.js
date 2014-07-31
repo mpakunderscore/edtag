@@ -1,4 +1,29 @@
-var m_top = true;
+function supports_html5_storage() {
+    try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+    } catch (e) {
+        return false;
+    }
+}
+
+console.log("Supports html5 storage: " + supports_html5_storage());
+
+var m_top; //TODO
+
+if (supports_html5_storage()) {
+
+    m_top = localStorage.getItem("m_top") === "true";
+
+//    console.log(m_top);
+
+    if (m_top == null) {
+
+        localStorage.setItem("m_top", true);
+        m_top = true
+    }
+}
+
+var position = (window.pageYOffset || document.documentElement.scrollTop) - (document.documentElement.clientTop || 0);;
 
 var sum = function (a, b) {
     return a + b;
@@ -22,13 +47,18 @@ edTagApp.controller('mainCtrl', function ($scope, $http, $location) {
 
         var searchBar = angular.element(document.querySelector('.top-menu'));
 
-        document.getElementById("logo").innerHTML = (m_top) ? "&#9906; &#60;" : "&#9906; &#62;";
+        document.getElementById("logo").innerHTML = (!m_top) ? "&#9906; &#60;" : "&#9906; &#62;";
 
         document.getElementById("search").focus();
 
         m_top = !m_top;
 
+        if (supports_html5_storage())
+            localStorage.setItem("m_top", m_top);
+
         searchBar.toggleClass('m-top');
+
+        console.log("Menu: " + m_top);
     }
 
     $scope.getClass = function (path) {
@@ -238,18 +268,53 @@ function filter($scope, tag) {
 window.onscroll = function (e) {
 
     var doc = document.documentElement;
-    var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+    var scroll = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 
-    if (top > 30) {
 
-        if (m_top)
+
+    if (scroll > 30) {
+
+//        if (m_top)
+//            document.getElementById("logo").innerHTML = "&#9906; &#62;";
+//
+//        else
+//            document.getElementById("logo").innerHTML = "&#9906; &#60;";
+
+
+        if (scroll > position) {
+
+            //scroll down. show nothing
+//
             document.getElementById("logo").innerHTML = "&#9906; &#62;";
+            document.querySelectorAll(".top-menu")[0].className = "top-menu";
+            //hide menu here
 
-        else
-            document.getElementById("logo").innerHTML = "&#9906; &#60;";
-        //TODO hide top-menu here
+        } else {
+
+            //scroll up. show nothing
+
+//            console.log(m_top);
+
+            if (m_top) {
+
+                document.querySelectorAll(".top-menu")[0].className = "top-menu m-top";
+//                document.querySelectorAll(".top-menu")[0].toggleClass("");
+                document.getElementById("logo").innerHTML = "&#9906; &#60;";
+                //show menu
+
+            } else {
+
+                document.querySelectorAll(".top-menu")[0].className = "top-menu";
+                document.getElementById("logo").innerHTML = "&#9906; &#62;";
+            }
+        }
+
+        position = scroll;
 
     } else
         document.getElementById("logo").innerHTML = "&#60; &#62;";
+
+
 }
 
+console.log("Menu autoshow for upscroll: " + m_top)
