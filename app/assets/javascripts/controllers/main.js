@@ -113,7 +113,7 @@ function getTags(data) {
 
         angular.forEach(link.tags, function (tag) {
 
-//            if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3)
+            if (tag.weight < 50 && tag.name.length > 3 && tag.name.length < 30)
                 allTags.push(tag)
         })
     })
@@ -182,7 +182,8 @@ function filter($scope, tag) {
     if ($scope.selectedTags.indexOf(tag.name) < 0)
         $scope.selectedTags.push(tag.name);
 
-    else $scope.selectedTags.splice($scope.selectedTags.indexOf(tag.name), 1);
+    else
+        $scope.selectedTags.splice($scope.selectedTags.indexOf(tag.name), 1);
 
     console.log($scope.selectedTags);
 

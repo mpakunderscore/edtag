@@ -10,10 +10,10 @@ edTagApp.service('bundleUpload', ['$http', function ($http) {
             headers: {'Content-Type': undefined}
         })
         .success(function(data){
-            alert(data);
         })
         .error(function(data){
-            alert(data);
         });
+
+        alert("Now wait or make new bundle (right here)..");
     }
 }]);
