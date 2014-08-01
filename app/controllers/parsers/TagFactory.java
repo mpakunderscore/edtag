@@ -21,7 +21,10 @@ import static play.libs.Json.toJson;
 /**
  * Created by pavelkuzmin on 08/04/14.
  */
-public class TagFactory { //TODO wiki api == old crap
+
+// wiki api == old crap
+
+public class TagFactory {
 
     private static final List<String> unmarkedCategories = new ArrayList<String>() {{
 

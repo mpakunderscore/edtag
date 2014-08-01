@@ -32,7 +32,6 @@ public class Global extends GlobalSettings {
 
         } catch (LangDetectException e) {
 //            e.printStackTrace();
-            //TODO
         }
 
         try {

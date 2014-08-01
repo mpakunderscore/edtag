@@ -27,16 +27,10 @@ public class API extends Controller {
 
     public static Result add(String url, int userId) throws Exception {
 
-//        url = url.split(Pattern.quote("?"))[0]; //TODO
-
-//        int userId = 0;
-//        if (session("userId") != null)
-//            userId = Integer.parseInt(session("userId"));
-
         WebData webData = Watcher.getWebData(url);
 
         if (webData == null)
-            return internalServerError("webData == null"); //TODO
+            return internalServerError("web data is null"); //TODO
 
         UserData userData = Ebean.find(UserData.class).where().eq("userId", userId).eq("webDataId", webData.getId()).findUnique();
 
