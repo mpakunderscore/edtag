@@ -8,6 +8,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.transfer.TransferManager;
+import models.WebData;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -19,7 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -27,7 +28,11 @@ import java.util.regex.Pattern;
  */
 public class FavIcon {
 
-    public static String produce(String domainString, Document doc) {
+    public static String produce(String url, Document doc) {
+
+        String domainString = WebData.getDomainString(url);
+
+        String domainStringWithProtocol = url.split("/")[0]; //TODO !!!
 
         Logger.debug("[produce domain favicon] " + domainString);
 
@@ -35,41 +40,30 @@ public class FavIcon {
 
         String link = null;
 
+//        Set<String> favIconUrls = new HashSet<String>();
+
         Elements links = doc.head().select("link[rel~=(^(shortcut )?icon$)]");
 
-//        try {
+        if (links.size() > 0) {
 
-            if (links.size() > 0) {
+            link = links.first().attr("href").split(Pattern.quote("?"))[0];
 
-                link = links.first().attr("href").split(Pattern.quote("?"))[0].replaceAll("^\\/\\/", "");
+            Logger.debug("[found favicon link] " + link);
 
-                if (link.startsWith("/"))
-                    link = "http://" + domainString + link; //TODO if only with www? my god, i hate web developers. oh, wait
+            if (link.startsWith("//"))
+                favIconFormat = check("http://" + link, domainString);
 
-                else if (!link.startsWith("http")) link = "http://" + link;
+            else if (link.startsWith("/"))
+                favIconFormat = check(domainStringWithProtocol + link, domainString);
 
+            else if (link.startsWith("http"))
                 favIconFormat = check(link, domainString);
-            }
 
-            if (link != null && favIconFormat == null)
-                favIconFormat = check(link.replace("http://", "http://www."), domainString);
+            else
+                Logger.error("[bad favicon link] " + link);
 
-            if (favIconFormat == null)
-                favIconFormat = check("http://" + domainString + "/favicon.ico", domainString);
-
-            if (favIconFormat == null)
-                favIconFormat = check("http://www." + domainString + "/favicon.ico", domainString);
-
-            if (favIconFormat == null)
-                favIconFormat = check("https://" + domainString + "/favicon.ico", domainString);
-
-            if (favIconFormat == null)
-                favIconFormat = check("https://www." + domainString + "/favicon.ico", domainString); // -_-
-
-//        } catch (RuntimeException e) {
-
-//            return null;
-//        }
+        } else
+            favIconFormat = check(domainStringWithProtocol + "/favicon.ico", domainString);
 
         return favIconFormat;
     }
@@ -90,6 +84,8 @@ public class FavIcon {
 
             if (S3Plugin.amazonS3 == null) {
 
+                Logger.debug("[amazonS3 is null]");
+
                 throw
                         new RuntimeException("Could not save");
 
@@ -109,6 +105,8 @@ public class FavIcon {
     }
 
     public static File copyFileFromWeb(String address, String filePath) throws MalformedURLException {
+
+        Logger.debug("[download favicon] " + address);
 
         byte[] buffer = new byte[1024];
         int bytesRead;

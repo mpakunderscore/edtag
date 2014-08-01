@@ -105,7 +105,7 @@ public class Page {
 
         String favIconFormat = null;
         try {
-            favIconFormat = FavIcon.produce(domainString, doc);
+            favIconFormat = FavIcon.produce(url, doc);
         } catch (Exception e) {
         }
 
