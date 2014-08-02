@@ -147,7 +147,7 @@ public class Web extends Controller {
             return ok("There is no file or images");
         }
 
-        String urls = body.asFormUrlEncoded().get("urls")[0];
+        final String urls = body.asFormUrlEncoded().get("urls")[0];
         String title = body.asFormUrlEncoded().get("title")[0];
         String description = body.asFormUrlEncoded().get("description")[0];
 
@@ -156,7 +156,7 @@ public class Web extends Controller {
 //        if (!jsonUrlsList.isArray())
 //            return ok();
 
-        Bundle bundle = new Bundle(userId, title, description);
+        final Bundle bundle = new Bundle(userId, title, description);
         bundle.save();
 
         if (S3Plugin.amazonS3 == null) {

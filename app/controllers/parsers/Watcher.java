@@ -78,7 +78,7 @@ public final class Watcher {
         return webData;
     }
 
-    public static void fillBundle(Bundle bundle, String urls) {
+    public static void fillBundle(final Bundle bundle, final String urls) {
 
         String title = bundle.getTitle();
 
