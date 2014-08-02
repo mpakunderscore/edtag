@@ -4,6 +4,7 @@ import com.amazonaws.services.importexport.model.Job;
 import com.avaje.ebean.Ebean;
 import controllers.parsers.types.PDF;
 import controllers.parsers.types.Page;
+import models.Bundle;
 import models.Domain;
 import models.WebData;
 import org.jsoup.Connection;
@@ -12,6 +13,8 @@ import org.jsoup.nodes.Document;
 import play.Logger;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 import java.util.List;
 
@@ -73,5 +76,59 @@ public final class Watcher {
         }
 
         return webData;
+    }
+
+    public static void fillBundle(Bundle bundle, String urls) {
+
+        String title = bundle.getTitle();
+
+        List<WebData> webDataList = new ArrayList<WebData>();
+        List<Long> webDataIds = new ArrayList<Long>();
+
+        String[] urlsList = urls.split("\r\n");
+
+        Logger.debug("[fill bundle] '" + bundle.getTitle() + "' [" + urlsList.length + "]");
+        Long time = System.currentTimeMillis();
+
+        int i = 0;
+        for (String urlString : urlsList) {
+
+            Logger.debug("[check url] " + urlString + " (" + ++i + "/" + urlsList.length + ") ");
+
+            try {
+                new URL(urlString);
+            } catch (MalformedURLException e) {
+                Logger.error("[invalid url] " + urlString);
+                continue;
+            }
+
+            WebData webData;
+            try {
+                webData = Watcher.getWebData(urlString);
+            } catch (Exception e) {
+                continue;
+            }
+
+            if (webData == null) {
+                continue;
+            }
+
+            webDataList.add(webData);
+            webDataIds.add(webData.getId());
+
+            bundle.setWebDataIds(String.valueOf(toJson(webDataIds)));
+
+            bundle.setTags(String.valueOf(toJson(TagParser.getTagsForBundle(webDataList))));
+
+            bundle.setTitle(title + " " + i + "/" + urlsList.length);
+
+            bundle.update();
+        }
+
+        bundle.setTitle(title);
+
+        bundle.update();
+
+        Logger.debug("[time for bundle] " + (System.currentTimeMillis() - time)/1000);
     }
 }

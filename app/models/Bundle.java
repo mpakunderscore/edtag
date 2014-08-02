@@ -3,6 +3,7 @@ package models;
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Expr;
 import com.fasterxml.jackson.databind.JsonNode;
+import controllers.parsers.JSONTag;
 import controllers.parsers.TagParser;
 import controllers.parsers.Watcher;
 import play.Logger;
@@ -29,9 +30,9 @@ public class Bundle extends Model {
 
     private int userId;
 
-    String description;
-
     String title;
+
+    String description;
 
     String webDataIds;
 
@@ -43,58 +44,13 @@ public class Bundle extends Model {
     public Bundle() {
     }
 
-    public Bundle(int userId, String title, String description, String urls) {
+    public Bundle(int userId, String title, String description) {
 
+        this.setUserId(userId);
         this.setTitle(title);
         this.setDescription(description);
-        this.setUserId(userId);
 
-//        List<String> urlsList = new ArrayList<String>();
-        List<WebData> webDataList = new ArrayList<WebData>();
-        List<Long> webDataIds = new ArrayList<Long>();
-
-//        for (int i = 0; i < jsonUrlsList.size(); i++)
-//            urlsList.add(jsonUrlsList.get(i).asText());
-
-        String[] urlsList = urls.split("\r\n");
-
-        Logger.debug("[new bundle] '" + title + "' [" + urlsList.length + "]");
-        Long time = System.currentTimeMillis();
-
-        int i = 0;
-        for (String urlString : urlsList) {
-
-            Logger.debug("[check url] " + urlString + " (" + ++i + "/" + urlsList.length + ") ");
-
-            try {
-                new URL(urlString);
-            } catch (MalformedURLException e) {
-                Logger.error("[invalid url] " + urlString);
-                continue;
-            }
-
-//            new GetWebData(url).now();
-            WebData webData;
-            try {
-                webData = Watcher.getWebData(urlString);
-            } catch (Exception e) {
-                continue;
-            }
-
-            if (webData == null) {
-                continue;
-            }
-
-            webDataList.add(webData);
-            webDataIds.add(webData.getId());
-        }
-
-        this.setWebDataIds(String.valueOf(toJson(webDataIds)));
-        this.setWebDataList(webDataList);
-
-        this.setTags(String.valueOf(toJson(TagParser.getTagsForBundle(webDataList))));
-
-        Logger.debug("[time for bundle] " + (System.currentTimeMillis() - time)/60000 + " min");
+        this.setTags(String.valueOf(toJson(new ArrayList<JSONTag>())));
     }
 
     public String getTitle() {
@@ -149,7 +105,12 @@ public class Bundle extends Model {
         this.webDataList = webDataList;
     }
 
-    public void setWebDataList() {
+    public void setWebDataList() { //method for Web
+
+        if (getWebDataIds() == null) {
+            this.webDataList = new ArrayList<WebData>();
+            return;
+        }
 
         List<Integer> ids = new ArrayList<Integer>();
         JsonNode jsonUrlsList = Json.parse(getWebDataIds());
@@ -164,6 +125,11 @@ public class Bundle extends Model {
     }
 
     public int getLinksCount() {
-        return webDataIds.split(",").length; //TODO :(
+
+        if (getWebDataIds() == null)
+            return 0;
+
+        else
+            return webDataIds.split(",").length; //TODO :(
     }
 }

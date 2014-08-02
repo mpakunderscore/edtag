@@ -88,7 +88,7 @@ public class Web extends Controller {
         return ok(toJson(bundles));
     }
 
-    public static Result bundle(int id) {
+    public static Result bundle(Long id) {
 
         Bundle bundle = Ebean.find(Bundle.class).where().eq("id", id).findUnique();
         bundle.setWebDataList();
@@ -105,24 +105,24 @@ public class Web extends Controller {
             return ok(toJson(Ebean.find(User.class).where().eq("id", Integer.valueOf(session("userId"))).findUnique()));
     }
 
-    public static Result editBundle(int id, String urls, String title, String description) throws Exception {
-
-        int userId = 0;
-        if (session("userId") != null)
-            userId = Integer.parseInt(session("userId"));
-
-        Bundle newBundle = new Bundle(userId, title, description, urls);
-        Bundle oldBundle = Ebean.find(Bundle.class).where().eq("id", id).findUnique();
-
-        oldBundle.setTitle(newBundle.getTitle());
-        oldBundle.setDescription(newBundle.getDescription());
-        oldBundle.setWebDataIds(newBundle.getWebDataIds());
-        oldBundle.setTags(String.valueOf(toJson(newBundle.getTags())));
-
-        oldBundle.update();
-
-        return ok();
-    }
+//    public static Result editBundle(int id, String urls, String title, String description) throws Exception {
+//
+//        int userId = 0;
+//        if (session("userId") != null)
+//            userId = Integer.parseInt(session("userId"));
+//
+//        Bundle newBundle = new Bundle(userId, title, description, urls);
+//        Bundle oldBundle = Ebean.find(Bundle.class).where().eq("id", id).findUnique();
+//
+//        oldBundle.setTitle(newBundle.getTitle());
+//        oldBundle.setDescription(newBundle.getDescription());
+//        oldBundle.setWebDataIds(newBundle.getWebDataIds());
+//        oldBundle.setTags(String.valueOf(toJson(newBundle.getTags())));
+//
+//        oldBundle.update();
+//
+//        return ok();
+//    }
 
     public static Result addBundle() {
 
@@ -156,7 +156,7 @@ public class Web extends Controller {
 //        if (!jsonUrlsList.isArray())
 //            return ok();
 
-        Bundle bundle = new Bundle(userId, title, description, urls);
+        Bundle bundle = new Bundle(userId, title, description);
         bundle.save();
 
         if (S3Plugin.amazonS3 == null) {
@@ -184,23 +184,25 @@ public class Web extends Controller {
             S3Plugin.amazonS3.putObject(putObjectRequest); // upload file
         }
 
+        Thread thread = new Thread(new Runnable() {
 
-        return ok(toJson(bundle));
-    }
+            @Override
+            public void run() {
 
-    public static Result previewBundle(String urls, String title, String description) throws Exception {
+                try {
 
-        int userId = 0;
-        if (session("userId") != null)
-            userId = Integer.parseInt(session("userId"));
+                    Watcher.fillBundle(bundle, urls);
 
-//        JsonNode jsonUrlsList = Json.parse(urls);
-//
-//        if (!jsonUrlsList.isArray())
-//            return ok();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
-        Bundle bundle = new Bundle(userId, title, description, urls);
+        thread.start();
 
+//        Long bundleId = bundle.getId();
+//        return redirect(routes.Application.bundle(bundleId));
         return ok(toJson(bundle));
     }
 }

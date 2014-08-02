@@ -65,7 +65,7 @@ public class Application extends Controller {
         return ok(bundles.render(session("email")));
     }
 
-    public static Result bundle(int id) {
+    public static Result bundle(Long id) {
 
         Bundle bundleModel = Ebean.find(Bundle.class).where().eq("id", id).findUnique();
         bundleModel.setWebDataList();
