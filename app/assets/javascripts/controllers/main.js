@@ -158,6 +158,17 @@ edTagApp.controller('bundleCtrl', function ($scope, $http, $location) {
     $scope.filterByTag = function (tag) {
         filter($scope, tag)
     }
+
+    $scope.favoriteLink = function (data) {
+
+        $http({method: 'GET', url: '/favorite?webDataId=' + data}).
+            success(function (data, status, headers, config) {
+            }).
+            error(function (data, status, headers, config) {
+            });
+
+        //TODO make star active here
+    }
 });
 
 
@@ -329,4 +340,4 @@ window.onscroll = function (e) {
     position = scroll;
 }
 
-console.log("Menu autoshow for upscroll: " + m_top)
+console.log("Menu auto show/hide: " + m_top)
