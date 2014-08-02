@@ -32,7 +32,9 @@ public class FavIcon {
 
         String domainString = WebData.getDomainString(url);
 
-        String domainStringWithProtocol = url.split("/")[0]; //TODO !!!
+        String protocol = url.split("://")[0];
+
+        String domainStringWithProtocol =  protocol + "://" + domainString; //TODO !!!
 
         Logger.debug("[produce domain favicon] " + domainString);
 
@@ -51,7 +53,7 @@ public class FavIcon {
             Logger.debug("[found favicon link] " + link);
 
             if (link.startsWith("//"))
-                favIconFormat = check("http://" + link, domainString);
+                favIconFormat = check(protocol + ":" + link, domainString); //TODO //bits.wikimedia.org/favicon/wmf.ico
 
             else if (link.startsWith("/"))
                 favIconFormat = check(domainStringWithProtocol + link, domainString);
