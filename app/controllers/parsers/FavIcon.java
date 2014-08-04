@@ -53,7 +53,9 @@ public class FavIcon {
             Logger.debug("[found favicon link] " + link);
 
             if (link.startsWith("//"))
-                favIconFormat = check(protocol + ":" + link, domainString); //TODO //bits.wikimedia.org/favicon/wmf.ico
+                favIconFormat = check(protocol + ":" + link, domainString);
+
+            //TODO img/mozilla.ico
 
             else if (link.startsWith("/"))
                 favIconFormat = check(domainStringWithProtocol + link, domainString);
@@ -77,7 +79,7 @@ public class FavIcon {
         try {
 
             String[] bits = favIconUrl.split(Pattern.quote("."));
-            format = bits[bits.length-1];
+            format = bits[bits.length-1]; //TODO without format
 
             File file = copyFileFromWeb(favIconUrl, domainString + "." + format);
 
