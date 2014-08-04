@@ -2,44 +2,46 @@
 
 @shell(bundle.getTitle, email, "bundleCtrl") {
 
-   <ul class="out bundle">
+    <ul class="out bundle">
 
-       <ul class="top">
-           <li>
-               <img ng-src="@{"{{getBucket()}}/bundles/bundle." + bundle.getId + ".png"}">
-           </li>
-           <li>
-               <ul>
-                   <li><h1 class="title" contenteditable="true">@bundle.getTitle</h1></li>
-                   <li><span class="linksCount">@bundle.getLinksCount links</span></li>
+        <ul class="top">
+            <li>
+                <img ng-src="@{
+                    "{{getBucket()}}/bundles/bundle." + bundle.getId + ".png"
+                }">
+            </li>
+            <li>
+                <ul>
+                    <li><h1 class="title">@bundle.getTitle</h1></li>
+                    <li><span class="linksCount">@bundle.getLinksCount links</span></li>
 
-                   <li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="https://dry-tundra-9556.herokuapp.com/bundle/@bundle.getId" data-text="@bundle.getTitle" data-size="large" data-count="none">Tweet</a></li>
-                   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    <li class="sharing">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://dry-tundra-9556.herokuapp.com/bundle/@bundle.getId" data-text="@bundle.getTitle" data-size="large" data-count="none"></a>
+                        <script>! function ( d, s, id ) { var js, fjs = d.getElementsByTagName ( s )[ 0 ], p = /^http:/.test ( d.location ) ? 'http' : 'https' ; if ( ! d.getElementById ( id ) ) { js = d.createElement ( s ) ; js.id = id ; js.src = p + '://platform.twitter.com/widgets.js' ; fjs.parentNode.insertBefore ( js, fjs ) ; } } ( document, 'script', 'twitter-wjs' ) ;</script>
 
-                   <li class="facebook">
-                       <div class="fb-like" data-href="http://dry-tundra-9556.herokuapp.com/bundle/@bundle.getId" data-width="200" data-layout="button" data-action="recommend" data-show-faces="false" data-share="false"></div>
-                   </li>
+                        <div class="fb-like" data-href="https://dry-tundra-9556.herokuapp.com/bundle/@bundle.getId" data-layout="button" data-width="450" data-action="like" data-show-faces="false" data-share="true"></div>
+                    </li>
 
-                   @*<li class="back"><a href="javascript:window.history.back()">back</a></li>*@
-               </ul>
-           </li>
+                    @*<li class="back"><a href="javascript:window.history.back()">back</a></li>*@
+                </ul>
+            </li>
 
-       </ul>
+        </ul>
 
 
-       <ul class="links">
-           <li ng-repeat="link in dataList | filter:searchText">
+        <ul class="links">
+            <li ng-repeat="link in dataList | filter:searchText">
 
-               <img ng-show="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
-               <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
+                <img ng-show="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
+                <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
 
-               <a href='{{link.url}}' target='_blank' title="{{link.url + '\n' + link.tags}}">{{link.title}}</a>
+                <a href='{{link.url}}' target='_blank' title="{{link.url + '\n' + link.tags}}">{{link.title}}</a>
 
-               <a ng-href="#" ng-click="favoriteLink(link.id)" class="favorite">&#9733;</a>
-           </li>
+                <a ng-href="#" ng-click="favoriteLink(link.id)" class="favorite">&#9733;</a>
+            </li>
 
-           <li ng-show="!dataList.length">Loading or just empty.</li>
-       </ul>
+            <li ng-show="!dataList.length">Loading or just empty.</li>
+        </ul>
 
     </ul>
 }
