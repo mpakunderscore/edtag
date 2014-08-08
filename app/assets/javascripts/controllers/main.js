@@ -116,7 +116,7 @@ function getTags(data) {
 
         angular.forEach(link.tags, function (tag) {
 
-            if (tag.weight < 50 && tag.name.length > 3 && tag.name.length < 30)
+//            if (tag.weight < 50 && tag.name.length > 3 && tag.name.length < 30)
                 allTags.push(tag)
         })
     })
@@ -260,11 +260,7 @@ function filter($scope, tag) {
         selectedTags.push({name: selectedTag, weight: 0})
     })
 
-
-
     $scope.sortedTags = selectedTags.concat(newTags);
-
-
 
 //        angular.forEach($scope.bundles, function (bundle) {
 //            angular.forEach(bundle.tags, function (tag) {
@@ -276,10 +272,6 @@ function filter($scope, tag) {
 //        }).value();
 //
 //        $scope.sortedTags = _.sortBy(reducedTags, 'weight').reverse()
-
-    console.log($scope.dataList)
-
-//    $scope.$apply()
 }
 
 window.onscroll = function (e) {
@@ -287,7 +279,7 @@ window.onscroll = function (e) {
     var doc = document.documentElement;
     var scroll = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 
-    console.log(scroll)
+//    console.log(scroll)
 
     if (scroll > 70) {
 
@@ -300,21 +292,13 @@ window.onscroll = function (e) {
     } else
         document.getElementById("logo").innerHTML = "&#60; &#62;";
 
-//        if (m_top)
-//            document.getElementById("logo").innerHTML = "&#9906; &#62;";
-//
-//        else
-//            document.getElementById("logo").innerHTML = "&#9906; &#60;";
-
-
     if (scroll >= position) {
 
-        //scroll down. show nothing
-//
-        if (scroll > 70) document.getElementById("logo").innerHTML = "&#9906; &#62;";
-        document.querySelectorAll(".top-menu")[0].className = "top-menu";
         //hide menu here
 
+        //TODO hide after scroll -10 px
+        if (scroll > 70) document.getElementById("logo").innerHTML = "&#9906; &#62;";
+        document.querySelectorAll(".top-menu")[0].className = "top-menu";
 
 
     } else {

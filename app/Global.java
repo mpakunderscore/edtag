@@ -61,42 +61,6 @@ public class Global extends GlobalSettings {
         Logger.info("Application has started");
     }
 
-    private void research() {
-
-        Map<String, Integer> categories = new HashMap<String, Integer>();
-        Map<?, Tag> tagsMap = Ebean.find(Tag.class).findMap();
-        List<WebData> webDataList = Ebean.find(WebData.class).findList();
-
-        for (WebData webData : webDataList) {
-
-            JsonNode tags = webData.getTags();
-
-            for (int i = 0; i < tags.size(); i++) {
-
-                String name = tags.get(i).get("name").asText();
-                int weight = tags.get(i).get("weight").asInt();
-
-                JsonNode tagCategories = tagsMap.get(name).getCategories();
-                for (int j = 0; j < tagCategories.size(); j++) {
-
-                    String category = tagCategories.get(j).asText();
-
-                    if (categories.containsKey(category)) categories.put(category, categories.get(category) + weight);
-                    else categories.put(category, weight);
-                }
-            }
-        }
-
-        HashMap<String, Integer> map = new HashMap<String, Integer>();
-        ValueComparator bvc =  new ValueComparator(map);
-        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
-
-        map.putAll(categories);
-        sorted_map.putAll(map);
-
-        Logger.debug(sorted_map.toString());
-    }
-
     private void updateDatabase() {
 
         Thread thread = new Thread(new Runnable() {

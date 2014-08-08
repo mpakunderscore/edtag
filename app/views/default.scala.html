@@ -66,4 +66,17 @@
 
         <!-- What are you doing here? -_-' -->
 
+    <script>
+        document.getElementById('search').onkeypress = function(e){
+        if (!e) e = window.event;
+        var keyCode = e.keyCode || e.which;
+        if (keyCode == '13'){
+
+        alert(document.getElementById('search').value);
+        // Enter pressed
+        return false;
+        }
+        }
+    </script>
+
 </html>
