@@ -13,6 +13,7 @@ import org.jsoup.select.Elements;
 import play.Logger;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,9 @@ public class TagFactory {
         add("months");
         add("integers");
         add("english modal and auxiliary verbs");
+
+        add("units of time");
+        add("identifiers");
 
         add("многозначные термины"); //TODO
     }};
@@ -60,7 +64,7 @@ public class TagFactory {
 
             Logger.debug("[new tag] " + word + " [" + lang + "]");
 
-            Connection connection = Jsoup.connect("http://" + lang + url + word);
+            Connection connection = Jsoup.connect(URLEncoder.encode("http://" + lang + url + word, "UTF-8"));
 
             doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).get();
 

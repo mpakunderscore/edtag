@@ -37,7 +37,7 @@ public class Tag extends Model {
     }
 
     public JsonNode getCategories() {
-        return Json.parse(this.categories);
+        return Json.parse(categories);
     }
 
     public String getRedirect() {

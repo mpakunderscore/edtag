@@ -1,11 +1,10 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
+import com.fasterxml.jackson.databind.JsonNode;
+import controllers.parsers.ValueComparator;
 import controllers.parsers.Watcher;
-import models.Domain;
-import models.Query;
-import models.Tag;
-import models.User;
+import models.*;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,9 +15,7 @@ import play.mvc.Http;
 import play.mvc.Result;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static play.libs.Json.toJson;
 
@@ -27,19 +24,126 @@ import static play.libs.Json.toJson;
  */
 public class System extends Controller {
 
-    public static Result query(String text) {
+    public static Result tags() {
 
-        if (session("connected") != null)
-            new Query(session("connected"), text).save();
+        Map<String, Integer> tagsMap = new HashMap<String, Integer>();
 
-        return ok();
+        List<WebData> webDataList = Ebean.find(WebData.class).findList();
+        for (WebData webData : webDataList) {
+
+            JsonNode tags = webData.getTags();
+
+            for (int i = 0; i < tags.size(); i++) {
+
+                String name = tags.get(i).get("name").asText();
+                int weight = tags.get(i).get("weight").asInt();
+//                int weight = 1;
+
+                if (tagsMap.containsKey(name)) tagsMap.put(name, tagsMap.get(name) + weight);
+                else tagsMap.put(name, weight);
+            }
+        }
+
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        ValueComparator bvc =  new ValueComparator(map);
+        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+
+        map.putAll(tagsMap);
+        sorted_map.putAll(map);
+
+        return ok(toJson(sorted_map));
     }
 
-    public static Result delete() {
+    public static Result categories() {
 
-        List<User> users = Ebean.find(User.class).findList();
-        for (User user : users) user.delete();
+        Map<String, Integer> categories = new HashMap<String, Integer>();
+        Map<?, Tag> tagsMap = Ebean.find(Tag.class).findMap();
+        List<WebData> webDataList = Ebean.find(WebData.class).findList();
 
-        return ok();
+        for (WebData webData : webDataList) {
+
+            JsonNode tags = webData.getTags();
+
+            for (int i = 0; i < tags.size(); i++) {
+
+                String name = tags.get(i).get("name").asText();
+                int weight = tags.get(i).get("weight").asInt();
+//                int weight = 1;
+
+
+                if (tagsMap.containsKey(name)) {
+
+                    JsonNode tagCategories = tagsMap.get(name).getCategories();
+                    for (int j = 0; j < tagCategories.size(); j++) {
+
+                        String category = tagCategories.get(j).asText();
+
+                        if (categories.containsKey(category))
+                            categories.put(category, categories.get(category) + weight);
+                        else categories.put(category, weight);
+                    }
+                }
+            }
+        }
+
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        ValueComparator bvc =  new ValueComparator(map);
+        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+
+        map.putAll(categories);
+        sorted_map.putAll(map);
+
+        return ok(toJson(sorted_map));
+    }
+
+    public static Result categoryTags(String category) {
+
+        category = category.replaceAll("%20", " ");
+
+        Map<String, Integer> tags = new HashMap<String, Integer>();
+        Map<?, Tag> tagsMap = Ebean.find(Tag.class).findMap();
+        List<WebData> webDataList = Ebean.find(WebData.class).findList();
+
+        for (WebData webData : webDataList) {
+
+            JsonNode webDataTags = webData.getTags();
+
+            for (int i = 0; i < webDataTags.size(); i++) {
+
+                String name = webDataTags.get(i).get("name").asText();
+                int weight = webDataTags.get(i).get("weight").asInt();
+//                int weight = 1;
+
+
+                if (tagsMap.containsKey(name)) {
+
+                    JsonNode tagCategories = tagsMap.get(name).getCategories();
+                    for (int j = 0; j < tagCategories.size(); j++) {
+
+                        if (tagCategories.get(j).asText().equals(category)) {
+
+                            if (tags.containsKey(name))
+                                tags.put(name, tags.get(name) + weight);
+                            else tags.put(name, weight);
+                        }
+                    }
+                }
+            }
+        }
+
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        ValueComparator bvc =  new ValueComparator(map);
+        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+
+        map.putAll(tags);
+        sorted_map.putAll(map);
+
+        return ok(toJson(sorted_map));
+    }
+
+    public static Result tag(String name) {
+
+        Tag tag = Ebean.find(Tag.class).where().eq("name", name).findUnique();
+        return ok(toJson(tag));
     }
 }

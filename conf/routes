@@ -50,8 +50,10 @@ GET         /api/links/favorites        controllers.Web.favorites
 
 GET         /favorite                   controllers.Web.favorite(webDataId: Long)
 
-GET         /api/tags                   controllers.Web.tags()
-GET         /api/categories             controllers.Web.categories()
+GET         /api/tags                   controllers.System.tags()
+GET         /api/categories             controllers.System.categories()
+GET         /api/category/*name         controllers.System.categoryTags(name: String)
+GET         /api/tag/*name              controllers.System.tag(name: String)
 
 
 
