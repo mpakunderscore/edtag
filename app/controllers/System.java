@@ -36,8 +36,8 @@ public class System extends Controller {
             for (int i = 0; i < tags.size(); i++) {
 
                 String name = tags.get(i).get("name").asText();
-                int weight = tags.get(i).get("weight").asInt();
-//                int weight = 1;
+//                int weight = tags.get(i).get("weight").asInt();
+                int weight = 1;
 
                 if (tagsMap.containsKey(name)) tagsMap.put(name, tagsMap.get(name) + weight);
                 else tagsMap.put(name, weight);
