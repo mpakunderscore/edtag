@@ -378,49 +378,6 @@ body {
 
 			.links {
 				padding-top: 220px;
-//				min-height: 500px;
-				li {
-					a {
-						&:link {
-						}
-						&:visited {
-							color: #4e4e4e;
-						}
-
-						&:hover {
-							text-decoration: underline;
-						}
-
-						&.favorite {
-
-							padding-left: 10px;
-							padding-right: 10px;
-							margin: 0;
-							//						vertical-align: middle;
-
-							font-size: 12px;
-
-							&:link {
-								color: rgba(0, 0, 0, 0.08);
-							}
-
-							&:hover {
-								color: gold;
-								text-decoration: none;
-							}
-						}
-					}
-					position: relative;
-					padding-left: 20px;
-					padding-bottom: 15px;
-					img {
-
-						vertical-align: middle;
-						width: 16px;
-						height: 16px;
-						padding-right: 15px;
-					}
-				}
 			}
 
 			.top {
@@ -569,6 +526,11 @@ body {
 			padding-top: 15px;
 			//			min-height: 500px;
 			li {
+
+				.title:hover + .favorite {
+					color: gold;
+				}
+
 				a {
 					color: #4183C4;
 
@@ -586,10 +548,7 @@ body {
 						font-size: 12px;
 
 						&:link {
-							color: rgba(0, 0, 0, 0.08);
-						}
-						&:visited {
-							color: black;
+							color: rgba(0, 0, 0, 0);
 						}
 
 						&:hover {
@@ -617,13 +576,19 @@ body {
 			padding-top: 15px;
 //			min-height: 500px;
 			li {
+
+				.title:hover + .favorite {
+
+					color: rgba(0, 0, 0, 0.08);
+				}
+
 				a {
+//					background-color: lightgray;
 					&:link {
 					}
 					&:visited {
 						color: #4e4e4e;
 					}
-
 					&:hover {
 						text-decoration: underline;
 					}
@@ -638,11 +603,11 @@ body {
 						font-size: 12px;
 
 						&:link {
-							color: rgba(0, 0, 0, 0.08);
+							color: rgba(0, 0, 0, 0);
 						}
 
 						&:hover {
-							color: gold;
+							color: rgba(0, 0, 0, 0.08);
 							text-decoration: none;
 						}
 					}

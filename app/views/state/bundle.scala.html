@@ -33,10 +33,10 @@
         <ul class="links">
             <li ng-repeat="link in dataList | filter:searchText">
 
-                <img ng-show="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
-                <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
+                <img ng-if="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
+                <img ng-if="!link.favIconFormat" src="/assets/images/default-favicon.png">
 
-                <a href='{{link.url}}' target='_blank' title="{{link.url + '\n' + link.tags}}">{{link.title}}</a>
+                <a href='{{link.url}}' target='_blank' title="{{link.url + '\n' + link.tags}}" class="title">{{link.title}}</a>
 
                 <a ng-href="#" ng-click="favoriteLink(link.id)" class="favorite">&#9733;</a>
             </li>
