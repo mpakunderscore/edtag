@@ -192,15 +192,15 @@ edTagApp.controller('favoritesCtrl', function ($scope, $http) {
 
     fill($scope, $http, '/api/links/favorites');
 
-    $scope.removeLink = function (data) {
+    $scope.removeLink = function (link) { //$scope.removeLink = function (Щ) {
 
-        $http({method: 'GET', url: '/favorite/remove?webDataId=' + data}).
+        $http({method: 'GET', url: '/favorite/remove?webDataId=' + link.id}).
             success(function (data, status, headers, config) {
+
+                $scope.dataList.splice($scope.dataList.indexOf(link), 1);
             }).
             error(function (data, status, headers, config) {
             });
-
-        //TODO remove link here
     }
 });
 
