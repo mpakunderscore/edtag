@@ -63,6 +63,28 @@ public class Web extends Controller {
         return ok();
     }
 
+    public static Result removeFavorite(Long webDataId) {
+
+        int userId;
+        if (session("userId") != null)
+            userId = Integer.parseInt(session("userId"));
+
+        else
+            return ok();
+
+        UserData userData = Ebean.find(UserData.class).where().eq("userId", userId).eq("webDataId", webDataId).findUnique();
+
+        if (userData == null) {
+
+            return ok();
+
+        } else {
+
+            userData.delete();
+            return ok();
+        }
+    }
+
     public static Result favorites() {
 
         int userId;

@@ -52,7 +52,7 @@ edTagApp.controller('mainCtrl', function ($scope, $http, $location) {
 
         document.getElementById("logo").innerHTML = (!m_top) ? "&#9906; &#60;" : "&#9906; &#62;";
 
-        document.getElementById("search").focus();
+//        document.getElementById("search").focus(); //TODO
 
         m_top = !m_top;
 
@@ -122,7 +122,7 @@ function getTags(data) {
     })
 
     var reducedTags = _.chain(allTags).groupBy('name').map(function (v) {
-        return {name: v[0].name, weight: _.pluck(v, "weight").reduce(sum)};
+        return {name: v[0].name, weight: _.pluck(v, 1)};
     }).value();
 
     return _.sortBy(reducedTags, 'weight').reverse();
@@ -191,6 +191,17 @@ edTagApp.controller('linksCtrl', function ($scope, $http) {
 edTagApp.controller('favoritesCtrl', function ($scope, $http) {
 
     fill($scope, $http, '/api/links/favorites');
+
+    $scope.removeLink = function (data) {
+
+        $http({method: 'GET', url: '/favorite/remove?webDataId=' + data}).
+            success(function (data, status, headers, config) {
+            }).
+            error(function (data, status, headers, config) {
+            });
+
+        //TODO remove link here
+    }
 });
 
 function filter($scope, tag) {

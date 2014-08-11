@@ -52,6 +52,7 @@ GET         /api/links/list             controllers.Web.links
 GET         /api/links/favorites        controllers.Web.favorites
 
 GET         /favorite                   controllers.Web.favorite(webDataId: Long)
+GET         /favorite/remove            controllers.Web.removeFavorite(webDataId: Long)
 
 GET         /api/tags                   controllers.System.tags()
 GET         /api/categories             controllers.System.categories()

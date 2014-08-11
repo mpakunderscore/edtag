@@ -43,7 +43,7 @@ function getCategories(data) {
 
     angular.forEach(data, function (tag) {
 
-        angular.forEach(tag.categories, function (category) {
+        angular.forEach(tag.tags, function (category) {
 
             allTags.push(category)
         })

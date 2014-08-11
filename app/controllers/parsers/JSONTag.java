@@ -12,12 +12,12 @@ public class JSONTag {
     public String name;
     public int weight;
 
-    public List<JSONTag> categories;
+    public List<JSONTag> tags; //TODO
 
-    public JSONTag(String name, int weight, List<JSONTag> categories) {
+    public JSONTag(String name, int weight, List<JSONTag> tags) {
         this.name = name;
         this.weight = weight;
-        this.categories = categories;
+        this.tags = tags;
     }
 
     public JSONTag() {
