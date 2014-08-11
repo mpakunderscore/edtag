@@ -26,12 +26,15 @@ POST        /api/bundle/add             controllers.Web.addBundle
 # GET         /api/bundle/preview         controllers.Web.previewBundle(urls: String, title: String, description: String)
 GET         /api/bundle/*id             controllers.Web.bundle(id: Long)
 
+
 GET         /api/user                   controllers.Web.user
 # GET         /api/user/*id               controllers.Web.user(id: Integer)
 
 
-# test
+# system
 GET         /generation                 controllers.Application.bundleGeneration
+GET         /tags                       controllers.Application.tags
+GET         /statistics                 controllers.Application.statistics
 
 
 #extension (will be api)

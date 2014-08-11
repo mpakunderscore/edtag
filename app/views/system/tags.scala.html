@@ -1,0 +1,13 @@
+@(email: String)
+
+@shell("Tags", email, "tagsCtrl") {
+
+    <ul class="out tags">
+
+        <li ng-repeat="tag in dataList | filter:searchText">
+            <span class="name">{{tag.name}}</span>
+        </li>
+
+        <li ng-hide="dataList.length">Loading or just empty.</li>
+    </ul>
+}

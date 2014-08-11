@@ -144,4 +144,15 @@ public class Application extends Controller {
 
         return ok(bundleGeneration.render(session("email")));
     }
+
+    public static Result tags() {
+
+        return ok(tags.render(session("email")));
+    }
+
+    public static Result statistics() {
+
+        return ok(statistics.render(session("email")));
+    }
+
 }

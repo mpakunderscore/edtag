@@ -1,24 +1,12 @@
 @(email: String)
 
-@shell("Links", email, "linksCtrl") {
+@shell("Statistics", email, "statisticsCtrl") {
 
-    <section id="main" ng-controller="linksCtrl">
+    <ul class="out statistics">
 
-        <ul class="out links">
+        <li ng-repeat="stat in dataList | filter:searchText">
+        </li>
 
-            <li ng-repeat="link in data | filter:searchText">
-
-                <img ng-show="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
-                <img ng-show="!link.favIconFormat" src="/assets/images/default-favicon.png">
-
-                <a href="{{link.url}}" ng-attr-title="{{link.tags}}" target="_blank">{{link.title}}</a>
-
-                <a ng-href="#" ng-click="favoriteLink(link.id)" class="favorite">&#9733;</a>
-
-            </li>
-
-            <li ng-hide="data.length">Empty.</li>
-        </ul>
-
-    </section>
+        <li ng-hide="dataList.length">Loading or just empty.</li>
+    </ul>
 }

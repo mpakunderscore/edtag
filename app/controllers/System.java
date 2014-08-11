@@ -2,6 +2,8 @@ package controllers;
 
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
+import controllers.parsers.JSONTag;
+import controllers.parsers.TagParser;
 import controllers.parsers.ValueComparator;
 import controllers.parsers.Watcher;
 import models.*;
@@ -25,6 +27,8 @@ import static play.libs.Json.toJson;
 public class System extends Controller {
 
     public static Result tags() {
+
+        Map<?, Tag> tagsDB = Ebean.find(Tag.class).findMap();
 
         Map<String, Integer> tagsMap = new HashMap<String, Integer>();
 
@@ -51,7 +55,28 @@ public class System extends Controller {
         map.putAll(tagsMap);
         sorted_map.putAll(map);
 
-        return ok(toJson(sorted_map));
+        List<JSONTag> tagsObjects= new ArrayList<>();
+
+        for (Map.Entry<String, Integer> tag : sorted_map.entrySet()) {
+
+            String name = tag.getKey();
+            int weight = tag.getValue();
+            Tag tagDB = tagsDB.get(tag.getKey());
+
+            if (tagDB == null) continue;
+
+            JsonNode categories = tagDB.getCategories();
+            Map<String, Integer> categoriesMap = new HashMap<>();
+            for (int i = 0; i < categories.size(); i++) {
+
+                String categoryName = categories.get(i).asText();
+                categoriesMap.put(categoryName, 1);
+            }
+
+            tagsObjects.add(new JSONTag(name, weight, TagParser.getTagsList(categoriesMap)));
+        }
+
+        return ok(toJson(tagsObjects));
     }
 
     public static Result categories() {
@@ -67,8 +92,8 @@ public class System extends Controller {
             for (int i = 0; i < tags.size(); i++) {
 
                 String name = tags.get(i).get("name").asText();
-                int weight = tags.get(i).get("weight").asInt();
-//                int weight = 1;
+//                int weight = tags.get(i).get("weight").asInt();
+                int weight = 1;
 
 
                 if (tagsMap.containsKey(name)) {
