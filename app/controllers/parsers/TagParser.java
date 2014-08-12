@@ -14,9 +14,9 @@ import java.util.regex.Pattern;
  */
 public class TagParser {
 
-    static int defaultTagsCount = 10;
+    private final static int defaultTagsCount = 10;
 
-    static int bundleTagsCount = 5;
+    private final static int bundleTagsCount = 5;
 
     private final static Pattern wordPattern = Pattern.compile("[^\\s+\"\\d+(){}, –'\\-=_@:;#%!<>&\\|\\*\\?\\[\\]\\.\\/\\+\\\\]{2,}");
 

@@ -321,13 +321,13 @@ window.onscroll = function (e) {
         if (m_top) {
 
             //TODO show after scroll +10 px
-            document.querySelectorAll(".top-menu")[0].className = "top-menu m-top";
+            if (scroll > 70) document.querySelectorAll(".top-menu")[0].className = "top-menu m-top";
 //            document.querySelectorAll(".top-menu")[0].toggleClass("");
             //show menu
 
         } else {
 
-            document.querySelectorAll(".top-menu")[0].className = "top-menu";
+            if (scroll > 70) document.querySelectorAll(".top-menu")[0].className = "top-menu";
 
         }
     }
