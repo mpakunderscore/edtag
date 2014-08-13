@@ -90,7 +90,6 @@ function fill($scope, $http, url) {
 
             $scope.sortedTags = getTags(data);
 
-//            console.log($scope.sortedTags);
         }).
         error(function (data, status, headers, config) {
             // called asynchronously if an error occurs
@@ -122,7 +121,7 @@ function getTags(data) {
     })
 
     var reducedTags = _.chain(allTags).groupBy('name').map(function (v) {
-        return {name: v[0].name, weight: _.pluck(v, 1)};
+        return {name: v[0].name, weight: v.length};
     }).value();
 
     return _.sortBy(reducedTags, 'weight').reverse();
@@ -171,7 +170,6 @@ edTagApp.controller('bundleCtrl', function ($scope, $http, $location) {
     }
 });
 
-
 edTagApp.controller('linksCtrl', function ($scope, $http) {
 
     fill($scope, $http, '/api/links/list');
@@ -212,12 +210,10 @@ function filter($scope, tag) {
     else
         $scope.selectedTags.splice($scope.selectedTags.indexOf(tag.name), 1);
 
-    console.log($scope.selectedTags);
 
-//    console.log($scope.data)
+    // now sort our data
 
     var newData = [];
-
     angular.forEach($scope.data, function (data) {
 
         var dataTagsKeys = [];
@@ -225,35 +221,19 @@ function filter($scope, tag) {
             dataTagsKeys.push(dataTag.name)
         });
 
-//        console.log(dataTagsKeys);
-
         var remove = false;
         angular.forEach($scope.selectedTags, function (tag) {
 
-//            console.log(tag);
-
             if (!(dataTagsKeys.indexOf(tag) > -1)) {
                 remove = true;
-//                console.log('[remove]');
             }
         });
 
-        if (!remove) {
+        if (!remove)
             newData.push(data);
-//            console.log('[add]');
-        }
+    });
 
-//        if (remove) {
-//            $scope.data.splice($scope.data.indexOf(data, 1));
-//        }
-    })
-
-//    $scope.$apply(function(){ //let angular know the changes
-    console.log($scope.dataList);
     $scope.dataList = getData(newData);
-//    console.log($scope.dataList);
-//        $scope.apply();
-//    });
 
     var newTags = getTags(newData);
     var selectedTags = [];
@@ -272,17 +252,6 @@ function filter($scope, tag) {
     })
 
     $scope.sortedTags = selectedTags.concat(newTags);
-
-//        angular.forEach($scope.bundles, function (bundle) {
-//            angular.forEach(bundle.tags, function (tag) {
-//                if (tag.weight > 50 && tag.weight < 100 && tag.name.length > 3) allTags.push(tag)
-//            })
-//        })
-//        var reducedTags = _.chain(allTags).groupBy('name').map(function (v) {
-//            return {name: v[0].name, weight: _.pluck(v, "weight").reduce(sum)};
-//        }).value();
-//
-//        $scope.sortedTags = _.sortBy(reducedTags, 'weight').reverse()
 }
 
 window.onscroll = function (e) {

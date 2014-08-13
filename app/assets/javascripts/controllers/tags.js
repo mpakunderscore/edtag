@@ -12,6 +12,10 @@ edTagApp.controller('tagsCtrl', function ($scope, $http) {
     }
 });
 
+var sum = function (a, b) {
+    return a + b;
+};
+
 function fill($scope, $http, url) {
 
     $http({method: 'GET', url: url}).

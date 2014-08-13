@@ -9,8 +9,8 @@
                <ul>
                    <li ng-repeat="tag in sortedTags | limitTo: 15">
 
-                       <a ng-show="tag.weight != 0" ng-href="#" ng-click="filterByTag(tag)" title="{{tag.weight}}">{{tag.name}}</a>
-                       <a ng-show="tag.weight == 0" ng-href="#" ng-click="filterByTag(tag)" title="remove" class="selected">{{tag.name}}</a>
+                       <a ng-show="tag.weight !== 0" ng-href="#" ng-click="filterByTag(tag)" title="{{tag.weight}}">{{tag.name}}</a>
+                       <a ng-show="tag.weight === 0" ng-href="#" ng-click="filterByTag(tag)" title="remove" class="selected">{{tag.name}}</a>
 
                    </li>
                </ul>

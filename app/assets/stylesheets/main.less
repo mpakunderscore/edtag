@@ -3,7 +3,7 @@ html {
 }
 
 body {
-//	overflow-y: scroll;
+	overflow-y: scroll;
 	font-size: 13px;
 	font-family: helvetica, arial, freesans, clean, sans-serif;
 	font-weight: 400;
@@ -323,6 +323,16 @@ body {
 		box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 		background-color: rgb(255, 255, 255);
 
+		&.tags {
+			//			padding-left: 20px;
+			padding-top: 15px;
+
+			li {
+				padding-left: 20px;
+				padding-bottom: 15px;
+			}
+		}
+
 		&.login {
 
 			li {
@@ -330,6 +340,10 @@ body {
 				margin: 20px;
 				box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 				width: 220px;
+			}
+
+			li:hover {
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 			}
 
 			li.title {
@@ -418,8 +432,6 @@ body {
 
 			.top {
 
-//				display: inline;
-
 				li {
 					float: left;
 //					height: 280px;
@@ -441,8 +453,8 @@ body {
 
 					ul {
 
-						height: 140px;
-//						background-color: red;
+//						height: 140px;
+//						background-color: lightsalmon;
 						position: relative;
 
 						li {
@@ -450,7 +462,7 @@ body {
 							float: none;
 
 							.title {
-								width: 600px;
+//								width: 800px;
 //								background-color: lightgray;
 
 								font: 36px helvetica, arial, freesans, clean, sans-serif;
@@ -536,7 +548,7 @@ body {
 						margin: 0;
 						//						vertical-align: middle;
 
-						font-size: 14px;
+						font-size: 12px;
 
 						&:link {
 							color: rgba(0, 0, 0, 0);
@@ -592,7 +604,7 @@ body {
 						margin: 0;
 						//						vertical-align: middle;
 
-						font-size: 14px;
+						font-size: 12px;
 
 						&:link {
 							color: rgba(0, 0, 0, 0);
@@ -613,6 +625,11 @@ body {
 					width: 16px;
 					height: 16px;
 					padding-right: 15px;
+					opacity: 0.7;
+				}
+
+				img:hover {
+					opacity: 1;
 				}
 
 			}
@@ -665,7 +682,7 @@ body {
 					font-weight: 300;
 					line-height: 1.8;
 					margin: 0;
-					padding: 10px;
+					padding: 10px 10px 10px 15px;
 					display: block;
 					text-decoration: none;
 //					padding-left: 20px;
