@@ -3,6 +3,32 @@
  */
 
 // This is called with the results from from FB.getLoginStatus().
+
+function signin(response) {
+
+    var form = document.createElement("form");
+    form.setAttribute("method", "POST");
+    form.setAttribute("action", "/signin");
+
+    var params = {};
+    params["email"] = response.email;
+    params["facebook"] = response.id;
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
 function statusChangeCallback(response) {
 
     console.log('statusChangeCallback');
@@ -15,39 +41,41 @@ function statusChangeCallback(response) {
 
         FB.api('/me', function(response) {
 
-            console.log(JSON.stringify(response));
-
-            var form = document.createElement("form");
-            form.setAttribute("method", "POST");
-            form.setAttribute("action", "/signin");
-
-            var params = {};
-            params["email"] = response.email;
-            params["facebook"] = response.id;
-
-            for(var key in params) {
-                if(params.hasOwnProperty(key)) {
-                    var hiddenField = document.createElement("input");
-                    hiddenField.setAttribute("type", "hidden");
-                    hiddenField.setAttribute("name", key);
-                    hiddenField.setAttribute("value", params[key]);
-
-                    form.appendChild(hiddenField);
-                }
-            }
-
-            document.body.appendChild(form);
-            form.submit();
+            signin(response);
         });
         // Logged into your app and Facebook.
 
     } else if (response.status === 'not_authorized') {
+
         // The person is logged into Facebook, but not your app.
+
+        FB.login(function(response) {
+
+            if (response.status === 'connected') {
+
+                FB.api('/me', function (response) {
+
+                    signin(response);
+                });
+            }
+
+        }, {scope: 'public_profile,email'});
 
     } else {
         // The person is not logged into Facebook, so we're not sure if
         // they are logged into this app or not.
 
+        FB.login(function(response) {
+
+            if (response.status === 'connected') {
+
+                FB.api('/me', function (response) {
+
+                    signin(response);
+                });
+            }
+
+        }, {scope: 'public_profile,email'});
     }
 }
 
@@ -95,16 +123,3 @@ window.fbAsyncInit = function() {
     js.src = "//connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-
-function logoutUser() {
-
-    FB.getLoginStatus(function(response) {
-        if (response && response.status === 'connected') {
-            FB.logout(function(response) {
-//                document.location.reload();
-
-                document.location.href = '/signout';
-            });
-        }
-    });
-}
