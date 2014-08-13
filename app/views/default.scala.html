@@ -40,11 +40,11 @@
 
                         @*<li><a ng-class="getClass('/about')" href="/about" id="about">About</a></li>*@
 
-                        @*<li><a ng-class="getClass('/login')" href="/login" class="auth">Sign In</a></li>*@
-                        <li>
-                            <fb:login-button data-size="icon" scope="public_profile,email" onlogin="checkLoginState();">
-                            </fb:login-button>
-                        </li>
+                        <li><a ng-class="getClass('/login')" href="/login" class="auth">Sign In</a></li>
+                        @*<li>*@
+                            @*<fb:login-button data-size="icon" scope="public_profile,email" onlogin="checkLoginState();">*@
+                            @*</fb:login-button>*@
+                        @*</li>*@
 
                     } else {
 

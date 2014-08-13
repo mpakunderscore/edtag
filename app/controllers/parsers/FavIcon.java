@@ -55,8 +55,6 @@ public class FavIcon {
             if (link.startsWith("//"))
                 favIconFormat = check(protocol + ":" + link, domainString);
 
-            //TODO img/mozilla.ico
-
             else if (link.startsWith("/"))
                 favIconFormat = check(domainStringWithProtocol + link, domainString);
 
@@ -64,7 +62,7 @@ public class FavIcon {
                 favIconFormat = check(link, domainString);
 
             else
-                Logger.error("[bad favicon link] " + link);
+                favIconFormat = check(domainStringWithProtocol + "/" + link, domainString);
 
         } else
             favIconFormat = check(domainStringWithProtocol + "/favicon.ico", domainString);

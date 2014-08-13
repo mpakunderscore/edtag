@@ -4,7 +4,11 @@
     <section id="main" >
         <ul class="out login">
 
-            <li><h2>Authorization or registration</h2></li>
+            <li class="title"><h2>Authorization or registration</h2></li>
+
+            <li>
+                <input class="empty" type="submit" value="Create empty account" onclick="empty()">
+            </li>
 
             <li>
                 @helper.form(routes.Application.signIn()) {
@@ -14,12 +18,14 @@
                 }
             </li>
 
-            <li class="facebook">
-                <fb:login-button data-size="large" data-auto-logout-link="true" scope="public_profile,email" onlogin="checkLoginState();">
-                </fb:login-button>
+            <li class="social">
+                <input class="google" type="submit" value="Google" onclick="google()">
+                <div id="fb-root"></div>
+                <input class="facebook" type="submit" value="Facebook" onclick="checkLoginState()">
+                <input class="twitter" type="submit" value="Twitter" onclick="twitter()">
             </li>
         </ul>
     </section>
 
-    <script>window.onload=function(){checkLoginState()};</script>
+    @*<script>window.onload=function(){checkLoginState()};</script>*@
 }
