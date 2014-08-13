@@ -114,8 +114,6 @@ function getTags(data) {
     angular.forEach(data, function (link) {
 
         angular.forEach(link.tags, function (tag) {
-
-//            if (tag.weight < 50 && tag.name.length > 3 && tag.name.length < 30)
                 allTags.push(tag)
         })
     })
