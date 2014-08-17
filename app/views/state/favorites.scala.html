@@ -13,7 +13,7 @@
            <img ng-if="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
            <img ng-if="!link.favIconFormat" src="/assets/images/default-favicon.png">
 
-           <a href="{{link.url}}" target="_blank" ng-attr-title="{{link.tags}}" class="title">{{link.title}}</a><a ng-href="#" ng-click="removeLink(link)" class="favorite">&#9733;</a>
+           <a href="{{link.url}}" target="_blank" ng-attr-title="{{link.tags}}" class="title">{{link.title}}</a><a ng-href="#" ng-click="removeLink(link)" class="favorite">&#215;</a>
 
        </li>
 

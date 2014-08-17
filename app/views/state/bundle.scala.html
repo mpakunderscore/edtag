@@ -36,7 +36,7 @@
                 <img ng-if="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
                 <img ng-if="!link.favIconFormat" src="/assets/images/default-favicon.png">
 
-                <a href='{{link.url}}' target='_blank' ng-attr-title="{{link.tags}}" class="title">{{link.title}}</a><a ng-href="#" ng-click="favoriteLink(link.id)" class="favorite">&#9734;</a>
+                <a href='{{link.url}}' target='_blank' ng-attr-title="{{link.tags}}" class="title">{{link.title}}</a><a ng-href="#" ng-click="favoriteLink(link.id)" class="favorite">&#9733;</a>
             </li>
 
             <li ng-show="!dataList.length">Loading or just empty.</li>

@@ -41,16 +41,18 @@ edTagApp.controller('mainCtrl', function ($scope, $http, $location) {
 //        return "/assets";
     }
 
+    if (!m_top) angular.element(document.querySelector('header')).toggleClass('m-top');
+
     $scope.showSearch = function () {
 
         var doc = document.documentElement;
         var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 
-        if (top <= 30) return;
+        if (top <= 70) return;
 
-        var searchBar = angular.element(document.querySelector('.top-menu'));
+        var searchBar = angular.element(document.querySelector('header'));
 
-        document.getElementById("logo").innerHTML = (!m_top) ? "&#9906; &#60;" : "&#9906; &#62;";
+        document.getElementById("logo").innerHTML = (!m_top) ? "&#9906; &#62;" : "&#9906; &#60;";
 
 //        document.getElementById("search").focus(); //TODO
 
@@ -107,13 +109,15 @@ function getData(data) {
     return data;
 }
 
-function getTags(data) {
+function getTags(dataList) {
 
     var allTags = [];
 
-    angular.forEach(data, function (link) {
+    angular.forEach(dataList, function (data) {
 
-        angular.forEach(link.tags, function (tag) {
+        angular.forEach(data.tags, function (tag) {
+
+            if (tag.name.length < 30)
                 allTags.push(tag)
         })
     })
@@ -257,49 +261,16 @@ window.onscroll = function (e) {
     var doc = document.documentElement;
     var scroll = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 
-//    console.log(scroll)
-
     if (scroll > 70) {
 
         if (m_top)
-            document.getElementById("logo").innerHTML = "&#9906; &#60;";
+            document.getElementById("logo").innerHTML = "&#9906; &#62;";
 
         else
-            document.getElementById("logo").innerHTML = "&#9906; &#62;";
+            document.getElementById("logo").innerHTML = "&#9906; &#60;";
 
     } else
         document.getElementById("logo").innerHTML = "&#60; &#62;";
-
-    if (scroll >= position) {
-
-        //hide menu here
-
-        //TODO hide after scroll -10 px
-        if (scroll > 70) document.getElementById("logo").innerHTML = "&#9906; &#62;";
-        document.querySelectorAll(".top-menu")[0].className = "top-menu";
-
-
-    } else {
-
-        //scroll up. show nothing
-
-//        console.log(m_top);
-
-        if (m_top) {
-
-            //TODO show after scroll +10 px
-            if (scroll > 70) document.querySelectorAll(".top-menu")[0].className = "top-menu m-top";
-//            document.querySelectorAll(".top-menu")[0].toggleClass("");
-            //show menu
-
-        } else {
-
-            if (scroll > 70) document.querySelectorAll(".top-menu")[0].className = "top-menu";
-
-        }
-    }
-
-    position = scroll;
 }
 
-console.log("Menu auto show/hide: " + m_top)
+console.log("Menu show: " + m_top)

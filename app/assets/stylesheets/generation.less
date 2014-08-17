@@ -1,0 +1,142 @@
+.preview-bundle {
+
+	position: relative;
+
+	//		background-color: lightsalmon;
+
+	width: 280px;
+	height: 250px;
+	float: left;
+
+	.pic {
+		box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+		width: 280px;
+		height: 180px;
+		float: left;
+		border-radius: 5px;
+		opacity: 0.3;
+
+		margin-left: 20px;
+		margin-top: 20px;
+	}
+	.title {
+		font-size: 17px;
+		font-weight: 300;
+		line-height: 1.8;
+		color: #4183C4;
+		min-height: 25px;
+		visibility: visible;
+		width: 280px;
+		float: left;
+		margin: 0;
+
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 20px;
+	}
+	.links-count {
+
+		position: absolute;
+		top: 170px;
+		//			padding: 10px;
+		left: 40px;
+
+		//			padding-left: 20px;
+		font-size: 11px;
+		color: black;
+	}
+}
+form.add-bundle {
+
+	//		background-color: lightgray;
+	height: 630px;
+	//		width: 550px;
+	float: left;
+
+	padding-top: 20px;
+	padding-left: 20px;
+
+	.input-data {
+		width: 300px;
+		height: 280px;
+		float: left;
+		input[type="file"] {
+			margin-bottom: 10px;
+		}
+		input[type="text"],
+		input[type="url"] {
+			width: 315px;
+			margin-bottom: 10px;
+			float: none;
+			padding: 5px;
+			box-shadow: none;
+			border: 1px solid #ccc;
+			&:focus {
+				//	border-bottom: 1px solid lightgray;
+				box-shadow: none;
+				padding: 5px;
+				border: 1px solid #777;
+			}
+		}
+		input[type="url"] {
+		}
+		input[type="submit"] {
+			margin-top: 20px;
+			padding: .5em 1em;
+			color: #444;
+			border: 0 rgba(0, 0, 0, 0);
+			background-color: #E6E6E6;
+			text-decoration: none;
+			border-radius: 2px;
+			cursor: pointer;
+		}
+
+		.analyse {
+			position: absolute;
+			left: 370px;
+			top: 300px;
+		}
+
+		.analyse-url {
+			position: absolute;
+			left: 21px;
+			top: 295px;
+		}
+
+		.title {
+			font-size: 17px;
+			line-height: 1.8;
+			color: #4183C4;
+			margin: 0;
+			padding: 5px 20px;
+			position: absolute;
+			left: 500px;
+		}
+	}
+
+	.generate {
+		position: absolute;
+		left: 560px;
+		top: 610px;
+	}
+
+	.bundle-links {
+
+		position: absolute;
+		left: 20px;
+		top: 340px;
+
+		width: 600px;
+		height: 250px;
+		//			margin-bottom: 20px;
+		border: 1px solid lightgray;
+		resize: none;
+		float: left;
+	}
+
+	.linksCount {
+		padding-left: 20px;
+		font-size: 11px;
+		color: gray;
+	}
+}

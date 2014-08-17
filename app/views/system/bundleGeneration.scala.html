@@ -1,7 +1,11 @@
 @(email: String)
 
 @default("Bundle generator", email) {
-    <section class="full-width" ng-controller="bundleGenerationCtrl">
+
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/generation.css")">
+
+    <section class="out" ng-controller="bundleGenerationCtrl">
+
         <div class="preview-bundle ml0">
             <img ng-src="{{imageSrc}}" class="pic"/>
             <h4 class="title">{{bundle.title}}</h4>

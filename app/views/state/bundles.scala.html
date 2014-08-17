@@ -9,8 +9,10 @@
            <img ng-src="@{"{{getBucket()}}/bundles/bundle.{{bundle.id}}.png"}">
 
            @*<progress class='count' value='{{getCount(bundle.wordsCount)}}' max='70'></progress>*@
-           <a ng-href="/bundle/{{bundle.id}}" ng-attr-title="{{bundle.tags}}">{{bundle.title}}</a>
+           <a class="title" ng-href="/bundle/{{bundle.id}}" ng-attr-title="{{bundle.tags}}">{{bundle.title}}</a>
+           <span class="author">by <a href="#">Steve Morris</a></span>
            <span class="linksCount">{{bundle.linksCount}} links</span>
+
        </li>
 
        <li ng-show="!dataList.length">Loading or just empty.</li>

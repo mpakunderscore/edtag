@@ -4,8 +4,7 @@
 
     <script src="@routes.Assets.at("javascripts/fb.js")"></script>
 
-    <section id="main" >
-        <ul class="out login">
+    <ul class="out login">
 
             <li>
                 <input class="empty" type="submit" value="Create empty account" onclick="empty()">
@@ -25,8 +24,5 @@
                 <input class="facebook" scope="public_profile,email" type="submit" value="Facebook" onclick="checkLoginState()">
                 <input class="twitter" type="submit" value="Twitter" onclick="twitter()">
             </li>
-        </ul>
-    </section>
-
-    @*<script>window.onload=function(){checkLoginState()};</script>*@
+    </ul>
 }

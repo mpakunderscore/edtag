@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 
 	"name": "edtag",
-	"description": "Education Tags",
+	"description": "Add any page to favorites on edtag.io",
 	"version": "0.3.4",
 
 	"options_page": "options.html",
@@ -17,7 +17,7 @@
 
 	"browser_action": {
 		"default_icon": "icon2.png",
-        "default_title": "Education Tags"
+        "default_title": "Tag it"
 	},
 	  
 	"permissions": [
