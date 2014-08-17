@@ -547,6 +547,9 @@ body {
 			padding-bottom: 20px;
 			text-align: center;
 
+			li:hover {
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+			}
 
 			li {
 				display: inline-block;
@@ -554,18 +557,21 @@ body {
 				text-align: left;
 //				margin: 20px 0 0 20px;
 				width: 280px;
-				height: 180px;
+				height: 310px; //TODO
 //				margin-left: auto;
 //				margin-right: auto;
 //				float: left;
 				margin: 10px;
+				border-radius: 3px;
+				box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 
 				img {
 					opacity: 0.1;
 					box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 					width: 280px;
 					height: 180px;
-					border-radius: 3px;
+					border-top-left-radius: 3px;
+					border-top-right-radius: 3px;
 				}
 
 				img:hover {
@@ -574,7 +580,7 @@ body {
 
 				.title {
 					position: absolute;
-					top: 0;
+					top: 180px;
 					color: #000000;
 
 					font-size: 17px;
