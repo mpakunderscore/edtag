@@ -26,7 +26,7 @@ if (supports_html5_storage()) {
     }
 }
 
-var position = (window.pageYOffset || document.documentElement.scrollTop) - (document.documentElement.clientTop || 0);;
+var position = (window.pageYOffset || document.documentElement.scrollTop) - (document.documentElement.clientTop || 0);
 
 var sum = function (a, b) {
     return a + b;
@@ -273,4 +273,4 @@ window.onscroll = function (e) {
         document.getElementById("logo").innerHTML = "&#60; &#62;";
 }
 
-console.log("Menu show: " + m_top)
+console.log("Menu hide: " + m_top)
