@@ -9,6 +9,6 @@
             <span class="weight">{{tag.weight}}</span>
         </li>
 
-        <li ng-hide="dataList.length">Loading or just empty.</li>
+        <img class="loading" ng-if="!dataList.length" src="/assets/images/loading.gif">
     </ul>
 }

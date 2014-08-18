@@ -39,7 +39,7 @@
                 <a href='{{link.url}}' target='_blank' ng-attr-title="{{link.tags}}" class="title">{{link.title}}</a><a ng-href="#" ng-click="favoriteLink(link.id)" class="favorite">&#9733;</a>
             </li>
 
-            <li ng-show="!dataList.length">Loading or just empty.</li>
+            <img class="loading" ng-if="!dataList.length" src="/assets/images/loading.gif">
         </ul>
 
     </ul>
