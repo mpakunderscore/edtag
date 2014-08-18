@@ -6,13 +6,14 @@
 
     <section class="out" ng-controller="bundleGenerationCtrl">
 
-        <div class="preview-bundle ml0">
-            <img ng-src="{{imageSrc}}" class="pic"/>
-            <h4 class="title">{{bundle.title}}</h4>
-            <span class="links-count">0 links</span>
+        <div class="preview-bundle">
+            <img ng-src="{{imageSrc}}">
 
+            @*<progress class='count' value='{{getCount(bundle.wordsCount)}}' max='70'></progress>*@
+            <a class="title" ng-href="#" ng-attr-title="{{bundle.tags}}">{{bundle.title}}</a>
+            <span class="author">by <a href="#">Steve Morris</a></span>
+            <span class="linksCount">0 links</span>
         </div>
-
 
         <form class="add-bundle ml20" enctype="multipart/form-data">
             <div class="input-data">
