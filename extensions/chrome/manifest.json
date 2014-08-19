@@ -3,7 +3,7 @@
 
 	"name": "edtag",
 	"description": "Add any page to favorites on edtag.io",
-	"version": "0.3.4",
+	"version": "0.3.5",
 
 	"options_page": "options.html",
 	
@@ -23,9 +23,6 @@
 	"permissions": [
         "notifications",
         "activeTab",
-        "https://dry-tundra-9556.herokuapp.com/*",
-        "http://localhost:9000/*",
         "https://edtag.io/*",
-        "https://s3.amazonaws.com/edtag/*",
         "https://s3-eu-west-1.amazonaws.com/dry-tundra-9556/*"]
 }
