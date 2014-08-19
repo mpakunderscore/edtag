@@ -179,10 +179,11 @@ edTagApp.controller('bundleCtrl', function ($scope, $http, $location) {
         filter($scope, tag)
     }
 
-    $scope.favoriteLink = function (data) {
+    $scope.favoriteLink = function (link) {
 
-        $http({method: 'GET', url: '/favorite?webDataId=' + data}).
+        $http({method: 'GET', url: '/favorite?webDataId=' + link.id}).
             success(function (data, status, headers, config) {
+                angular.element(document.querySelector('#f' + link.id)).addClass('checked');
             }).
             error(function (data, status, headers, config) {
             });
@@ -195,10 +196,11 @@ edTagApp.controller('linksCtrl', function ($scope, $http) {
 
     fill($scope, $http, '/api/links/list');
 
-    $scope.favoriteLink = function (data) {
+    $scope.favoriteLink = function (link) {
 
-        $http({method: 'GET', url: '/favorite?webDataId=' + data}).
+        $http({method: 'GET', url: '/favorite?webDataId=' + link.id}).
             success(function (data, status, headers, config) {
+                angular.element(document.querySelector('#f' + link.id)).addClass('checked');
             }).
             error(function (data, status, headers, config) {
             });
