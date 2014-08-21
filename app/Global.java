@@ -13,6 +13,7 @@ import models.WebData;
 import play.GlobalSettings;
 import play.*;
 import play.libs.Json;
+import utils.Research;
 
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +42,7 @@ public class Global extends GlobalSettings {
 
 //            updateDatabase();
 
-//            research();
+//            Research.s();
 
         } catch (Exception e) {
         }
@@ -80,28 +81,26 @@ public class Global extends GlobalSettings {
         });
 
         thread.start();
-
     }
 
     private void updateWebData() {
 
         List<WebData> webDataList = Ebean.find(WebData.class).findList();
 
+        int i = webDataList.size();
         for (WebData webData : webDataList) {
-
-//            if (Json.parse(webData.getTags()).isArray()) continue;
 
             WebData withTags = Page.requestWebData(webData.getUrl());
 
             if (withTags == null) {
-                Logger.error("[page tags update error] " + webData.toString());
+                Logger.error("[page tags update error] " + webData.toString() + " (" + ++i + "/" + webDataList.size() + ")");
                 continue;
             }
 
             webData.setTags(Json.stringify(withTags.getTags()));
             webData.update();
 
-            Logger.debug("[page tags updated] " + webData.toString() );
+            Logger.debug("[page tags updated] " + webData.toString() + " (" + ++i + "/" + webDataList.size() + ")");
         }
 
         Logger.info("Tags updated for " + webDataList.size() + " pages.");

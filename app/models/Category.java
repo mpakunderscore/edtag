@@ -9,25 +9,22 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by pavelkuzmin on 19/03/14.
+ * Created by pavelkuzmin on 21/08/14.
  */
 
 @Entity
-public class Tag extends Model {
+public class Category extends Model {
 
     @Id
     public String name;
-
-    String redirect;
 
     @Column(columnDefinition = "TEXT")
     String categories;
 
     boolean mark = false;
 
-    public Tag(String name, String redirect, String categories, boolean mark) {
+    public Category(String name, String categories, boolean mark) {
         this.name = name;
-        this.redirect = redirect;
         this.categories = categories;
         this.mark = mark;
     }
@@ -38,9 +35,5 @@ public class Tag extends Model {
 
     public JsonNode getCategories() {
         return Json.parse(categories);
-    }
-
-    public String getRedirect() {
-        return redirect;
     }
 }

@@ -29,8 +29,9 @@ public class TagFactory {
 
     private static final List<String> unmarkedCategories = new ArrayList<String>() {{
 
-        add("english grammar");
+
         add("disambiguation pages");
+        add("english grammar");
         add("grammar");
         add("parts of speech");
         add("months");
@@ -64,7 +65,11 @@ public class TagFactory {
 
             Logger.debug("[new tag] " + word + " [" + lang + "]");
 
-            Connection connection = Jsoup.connect(URLEncoder.encode("http://" + lang + url + word, "UTF-8"));
+            String connectUrl = "http://" + lang + url
+
+                    + (!lang.equals("en") ? URLEncoder.encode(word, "UTF-8") : word);
+
+            Connection connection = Jsoup.connect(connectUrl);
 
             doc = connection.userAgent(Watcher.USER_AGENT).followRedirects(true).get();
 
@@ -95,7 +100,8 @@ public class TagFactory {
 
             String category = link.text().toLowerCase();
 
-            if (unmarkedCategories.contains(category)) mark = false;
+            if (unmarkedCategories.contains(category))
+                mark = false;
 
             categories.add(category);
         }

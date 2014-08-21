@@ -136,8 +136,8 @@ public class System extends Controller {
             for (int i = 0; i < webDataTags.size(); i++) {
 
                 String name = webDataTags.get(i).get("name").asText();
-                int weight = webDataTags.get(i).get("weight").asInt();
-//                int weight = 1;
+//                int weight = webDataTags.get(i).get("weight").asInt();
+                int weight = 1;
 
 
                 if (tagsMap.containsKey(name)) {
@@ -161,6 +161,79 @@ public class System extends Controller {
         TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
 
         map.putAll(tags);
+        sorted_map.putAll(map);
+
+        return ok(toJson(sorted_map));
+    }
+
+    public static Result tagsA1() {
+
+        Map<String, Integer> tags = new HashMap<String, Integer>();
+        Map<?, Tag> tagsMap = Ebean.find(Tag.class).findMap();
+        List<WebData> webDataList = Ebean.find(WebData.class).findList();
+
+        for (WebData webData : webDataList) {
+
+            JsonNode webDataTags = webData.getTags();
+
+            for (int i = 0; i < webDataTags.size(); i++) {
+
+                String name = webDataTags.get(i).get("name").asText();
+//                int weight = webDataTags.get(i).get("weight").asInt();
+                int weight = 1;
+
+
+                if (tagsMap.containsKey(name)) {
+
+                    JsonNode tagCategories = tagsMap.get(name).getCategories();
+                    for (int j = 0; j < tagCategories.size(); j++) {
+
+                        if (tagCategories.get(j).asText().equals(name)) {
+
+                            if (tags.containsKey(name))
+                                tags.put(name, tags.get(name) + weight);
+                            else tags.put(name, weight);
+                        }
+                    }
+                }
+            }
+        }
+
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        ValueComparator bvc =  new ValueComparator(map);
+        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+
+        map.putAll(tags);
+        sorted_map.putAll(map);
+
+        return ok(toJson(sorted_map));
+    }
+
+    public static Result categoriesB1() {
+
+        List<Tag> tagsDB = Ebean.find(Tag.class).where().eq("mark", true).findList();
+
+        Map<String, Integer> categoriesMap = new HashMap<>();
+
+        for (Tag tag : tagsDB) {
+
+            JsonNode categories = tag.getCategories();
+
+            for (int i = 0; i < categories.size(); i++) {
+
+                String category = categories.get(i).asText();
+
+                if (categoriesMap.containsKey(category))
+                    categoriesMap.put(category, categoriesMap.get(category) + 1);
+                else categoriesMap.put(category, 1);
+            }
+        }
+
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        ValueComparator bvc =  new ValueComparator(map);
+        TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+
+        map.putAll(categoriesMap);
         sorted_map.putAll(map);
 
         return ok(toJson(sorted_map));

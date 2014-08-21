@@ -1,0 +1,11 @@
+@(email: String)
+
+@shell("Graph", email, "graphCtrl") {
+
+    <section class="out graph"></section>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="@routes.Assets.at("javascripts/controllers/graph.js")"></script>
+}
+
+

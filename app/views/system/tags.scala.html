@@ -5,7 +5,7 @@
     <ul class="out tags">
 
         <li ng-repeat="tag in dataList | filter:searchText">
-            <span class="name">{{tag.name}}</span>
+            <span class="name" title="{{tag.tags}}">{{tag.name}}</span>
             <span class="weight">{{tag.weight}}</span>
         </li>
 

@@ -29,8 +29,18 @@ public class Test {
 
     public static void main(String [] args) throws IOException, LangDetectException {
 
+        LangDetect.init("lib/profiles");
+
         //http://www.mitworld.mit.edu/favicon.ico
-        Page.requestDomain("http://mitworld.mit.edu");
+//        Page.requestDomain("http://mitworld.mit.edu");
+
+
+//        Set<String> links = Research.getLinksFromUrl("https://medium.com/top-100/july-2014", "postItem-title");
+//        Set<String> links = Research.getLinksFromUrl("http://www.reddit.com/r/Entrepreneur/comments/2clqa3/how_startups_such_as_dropbox_airbnb_groupon_and/", "");
+//        Logger.debug(String.valueOf(links.size()));
+//        Logger.debug(links.toString());
+
+        Categories.getWay("love", "metaphysics");
     }
 }
 

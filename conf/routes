@@ -35,6 +35,7 @@ GET         /api/user                   controllers.Web.user
 GET         /generation                 controllers.Application.bundleGeneration
 GET         /tags                       controllers.Application.tags
 GET         /statistics                 controllers.Application.statistics
+GET         /graph                      controllers.Application.graph
 
 
 #extension (will be api)
@@ -58,6 +59,9 @@ GET         /api/tags                   controllers.System.tags()
 GET         /api/categories             controllers.System.categories()
 GET         /api/category/*name         controllers.System.categoryTags(name: String)
 GET         /api/tag/*name              controllers.System.tag(name: String)
+GET         /api/tags/a1                controllers.System.tagsA1()
+GET         /api/categories/b1          controllers.System.categoriesB1()
+
 
 
 

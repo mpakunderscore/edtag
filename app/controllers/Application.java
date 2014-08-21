@@ -93,6 +93,11 @@ public class Application extends Controller {
         return ok(login.render(session("email")));
     }
 
+    public static Result graph() {
+
+        return ok(graph.render(session("email")));
+    }
+
 
     public static Result signIn() {
 

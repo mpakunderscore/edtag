@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  */
 public class TagParser {
 
-    private final static int defaultTagsCount = 10;
+    private final static int defaultTagsCount = 20;
 
     private final static int bundleTagsCount = 5;
 
@@ -52,11 +52,9 @@ public class TagParser {
 
         for (Map.Entry<String, Integer> word : words.entrySet()) {
 
-            if (word.getValue() > 2)
+            if (word.getValue() > 2) //TODO
                 resultWords.put(word.getKey(), word.getValue());
         }
-
-//        words.putAll(bigrams);
 
         sortedWords.putAll(resultWords);
 
@@ -83,16 +81,6 @@ public class TagParser {
             else bigrams.put(bigram, 1);
         }
 
-        for (String bigram : bigrams.keySet()) {
-
-            String firstWord = bigram.split(" ")[0];
-            String secondWord = bigram.split(" ")[1];
-
-//            if (words.containsKey(firstWord)) words.put(firstWord, words.get(firstWord) - bigrams.get(bigram));
-
-//            if (words.containsKey(secondWord)) words.put(secondWord, words.get(secondWord) - bigrams.get(bigram));
-        }
-
         words.putAll(bigrams);
     }
 
@@ -115,7 +103,7 @@ public class TagParser {
 
             if (tag == null) {
 
-                Logger.debug("[tag null] " + word.getKey());
+                Logger.error("[tag null] " + word.getKey());
                 break;
 
             } else if (tag.isMark()) {
@@ -146,8 +134,25 @@ public class TagParser {
 
 //            i++;
 
-            if (i > defaultTagsCount) break;
+//            if (i > defaultTagsCount)
+//                break;
         }
+
+//        for (Map.Entry<String, Integer> tag : tags.entrySet()) {
+//
+//            if (tag.getKey().contains(" ")) {
+//
+//                // "first second" - bigram
+//                String first = tag.getKey().split(" ")[0];
+//                String second = tag.getKey().split(" ")[0];
+//
+//                if (tags.keySet().contains(first))
+//                    tags.put(first, tags.get(first) - tag.getValue());
+//
+//                if (tags.keySet().contains(second))
+//                    tags.put(second, tags.get(second) - tag.getValue());
+//            }
+//        }
 
         return tags;
     }

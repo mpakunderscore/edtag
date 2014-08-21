@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 
-	"name": "edtag",
+	"name": "edtag localhost",
 	"description": "Add any page to favorites on edtag.io",
 	"version": "0.3.5",
 
@@ -24,5 +24,6 @@
         "notifications",
         "activeTab",
         "https://edtag.io/*",
+        "http://localhost:9000/*",
         "https://s3-eu-west-1.amazonaws.com/dry-tundra-9556/*"]
 }

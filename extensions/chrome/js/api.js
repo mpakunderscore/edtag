@@ -1,5 +1,5 @@
-var host = "https://edtag.io";
-//var host = "http://localhost:9000";
+//var host = "https://edtag.io";
+var host = "http://localhost:9000";
 //var host = "https://dry-tundra-9556.herokuapp.com";
 
 
@@ -41,7 +41,7 @@ function add_url(tab, userId) {
     for (var id in tags)
         tagNames.push(tags[id].name);
 
-    notification(iconUrl, link.title.replace(" - Wikipedia, the free encyclopedia", ""), tagNames.join(", ")); //TODO
+    notification(iconUrl, link.title, tagNames.join(", ")); //TODO
 }
 
 function notification(iconUrl, title, text) {
