@@ -35,12 +35,14 @@ var sum = function (a, b) {
 edTagApp.directive('ngEnter', function () {
     return function ($scope, $element, $attrs) {
         $element.bind("keydown keypress", function (event) {
-            if(event.which === 13) {
-                $scope.$apply(function (){
+            if (event.which === 13) {
+                $scope.$apply(function () {
 //                    $scope.$eval($attrs.ngEnter);
 //                    alert(document.getElementById('search').value)
                     var tag = {};
                     tag.name = $scope.searchText;
+                    if (tag.name.length == 0) return;
+
                     filter($scope.$$childHead, tag);
                     $scope.searchText = ''
                 });

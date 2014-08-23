@@ -62,7 +62,7 @@ GET         /api/tag/*name              controllers.System.tag(name: String)
 GET         /api/tags/a1                controllers.System.tagsA1()
 GET         /api/categories/b1          controllers.System.categoriesB1()
 
-
+GET         /api/graph                  controllers.Web.graph(url: String)
 
 
 # Map static resources from the /public folder to the /assets URL path

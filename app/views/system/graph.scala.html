@@ -2,7 +2,9 @@
 
 @shell("Graph", email, "graphCtrl") {
 
-    <section class="out graph"></section>
+    <section class="out graph">
+        <input id="graph-url" placeholder="Any URL please" type="text" ng-model="url" ng-enter=""/>
+    </section>
 
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="@routes.Assets.at("javascripts/controllers/graph.js")"></script>

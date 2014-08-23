@@ -2,6 +2,9 @@ package controllers;
 
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.util.json.JSONArray;
+import com.amazonaws.util.json.JSONException;
+import com.amazonaws.util.json.JSONObject;
 import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
 import controllers.parsers.ValueComparator;
@@ -14,6 +17,8 @@ import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import plugins.S3Plugin;
+//import scala.util.parsing.json.JSONObject;
+import utils.Categories;
 import views.html.state.links;
 
 import java.io.*;
@@ -229,5 +234,131 @@ public class Web extends Controller {
 //        Long bundleId = bundle.getId();
 //        return redirect(routes.Application.bundle(bundleId));
         return ok(toJson(bundle));
+    }
+
+    public static Result graph(String url) throws Exception {
+
+        // 1 - tag
+        // 2 - category
+        // 3 - category round ++
+
+        WebData webData = Watcher.getWebData(url);
+        JsonNode tags = webData.getTags();
+
+        Map<?, Tag> tagsMap = Ebean.find(Tag.class).findMap();
+
+        JSONArray jaNodes = new JSONArray();
+        Map<String, Integer> positions = new HashMap<>();
+
+        Set<String> categories1 = new HashSet<String>();
+        for (int i = 0; i < tags.size(); i++) {
+
+            String name = tags.get(i).get("name").asText();
+
+            if (tagsMap.containsKey(name)) {
+
+                JsonNode tagCategories = tagsMap.get(name).getCategories();
+                for (int j = 0; j < tagCategories.size(); j++) {
+
+                    String category = tagCategories.get(j).asText();
+                    categories1.add(category);
+                }
+            }
+
+            JSONObject jo = new JSONObject();
+            jo.put("name", name);
+            jo.put("group", 1);
+            jaNodes.put(jo);
+        }
+
+        int j = 0;
+        for (String category : categories1) {
+
+            positions.put(category, tags.size() + j);
+
+            JSONObject jo = new JSONObject();
+            jo.put("name", category);
+            jo.put("group", 2);
+            jaNodes.put(jo);
+            j++;
+        }
+
+        Set<String> categories2 = Categories.getCategoriesFromSet(categories1);
+        Logger.debug("[second categories] " + categories2.size());
+
+        j = 0;
+        for (String category : categories2) {
+
+            if (!positions.containsKey(category)) {
+
+                positions.put(category, tags.size() + categories1.size() + j);
+
+                JSONObject jo = new JSONObject();
+                jo.put("name", category);
+
+                if (category.equals("main topic classifications")) {
+                    jo.put("group", 4);
+                    jo.put("name", "nothing");
+
+                } else
+                    jo.put("group", 3);
+
+                jaNodes.put(jo);
+                j++;
+            }
+        }
+
+        //for links
+        JSONArray jaLinks = new JSONArray();
+
+        Logger.debug("[build first categories links]");
+        for (int i = 0; i < tags.size(); i++) {
+
+            String name = tags.get(i).get("name").asText();
+
+            if (tagsMap.containsKey(name)) {
+
+                JsonNode tagCategories = tagsMap.get(name).getCategories();
+                for (int k = 0; k < tagCategories.size(); k++) {
+
+                    String category = tagCategories.get(k).asText();
+
+                    JSONObject jo = new JSONObject();
+                    jo.put("source", i);
+                    jo.put("target", positions.get(category));
+                    jo.put("value", 1); //def 1
+                    jaLinks.put(jo);
+
+                }
+            }
+        }
+
+        Logger.debug("[build second categories links]");
+        for (String category : categories1) {
+
+            Category categoryObj = Ebean.find(Category.class).where().idEq(category).findUnique();
+
+            if (categoryObj != null && categoryObj.getCategoriesSet() != null)
+            for (String cat : categoryObj.getCategoriesSet()) {
+
+                JSONObject jo = new JSONObject();
+                jo.put("source", positions.get(category));
+                jo.put("target", positions.get(cat));
+                jo.put("value", 1); //def 1
+                jaLinks.put(jo);
+
+            }
+
+        }
+
+        JSONObject wd = new JSONObject(webData);
+        wd.put("tags", new JSONArray(webData.getTags().toString()));
+
+        JSONObject mainObj = new JSONObject();
+        mainObj.put("webData", wd);
+        mainObj.put("nodes", jaNodes);
+        mainObj.put("links", jaLinks);
+
+        return ok(mainObj.toString());
     }
 }
