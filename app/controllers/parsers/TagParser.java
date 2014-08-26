@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  */
 public class TagParser {
 
-    private final static int defaultTagsCount = 20;
+    private final static int defaultTagsCount = 50;
 
     private final static int bundleTagsCount = 5;
 
@@ -134,8 +134,8 @@ public class TagParser {
 
 //            i++;
 
-//            if (i > defaultTagsCount)
-//                break;
+            if (i > defaultTagsCount)
+                break;
         }
 
 //        for (Map.Entry<String, Integer> tag : tags.entrySet()) {
