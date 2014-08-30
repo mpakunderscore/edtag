@@ -55,7 +55,7 @@ public class System extends Controller {
         map.putAll(tagsMap);
         sorted_map.putAll(map);
 
-        List<JSONTag> tagsObjects= new ArrayList<>();
+        List<JSONTag> tagsObjects= new ArrayList<JSONTag>();
 
         for (Map.Entry<String, Integer> tag : sorted_map.entrySet()) {
 
@@ -66,7 +66,7 @@ public class System extends Controller {
             if (tagDB == null) continue;
 
             JsonNode categories = tagDB.getCategories();
-            Map<String, Integer> categoriesMap = new HashMap<>();
+            Map<String, Integer> categoriesMap = new HashMap<String, Integer>();
             for (int i = 0; i < categories.size(); i++) {
 
                 String categoryName = categories.get(i).asText();
@@ -213,7 +213,7 @@ public class System extends Controller {
 
         List<Tag> tagsDB = Ebean.find(Tag.class).where().eq("mark", true).findList();
 
-        Map<String, Integer> categoriesMap = new HashMap<>();
+        Map<String, Integer> categoriesMap = new HashMap<String, Integer>();
 
         for (Tag tag : tagsDB) {
 

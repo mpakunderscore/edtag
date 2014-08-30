@@ -29,7 +29,7 @@ public class Research {
 
     public static Set<String> getLinksFromUrl(String url, String class_) {
 
-        Set<String> urls = new HashSet<>();
+        Set<String> urls = new HashSet<String>();
 
 //        String urlDomain = WebData.getDomainString(url);
 

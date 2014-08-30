@@ -248,7 +248,7 @@ public class Web extends Controller {
         Map<?, Tag> tagsMap = Ebean.find(Tag.class).findMap();
 
         JSONArray jaNodes = new JSONArray();
-        Map<String, Integer> positions = new HashMap<>();
+        Map<String, Integer> positions = new HashMap<String, Integer>();
 
         Set<String> categories1 = new HashSet<String>();
         for (int i = 0; i < tags.size(); i++) {
