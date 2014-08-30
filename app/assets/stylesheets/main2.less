@@ -1,0 +1,161 @@
+body {
+
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: normal;
+	line-height: 1.5;
+	color: #333333;
+
+	a{
+		text-decoration: none;
+		color: #333333;
+
+		&:hover{
+			font-weight: bold;
+		}
+		&.selected{
+			font-weight:bold;
+		}	
+	}
+}
+
+
+// ------------ Header --------------
+
+.header {
+	position: fixed;
+	width: 960px;
+	background-color: white;
+	z-index: 1;
+
+	height: 84px;
+	padding-top: 30px;
+	padding-bottom: 0px;
+
+	#logo{
+
+		text-align: right;
+		font-size:21px;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: 0.28em;
+	}
+
+	#search{
+		//background-color: #f5f5f5;
+
+		font-size:14px;
+		font-weight: normal;
+		border-style: none;
+		border-bottom: 1px solid #f5f5f5;
+
+		&:onfocus {
+			background-color:yellow; 
+		}
+	}
+
+	.nav{		
+		font-size:14px;
+		font-weight: normal;
+		text-transform: uppercase;
+		letter-spacing: 0.16em;
+
+
+		li{
+			float: right;
+			display: inline;
+			margin-left: 20px;
+
+			&:first-child{
+				margin-left: 60px;
+			}
+		}
+		
+	}
+}
+
+
+// ------------ Main --------------
+
+.main{
+	margin-top:114px;
+	font-size: 14px;
+
+	.side{
+		position: fixed;
+		text-align: right;
+
+		.side_tags{
+			text-transform: lowercase;
+
+
+			li{
+				margin-bottom: 12px; 
+			}
+
+		}
+
+		.side_nav{
+			margin-top: 60px;
+			text-transform: uppercase;
+			letter-spacing: 0.16em;
+
+			li{
+				margin-bottom: 6px;
+			}
+
+		}
+
+	}
+
+	.content{
+
+		.bundle{
+
+			margin-bottom: 30px;
+
+			img{	
+				width:220px; 
+			}
+
+			.bundle_meta{
+				height: 110px; 
+				background-color: #f5f5f5;
+				padding: 18px 20px 12px 20px;
+
+				.bundle_name{
+					display: block;
+
+					font-size: 18px;
+					font-weight: bold;
+					line-height: 24px;
+				}
+
+				.bundle_links{
+					display: block;
+
+					font-size: 12px;
+					font-weight: bold;
+					color: #b8b8b8;
+					margin-top: 18px; 
+				}
+
+			}
+
+		}
+
+		a:hover{
+
+			img{
+				opacity: 0.8;
+			}
+
+			.bundle_meta{
+				background-color: #fbfbfb;
+			}
+		}
+
+	}
+
+
+}
