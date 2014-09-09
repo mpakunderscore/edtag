@@ -1,0 +1,59 @@
+.user-search{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+.header-block{
+    opacity: 0.9;
+    height: 70px;
+    z-index: 0;
+    &.m-top {
+        background: rgba(255, 255, 255, 0.9);
+        z-index: 2;
+    }
+}
+.logo {
+    cursor: pointer;
+    height: 20px;
+    text-align: right;
+    vertical-align: bottom;
+    background: none;
+    border: none;
+    &:link {
+        text-decoration: none;
+        color: black;
+    }
+    &:visited {
+        color: black;
+    }
+    &:hover {
+        color: rgb(254, 65, 50);
+    }
+    &:focus {
+        outline: none;
+    }
+}
+.top-menu {
+    a{
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #444;
+        display: inline-block;
+        &:visited{
+            color: #444;
+        }
+        &:hover{
+            font-weight: bold;
+            background:#fff;
+        }
+        &::after {
+			display:block;
+			content:attr(title);
+			font-weight:bold;
+			height:1px;
+			color:transparent;
+			overflow:hidden;
+			visibility:hidden;
+		}
+    }
+}

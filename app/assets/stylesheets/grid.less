@@ -25,7 +25,7 @@ body {
 .grid(@cols:''){
   display: inline;
   float: left;
-  margin:0 10px;
+  margin:0 5px;
   width:(@defaultWidth/@defaultGrid * @cols)-20;
 }
 
@@ -39,10 +39,10 @@ body {
 
 .generate-n-fix(@n, @i: 1) when (@i =< @n) {
   .prefix@{i} {
-    padding-left: (@i * 80)px ;
+    padding-left:(@i*80px);
   }
   .suffix@{i} {
-    padding-right: (@i * 80)px ;
+    padding-right:(@i*80px);
   }
   .generate-n-fix(@n, (@i + 1));
 }
@@ -50,11 +50,11 @@ body {
 .generate-push-pull(@n, @i: 1) when (@i =< @n) {
   .push@{i} {
     position: relative;
-    left: (@i * 80)px ;
+    left:(@i*80px);
   }
   .pull@{i}{
     position: relative;
-    left: -(@i * 80)px ;
+    left:-(@i*80px);
   }
   .generate-push-pull(@n, (@i + 1));
 }

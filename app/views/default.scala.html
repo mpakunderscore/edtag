@@ -2,11 +2,8 @@
 
 <!DOCTYPE html>
 <html ng-app="edTagApp">
-
     <head>
-
         <title>@title</title>
-
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="@routes.Assets.at("javascripts/lodash.js")"></script>
@@ -19,56 +16,41 @@
         <script src="@routes.Assets.at("javascripts/controllers/bundle-generation.js")"></script>
         <script src="@routes.Assets.at("javascripts/directives/ng-file-select.js")"></script>
        	<script src="@routes.Assets.at("javascripts/directives/file-model.js")"></script>
-
     </head>
-
-    <body ng-controller="mainCtrl">
-
+    <body ng-controller="mainCtrl" class="container">
         <section class="header-hover">
         </section>
+        <header class="header-block grid12">
 
-        <header>
-            <button ng-click="showSearch()" id="logo">&#60; &#62;</button>
+            <div class="grid2">
+                <button ng-click="showSearch()" >&#60; &#62;</button>
+            </div>
+            <!-- <a class="contact" href="mailto:contact&#64;edtag.io" target="_top">contact</a> -->
 
-            <a class="contact" href="mailto:contact&#64;edtag.io" target="_top">contact</a>
+            <div class="grid3 push1">
+                    <input id="search" class="user-search" placeholder="Search" type="text" ng-model="searchText" ng-enter=""/>
+            </div>
 
-            <nav class="top-menu">
-                <input id="search" placeholder="Search" type="text" ng-model="searchText" ng-enter=""/>
-                <ul class="menu">
-
-                    <li><a ng-class="getClass('/bundles')" href="/bundles" id="bundles">Bundles</a></li>
-                    <li><a ng-class="getClass('/links')" href="/links" id="links">Links</a></li>
-
-
-                    @if(email == null) {
-
-                        @*<li><a ng-class="getClass('/about')" href="/about" id="about">About</a></li>*@
-
-                        <li><a ng-class="getClass('/login')" href="/login" class="auth">Sign In</a></li>
-                        @*<li>*@
-                            @*<fb:login-button data-size="icon" scope="public_profile,email" onlogin="checkLoginState();">*@
-                            @*</fb:login-button>*@
-                        @*</li>*@
-
-                    } else {
-
-                        <li><a ng-class="getClass('/favorites')" href="/favorites" id="favorites">Favorites</a></li>
-
-                        @*<li><a ng-class="getClass('/about')" href="/about" id="about">About</a></li>*@
-
-                        @*<li><a ng-class="getClass('/generation')" href="/generation" id="generation">+</a></li>*@
-
-                        <li><a href="/signout" class="auth">Sign Out</a></li>
-                    }
-
-                </ul>
+            <nav class="top-menu grid6 push1">
+                <a ng-class="getClass('/bundles')" href="/bundles" title="bundles" class="ml20">Bundles</a>
+                <a ng-class="getClass('/links')" href="/links" title="links" class="ml20">Links</a>
+                <a href="/bookmarks" title="links" class="ml20">Bookmarks</a>
+                @if(email == null) {
+                    @*<a ng-class="getClass('/about')" href="/about" id="about">About</a>*@
+                    <a ng-class="getClass('/login')" href="/login" class="auth ml50">Sign In</a>
+                        @*<fb:login-button data-size="icon" scope="public_profile,email" onlogin="checkLoginState();">*@
+                        @*</fb:login-button>*@
+                } else {
+                    <a ng-class="getClass('/favorites')" href="/favorites" id="favorites">Favorites</a>
+                    @*<a ng-class="getClass('/about')" href="/about" id="about">About</a>*@
+                    @*<a ng-class="getClass('/generation')" href="/generation" id="generation">+</a>*@
+                    <a href="/signout" class="auth">Sign Out</a>
+                }
             </nav>
         </header>
+        <nav class="left-menu">
 
+        </nav>
         @content
-
     </body>
-
-        <!-- What are you doing here? -_-' -->
-
 </html>
