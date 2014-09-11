@@ -23,21 +23,21 @@
         <header class="header-block grid12">
 
             <div class="grid2">
-                <button ng-click="showSearch()" >&#60; &#62;</button>
+                <!-- <button ng-click="showSearch()" >&#60; &#62;</button> -->
+                <h1 class="text-right">Bundles</h1>
             </div>
             <!-- <a class="contact" href="mailto:contact&#64;edtag.io" target="_top">contact</a> -->
 
             <div class="grid3 push1">
-                    <input id="search" class="user-search" placeholder="Search" type="text" ng-model="searchText" ng-enter=""/>
+                    <input class="user-search" placeholder="Search" type="text" ng-model="searchText" ng-enter=""/>
             </div>
 
             <nav class="top-menu grid6 push1">
-                <a ng-class="getClass('/bundles')" href="/bundles" title="bundles" class="ml20">Bundles</a>
-                <a ng-class="getClass('/links')" href="/links" title="links" class="ml20">Links</a>
-                <a href="/bookmarks" title="links" class="ml20">Bookmarks</a>
+                <a ng-class="getClass('/bundles')" href="/bundles"  class="abs-link">Bundles</a>
+                <a ng-class="getClass('/links')" href="/links"  class="abs-link">Links</a>
+                <a href="/bookmarks"  class="abs-link">Bookmarks</a>
                 @if(email == null) {
-                    @*<a ng-class="getClass('/about')" href="/about" id="about">About</a>*@
-                    <a ng-class="getClass('/login')" href="/login" class="auth ml50">Sign In</a>
+                    <a ng-class="getClass('/login')" href="/login" class="abs-link">Sign In</a>
                         @*<fb:login-button data-size="icon" scope="public_profile,email" onlogin="checkLoginState();">*@
                         @*</fb:login-button>*@
                 } else {

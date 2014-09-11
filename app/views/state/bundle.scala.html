@@ -1,46 +1,29 @@
 @(bundle: Bundle, email: String)
 
 @shell(bundle.getTitle, email, "bundleCtrl") {
+    <header class="grid9 push1">
+        <h1 class="title">@bundle.getTitle</h1>
+        <p>
+            @bundle.getDescription
+        </p>
+        <a>Share to Facebook</a>
+        <a>Share to Twitter</a>
+@*<a href="https://twitter.com/share" class="twitter-share-button" data-url="https://dry-tundra-9556.herokuapp.com/bundle/@bundle.getId" data-text="@bundle.getTitle" data-size="icon" data-count="none"></a>*@
+@*<script>! function ( d, s, id ) { var js, fjs = d.getElementsByTagName ( s )[ 0 ], p = /^http:/.test ( d.location ) ? 'http' : 'https' ; if ( ! d.getElementById ( id ) ) { js = d.createElement ( s ) ; js.id = id ; js.src = p + '://platform.twitter.com/widgets.js' ; fjs.parentNode.insertBefore ( js, fjs ) ; } } ( document, 'script', 'twitter-wjs' ) ;</script>*@
 
-    <ul class="out bundle">
+@*<div class="fb-like" data-href="https://dry-tundra-9556.herokuapp.com/bundle/@bundle.getId" data-layout="button" data-width="450" data-action="like" data-show-faces="false" data-share="true"></div>*@
 
-        <ul class="top">
-            <li>
-                <img ng-src="@{
-                    "{{getBucket()}}/bundles/bundle." + bundle.getId + ".png"
-                }">
-            </li>
-            <li>
-                <ul>
-                    <li><h1 class="title">@bundle.getTitle</h1></li>
-                    <li><span class="linksCount">@bundle.getLinksCount links</span></li>
+    </header>
+    <section class="bundle-links push1 grid9">
+        <div ng-repeat="link in dataList | filter:searchText" class="bundle-link">
 
-                    @*<li class="sharing">*@
+            <img ng-if="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}" class="abs-image">
+            <img ng-if="!link.favIconFormat" src="/assets/images/default-favicon.png" class="abs-image">
+            <h3><a href='{{link.url}}' target='_blank'  class="title">{{link.title}}</a></h3>
+            <p>{{link.description}}</p>
+            <a ng-href="#" ng-click="favoriteLink(link)" id="f{{link.id}}" class="favorite">&#9733;</a>
+        </li>
 
-                        @*<a href="https://twitter.com/share" class="twitter-share-button" data-url="https://dry-tundra-9556.herokuapp.com/bundle/@bundle.getId" data-text="@bundle.getTitle" data-size="icon" data-count="none"></a>*@
-                        @*<script>! function ( d, s, id ) { var js, fjs = d.getElementsByTagName ( s )[ 0 ], p = /^http:/.test ( d.location ) ? 'http' : 'https' ; if ( ! d.getElementById ( id ) ) { js = d.createElement ( s ) ; js.id = id ; js.src = p + '://platform.twitter.com/widgets.js' ; fjs.parentNode.insertBefore ( js, fjs ) ; } } ( document, 'script', 'twitter-wjs' ) ;</script>*@
-
-                        @*<div class="fb-like" data-href="https://dry-tundra-9556.herokuapp.com/bundle/@bundle.getId" data-layout="button" data-width="450" data-action="like" data-show-faces="false" data-share="true"></div>*@
-                    @*</li>*@
-
-                    @*<li class="back"><a href="javascript:window.history.back()">back</a></li>*@
-                </ul>
-            </li>
-
-        </ul>
-
-
-        <ul class="links">
-            <li ng-repeat="link in dataList | filter:searchText">
-
-                <img ng-if="link.favIconFormat" ng-src="{{getBucket()}}/favicons/{{getDomain(link.url)}}.{{link.favIconFormat}}">
-                <img ng-if="!link.favIconFormat" src="/assets/images/default-favicon.png">
-
-                <a href='{{link.url}}' target='_blank' ng-attr-title="{{link.tags}}" class="title">{{link.title}}</a><a ng-href="#" ng-click="favoriteLink(link)" id="f{{link.id}}" class="favorite">&#9733;</a>
-            </li>
-
-            <img class="loading" ng-if="!dataList.length" src="/assets/images/loading.gif">
-        </ul>
-
-    </ul>
+        <img class="loading" ng-if="!dataList.length" src="/assets/images/loading.gif">
+    </section>
 }
