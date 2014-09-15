@@ -7,6 +7,7 @@ How to run with IDEA.
 5. Set {DATABASE_NAME} 
 
     sudo nano ~/.bash_profile
+    
     export DATABASE_URL="jdbc:postgresql://localhost:5432/{DATABASE_NAME}?user={USER}&password={PASSWORD}"
     source ~/.bash_profile
 
