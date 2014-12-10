@@ -6,7 +6,9 @@
 
        <li ng-repeat="bundle in dataList | filter:searchText">
 
+           <a ng-href="/bundle/{{bundle.id}}">
            <img ng-src="@{"{{getBucket()}}/bundles/bundle.{{bundle.id}}.png"}">
+           </a>
 
            @*<progress class='count' value='{{getCount(bundle.wordsCount)}}' max='70'></progress>*@
            <a class="title" ng-href="/bundle/{{bundle.id}}" ng-attr-title="{{bundle.tags}}">{{bundle.title}}</a>

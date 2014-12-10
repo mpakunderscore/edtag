@@ -62,6 +62,10 @@ public class Application extends Controller {
 
     public static Result bundles() {
 
+        if (Play.isProd() && !isHttpsRequest(request()))
+            return redirect("https://" + request().host()
+                    + request().uri());
+
         return ok(bundles.render(session("email")));
     }
 
@@ -131,7 +135,7 @@ public class Application extends Controller {
                     redirect(routes.Application.login());
 
         return
-                redirect(routes.Application.index());
+                redirect(routes.Application.bundles());
 
     }
 
@@ -141,7 +145,7 @@ public class Application extends Controller {
 //        flash("success", "You've been logged out");
 
         return
-                redirect(routes.Application.index());
+                redirect(routes.Application.bundles());
     }
 
 

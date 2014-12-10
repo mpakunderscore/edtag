@@ -3,10 +3,9 @@
 # ~~~~
 
 # main page
-GET         /                           controllers.Application.index
+GET         /                           controllers.Application.bundles
 GET         /login                      controllers.Application.login
 
-GET         /bundles                    controllers.Application.bundles
 GET         /links                      controllers.Application.links
 GET         /about                      controllers.Application.about
 GET         /favorites                  controllers.Application.favorites

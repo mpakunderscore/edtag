@@ -89,7 +89,12 @@ edTagApp.controller('mainCtrl', function ($scope, $http, $location) {
 
     $scope.getClass = function (path) {
 
-        if ($location.absUrl().indexOf(path) > -1) {
+        console.log("|" + $location.absUrl().split('/')[3] + ":" + path + "|");
+
+        if ($location.absUrl().split('/')[3] === "" && path === "")
+            return "current-page"
+
+        else if (path !== "" && $location.absUrl().indexOf(path) > -1) {
             return "current-page"
         } else {
             return ""

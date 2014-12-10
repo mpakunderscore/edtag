@@ -31,3 +31,8 @@ How to run with Activator Framework
 General advice
 Use <a href="pgAdmin ">pgAdmin III</a> for DB Administration
 
+
+Go into [File -> Project Structure -> Modules -> [YourAppModule] -> Sources Tab]
+Navigate to the "target/scala-[version]/src_managed" directory (panel on the right).
+Right click the "main" directory and flag it as a source folder. Right click "controllers" and "views" and remove the "sources" flag (you should see the controllers and views folder become package directories).
+Apply -> OK -> recompile.

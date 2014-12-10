@@ -7,10 +7,6 @@
     <ul class="out login">
 
             <li>
-                <input class="empty" type="submit" value="Create empty account" onclick="empty()">
-            </li>
-
-            <li>
                 @helper.form(routes.Application.signIn()) {
                     <input id="email" name="email" type="email" placeholder="Email"/><br/><br/>
                     <input id="password" name="password" type="password" placeholder="Password"/><br/><br/>
